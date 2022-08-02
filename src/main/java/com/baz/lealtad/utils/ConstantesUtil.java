@@ -10,4 +10,6 @@ public final class ConstantesUtil {
 
     public final static String ORACLE_DATABASE_PASSWORD = "";
 
+    public final static String ORACLE_DATABASE_STOREPROCEDURE = "";
+
 }

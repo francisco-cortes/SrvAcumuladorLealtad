@@ -1,8 +1,6 @@
 package com.baz.lealtad.utils;
 
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
 
 public class FabricaDaoUtil {
 
@@ -13,9 +11,13 @@ public class FabricaDaoUtil {
         Class.forName("oracle.jdbc.OracleDriver");
         conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
                 ConstantesUtil.ORACLE_DATABASE_USERNAME,
-                ConstantesUtil.ORACLE_DATABASE_URL);
+                ConstantesUtil.ORACLE_DATABASE_PASSWORD);
 
-        if (conexion != null) {System.out.println("Connected with ");}
+        if (conexion != null) {
+            System.out.println("Conectado a base oracle");
+        } else {
+            System.out.println("No se pudo conectar");
+        }
 
         return conexion;
     }
