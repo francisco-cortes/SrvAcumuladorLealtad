@@ -6,7 +6,7 @@ import com.baz.lealtad.utils.FabricaDaoUtil;
 
 import java.sql.*;
 
-public class EjecutarSp {
+public class EjecutarSpDao {
 
     FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
