@@ -1,4 +1,4 @@
-package com.baz.lealtad.models;
+package com.baz.lealtad.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AcumulacionRequestModel {
+public class ApiRequestDto {
     Short idTipoCliente;
     String idCliente;
     String importe;

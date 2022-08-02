@@ -1,6 +1,6 @@
 package com.baz.lealtad.service;
 
-import com.baz.lealtad.models.DatabaseResponseModel;
+import com.baz.lealtad.dtos.DatabaseResponseModel;
 
 public class ConsultaBaseService {
 

@@ -1,4 +1,4 @@
-package com.baz.lealtad.models;
+package com.baz.lealtad.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,5 +10,5 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DatabaseResponseModel {
-    String respuestaXD;
+    String respuestaXD;//probable cursor
 }

@@ -1,9 +1,8 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.models.DatabaseResponseModel;
+import com.baz.lealtad.dtos.DatabaseResponseModel;
 import com.baz.lealtad.utils.ConstantesUtil;
 import com.baz.lealtad.utils.FabricaDaoUtil;
-import oracle.jdbc.OracleTypes;
 
 import java.sql.*;
 
