@@ -9,6 +9,6 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class DatabaseResponseModel {
+public class DatabaseResponseDto {
     String respuestaXD;//probable cursor
 }

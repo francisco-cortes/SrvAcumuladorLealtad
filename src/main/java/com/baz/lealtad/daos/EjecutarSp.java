@@ -1,17 +1,17 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.dtos.DatabaseResponseModel;
+import com.baz.lealtad.dtos.DatabaseResponseDto;
 import com.baz.lealtad.utils.ConstantesUtil;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 
 import java.sql.*;
 
-public class ConexionBaseDao {
+public class EjecutarSp {
 
     FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
-    public DatabaseResponseModel ejecutarSp(){
-        DatabaseResponseModel respuestaSp = new DatabaseResponseModel();
+    public DatabaseResponseDto ejecutarSp(){
+        DatabaseResponseDto respuestaSp = new DatabaseResponseDto();
         Connection conexion = null;
         CallableStatement declaracion = null;
 
@@ -23,7 +23,7 @@ public class ConexionBaseDao {
             declaracion.executeQuery();
             ResultSet resultSet = (ResultSet) declaracion.getObject(3);
         }catch (Exception excepcion){
-
+            excepcion.printStackTrace();
         }finally {
             try {
                 fabricaDao.cerrarConexion(conexion, declaracion, null);
