@@ -14,6 +14,7 @@ public class EjecutarSpDao {
         DatabaseResponseDto respuestaSp = new DatabaseResponseDto();
         Connection conexion = null;
         CallableStatement declaracion = null;
+        ResultSet resultSet = null;
 
         try {
             conexion = fabricaDao.obtenerConexion();
@@ -21,12 +22,13 @@ public class EjecutarSpDao {
             //declaracion.setBigDecimal(2, tipoDato);
             //declaracion.registerOutParameter(3, OracleTypes.REF_CURSOR);
             declaracion.executeQuery();
-            ResultSet resultSet = (ResultSet) declaracion.getObject(3);
+            resultSet = (ResultSet) declaracion.getObject(3);
         }catch (Exception excepcion){
+            respuestaSp.setRespuestaXD("sin conexion base");
             excepcion.printStackTrace();
         }finally {
             try {
-                fabricaDao.cerrarConexion(conexion, declaracion, null);
+                fabricaDao.cerrarConexion(conexion, declaracion, resultSet);
             } catch (Exception e) {
                 e.printStackTrace();
             }

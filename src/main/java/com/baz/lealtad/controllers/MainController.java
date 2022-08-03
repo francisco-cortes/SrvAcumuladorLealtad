@@ -1,9 +1,9 @@
-package com.baz.lealtad.jobs;
+package com.baz.lealtad.controllers;
 
 import com.baz.lealtad.dtos.DatabaseResponseDto;
 import com.baz.lealtad.service.ConsultaBaseService;
 
-public class MainJob {
+public class MainController {
 
     private static ConsultaBaseService dbService = new ConsultaBaseService();
 
