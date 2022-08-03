@@ -7,12 +7,10 @@ import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-import java.util.Properties;
-
 @RegisterRestClient(configKey = "systemClient",
         baseUri = "http://localhost:9080/system")
 @Path("/properties")
-public interface ApiClientDao extends AutoCloseable {
+public interface ApiProxyDao extends AutoCloseable {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)

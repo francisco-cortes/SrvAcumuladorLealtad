@@ -5,7 +5,7 @@ import com.baz.lealtad.service.ConsultaBaseService;
 
 public class MainJob {
 
-    static ConsultaBaseService dbService = new ConsultaBaseService();
+    private static ConsultaBaseService dbService = new ConsultaBaseService();
 
     public static void main(String[] args){
         DatabaseResponseDto responseDb = new DatabaseResponseDto();

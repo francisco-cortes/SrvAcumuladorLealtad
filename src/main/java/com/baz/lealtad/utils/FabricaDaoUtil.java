@@ -4,12 +4,10 @@ import java.sql.*;
 
 public class FabricaDaoUtil {
 
-    private Connection conexion;
-
     public Connection obtenerConexion() throws Exception{
 
         Class.forName("oracle.jdbc.OracleDriver");
-        conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
+        Connection conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
                 ConstantesUtil.ORACLE_DATABASE_USERNAME,
                 ConstantesUtil.ORACLE_DATABASE_PASSWORD);
 

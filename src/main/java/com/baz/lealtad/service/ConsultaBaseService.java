@@ -5,7 +5,7 @@ import com.baz.lealtad.dtos.DatabaseResponseDto;
 
 public class ConsultaBaseService {
 
-    EjecutarSpDao baseSp = new EjecutarSpDao();
+    private EjecutarSpDao baseSp = new EjecutarSpDao();
 
     public DatabaseResponseDto consulta(String ejemplo){
         DatabaseResponseDto respuestaSp = new DatabaseResponseDto();

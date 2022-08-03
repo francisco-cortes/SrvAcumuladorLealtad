@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class EjecutarSpDao {
 
-    FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+    private FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
     public DatabaseResponseDto ejecutarSp(){
         DatabaseResponseDto respuestaSp = new DatabaseResponseDto();
