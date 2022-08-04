@@ -1,8 +1,12 @@
 package com.baz.lealtad.utils;
 
+import org.apache.log4j.Logger;
+
 import java.sql.*;
 
 public class FabricaDaoUtil {
+
+    private static final Logger logger = Logger.getLogger(FabricaDaoUtil.class);
 
     public Connection obtenerConexion() throws Exception{
 
@@ -13,9 +17,9 @@ public class FabricaDaoUtil {
                 ConstantesUtil.ORACLE_DATABASE_PASSWORD);
 
         if (conexion != null) {
-            System.out.println("Conectado a base oracle");
+            logger.info("Conectado a base oracle");
         } else {
-            System.out.println("No se pudo conectar");
+            logger.error("No se pudo conectar");
         }
 
         return conexion;
@@ -24,6 +28,7 @@ public class FabricaDaoUtil {
     public void cerrarConexion(Connection conexion, CallableStatement declaracionInvocable, ResultSet resultado) throws SQLException {
         if (conexion != null && !conexion.isClosed()) {
             conexion.close();
+            logger.info("conexion cerrada");
         }
 
         if(resultado != null){
