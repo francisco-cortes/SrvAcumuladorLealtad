@@ -6,6 +6,7 @@ public class FabricaDaoUtil {
 
     public Connection obtenerConexion() throws Exception{
 
+        System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
         Connection conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
                 ConstantesUtil.ORACLE_DATABASE_USERNAME,

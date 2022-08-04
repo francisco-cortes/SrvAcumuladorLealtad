@@ -9,7 +9,7 @@ public class ConsultaBaseService {
 
     public DatabaseResponseDto consulta(String ejemplo){
         DatabaseResponseDto respuestaSp = new DatabaseResponseDto();
-        //respuestaSp = baseSp.ejecutarSp();
+        respuestaSp = baseSp.ejecutarSp();
         respuestaSp.setRespuestaXD(ejemplo);
         return respuestaSp;
     }

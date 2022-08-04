@@ -4,13 +4,13 @@ public final class ConstantesUtil {
 
     public final static String NOMBRE_JAR = "Acumulador Lealtad";
 
-    public final static String ORACLE_DATABASE_URL = "";
+    public final static String ORACLE_DATABASE_URL = "jdbc:oracle:thin:@10.81.11.77:1521:SFBDDEV";
 
-    public final static String ORACLE_DATABASE_USERNAME = "";
+    public final static String ORACLE_DATABASE_USERNAME = "C3Multimarcas";
 
-    public final static String ORACLE_DATABASE_PASSWORD = "";
+    public final static String ORACLE_DATABASE_PASSWORD = "BuSTxN4LMm";
 
-    public final static String ORACLE_DATABASE_STOREPROCEDURE = "";
+    public final static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAFONETICO03.SPCONSULTAFRECU(?, ?, ?, ?, ?)";
 
     public final static String KEY_CIPHER = "B2A0A0R2N1Q8C0U7O2I0A1T6ZETCETCU";
 

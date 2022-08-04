@@ -28,9 +28,9 @@ public class MainController {
 
 
     public static void main(String[] args){
-        logger.info("------------------------------------------");
-        logger.info("-----------------Inicia-------------------");
-        logger.info("------------------------------------------");
+        logger.info("|------------------------------------------|");
+        logger.info("|-----------------Inicia-------------------|");
+        logger.info("|------------------------------------------|");
         String hola = "hola";
         DatabaseResponseDto responseDb = new DatabaseResponseDto();
         System.out.println("hello world");
