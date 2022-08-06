@@ -26,4 +26,10 @@ public final class ConstantesUtil {
 
     public final static String BASE_64_PRIVATE_KEY = "";
 
+    public final static String TOKEN_URL = "https://dev-api.bancoazteca.com.mx:8080/oauth2/v1/token";
+
+    public final static String CONSUMER_SECRET = "RqV58GRGKromtjdWohnlCqAKy8dt3Cn1";
+
+    public final static String CONSUMER_KEY = "bhm6EI2aBjFVq3FL";
+
 }
