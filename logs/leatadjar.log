@@ -1,10 +1,11 @@
-2022-08-05 18:52:09 INFO  MainController:19 - |------------------------------------------|
-2022-08-05 18:52:09 INFO  MainController:20 - |-----------------Inicia-------------------|
-2022-08-05 18:52:09 INFO  MainController:21 - |------------------------------------------|
-2022-08-05 18:52:09 INFO  ConsultaSalidaService:14 - Consulta del primer SP
-2022-08-05 18:52:09 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-05 18:52:10 INFO  EjecutarSpSalidaDao:36 - Sp ejecutado
-2022-08-05 18:52:10 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-05 18:52:10 INFO  MainController:36 - ------------------------------------------
-2022-08-05 18:52:10 INFO  MainController:37 - -------------------FIN--------------------
-2022-08-05 18:52:10 INFO  MainController:38 - ------------------------------------------
+2022-08-08 12:56:57 INFO  MainController:20 - |------------------------------------------|
+2022-08-08 12:56:57 INFO  MainController:21 - |-----------------Inicia-------------------|
+2022-08-08 12:56:57 INFO  MainController:22 - |------------------------------------------|
+2022-08-08 12:56:57 INFO  ConsultaSalidaService:18 - Consulta del primer SP
+2022-08-08 12:56:57 INFO  FabricaDaoUtil:20 - Conectado a base oracle
+2022-08-08 12:56:58 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
+2022-08-08 12:56:58 INFO  EjecutarSpSalidaDao:59 - OPERACION EXITOSA.
+2022-08-08 12:56:58 INFO  FabricaDaoUtil:31 - conexion cerrada
+2022-08-08 12:56:59 INFO  MainController:38 - ------------------------------------------
+2022-08-08 12:56:59 INFO  MainController:39 - -------------------FIN--------------------
+2022-08-08 12:56:59 INFO  MainController:40 - ------------------------------------------

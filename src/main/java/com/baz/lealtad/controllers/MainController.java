@@ -2,9 +2,13 @@ package com.baz.lealtad.controllers;
 
 import com.baz.lealtad.daos.TokenDao;
 import com.baz.lealtad.dtos.SpSalidaResponseDto;
+import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.service.ConsultaSalidaService;
 import com.baz.lealtad.utils.PropUtil;
 import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainController {
 
@@ -20,10 +24,11 @@ public class MainController {
         logger.info("|-----------------Inicia-------------------|");
         logger.info("|------------------------------------------|");
 
-        SpSalidaResponseDto responseDb = new SpSalidaResponseDto();
+        List<CursorSpSalidaModel> responseDb = new ArrayList<>();
         System.out.println("hello world");
 
-        responseDb = salidaService.consulta("JOSE");
+        responseDb = salidaService.consulta();
+        System.out.println(responseDb);
         try {
             token.getToken();
         }catch (Exception e){
@@ -31,7 +36,7 @@ public class MainController {
         }
 
 
-        System.out.println(responseDb.getFnRegistros());
+
 
         logger.info("------------------------------------------");
         logger.info("-------------------FIN--------------------");
