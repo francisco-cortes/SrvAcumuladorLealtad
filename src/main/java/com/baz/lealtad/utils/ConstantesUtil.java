@@ -16,15 +16,15 @@ public final class ConstantesUtil {
 
     public final static String IV_PARAM = "02 A6 81 F1 19 8B 87 60 E6 56 81 C1 65 88 5D 34";
 
-    public final static String ENCODE_UTF8 = "UTF-8";
+    public static final String ENCODING_UTF8 = "UTF-8";
 
-    public final static String ALGORITHM_METHOD_AES = "AES";
+    public static final String AES_KEY = "AES";
 
-    public final static String ALGORITHM_CYPHER_PKCS5PADDING = "AES/CBC/PKCS5Padding";
+    public static final String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
 
-    public final static String BASE_64_PUBLIC_KEY = "";
+    public static final String ALGORITHM_HMAC = "HmacSHA256";
 
-    public final static String BASE_64_PRIVATE_KEY = "";
+    public static final int IV_SIZE = 16;
 
     public final static String TOKEN_URL = "https://dev-api.bancoazteca.com.mx:8080/oauth2/v1/token";
 
