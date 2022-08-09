@@ -1,11 +1,14 @@
-2022-08-08 12:56:57 INFO  MainController:20 - |------------------------------------------|
-2022-08-08 12:56:57 INFO  MainController:21 - |-----------------Inicia-------------------|
-2022-08-08 12:56:57 INFO  MainController:22 - |------------------------------------------|
-2022-08-08 12:56:57 INFO  ConsultaSalidaService:18 - Consulta del primer SP
-2022-08-08 12:56:57 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-08 12:56:58 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
-2022-08-08 12:56:58 INFO  EjecutarSpSalidaDao:59 - OPERACION EXITOSA.
-2022-08-08 12:56:58 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-08 12:56:59 INFO  MainController:38 - ------------------------------------------
-2022-08-08 12:56:59 INFO  MainController:39 - -------------------FIN--------------------
-2022-08-08 12:56:59 INFO  MainController:40 - ------------------------------------------
+2022-08-09 16:09:36 INFO  MainController:26 - |------------------------------------------|
+2022-08-09 16:09:36 INFO  MainController:27 - |-----------------Inicia-------------------|
+2022-08-09 16:09:36 INFO  MainController:28 - |------------------------------------------|
+2022-08-09 16:09:36 INFO  TokenDao:76 - token obtenido
+2022-08-09 16:09:36 INFO  LlavesAsimetricasDao:62 - Llaves asimetricas obtenidas
+2022-08-09 16:09:36 INFO  LlavesAsimetricasDao:61 - Llaves simetricas obtenidas
+2022-08-09 16:09:36 INFO  ObtenerLlavesService:26 - llaves obtenidas
+2022-08-09 16:09:36 INFO  ObtenerLlavesService:52 - kbxJ/b2EoQ7jlXKBeb3jstHTDeF9NenkyXzaHMrvyDBc8giamcbvOh5tgcznW/1j8UtYZc02OCJjqWp08N6RLnG2WdNywmcoPCQKGh2fLzBMfaDTtUJigkBc29JUy92/Us3c9/V1HqjNmlwzGMJpz0oPIkkR3aRoBHl5UA7igK8= : Decifrado en RSA
+2022-08-09 16:09:36 INFO  ObtenerLlavesService:52 - UU+TU4PN88Jr1S8suSrjMRRbdMZqPCUxbVa4guMgkt94qoZ4eLduFVfcBmHrK3Fgo/UE6YtcGp/r9ZJw1dDNvEx1HLs3m29aW6UftH9ZD1XYZq5UD9UuiL5zw/3JtTbV+wRdSFHzS3qPrDg+rdtZL9StLuBg6JZUiY7mEinCiKU= : Decifrado en RSA
+2022-08-09 16:09:36 INFO  ObtenerLlavesService:65 - Fp/V5B6RK3Tloic92hqv7CiTL9bRbx6b/vGO1DG68+s=
+2022-08-09 16:09:36 INFO  ObtenerLlavesService:66 - gsHvozS0eEEJKcqLue5D1q40eW12FNVmpQeUJjcd1p8=
+2022-08-09 16:09:36 INFO  MainController:38 - ------------------------------------------
+2022-08-09 16:09:36 INFO  MainController:39 - -------------------FIN--------------------
+2022-08-09 16:09:36 INFO  MainController:40 - ------------------------------------------

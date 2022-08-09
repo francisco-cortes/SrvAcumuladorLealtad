@@ -32,4 +32,8 @@ public final class ConstantesUtil {
 
     public final static String CONSUMER_KEY = "bhm6EI2aBjFVq3FL";
 
+    public final static String ASIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves";
+
+    public final static String SIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves-simetricas/";
+
 }

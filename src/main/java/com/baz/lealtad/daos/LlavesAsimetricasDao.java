@@ -8,23 +8,18 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
-import java.net.*;
+import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
 import java.time.Duration;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
 
-public class TokenDao {
+public class LlavesAsimetricasDao {
 
-    private static final Logger logger = Logger.getLogger(TokenDao.class);
+    private static final Logger logger = Logger.getLogger(LlavesAsimetricasDao.class);
 
     public static SSLContext insecureContext(){
         TrustManager[] noopTrustManager = new TrustManager[]{
@@ -45,18 +40,8 @@ public class TokenDao {
         }
     }
 
-    public String getToken() throws IOException, InterruptedException {
-        Map<String, String> parameters = new HashMap<>();
-        parameters.put("grant_type", "client_credentials");
-        parameters.put("client_id", ConstantesUtil.CONSUMER_SECRET);
-        parameters.put("client_secret", ConstantesUtil.CONSUMER_KEY);
-
-        String form = parameters.keySet().stream()
-                .map(key -> key + "=" + URLEncoder.encode(parameters.get(key), StandardCharsets.UTF_8))
-                .collect(Collectors.joining("&"));
-
-        String encoded = Base64.getEncoder()
-                .encodeToString((ConstantesUtil.CONSUMER_SECRET + ":" + ConstantesUtil.CONSUMER_KEY).getBytes());
+    public String[] getLlavesAsimetricas(String token) throws IOException, InterruptedException {
+        String[] llavesAsimetricas = new String[3];
 
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
@@ -65,20 +50,32 @@ public class TokenDao {
                 .sslContext(insecureContext())
                 .build();
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ConstantesUtil.TOKEN_URL))
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ConstantesUtil.ASIMETRICAS_URL))
                 .headers("Content-Type", "application/x-www-form-urlencoded",
-                        "Authorization","Basic " + encoded)
-                .POST(HttpRequest.BodyPublishers.ofString(form)).build();
+                        "Authorization","Bearer " + token)
+                .GET().build();
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+
         if(response.statusCode() >= 200 && response.statusCode() < 300){
-            logger.info("token obtenido");
-            JSONObject tokenResponse = new JSONObject(response.body());
-            return tokenResponse.getString("access_token");
+            logger.info("Llaves asimetricas obtenidas");
+
+            JSONObject asimetricasResponse = new JSONObject(response.body());
+            
+            llavesAsimetricas[0] = asimetricasResponse.getJSONObject("resultado").getString("idAcceso");
+            llavesAsimetricas[1] = asimetricasResponse.getJSONObject("resultado").getString("accesoPublico");
+            llavesAsimetricas[2] = asimetricasResponse.getJSONObject("resultado").getString("accesoPrivado");
+
+            return llavesAsimetricas;
         }else {
-            logger.error("No se pudo obtener el token, Validar");
-            return "";
+            logger.error("Error al obtener llaves asimetricas, Validar");
+            llavesAsimetricas[0] = "";
+            llavesAsimetricas[1] = "";
+            llavesAsimetricas[2] = "";
+
+            return llavesAsimetricas;
         }
+
     }
 }
