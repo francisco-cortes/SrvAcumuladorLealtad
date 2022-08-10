@@ -1,12 +1,9 @@
 package com.baz.lealtad.service;
 
-import com.baz.lealtad.controllers.MainController;
 import com.baz.lealtad.daos.EjecutarSpSalidaDao;
-import com.baz.lealtad.dtos.SpSalidaResponseDto;
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConsultaSalidaService {

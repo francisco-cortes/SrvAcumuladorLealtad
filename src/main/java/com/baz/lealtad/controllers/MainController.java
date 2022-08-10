@@ -4,6 +4,7 @@ import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.service.CifrarDesifrarAesService;
 import com.baz.lealtad.service.ConsultaSalidaService;
 import com.baz.lealtad.service.ObtenerLlavesService;
+import com.baz.lealtad.service.SpEntradaService;
 import com.baz.lealtad.utils.PropUtil;
 import org.apache.log4j.Logger;
 
@@ -15,6 +16,7 @@ public class MainController {
 
     private static final PropUtil prop= new PropUtil();
     private static final ConsultaSalidaService salidaService = new ConsultaSalidaService();
+    private static final SpEntradaService spEntrada = new SpEntradaService();
     private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
     private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
     private static final Logger logger = Logger.getLogger(MainController.class);
@@ -31,11 +33,12 @@ public class MainController {
 
         //responseDb = salidaService.consulta();
         //System.out.println(responseDb);
-        llavesAes = obtenerLlaves.getLlavesAes();
-        String ej = cifrarService.cifrar("i", llavesAes[0], llavesAes[1]);
-        String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
-        logger.info(ej2);
+        //llavesAes = obtenerLlaves.getLlavesAes();
+        //String ej = cifrarService.cifrar("hola", llavesAes[0], llavesAes[1]);
+        //String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
+        //logger.info(ej2);
 
+        spEntrada.guardarBase();
 
 
         logger.info("------------------------------------------");

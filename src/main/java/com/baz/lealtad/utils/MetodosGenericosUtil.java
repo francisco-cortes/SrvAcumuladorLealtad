@@ -92,4 +92,5 @@ public class MetodosGenericosUtil {
         String fechaPersonalizada = sdf.format(fechaActual);
         return fechaPersonalizada;
     }
+
 }

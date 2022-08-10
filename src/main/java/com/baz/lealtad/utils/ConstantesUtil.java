@@ -12,6 +12,8 @@ public final class ConstantesUtil {
 
     public final static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD(?, ?, ?)";
 
+    public final static String ORACLE_DATABASE_IN_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPTRANSPUNTLEAL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
     public final static String KEY_CIPHER = "B2A0A0R2N1Q8C0U7O2I0A1T6ZETCETCU";
 
     public final static String IV_PARAM = "02 A6 81 F1 19 8B 87 60 E6 56 81 C1 65 88 5D 34";
