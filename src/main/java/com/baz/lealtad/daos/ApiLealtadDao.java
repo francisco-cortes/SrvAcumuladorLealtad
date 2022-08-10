@@ -44,7 +44,7 @@ public class ApiLealtadDao {
     public String[] getAcumulaciones(String idAcceso, String token, int idTipoCliente,
                                      String idCliente, String importe, int sucursal,
                                      int idOperacion, String folioTransaccion) throws IOException, InterruptedException {
-        String[] respuesta = new String[15];
+        String[] respuesta = new String[3];
 
         String params = "{" +
                 "\"idTipoCliente\":" + idTipoCliente + "," +
@@ -76,9 +76,10 @@ public class ApiLealtadDao {
 
             respuesta[0] = puntosResponse.getString("mensaje");
             respuesta[1] = puntosResponse.getString("folio");
-            respuesta[3] = "0";
+            respuesta[2] = "0";
 
-            /*respuesta[2] = puntosResponse.getJSONObject("resultado").getString("idUsuarioTpremia");
+            /*
+            respuesta[2] = puntosResponse.getJSONObject("resultado").getString("idUsuarioTpremia");
             respuesta[3] = String.valueOf(puntosResponse.getJSONObject("resultado").getInt("idOperacion"));
             respuesta[4] = puntosResponse.getJSONObject("resultado").getString("FolioOperacion");
             respuesta[5] = puntosResponse.getJSONObject("resultado").getString("fechaHoraOperacion");
@@ -89,28 +90,29 @@ public class ApiLealtadDao {
             respuesta[9] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("totalPuntosFinal"));
             respuesta[10] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("puntosRecompensa"));
 
-            System.out.println(balanceLealtad.getJSONObject(0).getInt("puntosRecompensa"));*/
+            System.out.println(balanceLealtad.getJSONObject(0).getInt("puntosRecompensa"));
+            */
 
             return respuesta;
         }else {
             JSONObject puntosResponse = new JSONObject(response.body());
             JSONArray arreglodetalles = puntosResponse.getJSONArray("detalles");
-            String[] detalles = new String[arreglodetalles.length()];
-            logger.error("Error al consumir api lealtad puntos. Codigo: " + response.statusCode()  );
-            logger.error("Cuerpo de respuesta: " +
+            String detalles = "";
+            for(int i = 0; i < arreglodetalles.length(); i++){
+                detalles = detalles + arreglodetalles.getString(i) + "\n";
+            }
+            logger.error("Error al consumir api lealtad puntos. Codigo: " + response.statusCode() +
+                    "\n Cuerpo de respuesta: " +
                     "\n Codigo: " +puntosResponse.getString("codigo") +
                     "\n Mensaje: " +puntosResponse.getString("mensaje") +
                     "\n Folio: " +puntosResponse.getString("folio") +
                     "\n Info: " +puntosResponse.getString("info") +
-                    "\n Detalles: \n");
-            for(int i = 0; i < arreglodetalles.length(); i++){
-                detalles[i] = arreglodetalles.getString(i);
-                logger.error(detalles[i]);
-            }
+                    "\n Detalles: " + detalles);
+
 
             respuesta[0] = puntosResponse.getString("mensaje");
             respuesta[1] = puntosResponse.getString("folio");
-            respuesta[3] = "1";
+            respuesta[2] = "1";
 
             return respuesta;
         }

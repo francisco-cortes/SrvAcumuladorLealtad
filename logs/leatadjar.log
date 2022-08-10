@@ -1,17 +1,24 @@
-2022-08-10 18:32:33 INFO  MainController:29 - |------------------------------------------|
-2022-08-10 18:32:33 INFO  MainController:30 - |-----------------Inicia-------------------|
-2022-08-10 18:32:33 INFO  MainController:31 - |------------------------------------------|
-2022-08-10 18:32:35 INFO  TokenDao:76 - 200 Token obtenido
-2022-08-10 18:32:36 INFO  LlavesAsimetricasDao:62 - Llaves asimetricas obtenidas
-2022-08-10 18:32:37 INFO  LlavesAsimetricasDao:61 - Llaves simetricas obtenidas
-2022-08-10 18:32:37 INFO  ObtenerLlavesService:25 - Todas las llaves obtenidas.
-2022-08-10 18:32:37 INFO  ObtenerLlavesService:72 - Llaves simetricas desifradas
-2022-08-10 18:32:37 INFO  ConsultaSalidaService:15 - Consulta del primer SP
-2022-08-10 18:32:38 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-10 18:32:38 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
-2022-08-10 18:32:38 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
-2022-08-10 18:32:38 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-10 18:32:39 INFO  ApiLealtadDao:75 - Operacion exitosa Codigo: 201
-2022-08-10 18:32:39 INFO  MainController:60 - ------------------------------------------
-2022-08-10 18:32:39 INFO  MainController:61 - -------------------FIN--------------------
-2022-08-10 18:32:39 INFO  MainController:62 - ------------------------------------------
+2022-08-10 18:39:07 INFO  MainController:29 - |------------------------------------------|
+2022-08-10 18:39:07 INFO  MainController:30 - |-----------------Inicia-------------------|
+2022-08-10 18:39:07 INFO  MainController:31 - |------------------------------------------|
+2022-08-10 18:39:08 INFO  TokenDao:76 - 200 Token obtenido
+2022-08-10 18:39:08 INFO  LlavesAsimetricasDao:62 - Llaves asimetricas obtenidas
+2022-08-10 18:39:08 INFO  LlavesAsimetricasDao:61 - Llaves simetricas obtenidas
+2022-08-10 18:39:08 INFO  ObtenerLlavesService:25 - Todas las llaves obtenidas.
+2022-08-10 18:39:08 INFO  ObtenerLlavesService:72 - Llaves simetricas desifradas
+2022-08-10 18:39:08 INFO  ConsultaSalidaService:15 - Consulta del primer SP
+2022-08-10 18:39:09 INFO  FabricaDaoUtil:20 - Conectado a base oracle
+2022-08-10 18:39:09 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
+2022-08-10 18:39:09 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
+2022-08-10 18:39:09 INFO  FabricaDaoUtil:31 - conexion cerrada
+2022-08-10 18:39:09 ERROR ApiLealtadDao:102 - Error al consumir api lealtad puntos. Codigo: 400
+ Cuerpo de respuesta: 
+ Codigo: 400.data-company-crm-recompensas-lealtad.1001
+ Mensaje: Petición incorrecta
+ Folio: bcca387a-c4aa-43a2-9fa9-96f597a2f67f
+ Info: https://baz-developer.bancoazteca.com.mx/info#400.data-company-crm-recompensas-lealtad.1001
+ Detalles:El parámetro importe debe ser numerico
+
+2022-08-10 18:39:09 INFO  MainController:60 - ------------------------------------------
+2022-08-10 18:39:09 INFO  MainController:61 - -------------------FIN--------------------
+2022-08-10 18:39:09 INFO  MainController:62 - ------------------------------------------

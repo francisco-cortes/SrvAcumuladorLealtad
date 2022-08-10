@@ -45,7 +45,7 @@ public class MainController {
         try {
             leal.getAcumulaciones(llavesAes[3], llavesAes[2], 3,
                     cifrarService.cifrar("0101-0482-4558", llavesAes[0], llavesAes[1]),
-                    cifrarService.cifrar("100", llavesAes[0], llavesAes[1]),
+                    cifrarService.cifrar("100.00", llavesAes[0], llavesAes[1]),
                     482, 1,
                     "3w54e65r66545617t87yuIINNJio6RTT7YU2022060108");
         } catch (IOException e) {
