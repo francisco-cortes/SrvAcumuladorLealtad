@@ -1,11 +1,17 @@
-2022-08-10 08:59:36 INFO  MainController:27 - |------------------------------------------|
-2022-08-10 08:59:36 INFO  MainController:28 - |-----------------Inicia-------------------|
-2022-08-10 08:59:36 INFO  MainController:29 - |------------------------------------------|
-2022-08-10 08:59:36 INFO  ConsultaSalidaService:14 - Consulta del segundo SP
-2022-08-10 08:59:36 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-10 08:59:36 INFO  EjecutarSpEntradaDao:60 - Sp ejecutado
-2022-08-10 08:59:36 INFO  EjecutarSpEntradaDao:61 - OPERACION EXITOSA.
-2022-08-10 08:59:36 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-10 08:59:36 INFO  MainController:44 - ------------------------------------------
-2022-08-10 08:59:36 INFO  MainController:45 - -------------------FIN--------------------
-2022-08-10 08:59:36 INFO  MainController:46 - ------------------------------------------
+2022-08-10 18:32:33 INFO  MainController:29 - |------------------------------------------|
+2022-08-10 18:32:33 INFO  MainController:30 - |-----------------Inicia-------------------|
+2022-08-10 18:32:33 INFO  MainController:31 - |------------------------------------------|
+2022-08-10 18:32:35 INFO  TokenDao:76 - 200 Token obtenido
+2022-08-10 18:32:36 INFO  LlavesAsimetricasDao:62 - Llaves asimetricas obtenidas
+2022-08-10 18:32:37 INFO  LlavesAsimetricasDao:61 - Llaves simetricas obtenidas
+2022-08-10 18:32:37 INFO  ObtenerLlavesService:25 - Todas las llaves obtenidas.
+2022-08-10 18:32:37 INFO  ObtenerLlavesService:72 - Llaves simetricas desifradas
+2022-08-10 18:32:37 INFO  ConsultaSalidaService:15 - Consulta del primer SP
+2022-08-10 18:32:38 INFO  FabricaDaoUtil:20 - Conectado a base oracle
+2022-08-10 18:32:38 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
+2022-08-10 18:32:38 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
+2022-08-10 18:32:38 INFO  FabricaDaoUtil:31 - conexion cerrada
+2022-08-10 18:32:39 INFO  ApiLealtadDao:75 - Operacion exitosa Codigo: 201
+2022-08-10 18:32:39 INFO  MainController:60 - ------------------------------------------
+2022-08-10 18:32:39 INFO  MainController:61 - -------------------FIN--------------------
+2022-08-10 18:32:39 INFO  MainController:62 - ------------------------------------------

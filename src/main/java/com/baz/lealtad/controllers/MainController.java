@@ -1,5 +1,6 @@
 package com.baz.lealtad.controllers;
 
+import com.baz.lealtad.daos.ApiLealtadDao;
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.service.CifrarDesifrarAesService;
 import com.baz.lealtad.service.ConsultaSalidaService;
@@ -8,7 +9,7 @@ import com.baz.lealtad.service.SpEntradaService;
 import com.baz.lealtad.utils.PropUtil;
 import org.apache.log4j.Logger;
 
-import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class MainController {
     private static final SpEntradaService spEntrada = new SpEntradaService();
     private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
     private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
+    private static final ApiLealtadDao leal = new ApiLealtadDao();
     private static final Logger logger = Logger.getLogger(MainController.class);
 
 
@@ -28,17 +30,31 @@ public class MainController {
         logger.info("|-----------------Inicia-------------------|");
         logger.info("|------------------------------------------|");
 
-        String[] llavesAes = new String[2];
-        List<CursorSpSalidaModel> responseDb = new ArrayList<>();
+        String[] llavesAes = obtenerLlaves.getLlavesAes();
+        List<CursorSpSalidaModel> responseDb = salidaService.consulta();
 
-        //responseDb = salidaService.consulta();
-        //System.out.println(responseDb);
-        //llavesAes = obtenerLlaves.getLlavesAes();
         //String ej = cifrarService.cifrar("hola", llavesAes[0], llavesAes[1]);
         //String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
         //logger.info(ej2);
 
-        spEntrada.guardarBase();
+        //System.out.println(llavesAes[2]);
+        //System.out.println(llavesAes[3]);
+        //System.out.println(cifrarService.cifrar("0101-0482-4558", llavesAes[0], llavesAes[1]));
+        //System.out.println(cifrarService.cifrar("100", llavesAes[0], llavesAes[1]));
+
+        try {
+            leal.getAcumulaciones(llavesAes[3], llavesAes[2], 3,
+                    cifrarService.cifrar("0101-0482-4558", llavesAes[0], llavesAes[1]),
+                    cifrarService.cifrar("100", llavesAes[0], llavesAes[1]),
+                    482, 1,
+                    "3w54e65r66545617t87yuIINNJio6RTT7YU2022060108");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //spEntrada.guardarBase();
 
 
         logger.info("------------------------------------------");

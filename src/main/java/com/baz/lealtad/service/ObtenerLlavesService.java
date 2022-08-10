@@ -22,9 +22,9 @@ public class ObtenerLlavesService {
             t = token.getToken();
             a = llavesAsimetricas.getLlavesAsimetricas(t);
             s = llavesSimetricas.getLlavesSimetricas(t,a[0]);
-            logger.info("llaves obtenidas");
+            logger.info("Todas las llaves obtenidas.");
         }catch (Exception e){
-            logger.error("no se pudo obtener todas las llaves: \n" + e);
+            logger.error("No se pudo obtener todas las llaves: \n" + e);
         }
     }
 
@@ -60,11 +60,15 @@ public class ObtenerLlavesService {
     }
 
     private String[] decifrarSimetricas(){
-        String[] simetricasDesifradas = new String[2];
+        String[] simetricasDesifradas = new String[4];
         String accesoSimetrico = decifrarRsa(s[0],a[1],a[2]);
         String codigoAutentificacionHash = decifrarRsa(s[1],a[1],a[2]);
         simetricasDesifradas[0] = accesoSimetrico;
         simetricasDesifradas[1] = codigoAutentificacionHash;
+
+        simetricasDesifradas[2] = t;
+        simetricasDesifradas[3] = a[0];
+
         logger.info("Llaves simetricas desifradas");
         return simetricasDesifradas;
     }

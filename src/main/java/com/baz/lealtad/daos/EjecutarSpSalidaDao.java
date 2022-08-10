@@ -50,7 +50,6 @@ public class EjecutarSpSalidaDao {
                 cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
                 cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
                 cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
-                System.out.println(cursor.getFNIMPORTE());
                 listaCursor.add(cursor);
             }
 
