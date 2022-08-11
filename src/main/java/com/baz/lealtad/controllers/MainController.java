@@ -1,13 +1,10 @@
 package com.baz.lealtad.controllers;
 
-import com.baz.lealtad.daos.ApiLealtadDao;
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.service.*;
 import com.baz.lealtad.utils.PropUtil;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainController {
@@ -44,9 +41,9 @@ public class MainController {
                     responseDb.get(i).getFNIDOPERACION(), responseDb.get(i).getFCFOLIOTRANSACCION());
         }*/
 
-        //String ej = cifrarService.cifrar("hola", llavesAes[0], llavesAes[1]);
-        //String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
-        //logger.info(ej2);
+        String ej = cifrarService.cifrar("hola", llavesAes[0], llavesAes[1]);
+        String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
+        logger.info(ej2);
 
         //System.out.println(llavesAes[2]);
         //System.out.println(llavesAes[3]);

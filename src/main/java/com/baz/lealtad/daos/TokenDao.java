@@ -2,7 +2,6 @@ package com.baz.lealtad.daos;
 
 import com.baz.lealtad.utils.ConstantesUtil;
 import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -45,7 +44,7 @@ public class TokenDao {
         }
     }
 
-    public String getToken() throws IOException, InterruptedException {
+    public HttpResponse<String> getToken() throws IOException, InterruptedException {
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
         parameters.put("client_id", ConstantesUtil.CONSUMER_SECRET);
@@ -72,13 +71,15 @@ public class TokenDao {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if(response.statusCode() >= 200 && response.statusCode() < 300){
+        return response;
+
+        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
             logger.info("Token Obtenido: " + response.statusCode());
             JSONObject tokenResponse = new JSONObject(response.body());
             return tokenResponse.getString("access_token");
         }else {
             logger.error("No se pudo obtener el token, Validar accesos" + response.statusCode());
             return "";
-        }
+        }*/
     }
 }

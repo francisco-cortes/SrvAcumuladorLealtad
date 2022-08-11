@@ -5,7 +5,9 @@ import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;
 import com.baz.lealtad.utils.CifradorRsaUtil;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
+import java.net.http.HttpResponse;
 import java.util.Objects;
 
 public class ObtenerLlavesService {
@@ -15,47 +17,69 @@ public class ObtenerLlavesService {
     private static final LlavesAsimetricasDao llavesAsimetricas = new LlavesAsimetricasDao();
     private static final LlavesSimetricasDao llavesSimetricas = new LlavesSimetricasDao();
 
+    public HttpResponse<String> tokenApiResponse;
+    public HttpResponse<String> asimetricasApiResponse;
+    public HttpResponse<String> simetricasApiResponse;
     public String t = "";
     public String[] a = new String[3];
     public String[] s = new String[2];
 
     private void getLlaves (){
-        getToken();
-
-        if(!Objects.equals(t, "")){
-            getAsimetricas();
-        }else {
-
-        }
-
-        if(!Objects.equals(a[0], "")){
-            getSimetricas();
-        }else {
-
-        }
-
-
-    }
-
-    private void getToken(){
         try {
-            t = token.getToken();
-        }catch (Exception e){
-            logger.error("No se pudo obtener todas las llaves: \n" + e);
-        }
-    }
+            tokenApiResponse = token.getToken();
 
-    private void getAsimetricas(){
-        try {
-            a = llavesAsimetricas.getLlavesAsimetricas(t);
-        }catch (Exception e){
-            logger.error("No se pudo obtener todas las llaves: \n" + e);
-        }
-    }
+            if(tokenApiResponse.statusCode() >= 200 && tokenApiResponse.statusCode() < 300){
+                logger.info("Token Obtenido: " + tokenApiResponse.statusCode());
+                JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
+                t = tokenResponse.getString("access_token");
 
-    private void getSimetricas(){
-        try {
-            s = llavesSimetricas.getLlavesSimetricas(t,a[0]);
+                try {
+                    asimetricasApiResponse = llavesAsimetricas.getLlavesAsimetricas(t);
+                    if(asimetricasApiResponse.statusCode() >= 200 && asimetricasApiResponse.statusCode() < 300){
+                        logger.info("Llaves asimetricas obtenidas");
+
+                        JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
+
+                        a[0] = asimetricasResponse.getJSONObject("resultado").getString("idAcceso");
+                        a[1] = asimetricasResponse.getJSONObject("resultado").getString("accesoPublico");
+                        a[2] = asimetricasResponse.getJSONObject("resultado").getString("accesoPrivado");
+
+                        try {
+                            asimetricasApiResponse = llavesSimetricas.getLlavesSimetricas(t,a[0]);
+
+                            if(simetricasApiResponse.statusCode() >= 200 && simetricasApiResponse.statusCode() < 300){
+                                logger.info("Llaves simetricas obtenidas");
+
+                                JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
+
+                                s[0] = simetricasResponse.getJSONObject("resultado").getString("accesoSimetrico");
+                                s[1] = simetricasResponse.getJSONObject("resultado").getString("codigoAutentificacionHash");
+
+                            }else {
+                                logger.error("Error al obtener llaves Simetricas, Validar");
+                                s[0] = "";
+                                s[1] = "";
+                            }
+
+                        }catch (Exception e){
+                            logger.error("No se pudo obtener todas las llaves: \n" + e);
+                        }
+
+                    }else {
+                        logger.error("Error al obtener llaves asimetricas, Validar");
+                        a[0] = "";
+                        a[1] = "";
+                        a[2] = "";
+                    }
+
+                }catch (Exception e){
+                    logger.error("No se pudo obtener todas las llaves: \n" + e);
+                }
+
+            }else {
+                logger.error("No se pudo obtener el token, Validar accesos" + tokenApiResponse.statusCode());
+                t = "";
+            }
         }catch (Exception e){
             logger.error("No se pudo obtener todas las llaves: \n" + e);
         }

@@ -39,7 +39,7 @@ public class LlavesSimetricasDao {
         }
     }
 
-    public String[] getLlavesSimetricas(String token, String id) throws IOException, InterruptedException {
+    public HttpResponse<String> getLlavesSimetricas(String token, String id) throws IOException, InterruptedException {
 
         String[] llavesSimetricas = new String[2];
 
@@ -56,8 +56,10 @@ public class LlavesSimetricasDao {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        return response;
 
-        if(response.statusCode() >= 200 && response.statusCode() < 300){
+
+        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
             logger.info("Llaves simetricas obtenidas");
 
             JSONObject asimetricasResponse = new JSONObject(response.body());
@@ -71,7 +73,7 @@ public class LlavesSimetricasDao {
             llavesSimetricas[0] = "";
             llavesSimetricas[1] = "";
             return llavesSimetricas;
-        }
+        }*/
 
     }
 }

@@ -40,7 +40,7 @@ public class LlavesAsimetricasDao {
         }
     }
 
-    public String[] getLlavesAsimetricas(String token) throws IOException, InterruptedException {
+    public HttpResponse<String> getLlavesAsimetricas(String token) throws IOException, InterruptedException {
         String[] llavesAsimetricas = new String[3];
 
         HttpClient client = HttpClient.newBuilder()
@@ -57,8 +57,9 @@ public class LlavesAsimetricasDao {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+        return response;
 
-        if(response.statusCode() >= 200 && response.statusCode() < 300){
+        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
             logger.info("Llaves asimetricas obtenidas");
 
             JSONObject asimetricasResponse = new JSONObject(response.body());
@@ -75,7 +76,7 @@ public class LlavesAsimetricasDao {
             llavesAsimetricas[2] = "";
 
             return llavesAsimetricas;
-        }
+        }*/
 
     }
 }
