@@ -1,17 +1,21 @@
-2022-08-11 10:35:38 INFO  MainController:26 - |------------------------------------------|
-2022-08-11 10:35:38 INFO  MainController:27 - |-----------------Inicia-------------------|
-2022-08-11 10:35:38 INFO  MainController:28 - |------------------------------------------|
-2022-08-11 10:35:39 INFO  ObtenerLlavesService:32 - Token Obtenido: 200
-2022-08-11 10:35:39 ERROR ObtenerLlavesService:69 - Error al obtener llaves asimetricas, Validar
-2022-08-11 10:35:39 INFO  ObtenerLlavesService:129 - Llaves simetricas desifradas
-2022-08-11 10:35:39 INFO  ConsultaSalidaService:15 - Consulta del primer SP
-2022-08-11 10:35:39 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-11 10:35:39 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
-2022-08-11 10:35:39 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
-2022-08-11 10:35:39 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-11 10:35:39 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
-2022-08-11 10:35:39 ERROR CifradorAesUtil:71 - Incidente al decifrar el parametro : java.lang.IllegalArgumentException: Empty key
-2022-08-11 10:35:39 INFO  MainController:49 - hola
-2022-08-11 10:35:39 INFO  MainController:71 - ------------------------------------------
-2022-08-11 10:35:39 INFO  MainController:72 - -------------------FIN--------------------
-2022-08-11 10:35:39 INFO  MainController:73 - ------------------------------------------
+2022-08-11 11:47:41 INFO  MainController:23 - |------------------------------------------|
+2022-08-11 11:47:41 INFO  MainController:24 - |-----------------Inicia-------------------|
+2022-08-11 11:47:41 INFO  MainController:25 - |------------------------------------------|
+2022-08-11 11:47:42 INFO  ObtenerLlavesService:32 - Token Obtenido: 200
+2022-08-11 11:47:44 ERROR ObtenerLlavesService:69 - Error al obtener llaves asimetricas, Validar
+2022-08-11 11:47:44 INFO  ObtenerLlavesService:129 - Llaves simetricas desifradas
+2022-08-11 11:47:44 INFO  ConsultaSalidaService:15 - Consulta del primer SP
+2022-08-11 11:47:48 INFO  FabricaDaoUtil:20 - Conectado a base oracle
+2022-08-11 11:47:49 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
+2022-08-11 11:47:49 INFO  EjecutarSpSalidaDao:57 - OPERACION EXITOSA.
+2022-08-11 11:47:50 INFO  FabricaDaoUtil:31 - conexion cerrada
+2022-08-11 11:47:50 INFO  MainController:32 - Se obtivieron: 3 registros 
+ del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD 
+
+2022-08-11 11:47:50 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 11:47:50 ERROR CifradorAesUtil:71 - Incidente al decifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 11:47:50 INFO  MainController:54 - hola
+2022-08-11 11:47:50 INFO  MainController:55 - hola
+2022-08-11 11:47:50 INFO  MainController:77 - ------------------------------------------
+2022-08-11 11:47:50 INFO  MainController:78 - -------------------FIN--------------------
+2022-08-11 11:47:50 INFO  MainController:79 - ------------------------------------------

@@ -28,8 +28,11 @@ public class MainController {
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
         String[] respuestaApi = new String[3]; //apiService.consultaApi();
 
-
-        /*for(int i = 0; i < responseDb.size(); i ++){
+        if (responseDb != null){
+            logger.info("Se obtivieron: " + responseDb.size() + " registros "
+                    + " del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n");
+            /*
+        for(int i = 0; i < responseDb.size(); i ++){
             //System.out.println(responseDb.get(i).getFNIDTIPOCLIENTE());
             String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
                     llavesAes[0], llavesAes[1]);
@@ -39,10 +42,16 @@ public class MainController {
                     responseDb.get(i).getFNIDTIPOCLIENTE(),idCliente,
                     importe,responseDb.get(i).getFNSUCURSAL(),
                     responseDb.get(i).getFNIDOPERACION(), responseDb.get(i).getFCFOLIOTRANSACCION());
-        }*/
+        }
+        */
+        } else {
+            logger.error("Respuesta nula del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
+                    "No se realiza ninguna Accion");
+        }
 
         String ej = cifrarService.cifrar("hola", llavesAes[0], llavesAes[1]);
         String ej2 = cifrarService.decifrar(ej,llavesAes[0],llavesAes[1]);
+        logger.info(ej);
         logger.info(ej2);
 
         //System.out.println(llavesAes[2]);

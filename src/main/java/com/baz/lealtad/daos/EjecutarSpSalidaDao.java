@@ -33,24 +33,23 @@ public class EjecutarSpSalidaDao {
             resultSet = (ResultSet) declaracion.getObject(1);
             if(resultSet != null){
                 logger.info("Sp ejecutado");
+                while (resultSet.next()){
+                    CursorSpSalidaModel cursor = new CursorSpSalidaModel();
+                    cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
+                    cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
+                    cursor.setFNIMPORTE(resultSet.getInt("FNIMPORTE"));
+                    cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
+                    cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
+                    cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
+                    cursor.setFDFECHAOPERACION(resultSet.getString("FDFECHAOPERACION"));
+                    cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
+                    cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
+                    cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
+                    cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
+                    listaCursor.add(cursor);
+                }
             }else {
                 logger.error("Sp no ejecutado o respuesta nula");
-            }
-
-            while (resultSet.next()){
-                CursorSpSalidaModel cursor = new CursorSpSalidaModel();
-                cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
-                cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
-                cursor.setFNIMPORTE(resultSet.getInt("FNIMPORTE"));
-                cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
-                cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
-                cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
-                cursor.setFDFECHAOPERACION(resultSet.getString("FDFECHAOPERACION"));
-                cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
-                cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
-                cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
-                cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
-                listaCursor.add(cursor);
             }
 
             //System.out.println(listaCursor);
