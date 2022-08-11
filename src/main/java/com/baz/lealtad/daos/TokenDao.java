@@ -73,11 +73,11 @@ public class TokenDao {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
         if(response.statusCode() >= 200 && response.statusCode() < 300){
-            logger.info(response.statusCode() + " Token obtenido");
+            logger.info("Token Obtenido: " + response.statusCode());
             JSONObject tokenResponse = new JSONObject(response.body());
             return tokenResponse.getString("access_token");
         }else {
-            logger.error(response.statusCode() + "No se pudo obtener el token, Validar");
+            logger.error("No se pudo obtener el token, Validar accesos" + response.statusCode());
             return "";
         }
     }

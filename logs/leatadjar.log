@@ -1,24 +1,44 @@
-2022-08-10 18:39:07 INFO  MainController:29 - |------------------------------------------|
-2022-08-10 18:39:07 INFO  MainController:30 - |-----------------Inicia-------------------|
-2022-08-10 18:39:07 INFO  MainController:31 - |------------------------------------------|
-2022-08-10 18:39:08 INFO  TokenDao:76 - 200 Token obtenido
-2022-08-10 18:39:08 INFO  LlavesAsimetricasDao:62 - Llaves asimetricas obtenidas
-2022-08-10 18:39:08 INFO  LlavesAsimetricasDao:61 - Llaves simetricas obtenidas
-2022-08-10 18:39:08 INFO  ObtenerLlavesService:25 - Todas las llaves obtenidas.
-2022-08-10 18:39:08 INFO  ObtenerLlavesService:72 - Llaves simetricas desifradas
-2022-08-10 18:39:08 INFO  ConsultaSalidaService:15 - Consulta del primer SP
-2022-08-10 18:39:09 INFO  FabricaDaoUtil:20 - Conectado a base oracle
-2022-08-10 18:39:09 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
-2022-08-10 18:39:09 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
-2022-08-10 18:39:09 INFO  FabricaDaoUtil:31 - conexion cerrada
-2022-08-10 18:39:09 ERROR ApiLealtadDao:102 - Error al consumir api lealtad puntos. Codigo: 400
+2022-08-11 09:42:54 INFO  MainController:26 - |------------------------------------------|
+2022-08-11 09:42:54 INFO  MainController:27 - |-----------------Inicia-------------------|
+2022-08-11 09:42:54 INFO  MainController:28 - |------------------------------------------|
+2022-08-11 09:42:54 INFO  TokenDao:76 - Token Obtenido: 200
+2022-08-11 09:42:55 ERROR LlavesAsimetricasDao:72 - Error al obtener llaves asimetricas, Validar
+2022-08-11 09:42:55 INFO  ObtenerLlavesService:105 - Llaves simetricas desifradas
+2022-08-11 09:42:55 INFO  ConsultaSalidaService:15 - Consulta del primer SP
+2022-08-11 09:42:55 INFO  FabricaDaoUtil:20 - Conectado a base oracle
+2022-08-11 09:42:56 INFO  EjecutarSpSalidaDao:35 - Sp ejecutado
+2022-08-11 09:42:56 INFO  EjecutarSpSalidaDao:58 - OPERACION EXITOSA.
+2022-08-11 09:42:56 INFO  FabricaDaoUtil:31 - conexion cerrada
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR ApiLealtadDao:104 - Error al consumir api lealtad puntos. Codigo: 401
  Cuerpo de respuesta: 
- Codigo: 400.data-company-crm-recompensas-lealtad.1001
- Mensaje: Petición incorrecta
- Folio: bcca387a-c4aa-43a2-9fa9-96f597a2f67f
- Info: https://baz-developer.bancoazteca.com.mx/info#400.data-company-crm-recompensas-lealtad.1001
- Detalles:El parámetro importe debe ser numerico
+ Codigo: 401.data-company-crm-recompensas-lealtad.1001
+ Mensaje: No autorizado
+ Folio: 05810e20-f876-42cd-94f6-10cf7e5f7f65
+ Info: https://baz-developer.bancoazteca.com.mx/info#401.data-company-crm-recompensas-lealtad.1001
+ Detalles: Verifique el parámetro x-idAcceso
 
-2022-08-10 18:39:09 INFO  MainController:60 - ------------------------------------------
-2022-08-10 18:39:09 INFO  MainController:61 - -------------------FIN--------------------
-2022-08-10 18:39:09 INFO  MainController:62 - ------------------------------------------
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR ApiLealtadDao:104 - Error al consumir api lealtad puntos. Codigo: 401
+ Cuerpo de respuesta: 
+ Codigo: 401.data-company-crm-recompensas-lealtad.1001
+ Mensaje: No autorizado
+ Folio: df2599b9-9283-4e9e-8481-df8873f99eba
+ Info: https://baz-developer.bancoazteca.com.mx/info#401.data-company-crm-recompensas-lealtad.1001
+ Detalles: Verifique el parámetro x-idAcceso
+
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR CifradorAesUtil:43 - Incidente al cifrar el parametro : java.lang.IllegalArgumentException: Empty key
+2022-08-11 09:42:56 ERROR ApiLealtadDao:104 - Error al consumir api lealtad puntos. Codigo: 401
+ Cuerpo de respuesta: 
+ Codigo: 401.data-company-crm-recompensas-lealtad.1001
+ Mensaje: No autorizado
+ Folio: cd669429-48dc-4bc1-a753-f1ab56f53b16
+ Info: https://baz-developer.bancoazteca.com.mx/info#401.data-company-crm-recompensas-lealtad.1001
+ Detalles: Verifique el parámetro x-idAcceso
+
+2022-08-11 09:42:56 INFO  MainController:71 - ------------------------------------------
+2022-08-11 09:42:56 INFO  MainController:72 - -------------------FIN--------------------
+2022-08-11 09:42:56 INFO  MainController:73 - ------------------------------------------

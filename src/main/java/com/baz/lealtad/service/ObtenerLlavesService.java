@@ -6,6 +6,8 @@ import com.baz.lealtad.daos.TokenDao;
 import com.baz.lealtad.utils.CifradorRsaUtil;
 import org.apache.log4j.Logger;
 
+import java.util.Objects;
+
 public class ObtenerLlavesService {
 
     private static final Logger logger = Logger.getLogger(ObtenerLlavesService.class);
@@ -18,11 +20,42 @@ public class ObtenerLlavesService {
     public String[] s = new String[2];
 
     private void getLlaves (){
+        getToken();
+
+        if(!Objects.equals(t, "")){
+            getAsimetricas();
+        }else {
+
+        }
+
+        if(!Objects.equals(a[0], "")){
+            getSimetricas();
+        }else {
+
+        }
+
+
+    }
+
+    private void getToken(){
         try {
             t = token.getToken();
+        }catch (Exception e){
+            logger.error("No se pudo obtener todas las llaves: \n" + e);
+        }
+    }
+
+    private void getAsimetricas(){
+        try {
             a = llavesAsimetricas.getLlavesAsimetricas(t);
+        }catch (Exception e){
+            logger.error("No se pudo obtener todas las llaves: \n" + e);
+        }
+    }
+
+    private void getSimetricas(){
+        try {
             s = llavesSimetricas.getLlavesSimetricas(t,a[0]);
-            logger.info("Todas las llaves obtenidas.");
         }catch (Exception e){
             logger.error("No se pudo obtener todas las llaves: \n" + e);
         }

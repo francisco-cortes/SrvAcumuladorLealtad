@@ -67,7 +67,7 @@ public class LlavesSimetricasDao {
 
             return llavesSimetricas;
         }else {
-            logger.error("Error al obtener llaves asimetricas, Validar");
+            logger.error("Error al obtener llaves Simetricas, Validar");
             llavesSimetricas[0] = "";
             llavesSimetricas[1] = "";
             return llavesSimetricas;
