@@ -1,8 +1,6 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.utils.ConstantesUtil;
-import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -18,8 +16,6 @@ import java.security.cert.X509Certificate;
 import java.time.Duration;
 
 public class LlavesAsimetricasDao {
-
-    private static final Logger logger = Logger.getLogger(LlavesAsimetricasDao.class);
 
     public static SSLContext insecureContext(){
         TrustManager[] noopTrustManager = new TrustManager[]{
@@ -41,7 +37,6 @@ public class LlavesAsimetricasDao {
     }
 
     public HttpResponse<String> getLlavesAsimetricas(String token) throws IOException, InterruptedException {
-        String[] llavesAsimetricas = new String[3];
 
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
@@ -55,28 +50,6 @@ public class LlavesAsimetricasDao {
                         "Authorization","Bearer " + token)
                 .GET().build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        return response;
-
-        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
-            logger.info("Llaves asimetricas obtenidas");
-
-            JSONObject asimetricasResponse = new JSONObject(response.body());
-            
-            llavesAsimetricas[0] = asimetricasResponse.getJSONObject("resultado").getString("idAcceso");
-            llavesAsimetricas[1] = asimetricasResponse.getJSONObject("resultado").getString("accesoPublico");
-            llavesAsimetricas[2] = asimetricasResponse.getJSONObject("resultado").getString("accesoPrivado");
-
-            return llavesAsimetricas;
-        }else {
-            logger.error("Error al obtener llaves asimetricas, Validar");
-            llavesAsimetricas[0] = "";
-            llavesAsimetricas[1] = "";
-            llavesAsimetricas[2] = "";
-
-            return llavesAsimetricas;
-        }*/
-
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

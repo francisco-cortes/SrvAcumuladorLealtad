@@ -29,10 +29,8 @@ public class EjecutarSpSalidaDao {
             declaracion.registerOutParameter(3, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
-            logger.info(declaracion.getString(3));
             resultSet = (ResultSet) declaracion.getObject(1);
             if(resultSet != null){
-                logger.info("SPPUNTOSLEALTAD Ejecutado");
                 while (resultSet.next()){
                     CursorSpSalidaModel cursor = new CursorSpSalidaModel();
                     cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));

@@ -7,13 +7,11 @@ public class CifrarDesifrarAesService {
     CifradorAesUtil cifradorAes = new CifradorAesUtil();
 
     public String cifrar (String texto, String aes, String hmac){
-        String textoCifrado = cifradorAes.encryptAes(aes,hmac,texto);
-        return textoCifrado;
+        return cifradorAes.encryptAes(aes,hmac,texto);
     }
 
     public String decifrar (String texto, String aes, String hmac){
-        String textoDecifrado = cifradorAes.decryptAes(aes,hmac,texto);
-        return textoDecifrado;
+        return cifradorAes.decryptAes(aes,hmac,texto);
     }
 
 }

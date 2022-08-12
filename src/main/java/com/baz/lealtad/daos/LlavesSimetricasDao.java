@@ -1,8 +1,6 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.utils.ConstantesUtil;
-import org.apache.log4j.Logger;
-import org.json.JSONObject;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -18,7 +16,6 @@ import java.security.cert.X509Certificate;
 import java.time.Duration;
 
 public class LlavesSimetricasDao {
-    private static final Logger logger = Logger.getLogger(LlavesAsimetricasDao.class);
 
     public static SSLContext insecureContext(){
         TrustManager[] noopTrustManager = new TrustManager[]{
@@ -41,8 +38,6 @@ public class LlavesSimetricasDao {
 
     public HttpResponse<String> getLlavesSimetricas(String token, String id) throws IOException, InterruptedException {
 
-        String[] llavesSimetricas = new String[2];
-
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -54,26 +49,7 @@ public class LlavesSimetricasDao {
                 .headers("Authorization","Bearer " + token)
                 .GET().build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        return response;
-
-
-        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
-            logger.info("Llaves simetricas obtenidas");
-
-            JSONObject asimetricasResponse = new JSONObject(response.body());
-
-            llavesSimetricas[0] = asimetricasResponse.getJSONObject("resultado").getString("accesoSimetrico");
-            llavesSimetricas[1] = asimetricasResponse.getJSONObject("resultado").getString("codigoAutentificacionHash");
-
-            return llavesSimetricas;
-        }else {
-            logger.error("Error al obtener llaves Simetricas, Validar");
-            llavesSimetricas[0] = "";
-            llavesSimetricas[1] = "";
-            return llavesSimetricas;
-        }*/
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
 
     }
 }

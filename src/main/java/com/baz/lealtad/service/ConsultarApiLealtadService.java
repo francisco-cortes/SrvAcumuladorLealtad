@@ -18,16 +18,11 @@ public class ConsultarApiLealtadService {
         try {
             respuestaApi = leal.getAcumulaciones(idAcceso, token, idTipoCliente,
                     idCliente, importe, sucursal, idOperacion, folioTransaccion);
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             respuestaApi[0] = "";
             respuestaApi[1] = "";
             respuestaApi[2] = "";
-            logger.info("Error: " + e );
-        } catch (InterruptedException e) {
-            respuestaApi[0] = "";
-            respuestaApi[1] = "";
-            respuestaApi[2] = "";
-            logger.info("Error: " + e );
+            logger.error("Error: " + e );
         }
         return respuestaApi;
     }

@@ -55,8 +55,6 @@ public class ApiLealtadDao {
                 "\"folioTransaccion\":" + "\"" + folioTransaccion + "\"" +
                 "}";
 
-        System.out.println(params);
-
         HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .followRedirects(HttpClient.Redirect.NORMAL)
@@ -74,34 +72,17 @@ public class ApiLealtadDao {
         if(response.statusCode() >= 200 && response.statusCode() < 300){
             JSONObject puntosResponse = new JSONObject(response.body());
 
-            logger.info(puntosResponse.getString("mensaje") + " Codigo: " +response.statusCode());
-
             respuesta[0] = puntosResponse.getString("mensaje");
             respuesta[1] = puntosResponse.getString("folio");
             respuesta[2] = "0";
-
-            /*
-            respuesta[2] = puntosResponse.getJSONObject("resultado").getString("idUsuarioTpremia");
-            respuesta[3] = String.valueOf(puntosResponse.getJSONObject("resultado").getInt("idOperacion"));
-            respuesta[4] = puntosResponse.getJSONObject("resultado").getString("FolioOperacion");
-            respuesta[5] = puntosResponse.getJSONObject("resultado").getString("fechaHoraOperacion");
-            respuesta[6] = puntosResponse.getJSONObject("resultado").getJSONObject("balanceLealtad").getString("tipo");
-            JSONArray balanceLealtad = puntosResponse.getJSONObject("resultado").getJSONArray("balanceLealtad");
-            respuesta[7] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("puntosRedimir"));
-            respuesta[8] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("totalPuntosAnterior"));
-            respuesta[9] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("totalPuntosFinal"));
-            respuesta[10] = String.valueOf(balanceLealtad.getJSONObject(0).getInt("puntosRecompensa"));
-
-            System.out.println(balanceLealtad.getJSONObject(0).getInt("puntosRecompensa"));
-            */
 
             return respuesta;
         }else {
             JSONObject puntosResponse = new JSONObject(response.body());
             JSONArray arreglodetalles = puntosResponse.getJSONArray("detalles");
-            String detalles = "";
+            StringBuilder detalles = new StringBuilder();
             for(int i = 0; i < arreglodetalles.length(); i++){
-                detalles = detalles + arreglodetalles.getString(i) + "\n";
+                detalles.append(arreglodetalles.getString(i)).append("\n");
             }
             logger.error("Error al consumir api lealtad puntos. Codigo: " + response.statusCode() +
                     "\n Cuerpo de respuesta: " +

@@ -30,7 +30,6 @@ public class ObtenerLlavesService {
             tokenApiResponse = token.getToken();
 
             if(tokenApiResponse.statusCode() >= 200 && tokenApiResponse.statusCode() < 300){
-                logger.info("Token Obtenido: " + tokenApiResponse.statusCode());
                 JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
                 t = tokenResponse.getString("access_token");
 
@@ -38,7 +37,6 @@ public class ObtenerLlavesService {
                     asimetricasApiResponse = llavesAsimetricas.getLlavesAsimetricas(t);
 
                     if(asimetricasApiResponse.statusCode() >= 200 && asimetricasApiResponse.statusCode() < 300){
-                        logger.info("Llaves asimetricas obtenidas");
 
                         JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
 
@@ -50,7 +48,6 @@ public class ObtenerLlavesService {
                             simetricasApiResponse = llavesSimetricas.getLlavesSimetricas(t,a[0]);
 
                             if(simetricasApiResponse.statusCode() >= 200 && simetricasApiResponse.statusCode() < 300){
-                                logger.info("Llaves simetricas obtenidas");
 
                                 JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
 
@@ -60,9 +57,9 @@ public class ObtenerLlavesService {
                             }else {
                                 JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
                                 JSONArray arreglodetalles = simetricasResponse.getJSONArray("detalles");
-                                String detalles = "";
+                                StringBuilder detalles = new StringBuilder();
                                 for(int i = 0; i < arreglodetalles.length(); i++){
-                                    detalles = detalles + arreglodetalles.getString(i) + "\n";
+                                    detalles.append(arreglodetalles.getString(i)).append("\n");
                                 }
                                 logger.error("Error al consumir api lealtad puntos. Codigo: " + simetricasApiResponse.statusCode() +
                                         "\n Cuerpo de respuesta: " +
@@ -82,9 +79,9 @@ public class ObtenerLlavesService {
                     }else {
                         JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
                         JSONArray arreglodetalles = asimetricasResponse.getJSONArray("detalles");
-                        String detalles = "";
+                        StringBuilder detalles = new StringBuilder();
                         for(int i = 0; i < arreglodetalles.length(); i++){
-                            detalles = detalles + arreglodetalles.getString(i) + "\n";
+                            detalles.append(arreglodetalles.getString(i)).append("\n");
                         }
                         logger.error("Error al consumir api lealtad puntos. Codigo: " + asimetricasApiResponse.statusCode() +
                                 "\n Cuerpo de respuesta: " +
@@ -105,9 +102,9 @@ public class ObtenerLlavesService {
             }else {
                 JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
                 JSONArray arreglodetalles = tokenResponse.getJSONArray("detalles");
-                String detalles = "";
+                StringBuilder detalles = new StringBuilder();
                 for(int i = 0; i < arreglodetalles.length(); i++){
-                    detalles = detalles + arreglodetalles.getString(i) + "\n";
+                    detalles.append(arreglodetalles.getString(i)).append("\n");
                 }
                 logger.error("Error al consumir api lealtad puntos. Codigo: " + tokenApiResponse.statusCode() +
                         "\n Cuerpo de respuesta: " +
@@ -128,28 +125,14 @@ public class ObtenerLlavesService {
         return decifrarSimetricas();
     }
 
-    public String cifrarRsa(String texto, String llavePublica, String llavePrivada){
-        String cifradoRsa;
-        CifradorRsaUtil cifradorRsa = new CifradorRsaUtil(llavePublica, llavePrivada);
-        try {
-            cifradoRsa = cifradorRsa.encrypt(texto);
-        } catch (Exception e) {
-            logger.error("No se pudo cifrar en RSA");
-            cifradoRsa = texto;
-            e.printStackTrace();
-        }
-        return cifradoRsa;
-    }
-
     private String decifrarRsa(String texto, String llavePublica, String llavePrivada){
         String decifradoRsa;
         CifradorRsaUtil cifradorRsa = new CifradorRsaUtil(llavePublica, llavePrivada);
         try {
             decifradoRsa = cifradorRsa.decrypt(texto);
         }catch (Exception e){
-            logger.error("No se pudo decifrar en RSA");
+            logger.error("No se pudo decifrar en RSA Error:" + e);
             decifradoRsa = texto;
-            e.printStackTrace();
         }
         return decifradoRsa;
     }
@@ -163,8 +146,6 @@ public class ObtenerLlavesService {
 
         simetricasDesifradas[2] = t;
         simetricasDesifradas[3] = a[0];
-
-        logger.info("Llaves simetricas desifradas");
         return simetricasDesifradas;
     }
 

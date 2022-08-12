@@ -1,7 +1,6 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.utils.ConstantesUtil;
-import org.apache.log4j.Logger;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -22,8 +21,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TokenDao {
-
-    private static final Logger logger = Logger.getLogger(TokenDao.class);
 
     public static SSLContext insecureContext(){
         TrustManager[] noopTrustManager = new TrustManager[]{
@@ -69,17 +66,6 @@ public class TokenDao {
                         "Authorization","Basic " + encoded)
                 .POST(HttpRequest.BodyPublishers.ofString(form)).build();
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        return response;
-
-        /*if(response.statusCode() >= 200 && response.statusCode() < 300){
-            logger.info("Token Obtenido: " + response.statusCode());
-            JSONObject tokenResponse = new JSONObject(response.body());
-            return tokenResponse.getString("access_token");
-        }else {
-            logger.error("No se pudo obtener el token, Validar accesos" + response.statusCode());
-            return "";
-        }*/
+        return client.send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

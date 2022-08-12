@@ -1,6 +1,5 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.utils.ConstantesUtil;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
@@ -8,13 +7,11 @@ import org.apache.log4j.Logger;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.ResultSet;
 
 public class EjecutarSpEntradaDao {
 
     private static final Logger logger = Logger.getLogger(EjecutarSpEntradaDao.class);
-    private FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+    private final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
     public void ejecutarSpEntrada(int PA_FNIDTIPOCLIENTE, int PA_FNIMPORTE, int PA_FNSUCURSAL,
                                   String PA_FDFECHAOPERACION, String PA_FCNEGOCIO, String PA_FCTIPOOPERACION,
@@ -46,10 +43,7 @@ public class EjecutarSpEntradaDao {
             declaracion.registerOutParameter(17, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
-            if(declaracion.getString(17) != null){
-                logger.info("SPTRANSPUNTLEAL ejecutado");
-                logger.info(declaracion.getString(17));
-            }else {
+            if(declaracion.getString(17) == null) {
                 logger.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
             }
 

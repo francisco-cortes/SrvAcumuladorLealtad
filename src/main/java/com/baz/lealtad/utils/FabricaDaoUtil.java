@@ -16,9 +16,7 @@ public class FabricaDaoUtil {
                 ConstantesUtil.ORACLE_DATABASE_USERNAME,
                 ConstantesUtil.ORACLE_DATABASE_PASSWORD);
 
-        if (conexion != null) {
-            logger.info("Conectado a base de datos - SFBDDEV");
-        } else {
+        if (conexion == null) {
             logger.error("No se pudo crear conexión a - SFBDDEV");
         }
 
@@ -28,7 +26,6 @@ public class FabricaDaoUtil {
     public void cerrarConexion(Connection conexion, CallableStatement declaracionInvocable, ResultSet resultado) throws SQLException {
         if (conexion != null && !conexion.isClosed()) {
             conexion.close();
-            logger.info("Se cerro con exito la conexion a - SFBDDEV");
         }
 
         if(resultado != null){
