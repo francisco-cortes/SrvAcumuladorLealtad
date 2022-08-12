@@ -12,7 +12,7 @@ public class ConsultaSalidaService {
     private EjecutarSpSalidaDao baseSp = new EjecutarSpSalidaDao();
 
     public List<CursorSpSalidaModel> consulta(){
-        logger.info("Consulta del primer SP");
+        logger.info("Consulta del primer SP: SPPUNTOSLEALTAD");
         List<CursorSpSalidaModel> respuestaSp;
         respuestaSp = baseSp.ejecutarSpSalida();
         return respuestaSp;

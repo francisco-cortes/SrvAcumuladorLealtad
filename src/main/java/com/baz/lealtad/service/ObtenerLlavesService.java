@@ -5,10 +5,10 @@ import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;
 import com.baz.lealtad.utils.CifradorRsaUtil;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.http.HttpResponse;
-import java.util.Objects;
 
 public class ObtenerLlavesService {
 
@@ -26,6 +26,7 @@ public class ObtenerLlavesService {
 
     private void getLlaves (){
         try {
+
             tokenApiResponse = token.getToken();
 
             if(tokenApiResponse.statusCode() >= 200 && tokenApiResponse.statusCode() < 300){
@@ -35,6 +36,7 @@ public class ObtenerLlavesService {
 
                 try {
                     asimetricasApiResponse = llavesAsimetricas.getLlavesAsimetricas(t);
+
                     if(asimetricasApiResponse.statusCode() >= 200 && asimetricasApiResponse.statusCode() < 300){
                         logger.info("Llaves asimetricas obtenidas");
 
@@ -45,7 +47,7 @@ public class ObtenerLlavesService {
                         a[2] = asimetricasResponse.getJSONObject("resultado").getString("accesoPrivado");
 
                         try {
-                            asimetricasApiResponse = llavesSimetricas.getLlavesSimetricas(t,a[0]);
+                            simetricasApiResponse = llavesSimetricas.getLlavesSimetricas(t,a[0]);
 
                             if(simetricasApiResponse.statusCode() >= 200 && simetricasApiResponse.statusCode() < 300){
                                 logger.info("Llaves simetricas obtenidas");
@@ -56,7 +58,19 @@ public class ObtenerLlavesService {
                                 s[1] = simetricasResponse.getJSONObject("resultado").getString("codigoAutentificacionHash");
 
                             }else {
-                                logger.error("Error al obtener llaves Simetricas, Validar");
+                                JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
+                                JSONArray arreglodetalles = simetricasResponse.getJSONArray("detalles");
+                                String detalles = "";
+                                for(int i = 0; i < arreglodetalles.length(); i++){
+                                    detalles = detalles + arreglodetalles.getString(i) + "\n";
+                                }
+                                logger.error("Error al consumir api lealtad puntos. Codigo: " + simetricasApiResponse.statusCode() +
+                                        "\n Cuerpo de respuesta: " +
+                                        "\n Codigo: " + simetricasResponse.getString("codigo") +
+                                        "\n Mensaje: " + simetricasResponse.getString("mensaje") +
+                                        "\n Folio: " + simetricasResponse.getString("folio") +
+                                        "\n Info: " + simetricasResponse.getString("info") +
+                                        "\n Detalles: " + detalles);
                                 s[0] = "";
                                 s[1] = "";
                             }
@@ -66,7 +80,19 @@ public class ObtenerLlavesService {
                         }
 
                     }else {
-                        logger.error("Error al obtener llaves asimetricas, Validar");
+                        JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
+                        JSONArray arreglodetalles = asimetricasResponse.getJSONArray("detalles");
+                        String detalles = "";
+                        for(int i = 0; i < arreglodetalles.length(); i++){
+                            detalles = detalles + arreglodetalles.getString(i) + "\n";
+                        }
+                        logger.error("Error al consumir api lealtad puntos. Codigo: " + asimetricasApiResponse.statusCode() +
+                                "\n Cuerpo de respuesta: " +
+                                "\n Codigo: " + asimetricasResponse.getString("codigo") +
+                                "\n Mensaje: " + asimetricasResponse.getString("mensaje") +
+                                "\n Folio: " + asimetricasResponse.getString("folio") +
+                                "\n Info: " + asimetricasResponse.getString("info") +
+                                "\n Detalles: " + detalles);
                         a[0] = "";
                         a[1] = "";
                         a[2] = "";
@@ -77,7 +103,19 @@ public class ObtenerLlavesService {
                 }
 
             }else {
-                logger.error("No se pudo obtener el token, Validar accesos" + tokenApiResponse.statusCode());
+                JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
+                JSONArray arreglodetalles = tokenResponse.getJSONArray("detalles");
+                String detalles = "";
+                for(int i = 0; i < arreglodetalles.length(); i++){
+                    detalles = detalles + arreglodetalles.getString(i) + "\n";
+                }
+                logger.error("Error al consumir api lealtad puntos. Codigo: " + tokenApiResponse.statusCode() +
+                        "\n Cuerpo de respuesta: " +
+                        "\n Codigo: " + tokenResponse.getString("codigo") +
+                        "\n Mensaje: " + tokenResponse.getString("mensaje") +
+                        "\n Folio: " + tokenResponse.getString("folio") +
+                        "\n Info: " + tokenResponse.getString("info") +
+                        "\n Detalles: " + detalles);
                 t = "";
             }
         }catch (Exception e){

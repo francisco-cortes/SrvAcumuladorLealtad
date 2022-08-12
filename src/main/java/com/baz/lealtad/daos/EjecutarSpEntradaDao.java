@@ -19,11 +19,8 @@ public class EjecutarSpEntradaDao {
     public void ejecutarSpEntrada(int PA_FNIDTIPOCLIENTE, int PA_FNIMPORTE, int PA_FNSUCURSAL,
                                   String PA_FDFECHAOPERACION, String PA_FCNEGOCIO, String PA_FCTIPOOPERACION,
                                   int PA_FIORIGENTRANSACCION, int PA_FIPAISID, String PA_FCFOLIOTRANSACCION,
-                                  String PA_FCIDCLIENTE, String PA_FCFOLIOPREMIA, String PA_FCIDUSUARIOTPREMIA,
-                                  String PA_FDFECHAHORAOPERACION, String PA_FCTIPO, int PA_FNIDOPERACION,
-                                  int PA_FNPUNTOSREDIMIR, int PA_FNTOTALPUNTOSANTERIOR, int PA_FNTOTALPUNTOSFINAL,
-                                  int PA_FNPUNTOSRECOMPENSA, String PA_FCCOMENTARIOS, String PA_FCUSUARIO,
-                                  int PA_BANDERA){
+                                  String PA_FCIDCLIENTE, int PA_FNIDOPERACION ,String PA_FCFOLIO,
+                                  String PA_FCMENSAJE, String PA_FCUSUARIO, int PA_BANDERA){
         Connection conexion = null;
         CallableStatement declaracion = null;
 
@@ -40,37 +37,29 @@ public class EjecutarSpEntradaDao {
             declaracion.setInt(8, PA_FIPAISID);
             declaracion.setString(9, PA_FCFOLIOTRANSACCION);
             declaracion.setString(10, PA_FCIDCLIENTE);
-            declaracion.setString(11, PA_FCFOLIOPREMIA);
-            declaracion.setString(12, PA_FCIDUSUARIOTPREMIA);
-            declaracion.setString(13, PA_FDFECHAHORAOPERACION);//fechas
-            declaracion.setString(14, PA_FCTIPO);
-            declaracion.setInt(15, PA_FNIDOPERACION);
-            declaracion.setInt(16, PA_FNPUNTOSREDIMIR);
-            declaracion.setInt(17, PA_FNTOTALPUNTOSANTERIOR);
-            declaracion.setInt(18, PA_FNTOTALPUNTOSFINAL);
-            declaracion.setInt(19, PA_FNPUNTOSRECOMPENSA);
-            declaracion.setString(20, PA_FCCOMENTARIOS);
-            declaracion.setString(21, PA_FCUSUARIO);
-            declaracion.setInt(22, PA_BANDERA);
-            declaracion.registerOutParameter(23, OracleTypes.VARCHAR);
-            declaracion.registerOutParameter(24, OracleTypes.VARCHAR);
+            declaracion.setInt(11, PA_FNIDOPERACION);
+            declaracion.setString(12, PA_FCFOLIO);
+            declaracion.setString(13,PA_FCMENSAJE);
+            declaracion.setString(14, PA_FCUSUARIO);
+            declaracion.setInt(15, PA_BANDERA);
+            declaracion.registerOutParameter(16, OracleTypes.VARCHAR);
+            declaracion.registerOutParameter(17, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
-            if(declaracion.getString(24) != null){
-                logger.info("Sp ejecutado");
-                logger.info(declaracion.getString(24));
+            if(declaracion.getString(17) != null){
+                logger.info("SPTRANSPUNTLEAL ejecutado");
+                logger.info(declaracion.getString(17));
             }else {
-                logger.error("Sp no ejecutado o respuesta nula");
+                logger.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
             }
 
         }catch (Exception excepcion){
-            logger.error("error en db");
-            excepcion.printStackTrace();
+            logger.error("Error en db : " + excepcion);
         }finally {
             try {
                 fabricaDao.cerrarConexion(conexion, declaracion, null);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("no se pudo cerrar conexion: " + e);
             }
         }
     }

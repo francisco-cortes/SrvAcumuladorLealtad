@@ -1,6 +1,5 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.dtos.SpSalidaResponseDto;
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.utils.ConstantesUtil;
 import com.baz.lealtad.utils.FabricaDaoUtil;
@@ -14,7 +13,7 @@ import java.util.List;
 public class EjecutarSpSalidaDao {
 
     private static final Logger logger = Logger.getLogger(EjecutarSpSalidaDao.class);
-    private FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+    private final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
     public List<CursorSpSalidaModel> ejecutarSpSalida(){
         List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
@@ -30,9 +29,10 @@ public class EjecutarSpSalidaDao {
             declaracion.registerOutParameter(3, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
+            logger.info(declaracion.getString(3));
             resultSet = (ResultSet) declaracion.getObject(1);
             if(resultSet != null){
-                logger.info("Sp ejecutado");
+                logger.info("SPPUNTOSLEALTAD Ejecutado");
                 while (resultSet.next()){
                     CursorSpSalidaModel cursor = new CursorSpSalidaModel();
                     cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
@@ -49,21 +49,16 @@ public class EjecutarSpSalidaDao {
                     listaCursor.add(cursor);
                 }
             }else {
-                logger.error("Sp no ejecutado o respuesta nula");
+                logger.error("SPPUNTOSLEALTAD no ejecutado o respuesta nula");
             }
 
-            //System.out.println(listaCursor);
-            //System.out.println(listaCursor.get(1).getFNIMPORTE());
-            logger.info(declaracion.getString(3));
-
         }catch (Exception excepcion){
-            logger.error("error en db");
-            excepcion.printStackTrace();
+            logger.error("Error en db: \n" + excepcion);
         }finally {
             try {
                 fabricaDao.cerrarConexion(conexion, declaracion, resultSet);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Error al cerrar conexion : \n" + e);
             }
         }
         return listaCursor;

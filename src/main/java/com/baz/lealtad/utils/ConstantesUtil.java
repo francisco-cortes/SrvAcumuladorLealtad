@@ -2,7 +2,7 @@ package com.baz.lealtad.utils;
 
 public final class ConstantesUtil {
 
-    public final static String NOMBRE_JAR = "Acumulador Lealtad";
+    public final static String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
     public final static String ORACLE_DATABASE_URL = "jdbc:oracle:thin:@10.81.11.77:1521:SFBDDEV";
 
@@ -12,7 +12,7 @@ public final class ConstantesUtil {
 
     public final static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD(?, ?, ?)";
 
-    public final static String ORACLE_DATABASE_IN_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPTRANSPUNTLEAL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public final static String ORACLE_DATABASE_IN_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPTRANSPUNTLEAL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     public final static String KEY_CIPHER = "B2A0A0R2N1Q8C0U7O2I0A1T6ZETCETCU";
 
