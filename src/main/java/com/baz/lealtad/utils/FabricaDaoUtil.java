@@ -10,15 +10,11 @@ public class FabricaDaoUtil {
 
     public Connection obtenerConexion() throws Exception{
 
-        System.setProperty("oracle.jdbc.fanEnabled","false");
+        //System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
         Connection conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
                 ConstantesUtil.ORACLE_DATABASE_USERNAME,
                 ConstantesUtil.ORACLE_DATABASE_PASSWORD);
-
-        if (conexion == null) {
-            logger.error("No se pudo crear conexión a - SFBDDEV");
-        }
 
         return conexion;
     }
