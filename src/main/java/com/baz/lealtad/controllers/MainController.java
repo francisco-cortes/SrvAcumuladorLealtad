@@ -2,15 +2,14 @@ package com.baz.lealtad.controllers;
 
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.service.*;
-import com.baz.lealtad.utils.ConstantesUtil;
-import com.baz.lealtad.utils.PropUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
 import java.util.List;
 
 public class MainController {
 
-    private static final PropUtil prop= new PropUtil();
+    private static final ParametrerConfiguration configs = new ParametrerConfiguration();
     private static final ConsultaSalidaService salidaService = new ConsultaSalidaService();
     private static final SpEntradaService spEntrada = new SpEntradaService();
     private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
@@ -20,8 +19,8 @@ public class MainController {
 
 
     public static void main(String[] args){
-        prop.setProperties();
-        logger.info("Inicia: "+ ConstantesUtil.NOMBRE_JAR);
+        configs.loadConfiguration();
+        logger.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
         String[] llavesAes = obtenerLlaves.getLlavesAes();
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
@@ -37,7 +36,7 @@ public class MainController {
                     llavesAes[0], llavesAes[1]);
 
             int idOperacion = switch (responseDb.get(i).getFCNEGOCIO()){
-                default -> 1;
+                default -> 3;
             };
 
             respuestaApi = apiService.consultaApi(llavesAes[3], llavesAes[2],
@@ -45,7 +44,7 @@ public class MainController {
                     importe,responseDb.get(i).getFNSUCURSAL(),
                     idOperacion, responseDb.get(i).getFCFOLIOTRANSACCION());
 
-            spEntrada.guardarBase(responseDb.get(i).getFNIDTIPOCLIENTE(), responseDb.get(i).getFNIMPORTE(),
+            spEntrada.guardarBase(responseDb.get(i).getFNIMPORTE(),
                     responseDb.get(i).getFNSUCURSAL(),responseDb.get(i).getFDFECHAOPERACION(),
                     responseDb.get(i).getFCNEGOCIO(),responseDb.get(i).getFCTIPOOPERACION(),
                     responseDb.get(i).getFIORIGENTRANSACCION(), responseDb.get(i).getFIPAISID(),

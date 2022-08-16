@@ -1,6 +1,6 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -45,7 +45,7 @@ public class LlavesAsimetricasDao {
                 .sslContext(insecureContext())
                 .build();
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ConstantesUtil.ASIMETRICAS_URL))
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ParametrerConfiguration.ASIMETRICAS_URL))
                 .headers("Content-Type", "application/x-www-form-urlencoded",
                         "Authorization","Bearer " + token)
                 .GET().build();

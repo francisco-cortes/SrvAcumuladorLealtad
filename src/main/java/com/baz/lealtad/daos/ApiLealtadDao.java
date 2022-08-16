@@ -1,6 +1,6 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -62,7 +62,7 @@ public class ApiLealtadDao {
                 .sslContext(insecureContext())
                 .build();
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ConstantesUtil.API_ACUMULACIONES_URL))
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ParametrerConfiguration.API_ACUMULACIONES_URL))
                 .headers("x-idAcceso", idAcceso,
                         "Authorization","Bearer " + token)
                 .POST(HttpRequest.BodyPublishers.ofString(params)).build();

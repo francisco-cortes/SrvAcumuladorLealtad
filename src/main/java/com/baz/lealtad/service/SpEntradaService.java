@@ -1,7 +1,7 @@
 package com.baz.lealtad.service;
 
 import com.baz.lealtad.daos.EjecutarSpEntradaDao;
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -11,19 +11,20 @@ public class SpEntradaService {
     private static final Logger logger = Logger.getLogger(ConsultaSalidaService.class);
     private final EjecutarSpEntradaDao baseEntradaSp = new EjecutarSpEntradaDao();
 
-    public void guardarBase (int idTipoCliente, int importe, int sucursal, String fecha,
+    public void guardarBase (int importe, int sucursal, String fecha,
                              String negocio, String tipoOperacion, int origenTransaccion,
                              int paisId, String folioTransaccion, String idCliente,
                              String folioPremia, String comentarios, String bandera){
 
         String fechaDDMMYYYY = parsearFecha(fecha);
         int banderaNum = Integer.parseInt(bandera);
-        int idOperacion = 1;
+        int idOperacion = 3;//Esperar reglas de negocio
+        int idTipoCliente = 3;
 
         baseEntradaSp.ejecutarSpEntrada(idTipoCliente,importe,sucursal,fechaDDMMYYYY,
                 negocio, tipoOperacion, origenTransaccion,paisId,
                 folioTransaccion,idCliente,idOperacion,folioPremia,comentarios,
-                ConstantesUtil.NOMBRE_JAR,banderaNum);
+                ParametrerConfiguration.NOMBRE_JAR,banderaNum);
 
     }
 

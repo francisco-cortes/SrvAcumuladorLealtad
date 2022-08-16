@@ -1,6 +1,6 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -45,7 +45,7 @@ public class LlavesSimetricasDao {
                 .sslContext(insecureContext())
                 .build();
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ConstantesUtil.SIMETRICAS_URL + id))
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ParametrerConfiguration.SIMETRICAS_URL + id))
                 .headers("Authorization","Bearer " + token)
                 .GET().build();
 

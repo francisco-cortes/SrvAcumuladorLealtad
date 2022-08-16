@@ -1,6 +1,6 @@
 package com.baz.lealtad.daos;
 
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
 import org.apache.log4j.Logger;
@@ -23,7 +23,7 @@ public class EjecutarSpEntradaDao {
 
         try {
             conexion = fabricaDao.obtenerConexion();
-            declaracion = conexion.prepareCall(ConstantesUtil.ORACLE_DATABASE_IN_STOREPROCEDURE);
+            declaracion = conexion.prepareCall(ParametrerConfiguration.ORACLE_DATABASE_IN_STOREPROCEDURE);
             declaracion.setInt(1, PA_FNIDTIPOCLIENTE);
             declaracion.setInt(2, PA_FNIMPORTE);
             declaracion.setInt(3, PA_FNSUCURSAL);

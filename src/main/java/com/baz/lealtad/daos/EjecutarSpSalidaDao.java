@@ -1,7 +1,7 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.models.CursorSpSalidaModel;
-import com.baz.lealtad.utils.ConstantesUtil;
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
 import org.apache.log4j.Logger;
@@ -23,7 +23,7 @@ public class EjecutarSpSalidaDao {
 
         try {
             conexion = fabricaDao.obtenerConexion();
-            declaracion = conexion.prepareCall(ConstantesUtil.ORACLE_DATABASE_STOREPROCEDURE);
+            declaracion = conexion.prepareCall(ParametrerConfiguration.ORACLE_DATABASE_STOREPROCEDURE);
             declaracion.registerOutParameter(1, OracleTypes.REF_CURSOR);
             declaracion.registerOutParameter(2, OracleTypes.VARCHAR);
             declaracion.registerOutParameter(3, OracleTypes.VARCHAR);

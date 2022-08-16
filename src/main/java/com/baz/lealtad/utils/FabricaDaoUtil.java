@@ -1,5 +1,6 @@
 package com.baz.lealtad.utils;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
@@ -12,9 +13,9 @@ public class FabricaDaoUtil {
 
         //System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
-        Connection conexion = DriverManager.getConnection(ConstantesUtil.ORACLE_DATABASE_URL,
-                ConstantesUtil.ORACLE_DATABASE_USERNAME,
-                ConstantesUtil.ORACLE_DATABASE_PASSWORD);
+        Connection conexion = DriverManager.getConnection(ParametrerConfiguration.ORACLE_DATABASE_URL,
+                ParametrerConfiguration.ORACLE_DATABASE_USERNAME,
+                ParametrerConfiguration.ORACLE_DATABASE_PASSWORD);
 
         return conexion;
     }
