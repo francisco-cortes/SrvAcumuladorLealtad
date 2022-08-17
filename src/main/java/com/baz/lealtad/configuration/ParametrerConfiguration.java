@@ -6,45 +6,45 @@ import java.util.logging.Logger;
 
 public final class ParametrerConfiguration {
 
-    private static final Logger logger = Logger.getLogger(String.valueOf(ParametrerConfiguration.class));
+    //private static final Logger logger = Logger.getLogger(String.valueOf(ParametrerConfiguration.class));
 
     public final static String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
-    private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
+    /*private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
             + NOMBRE_JAR + System.getProperty("file.separator") + "config" + System.getProperty("file.separator")
-            + "SrvGeoBazDig.properties";
+            + "SrvGeoBazDig.properties";*/
 
-    public static String ORACLE_DATABASE_URL = "";
+    public static String ORACLE_DATABASE_URL = "jdbc:oracle:thin:@10.81.11.77:1521:SFBDDEV";
 
-    public static String ORACLE_DATABASE_USERNAME = "";
+    public static String ORACLE_DATABASE_USERNAME = "C3Multimarcas";
 
-    public static String ORACLE_DATABASE_PASSWORD = "";
+    public static String ORACLE_DATABASE_PASSWORD = "BuSTxN4LMm";
 
-    public static String ORACLE_DATABASE_STOREPROCEDURE = "";
+    public static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD(?, ?, ?)";
 
-    public static String ORACLE_DATABASE_IN_STOREPROCEDURE = "";
+    public static String ORACLE_DATABASE_IN_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPTRANSPUNTLEAL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public static String ENCODING_UTF8 = "";
+    public static String ENCODING_UTF8 = "UTF-8";
 
-    public static String AES_KEY = "";
+    public static String AES_KEY = "AES";
 
-    public static String ALGORITHM_AES = "";
+    public static String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
 
-    public static String ALGORITHM_HMAC = "";
+    public static String ALGORITHM_HMAC = "HmacSHA256";
 
-    public static int IV_SIZE = 0;
+    public static int IV_SIZE = 16;
 
-    public static String TOKEN_URL = "";
+    public static String TOKEN_URL = "https://dev-api.bancoazteca.com.mx:8080/oauth2/v1/token";
 
-    public static String CONSUMER_SECRET = "";
+    public static String CONSUMER_SECRET = "RqV58GRGKromtjdWohnlCqAKy8dt3Cn1";
 
-    public static String CONSUMER_KEY = "";
+    public static String CONSUMER_KEY = "bhm6EI2aBjFVq3FL";
 
-    public static String ASIMETRICAS_URL = "";
+    public static String ASIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves";
 
-    public static String SIMETRICAS_URL = "";
+    public static String SIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves-simetricas/";
 
-    public static String API_ACUMULACIONES_URL = "";
+    public static String API_ACUMULACIONES_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/crm/recompensas-lealtad/v1/usuarios/puntos/acumulaciones";
 
     public static String Dcom_sun_net_ssl_checkRevocation = "";
 
@@ -52,7 +52,7 @@ public final class ParametrerConfiguration {
 
     public static String oracle_jdbc_fanEnabled = "";
 
-    public void loadConfiguration(){
+    /*public void loadConfiguration(){
         try {
             Properties systemProps = System.getProperties();
             Properties properties = new Properties();
@@ -104,6 +104,6 @@ public final class ParametrerConfiguration {
         }catch (Exception e){
             logger.info("Hubo un error al cargar las porpiedades" + e);
         }
-    }
+    }*/
 
 }

@@ -6,6 +6,7 @@ import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
 import java.util.List;
+import java.util.Properties;
 
 public class MainController {
 
@@ -19,9 +20,14 @@ public class MainController {
 
 
     public static void main(String[] args){
-        String MMUSER_HOME = System.getenv("MMUSER_HOME");
-        System.setProperty("MMUSER_HOME", MMUSER_HOME);
-        configs.loadConfiguration();
+        //String MMUSER_HOME = System.getenv("MMUSER_HOME");
+        //System.setProperty("MMUSER_HOME", MMUSER_HOME);
+        //configs.loadConfiguration();
+        Properties systemProps = System.getProperties();
+        systemProps.put("Dcom.sun.net.ssl.checkRevocation",false);
+        systemProps.put("jdk.internal.httpclient.disableHostnameVerification", true);
+        systemProps.put("oracle.jdbc.fanEnabled",false);
+        System.setProperties(systemProps);
         logger.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
         String[] llavesAes = obtenerLlaves.getLlaves();// token = 0, idacceso = 1, simetricas = 2 y 3

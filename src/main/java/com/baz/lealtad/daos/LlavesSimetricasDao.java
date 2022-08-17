@@ -1,5 +1,6 @@
 package com.baz.lealtad.daos;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.utils.InSslUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -19,7 +20,7 @@ public class LlavesSimetricasDao {
 
         HttpsURLConnection connection;
 
-        URL url = new URL("https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves-simetricas/"+idAcceso);
+        URL url = new URL(ParametrerConfiguration.SIMETRICAS_URL +idAcceso);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(32 * 1000);
