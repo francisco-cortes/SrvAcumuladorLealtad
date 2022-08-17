@@ -2,50 +2,18 @@ package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.time.Duration;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class ApiLealtadDao {
 
     private static final Logger logger = Logger.getLogger(ApiLealtadDao.class);
 
-    public static SSLContext insecureContext(){
-        TrustManager[] noopTrustManager = new TrustManager[]{
-                new X509TrustManager() {
-                    public void checkClientTrusted(X509Certificate[] xcs, String string) {}
-                    public void checkServerTrusted(X509Certificate[] xcs, String string) {}
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                }
-        };
-        try {
-            SSLContext sc = SSLContext.getInstance("ssl");
-            sc.init(null, noopTrustManager, null);
-            return sc;
-        } catch (KeyManagementException | NoSuchAlgorithmException ex) {
-            return null;
-        }
-    }
-
     public String[] getAcumulaciones(String idAcceso, String token, int idTipoCliente,
                                      String idCliente, String importe, int sucursal,
                                      int idOperacion, String folioTransaccion) throws IOException, InterruptedException {
         String[] respuesta = new String[3];
-
         String params = "{" +
                 "\"idTipoCliente\":" + idTipoCliente + "," +
                 "\"idCliente\":" + "\"" + idCliente + "\"" + "," +
@@ -54,8 +22,35 @@ public class ApiLealtadDao {
                 "\"idOperacion\":" + idOperacion + "," +
                 "\"folioTransaccion\":" + "\"" + folioTransaccion + "\"" +
                 "}";
+        HttpURLConnection connection = null;
+        URL url = new URL(ParametrerConfiguration.API_ACUMULACIONES_URL);
+        connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("x-idAcceso", idAcceso);
+        connection.setRequestProperty("Authorization","Bearer " + token);
 
-        HttpClient client = HttpClient.newBuilder()
+        connection.setUseCaches(false);
+        connection.setDoOutput(true);
+
+        //Send request
+        DataOutputStream wr = new DataOutputStream(
+                connection.getOutputStream());
+        wr.writeBytes(params);
+        wr.close();
+
+        InputStream is = connection.getInputStream();
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+        StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
+        String line;
+        while ((line = rd.readLine()) != null) {
+            response.append(line);
+            response.append('\r');
+        }
+        rd.close();
+        respuesta[1] = response.toString();
+        return respuesta;
+
+        /*HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .followRedirects(HttpClient.Redirect.NORMAL)
                 .connectTimeout(Duration.ofSeconds(35))
@@ -95,10 +90,8 @@ public class ApiLealtadDao {
 
             respuesta[0] = puntosResponse.getString("mensaje");
             respuesta[1] = puntosResponse.getString("folio");
-            respuesta[2] = "1";
+            respuesta[2] = "1";*/
 
-            return respuesta;
         }
     }
 
-}

@@ -19,10 +19,12 @@ public class MainController {
 
 
     public static void main(String[] args){
+        String MMUSER_HOME = System.getenv("MMUSER_HOME");
+        System.setProperty("MMUSER_HOME", MMUSER_HOME);
         configs.loadConfiguration();
         logger.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
-        String[] llavesAes = obtenerLlaves.getLlavesAes();
+        String[] llavesAes = obtenerLlaves.getLlaves();// token = 0, idacceso = 1, simetricas = 2 y 3
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
         String[] respuestaApi; //apiService.consultaApi();
 
@@ -31,18 +33,16 @@ public class MainController {
         for(int i = 0; i < responseDb.size(); i ++){
 
             String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
-                    llavesAes[0], llavesAes[1]);
+                    llavesAes[2], llavesAes[3]);
             String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
-                    llavesAes[0], llavesAes[1]);
+                    llavesAes[2], llavesAes[3]);
 
-            int idOperacion = switch (responseDb.get(i).getFCNEGOCIO()){
-                default -> 3;
-            };
+            //idTipoCliente y idOperacion default 3;
 
-            respuestaApi = apiService.consultaApi(llavesAes[3], llavesAes[2],
-                    responseDb.get(i).getFNIDTIPOCLIENTE(),idCliente,
-                    importe,responseDb.get(i).getFNSUCURSAL(),
-                    idOperacion, responseDb.get(i).getFCFOLIOTRANSACCION());
+            respuestaApi = apiService.consultaApi(llavesAes[1], llavesAes[0],
+                    3,idCliente, importe,
+                    responseDb.get(i).getFNSUCURSAL(), 3,
+                    responseDb.get(i).getFCFOLIOTRANSACCION());
 
             spEntrada.guardarBase(responseDb.get(i).getFNIMPORTE(),
                     responseDb.get(i).getFNSUCURSAL(),responseDb.get(i).getFDFECHAOPERACION(),

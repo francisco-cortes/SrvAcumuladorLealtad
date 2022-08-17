@@ -1,55 +1,61 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.InSslUtil;
+import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.time.Duration;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.util.Objects;
 
 public class LlavesAsimetricasDao {
 
-    public static SSLContext insecureContext(){
-        TrustManager[] noopTrustManager = new TrustManager[]{
-                new X509TrustManager() {
-                    public void checkClientTrusted(X509Certificate[] xcs, String string) {}
-                    public void checkServerTrusted(X509Certificate[] xcs, String string) {}
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                }
-        };
-        try {
-            SSLContext sc = SSLContext.getInstance("ssl");
-            sc.init(null, noopTrustManager, null);
-            return sc;
-        } catch (KeyManagementException | NoSuchAlgorithmException ex) {
-            return null;
+    private static final Logger logger = Logger.getLogger(TokenDao.class);
+
+    public String[] getLlavesAsimetricas(String token) throws IOException {
+        String[] asimetricas = new String[3];
+        HttpsURLConnection connection;
+
+        URL url = new URL(ParametrerConfiguration.ASIMETRICAS_URL);
+        connection = (HttpsURLConnection) url.openConnection();
+
+        connection.setConnectTimeout(32 * 1000);
+        connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Authorization","Bearer " + token);
+        connection.setRequestProperty("Accept","*/*");
+
+        if(connection.getResponseCode() > 299){
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            String line;
+            while ((line = errorReader.readLine()) != null) {
+                errorResponse.append(line).append('\r');
+            }
+            errorReader.close();
+            connection.disconnect();
+            logger.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
+            asimetricas[0] = "";
+            asimetricas[1] = "";
+            asimetricas[2] = "";
+        }else {
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+            connection.disconnect();
+            JSONObject jsonResponse = new JSONObject(sb.toString());
+            asimetricas[0] = jsonResponse.getJSONObject("resultado").getString("idAcceso");
+            asimetricas[1] = jsonResponse.getJSONObject("resultado").getString("accesoPublico");
+            asimetricas[2] = jsonResponse.getJSONObject("resultado").getString("accesoPrivado");
         }
-    }
-
-    public HttpResponse<String> getLlavesAsimetricas(String token) throws IOException, InterruptedException {
-
-        HttpClient client = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1)
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .connectTimeout(Duration.ofSeconds(35))
-                .sslContext(insecureContext())
-                .build();
-
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ParametrerConfiguration.ASIMETRICAS_URL))
-                .headers("Content-Type", "application/x-www-form-urlencoded",
-                        "Authorization","Bearer " + token)
-                .GET().build();
-
-        return client.send(request, HttpResponse.BodyHandlers.ofString());
+        return asimetricas;
     }
 }

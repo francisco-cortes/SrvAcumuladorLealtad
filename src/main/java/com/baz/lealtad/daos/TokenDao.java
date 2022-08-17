@@ -1,71 +1,92 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.InSslUtil;
+import org.apache.log4j.Logger;
+import org.json.JSONObject;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import java.io.IOException;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.*;
 import java.net.*;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.X509Certificate;
-import java.time.Duration;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TokenDao {
 
-    public static SSLContext insecureContext(){
-        TrustManager[] noopTrustManager = new TrustManager[]{
-                new X509TrustManager() {
-                    public void checkClientTrusted(X509Certificate[] xcs, String string) {}
-                    public void checkServerTrusted(X509Certificate[] xcs, String string) {}
-                    public X509Certificate[] getAcceptedIssuers() {
-                        return null;
-                    }
-                }
-        };
-        try {
-            SSLContext sc = SSLContext.getInstance("ssl");
-            sc.init(null, noopTrustManager, null);
-            return sc;
-        } catch (KeyManagementException | NoSuchAlgorithmException ex) {
-            return null;
-        }
-    }
+    private static final Logger logger = Logger.getLogger(TokenDao.class);
 
-    public HttpResponse<String> getToken() throws IOException, InterruptedException {
+    public String getToken() throws IOException {
+        String token;
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
         parameters.put("client_id", ParametrerConfiguration.CONSUMER_SECRET);
         parameters.put("client_secret", ParametrerConfiguration.CONSUMER_KEY);
-
         String form = parameters.keySet().stream()
-                .map(key -> key + "=" + URLEncoder.encode(parameters.get(key), StandardCharsets.UTF_8))
+                .map(key -> {
+                    try {
+                        return key + "=" + URLEncoder.encode(parameters.get(key), String.valueOf(StandardCharsets.UTF_8));
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    return key;
+                })
                 .collect(Collectors.joining("&"));
 
         String encoded = Base64.getEncoder()
-                .encodeToString((ParametrerConfiguration.CONSUMER_SECRET + ":" + ParametrerConfiguration.CONSUMER_KEY).getBytes());
+                .encodeToString((ParametrerConfiguration.CONSUMER_SECRET
+                        + ":" + ParametrerConfiguration.CONSUMER_KEY).getBytes());
 
-        HttpClient client = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1)
-                .followRedirects(HttpClient.Redirect.NORMAL)
-                .connectTimeout(Duration.ofSeconds(35))
-                .sslContext(insecureContext())
-                .build();
+        HttpsURLConnection connection;
 
-        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(ParametrerConfiguration.TOKEN_URL))
-                .headers("Content-Type", "application/x-www-form-urlencoded",
-                        "Authorization","Basic " + encoded)
-                .POST(HttpRequest.BodyPublishers.ofString(form)).build();
+        URL url = new URL(ParametrerConfiguration.TOKEN_URL);
+        connection = (HttpsURLConnection) url.openConnection();
 
-        return client.send(request, HttpResponse.BodyHandlers.ofString());
+        connection.setConnectTimeout(32 * 1000);
+        connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
+        connection.setRequestMethod("POST");
+
+        connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        connection.setRequestProperty("Authorization","Basic " + encoded);
+        connection.setRequestProperty("Accept","*/*");
+        connection.setRequestProperty("Content-Length",String.valueOf(form.length()));
+
+        connection.setUseCaches(false);
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+
+        DataOutputStream wr = new DataOutputStream(
+                connection.getOutputStream());
+        wr.writeBytes(form);
+        wr.close();
+
+        if(connection.getResponseCode() > 299){
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            String line;
+            while ((line = errorReader.readLine()) != null) {
+                errorResponse.append(line).append('\r');
+            }
+            errorReader.close();
+            connection.disconnect();
+            logger.error(connection.getResponseCode() + " Error en Token: " + errorResponse);
+            token = "";
+        }else {
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+
+            connection.disconnect();
+            JSONObject jsonResponse = new JSONObject(sb.toString());
+            token = jsonResponse.getString("access_token");
+        }
+        return token;
     }
 }

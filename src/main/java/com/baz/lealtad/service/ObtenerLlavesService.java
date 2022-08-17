@@ -5,124 +5,44 @@ import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;
 import com.baz.lealtad.utils.CifradorRsaUtil;
 import org.apache.log4j.Logger;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.net.http.HttpResponse;
 
 public class ObtenerLlavesService {
 
     private static final Logger logger = Logger.getLogger(ObtenerLlavesService.class);
-    private static final TokenDao token = new TokenDao();
+    private static final TokenDao Llavetoken = new TokenDao();
     private static final LlavesAsimetricasDao llavesAsimetricas = new LlavesAsimetricasDao();
     private static final LlavesSimetricasDao llavesSimetricas = new LlavesSimetricasDao();
 
-    public HttpResponse<String> tokenApiResponse;
-    public HttpResponse<String> asimetricasApiResponse;
-    public HttpResponse<String> simetricasApiResponse;
-    public String t = "";
-    public String[] a = new String[3];
-    public String[] s = new String[2];
-
-    private void getLlaves (){
+    public String[] getLlaves (){
+        String token = "";
+        String[] asimeticas = new String[3];
+        String[] simetricas = new String[2];
+        String[] simetricasDecifradas;
         try {
-
-            tokenApiResponse = token.getToken();
-
-            if(tokenApiResponse.statusCode() >= 200 && tokenApiResponse.statusCode() < 300){
-                JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
-                t = tokenResponse.getString("access_token");
-
-                try {
-                    asimetricasApiResponse = llavesAsimetricas.getLlavesAsimetricas(t);
-
-                    if(asimetricasApiResponse.statusCode() >= 200 && asimetricasApiResponse.statusCode() < 300){
-
-                        JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
-
-                        a[0] = asimetricasResponse.getJSONObject("resultado").getString("idAcceso");
-                        a[1] = asimetricasResponse.getJSONObject("resultado").getString("accesoPublico");
-                        a[2] = asimetricasResponse.getJSONObject("resultado").getString("accesoPrivado");
-
-                        try {
-                            simetricasApiResponse = llavesSimetricas.getLlavesSimetricas(t,a[0]);
-
-                            if(simetricasApiResponse.statusCode() >= 200 && simetricasApiResponse.statusCode() < 300){
-
-                                JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
-
-                                s[0] = simetricasResponse.getJSONObject("resultado").getString("accesoSimetrico");
-                                s[1] = simetricasResponse.getJSONObject("resultado").getString("codigoAutentificacionHash");
-
-                            }else {
-                                JSONObject simetricasResponse = new JSONObject(simetricasApiResponse.body());
-                                JSONArray arreglodetalles = simetricasResponse.getJSONArray("detalles");
-                                StringBuilder detalles = new StringBuilder();
-                                for(int i = 0; i < arreglodetalles.length(); i++){
-                                    detalles.append(arreglodetalles.getString(i)).append("\n");
-                                }
-                                logger.error("Error al consumir api lealtad puntos. Codigo: " + simetricasApiResponse.statusCode() +
-                                        "\n Cuerpo de respuesta: " +
-                                        "\n Codigo: " + simetricasResponse.getString("codigo") +
-                                        "\n Mensaje: " + simetricasResponse.getString("mensaje") +
-                                        "\n Folio: " + simetricasResponse.getString("folio") +
-                                        "\n Info: " + simetricasResponse.getString("info") +
-                                        "\n Detalles: " + detalles);
-                                s[0] = "";
-                                s[1] = "";
-                            }
-
-                        }catch (Exception e){
-                            logger.error("No se pudo obtener todas las llaves: \n" + e);
-                        }
-
-                    }else {
-                        JSONObject asimetricasResponse = new JSONObject(asimetricasApiResponse.body());
-                        JSONArray arreglodetalles = asimetricasResponse.getJSONArray("detalles");
-                        StringBuilder detalles = new StringBuilder();
-                        for(int i = 0; i < arreglodetalles.length(); i++){
-                            detalles.append(arreglodetalles.getString(i)).append("\n");
-                        }
-                        logger.error("Error al consumir api lealtad puntos. Codigo: " + asimetricasApiResponse.statusCode() +
-                                "\n Cuerpo de respuesta: " +
-                                "\n Codigo: " + asimetricasResponse.getString("codigo") +
-                                "\n Mensaje: " + asimetricasResponse.getString("mensaje") +
-                                "\n Folio: " + asimetricasResponse.getString("folio") +
-                                "\n Info: " + asimetricasResponse.getString("info") +
-                                "\n Detalles: " + detalles);
-                        a[0] = "";
-                        a[1] = "";
-                        a[2] = "";
-                    }
-
-                }catch (Exception e){
-                    logger.error("No se pudo obtener todas las llaves: \n" + e);
-                }
-
-            }else {
-                JSONObject tokenResponse = new JSONObject(tokenApiResponse.body());
-                JSONArray arreglodetalles = tokenResponse.getJSONArray("detalles");
-                StringBuilder detalles = new StringBuilder();
-                for(int i = 0; i < arreglodetalles.length(); i++){
-                    detalles.append(arreglodetalles.getString(i)).append("\n");
-                }
-                logger.error("Error al consumir api lealtad puntos. Codigo: " + tokenApiResponse.statusCode() +
-                        "\n Cuerpo de respuesta: " +
-                        "\n Codigo: " + tokenResponse.getString("codigo") +
-                        "\n Mensaje: " + tokenResponse.getString("mensaje") +
-                        "\n Folio: " + tokenResponse.getString("folio") +
-                        "\n Info: " + tokenResponse.getString("info") +
-                        "\n Detalles: " + detalles);
-                t = "";
-            }
+            token = Llavetoken.getToken();
         }catch (Exception e){
-            logger.error("No se pudo obtener todas las llaves: \n" + e);
+            logger.error("No se pudo obtener Token: " + e);
+        }finally {
+            try {
+                asimeticas = llavesAsimetricas.getLlavesAsimetricas(token);
+            }catch (Exception e){
+                logger.error("No se pudo obtener Asimetricas: " + e);
+            }finally {
+                try {
+                    simetricas = llavesSimetricas.getLlavesSimetricas(token, asimeticas[0]);
+                }catch (Exception e){
+                    logger.error("No se pudo obtener Simetricas: " + e);
+                }
+            }
         }
-    }
+        simetricasDecifradas = decifrarSimetricas(simetricas[0], simetricas[1], asimeticas[1], asimeticas[2]);
+        String[] llavero = new String[4];
+        llavero[0] = token;
+        llavero[1] = asimeticas[0]; //id acceso
+        llavero[2] = simetricasDecifradas[0]; // acceso simetrico
+        llavero[3] = simetricasDecifradas[1]; // codigo hash
 
-    public String[] getLlavesAes(){
-        getLlaves();
-        return decifrarSimetricas();
+        return llavero;
     }
 
     private String decifrarRsa(String texto, String llavePublica, String llavePrivada){
@@ -137,15 +57,12 @@ public class ObtenerLlavesService {
         return decifradoRsa;
     }
 
-    private String[] decifrarSimetricas(){
-        String[] simetricasDesifradas = new String[4];
-        String accesoSimetrico = decifrarRsa(s[0],a[1],a[2]);
-        String codigoAutentificacionHash = decifrarRsa(s[1],a[1],a[2]);
+    private String[] decifrarSimetricas(String acceso, String codigo, String llavePublica, String llavePrivada){
+        String[] simetricasDesifradas = new String[2];
+        String accesoSimetrico = decifrarRsa(acceso,llavePublica,llavePrivada);
+        String codigoAutentificacionHash = decifrarRsa(codigo,llavePublica,llavePrivada);
         simetricasDesifradas[0] = accesoSimetrico;
         simetricasDesifradas[1] = codigoAutentificacionHash;
-
-        simetricasDesifradas[2] = t;
-        simetricasDesifradas[3] = a[0];
         return simetricasDesifradas;
     }
 

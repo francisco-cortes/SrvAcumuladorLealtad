@@ -14,11 +14,12 @@ public class ConsultarApiLealtadService {
     public String[] consultaApi (String idAcceso, String token, int idTipoCliente,
                                  String idCliente, String importe, int sucursal,
                                  int idOperacion, String folioTransaccion){
-        String[] respuestaApi = new String[3];
 
+        String[] respuestaApi = new String[3];
+        // idtipoCleinte y idoperacion set in 3 default
         try {
-            respuestaApi = leal.getAcumulaciones(idAcceso, token, 3,
-                    idCliente, importe, sucursal, 3, folioTransaccion);
+            respuestaApi = leal.getAcumulaciones(idAcceso, token, idTipoCliente,
+                    idCliente, importe, sucursal, idOperacion, folioTransaccion);
         } catch (IOException | InterruptedException e) {
             Thread.currentThread().interrupt();
             respuestaApi[0] = "";
