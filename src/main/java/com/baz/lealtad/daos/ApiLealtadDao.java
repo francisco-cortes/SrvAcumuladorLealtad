@@ -2,6 +2,8 @@ package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -38,16 +40,39 @@ public class ApiLealtadDao {
         wr.writeBytes(params);
         wr.close();
 
-        InputStream is = connection.getInputStream();
-        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-        StringBuilder response = new StringBuilder(); // or StringBuffer if Java version 5+
-        String line;
-        while ((line = rd.readLine()) != null) {
-            response.append(line);
-            response.append('\r');
+        logger.info(connection.getResponseCode() + "\n" + connection.getResponseMessage());
+
+        if(connection.getResponseCode() > 299){
+            BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            String line;
+            while ((line = errorReader.readLine()) != null) {
+                errorResponse.append(line).append('\r');
+            }
+            errorReader.close();
+            connection.disconnect();
+            logger.error(errorResponse);
+            JSONObject jsonResponse = new JSONObject(errorReader.toString());
+            respuesta[0] = jsonResponse.getString("mensaje");
+            respuesta[1] = jsonResponse.getString("folio");
+            respuesta[2] = "1";
+        }else {
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line);
+            }
+            br.close();
+
+            connection.disconnect();
+            JSONObject jsonResponse = new JSONObject(sb.toString());
+            logger.info(jsonResponse);
+            respuesta[0] = jsonResponse.getString("mensaje");
+            respuesta[1] = jsonResponse.getString("folio");
+            respuesta[2] = "0";
         }
-        rd.close();
-        respuesta[1] = response.toString();
+
         return respuesta;
 
         /*HttpClient client = HttpClient.newBuilder()

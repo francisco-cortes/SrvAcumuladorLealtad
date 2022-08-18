@@ -20,22 +20,33 @@ public class ObtenerLlavesService {
         String[] simetricasDecifradas;
         try {
             token = Llavetoken.getToken();
+            logger.info("toke obtenido: " + token + "\n");
         }catch (Exception e){
             logger.error("No se pudo obtener Token: " + e);
         }finally {
             try {
                 asimeticas = llavesAsimetricas.getLlavesAsimetricas(token);
+                logger.info("llaves asimetricas obtenidas: "
+                        + asimeticas[0] + "\n"
+                        + asimeticas[1] + "\n"
+                        + asimeticas[2] + "\n");
             }catch (Exception e){
                 logger.error("No se pudo obtener Asimetricas: " + e);
             }finally {
                 try {
                     simetricas = llavesSimetricas.getLlavesSimetricas(token, asimeticas[0]);
+                    logger.info("llaves simetrcias obtenidas: "
+                            + simetricas[0] + "\n"
+                            + simetricas[1] + "\n");
                 }catch (Exception e){
                     logger.error("No se pudo obtener Simetricas: " + e);
                 }
             }
         }
         simetricasDecifradas = decifrarSimetricas(simetricas[0], simetricas[1], asimeticas[1], asimeticas[2]);
+        logger.info("llaves simetricas decifradas: "
+                + simetricasDecifradas[0] + "\n"
+                + simetricasDecifradas[1] + "\n");
         String[] llavero = new String[4];
         llavero[0] = token;
         llavero[1] = asimeticas[0]; //id acceso

@@ -23,26 +23,26 @@ public class MainController {
         //String MMUSER_HOME = System.getenv("MMUSER_HOME");
         //System.setProperty("MMUSER_HOME", MMUSER_HOME);
         //configs.loadConfiguration();
-        Properties systemProps = System.getProperties();
-        systemProps.put("Dcom.sun.net.ssl.checkRevocation",false);
-        systemProps.put("jdk.internal.httpclient.disableHostnameVerification", true);
-        systemProps.put("oracle.jdbc.fanEnabled",false);
-        System.setProperties(systemProps);
+        //Properties systemProps = System.getProperties();
+        //systemProps.put("Dcom.sun.net.ssl.checkRevocation",false);
+        //systemProps.put("jdk.internal.httpclient.disableHostnameVerification", true);
+        //systemProps.put("Doracle.jdbc.fanEnabled",false);
+        //System.setProperties(systemProps);
         logger.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
         String[] llavesAes = obtenerLlaves.getLlaves();// token = 0, idacceso = 1, simetricas = 2 y 3
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
         String[] respuestaApi; //apiService.consultaApi();
 
-        if (responseDb != null){
-
+        if (responseDb.size() > 0) {
+            logger.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
         for(int i = 0; i < responseDb.size(); i ++){
 
             String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
                     llavesAes[2], llavesAes[3]);
             String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
                     llavesAes[2], llavesAes[3]);
-
+            logger.info("Cifrado idCleinte: " + idCliente + "\nCifrado improte:" + importe);
             //idTipoCliente y idOperacion default 3;
 
             respuestaApi = apiService.consultaApi(llavesAes[1], llavesAes[0],
@@ -59,7 +59,7 @@ public class MainController {
                     respuestaApi[2]);
         }
         } else {
-            logger.error("Respuesta nula del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
+            logger.error("Respuesta nula o vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
         }
         logger.info(" :FIN!");

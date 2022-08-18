@@ -43,6 +43,8 @@ public class EjecutarSpEntradaDao {
             declaracion.registerOutParameter(17, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
+            logger.info(declaracion.getString(17));
+
             if(declaracion.getString(17) == null) {
                 logger.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
             }

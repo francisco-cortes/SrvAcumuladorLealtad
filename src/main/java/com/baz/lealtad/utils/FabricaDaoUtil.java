@@ -11,7 +11,7 @@ public class FabricaDaoUtil {
 
     public Connection obtenerConexion() throws Exception{
 
-        //System.setProperty("oracle.jdbc.fanEnabled","false");
+        System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
         Connection conexion = DriverManager.getConnection(ParametrerConfiguration.ORACLE_DATABASE_URL,
                 ParametrerConfiguration.ORACLE_DATABASE_USERNAME,
@@ -22,6 +22,7 @@ public class FabricaDaoUtil {
 
     public void cerrarConexion(Connection conexion, CallableStatement declaracionInvocable, ResultSet resultado) throws SQLException {
         if (conexion != null && !conexion.isClosed()) {
+            logger.info("Conexion cerrada");
             conexion.close();
         }
 
