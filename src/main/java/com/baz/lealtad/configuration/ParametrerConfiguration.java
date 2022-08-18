@@ -1,12 +1,11 @@
 package com.baz.lealtad.configuration;
 
-import java.io.FileInputStream;
-import java.util.Properties;
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public final class ParametrerConfiguration {
 
-    //private static final Logger logger = Logger.getLogger(String.valueOf(ParametrerConfiguration.class));
+    private static final Logger logger = Logger.getLogger(String.valueOf(ParametrerConfiguration.class));
+
 
     public final static String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
@@ -16,9 +15,9 @@ public final class ParametrerConfiguration {
 
     public static String ORACLE_DATABASE_URL = "jdbc:oracle:thin:@10.81.11.77:1521:SFBDDEV";
 
-    public static String ORACLE_DATABASE_USERNAME = "C3Multimarcas";
+    public static String ORACLE_DATABASE_U = "C3Multimarcas";
 
-    public static String ORACLE_DATABASE_PASSWORD = "BuSTxN4LMm";
+    public static String ORACLE_DATABASE_P = "BuSTxN4LMm";
 
     public static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD(?, ?, ?)";
 
@@ -34,6 +33,8 @@ public final class ParametrerConfiguration {
 
     public static int IV_SIZE = 16;
 
+    public static String SSL_PROTOCOLE = "ssl";
+
     public static String TOKEN_URL = "https://dev-api.bancoazteca.com.mx:8080/oauth2/v1/token";
 
     public static String CONSUMER_SECRET = "RqV58GRGKromtjdWohnlCqAKy8dt3Cn1";
@@ -45,6 +46,12 @@ public final class ParametrerConfiguration {
     public static String SIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves-simetricas/";
 
     public static String API_ACUMULACIONES_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/crm/recompensas-lealtad/v1/usuarios/puntos/acumulaciones";
+
+    public static String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
+
+    public static int Time_OUT_MILLISECONDS = 32000;
+
+    public static int OK_STATUS_CODE_LIMIT = 299;
 
     public static String Dcom_sun_net_ssl_checkRevocation = "";
 

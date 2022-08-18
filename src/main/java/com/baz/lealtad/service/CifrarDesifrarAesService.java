@@ -4,7 +4,7 @@ import com.baz.lealtad.utils.CifradorAesUtil;
 
 public class CifrarDesifrarAesService {
 
-    CifradorAesUtil cifradorAes = new CifradorAesUtil();
+    private final CifradorAesUtil cifradorAes = new CifradorAesUtil();
 
     public String cifrar (String texto, String aes, String hmac){
         return cifradorAes.encryptAes(aes,hmac,texto);

@@ -14,7 +14,7 @@ import java.util.Objects;
 
 public class LlavesAsimetricasDao {
 
-    private static final Logger logger = Logger.getLogger(TokenDao.class);
+    private static final Logger log = Logger.getLogger(TokenDao.class);
 
     public String[] getLlavesAsimetricas(String token) throws IOException {
         String[] asimetricas = new String[3];
@@ -23,26 +23,27 @@ public class LlavesAsimetricasDao {
         URL url = new URL(ParametrerConfiguration.ASIMETRICAS_URL);
         connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(32 * 1000);
+        connection.setConnectTimeout(ParametrerConfiguration.Time_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
-        if(connection.getResponseCode() > 299){
+        if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            StringBuilder errorResponse = new StringBuilder();
             String line;
             while ((line = errorReader.readLine()) != null) {
                 errorResponse.append(line).append('\r');
             }
             errorReader.close();
             connection.disconnect();
-            logger.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
+            log.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
             asimetricas[0] = "";
             asimetricas[1] = "";
             asimetricas[2] = "";
-        }else {
+        }
+        else {
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;

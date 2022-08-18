@@ -6,17 +6,22 @@ import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
 import org.apache.log4j.Logger;
 
-import java.sql.*;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EjecutarSpSalidaDao {
 
-    private static final Logger logger = Logger.getLogger(EjecutarSpSalidaDao.class);
+
+    private static final Logger log = Logger.getLogger(EjecutarSpSalidaDao.class);
     private final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+
 
     public List<CursorSpSalidaModel> ejecutarSpSalida(){
         List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
+
         Connection conexion = null;
         CallableStatement declaracion = null;
         ResultSet resultSet = null;
@@ -46,17 +51,21 @@ public class EjecutarSpSalidaDao {
                     cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
                     listaCursor.add(cursor);
                 }
-            }else {
-                logger.error("SPPUNTOSLEALTAD no ejecutado o respuesta nula");
+            }
+            else {
+                log.error("SPPUNTOSLEALTAD no ejecutado o respuesta nula");
             }
 
-        }catch (Exception excepcion){
-            logger.error("Error en db: \n" + excepcion);
-        }finally {
+        }
+        catch (Exception excepcion){
+            log.error("Error en db: \n" + excepcion);
+        }
+        finally {
             try {
                 fabricaDao.cerrarConexion(conexion, declaracion, resultSet);
-            } catch (Exception e) {
-                logger.error("Error al cerrar conexion : \n" + e);
+            }
+            catch (Exception e) {
+                log.error("Error al cerrar conexion : \n" + e);
             }
         }
         return listaCursor;

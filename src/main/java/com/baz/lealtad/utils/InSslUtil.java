@@ -1,5 +1,7 @@
 package com.baz.lealtad.utils;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
+
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -19,7 +21,7 @@ public class InSslUtil {
                 }
         };
         try {
-            SSLContext sc = SSLContext.getInstance("ssl");
+            SSLContext sc = SSLContext.getInstance(ParametrerConfiguration.SSL_PROTOCOLE);
             sc.init(null, noopTrustManager, null);
             return sc;
         } catch (KeyManagementException | NoSuchAlgorithmException ex) {

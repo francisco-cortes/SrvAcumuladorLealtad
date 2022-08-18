@@ -14,22 +14,22 @@ import java.util.Objects;
 
 public class LlavesSimetricasDao {
 
-    private static final Logger logger = Logger.getLogger(LlavesSimetricasDao.class);
+    private static final Logger log = Logger.getLogger(LlavesSimetricasDao.class);
     public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException {
-        String[] simetricas = new String[2];
 
+        String[] simetricas = new String[2];
         HttpsURLConnection connection;
 
         URL url = new URL(ParametrerConfiguration.SIMETRICAS_URL +idAcceso);
         connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(32 * 1000);
+        connection.setConnectTimeout(ParametrerConfiguration.Time_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
-        if(connection.getResponseCode() > 299){
+        if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
             StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
             String line;
@@ -38,7 +38,7 @@ public class LlavesSimetricasDao {
             }
             errorReader.close();
             connection.disconnect();
-            logger.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
+            log.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
             simetricas[0] = "";
             simetricas[1] = "";
         }else {

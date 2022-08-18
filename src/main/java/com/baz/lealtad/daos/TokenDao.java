@@ -30,7 +30,7 @@ public class TokenDao {
                     try {
                         return key + "=" + URLEncoder.encode(parameters.get(key), String.valueOf(StandardCharsets.UTF_8));
                     } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
+                        logger.error("Error de encoder Token: " + e);
                     }
                     return key;
                 })

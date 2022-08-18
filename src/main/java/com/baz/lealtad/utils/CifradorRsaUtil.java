@@ -1,5 +1,6 @@
 package com.baz.lealtad.utils;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.commons.codec.binary.Base64;
 
 import javax.crypto.Cipher;
@@ -26,7 +27,7 @@ public class CifradorRsaUtil {
         String cadEncriptada = "";
         Cipher cipher = null;
         if(txt!=null){
-            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            cipher = Cipher.getInstance(ParametrerConfiguration.RSA_PADDING_SCHEME);
             cipher.init(1, getPublicKey());
             cadEncriptada = Base64.encodeBase64String(cipher.doFinal(txt.getBytes(StandardCharsets.UTF_8.toString())));
         }
@@ -36,7 +37,7 @@ public class CifradorRsaUtil {
     public String decrypt(String txt) throws Exception {
         String cadDesencriptada = "";
         if(txt!=null){
-            Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+            Cipher cipher = Cipher.getInstance(ParametrerConfiguration.RSA_PADDING_SCHEME);
             cipher.init(2, getPrivateKey());
             cadDesencriptada = new String(cipher.doFinal(Base64.decodeBase64(txt)));
         }

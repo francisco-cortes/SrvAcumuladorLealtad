@@ -10,32 +10,33 @@ import java.sql.Connection;
 
 public class EjecutarSpEntradaDao {
 
-    private static final Logger logger = Logger.getLogger(EjecutarSpEntradaDao.class);
+    private static final Logger log = Logger.getLogger(EjecutarSpEntradaDao.class);
     private final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
-    public void ejecutarSpEntrada(int PA_FNIDTIPOCLIENTE, int PA_FNIMPORTE, int PA_FNSUCURSAL,
-                                  String PA_FDFECHAOPERACION, String PA_FCNEGOCIO, String PA_FCTIPOOPERACION,
-                                  int PA_FIORIGENTRANSACCION, int PA_FIPAISID, String PA_FCFOLIOTRANSACCION,
-                                  String PA_FCIDCLIENTE, int PA_FNIDOPERACION ,String PA_FCFOLIO,
+    public void ejecutarSpEntrada(int idTipoCliente ,int importe, int sucursal, String fecha,
+                                  String negocio, String tipoOperacion, int origenTransaccion,
+                                  int paisId, String folioTransaccion, String idCliente,
+                                  int idOperacion, String folioPremia,
                                   String PA_FCMENSAJE, String PA_FCUSUARIO, int PA_BANDERA){
+
         Connection conexion = null;
         CallableStatement declaracion = null;
 
         try {
             conexion = fabricaDao.obtenerConexion();
             declaracion = conexion.prepareCall(ParametrerConfiguration.ORACLE_DATABASE_IN_STOREPROCEDURE);
-            declaracion.setInt(1, PA_FNIDTIPOCLIENTE);
-            declaracion.setInt(2, PA_FNIMPORTE);
-            declaracion.setInt(3, PA_FNSUCURSAL);
-            declaracion.setString(4, PA_FDFECHAOPERACION);//fecha
-            declaracion.setString(5, PA_FCNEGOCIO);
-            declaracion.setString(6, PA_FCTIPOOPERACION);
-            declaracion.setInt(7, PA_FIORIGENTRANSACCION);
-            declaracion.setInt(8, PA_FIPAISID);
-            declaracion.setString(9, PA_FCFOLIOTRANSACCION);
-            declaracion.setString(10, PA_FCIDCLIENTE);
-            declaracion.setInt(11, PA_FNIDOPERACION);
-            declaracion.setString(12, PA_FCFOLIO);
+            declaracion.setInt(1, idTipoCliente);
+            declaracion.setInt(2, importe);
+            declaracion.setInt(3, sucursal);
+            declaracion.setString(4, fecha);
+            declaracion.setString(5, negocio);
+            declaracion.setString(6, tipoOperacion);
+            declaracion.setInt(7, origenTransaccion);
+            declaracion.setInt(8, paisId);
+            declaracion.setString(9, folioTransaccion);
+            declaracion.setString(10, idCliente);
+            declaracion.setInt(11, idOperacion);
+            declaracion.setString(12, folioPremia);
             declaracion.setString(13,PA_FCMENSAJE);
             declaracion.setString(14, PA_FCUSUARIO);
             declaracion.setInt(15, PA_BANDERA);
@@ -43,19 +44,22 @@ public class EjecutarSpEntradaDao {
             declaracion.registerOutParameter(17, OracleTypes.VARCHAR);
             declaracion.executeQuery();
 
-            logger.info(declaracion.getString(17));
+            log.info(declaracion.getString(17));
 
             if(declaracion.getString(17) == null) {
-                logger.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
+                log.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
             }
 
-        }catch (Exception excepcion){
-            logger.error("Error en db : " + excepcion);
-        }finally {
+        }
+        catch (Exception excepcion){
+            log.error("Error en db : " + excepcion);
+        }
+        finally {
             try {
                 fabricaDao.cerrarConexion(conexion, declaracion, null);
-            } catch (Exception e) {
-                logger.error("no se pudo cerrar conexion: " + e);
+            }
+            catch (Exception e) {
+                log.error("no se pudo cerrar conexion: " + e);
             }
         }
     }
