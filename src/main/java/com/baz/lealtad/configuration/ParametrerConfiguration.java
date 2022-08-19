@@ -1,65 +1,73 @@
 package com.baz.lealtad.configuration;
 
+import com.baz.lealtad.controllers.MainController;
+import org.apache.log4j.Logger;
+
+import java.io.FileInputStream;
+import java.util.Properties;
+
 public final class ParametrerConfiguration {
 
+    private static final Logger LOGGER = Logger.getLogger(MainController.class);
 
     public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
-    /*private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
+    private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
             + NOMBRE_JAR + System.getProperty("file.separator") + "config" + System.getProperty("file.separator")
-            + "SrvGeoBazDig.properties";*/
+            + "SrvGeoBazDig.properties";
 
-    public static String ORACLE_DATABASE_URL = "jdbc:oracle:thin:@10.81.11.77:1521:SFBDDEV";
+    public static String ORACLE_DATABASE_URL = "";
 
-    public static String ORACLE_DATABASE_U = "C3Multimarcas";
+    public static String ORACLE_DATABASE_U = "";
 
-    public static String ORACLE_DATABASE_P = "BuSTxN4LMm";
+    public static String ORACLE_DATABASE_P = "";
 
-    public static String ORACLE_DATABASE_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD(?, ?, ?)";
+    public static String ORACLE_DATABASE_STOREPROCEDURE = "";
 
-    public static String ORACLE_DATABASE_IN_STOREPROCEDURE = "call C3MULTIMARCAS.PAPLANLEALTAD01.SPTRANSPUNTLEAL(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public static String ORACLE_DATABASE_IN_STOREPROCEDURE = "";
 
-    public static String ENCODING_UTF8 = "UTF-8";
+    public static String ENCODING_UTF8 = "";
 
-    public static String AES_KEY = "AES";
+    public static String AES_KEY = "";
 
-    public static String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
+    public static String ALGORITHM_AES = "";
 
-    public static String ALGORITHM_HMAC = "HmacSHA256";
+    public static String ALGORITHM_HMAC = "";
 
     public static final int IV_SIZE = 16;
 
-    public static String SSL_PROTOCOLE = "ssl";
+    public static String SSL_PROTOCOLE = "";
 
-    public static String TOKEN_URL = "https://dev-api.bancoazteca.com.mx:8080/oauth2/v1/token";
+    public static String TOKEN_URL = "";
 
-    public static String CONSUMER_SECRET = "RqV58GRGKromtjdWohnlCqAKy8dt3Cn1";
+    public static String CONSUMER_SECRET = "";
 
-    public static String CONSUMER_KEY = "bhm6EI2aBjFVq3FL";
+    public static String CONSUMER_KEY = "";
 
-    public static String ASIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves";
+    public static String ASIMETRICAS_URL = "";
 
-    public static String SIMETRICAS_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/seguridad/v1/aplicaciones/llaves-simetricas/";
+    public static String SIMETRICAS_URL = "";
 
-    public static String API_ACUMULACIONES_URL = "https://dev-api.bancoazteca.com.mx:8080/data-company/crm/recompensas-lealtad/v1/usuarios/puntos/acumulaciones";
+    public static String API_ACUMULACIONES_URL = "";
 
-    public static String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
+    public static String RSA_PADDING_SCHEME = "";
 
     public static final int TIME_OUT_MILLISECONDS = 32000;
 
     public static final int OK_STATUS_CODE_LIMIT = 299;
 
-    /*public void loadConfiguration(){
+    public void loadConfiguration(){
+
         try {
-            Properties systemProps = System.getProperties();
+
             Properties properties = new Properties();
             properties.load(new FileInputStream(CONF_FILE_PATH));
 
             ORACLE_DATABASE_URL = properties.getProperty("BASEURL").trim();
 
-            ORACLE_DATABASE_USERNAME = properties.getProperty("BASEUSR").trim();
+            ORACLE_DATABASE_U = properties.getProperty("BASEUSR").trim();
 
-            ORACLE_DATABASE_PASSWORD = properties.getProperty("BASEPWORD").trim();
+            ORACLE_DATABASE_P = properties.getProperty("BASEPWORD").trim();
 
             ORACLE_DATABASE_STOREPROCEDURE = properties.getProperty("BASEPROCEDURE").trim();
 
@@ -73,8 +81,6 @@ public final class ParametrerConfiguration {
 
             ALGORITHM_HMAC = properties.getProperty("ALGORITHMHMAC").trim();
 
-            IV_SIZE = Integer.parseInt(properties.getProperty("IVSIZE").trim());
-
             TOKEN_URL = properties.getProperty("TOKENURL").trim();
 
             CONSUMER_SECRET = properties.getProperty("CONSUMER").trim();
@@ -87,20 +93,12 @@ public final class ParametrerConfiguration {
 
             API_ACUMULACIONES_URL = properties.getProperty("APIACUMULACIONESURL").trim();
 
-            Dcom_sun_net_ssl_checkRevocation =  properties.getProperty("ssl_checkRevocation").trim();
-
-            jdk_internal_httpclient_disableHostnameVerification = properties.getProperty("httpclient_disableHostnameVerification").trim();
-
-            oracle_jdbc_fanEnabled = properties.getProperty("oracle_jdbc_fanEnabled").trim();
-
-            systemProps.put("Dcom.sun.net.ssl.checkRevocation",Dcom_sun_net_ssl_checkRevocation);
-            systemProps.put("jdk.internal.httpclient.disableHostnameVerification", jdk_internal_httpclient_disableHostnameVerification);
-            systemProps.put("oracle.jdbc.fanEnabled",oracle_jdbc_fanEnabled);
-            System.setProperties(systemProps);
-
-        }catch (Exception e){
-            logger.info("Hubo un error al cargar las porpiedades" + e);
         }
-    }*/
+        catch (Exception e){
+
+            LOGGER.info("Hubo un error al cargar las porpiedades" + e);
+
+        }
+    }
 
 }

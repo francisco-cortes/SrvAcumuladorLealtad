@@ -30,9 +30,9 @@ public class MainController {
 
 
     public static void main(String[] args){
-        //String MMUSER_HOME = System.getenv("MMUSER_HOME");
-        //System.setProperty("MMUSER_HOME", MMUSER_HOME);
-        //configs.loadConfiguration();
+        String MMUSER_HOME = System.getenv("MMUSER_HOME");
+        System.setProperty("MMUSER_HOME", MMUSER_HOME);
+        configs.loadConfiguration();
 
         LOGGER.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
