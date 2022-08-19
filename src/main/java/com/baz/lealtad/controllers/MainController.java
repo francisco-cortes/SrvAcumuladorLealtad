@@ -60,8 +60,8 @@ public class MainController {
                 log.info("Cifrado idCleinte: " + idCliente + "\n Cifrado improte:" + importe);
 
                 //id tipo cliente y id operacion por defecto es 3;
-                int idTipoCliente = 3;
-                int idOperacion = 3;
+                final int idTipoCliente = 3;
+                final int idOperacion = 3;
 
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("idTipoCliente", idTipoCliente);
@@ -82,13 +82,8 @@ public class MainController {
                 respuestaApi = apiService.consultaApi(llavesAes[idacceso], llavesAes[token],
                         parameters);
 
-                spEntrada.guardarBase(responseDb.get(i).getFNIMPORTE(),
-                        responseDb.get(i).getFNSUCURSAL(),responseDb.get(i).getFDFECHAOPERACION(),
-                        responseDb.get(i).getFCNEGOCIO(),responseDb.get(i).getFCTIPOOPERACION(),
-                        responseDb.get(i).getFIORIGENTRANSACCION(), responseDb.get(i).getFIPAISID(),
-                        responseDb.get(i).getFCFOLIOTRANSACCION(),responseDb.get(i).getFCIDCLIENTE(),
-                        respuestaApi[folio],respuestaApi[mensaje],
-                        respuestaApi[bandera]);
+                spEntrada.guardarBase(parameters,respuestaApi[folio]
+                        ,respuestaApi[mensaje], respuestaApi[bandera]);
             }
         }
         else {

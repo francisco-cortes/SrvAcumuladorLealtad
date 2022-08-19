@@ -1,30 +1,24 @@
 package com.baz.lealtad.service;
 
 import com.baz.lealtad.daos.EjecutarSpEntradaDao;
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
+import java.util.Map;
 
 public class SpEntradaService {
 
-    private static final Logger logger = Logger.getLogger(ConsultaSalidaService.class);
-    private final EjecutarSpEntradaDao baseEntradaSp = new EjecutarSpEntradaDao();
+    private static final Logger LOGGER = Logger.getLogger(ConsultaSalidaService.class);
 
-    public void guardarBase (int importe, int sucursal, String fecha,
-                             String negocio, String tipoOperacion, int origenTransaccion,
-                             int paisId, String folioTransaccion, String idCliente,
-                             String folioPremia, String comentarios, String bandera){
+    private static final EjecutarSpEntradaDao baseEntradaSp = new EjecutarSpEntradaDao();
 
-        String fechaDDMMYYYY = parsearFecha(fecha);
-        int banderaNum = Integer.parseInt(bandera);
-        int idOperacion = 3;//Esperar reglas de negocio
-        int idTipoCliente = 3;
+    public void guardarBase (Map<String, Object> params, String folioPremia,
+                             String comentarios, String bandera){
 
-        baseEntradaSp.ejecutarSpEntrada(idTipoCliente,importe,sucursal,fechaDDMMYYYY,
-                negocio, tipoOperacion, origenTransaccion,paisId,
-                folioTransaccion,idCliente,idOperacion,folioPremia,comentarios,
-                ParametrerConfiguration.NOMBRE_JAR,banderaNum);
+        String fechaDDMMYYYY = parsearFecha(String.valueOf(params.get("fechaOperacion")));
+
+        baseEntradaSp.ejecutarSpEntrada(params,fechaDDMMYYYY,
+                folioPremia,comentarios,bandera);
 
     }
 
@@ -51,7 +45,7 @@ public class SpEntradaService {
             fechaFinal = fechaDDMMYYYY[0] + "-" + fechaDDMMYYYY[1]+ "-" + fechaDDMMYYYY [2]+ " " + fechaHora [1];
             return fechaFinal;
         } else {
-            logger.error("Fecha con formato incorrecto");
+            LOGGER.error("Fecha con formato incorrecto");
             long mili = System.currentTimeMillis();
             Date date = new Date(mili);
             String actual = date.toString();
