@@ -23,7 +23,7 @@ public class LlavesSimetricasDao {
         URL url = new URL(ParametrerConfiguration.SIMETRICAS_URL +idAcceso);
         connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(ParametrerConfiguration.Time_OUT_MILLISECONDS);
+        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Authorization","Bearer " + token);

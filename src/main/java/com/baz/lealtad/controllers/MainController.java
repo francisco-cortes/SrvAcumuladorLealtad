@@ -26,7 +26,7 @@ public class MainController {
     private static final ConsultarApiLealtadService apiService = new ConsultarApiLealtadService();
 
 
-    private static final Logger log = Logger.getLogger(MainController.class);
+    private static final Logger LOGGER = Logger.getLogger(MainController.class);
 
 
     public static void main(String[] args){
@@ -34,7 +34,7 @@ public class MainController {
         //System.setProperty("MMUSER_HOME", MMUSER_HOME);
         //configs.loadConfiguration();
 
-        log.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
+        LOGGER.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
         final int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
         String[] llavesAes = obtenerLlaves.getLlaves();
@@ -46,7 +46,7 @@ public class MainController {
 
         if (responseDb.size() > 0) {
 
-            log.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
+            LOGGER.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
 
             for(int i = 0; i < responseDb.size(); i ++){
 
@@ -57,7 +57,7 @@ public class MainController {
                         llavesAes[simetrica1], llavesAes[simetrica2]);
 
 
-                log.info("Cifrado idCleinte: " + idCliente + "\n Cifrado improte:" + importe);
+                LOGGER.info("Cifrado idCleinte: " + idCliente + "\n Cifrado improte:" + importe);
 
                 //id tipo cliente y id operacion por defecto es 3;
                 final int idTipoCliente = 3;
@@ -87,9 +87,9 @@ public class MainController {
             }
         }
         else {
-            log.error("Respuesta nula o vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
+            LOGGER.error("Respuesta nula o vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
         }
-        log.info(" :FIN!");
+        LOGGER.info(" :FIN!");
     }
 }

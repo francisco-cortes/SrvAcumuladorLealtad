@@ -27,7 +27,7 @@ public final class ParametrerConfiguration {
 
     public static String ALGORITHM_HMAC = "HmacSHA256";
 
-    public static int IV_SIZE = 16;
+    public static final int IV_SIZE = 16;
 
     public static String SSL_PROTOCOLE = "ssl";
 
@@ -45,9 +45,9 @@ public final class ParametrerConfiguration {
 
     public static String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
 
-    public static int Time_OUT_MILLISECONDS = 32000;
+    public static final int TIME_OUT_MILLISECONDS = 32000;
 
-    public static int OK_STATUS_CODE_LIMIT = 299;
+    public static final int OK_STATUS_CODE_LIMIT = 299;
 
     /*public void loadConfiguration(){
         try {

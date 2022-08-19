@@ -40,7 +40,7 @@ public class ApiLealtadDao {
         URL url = new URL(ParametrerConfiguration.API_ACUMULACIONES_URL);
         connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(ParametrerConfiguration.Time_OUT_MILLISECONDS);
+        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
