@@ -19,9 +19,13 @@ public class ConsultarApiLealtadService {
             respuestaApi = leal.getAcumulaciones(idAcceso, token, params);
         }
         catch (Exception e) {
+
             Thread.currentThread().interrupt();
+
             LOGGER.error("Error: " + e );
+
         }
+
         return respuestaApi;
     }
 

@@ -8,11 +8,15 @@ import java.util.List;
 
 public class ConsultaSalidaService {
 
-    private final EjecutarSpSalidaDao baseSp = new EjecutarSpSalidaDao();
+    private static final EjecutarSpSalidaDao baseSp = new EjecutarSpSalidaDao();
 
     public List<CursorSpSalidaModel> consulta(){
+
         List<CursorSpSalidaModel> respuestaSp;
+
         respuestaSp = baseSp.ejecutarSpSalida();
+
         return respuestaSp;
+
     }
 }

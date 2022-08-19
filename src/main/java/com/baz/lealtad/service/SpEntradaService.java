@@ -23,7 +23,9 @@ public class SpEntradaService {
     }
 
     private String parsearFecha(String fechaOrigen){
+
         if(fechaOrigen.contains("T")){
+
             String fechaFinal;
             String fecha = fechaOrigen.replace("T", " ");
             String[] fechaHora = fecha.split("\\s+");
@@ -34,7 +36,10 @@ public class SpEntradaService {
             fechaDDMMYYYY[2] = fechaYYYYMMDD[0];
             fechaFinal = fechaDDMMYYYY[0] + "-" + fechaDDMMYYYY[1]+ "-" + fechaDDMMYYYY [2]+ " " + fechaHora [1];
             return fechaFinal;
-        } else if (fechaOrigen.contains(" ")){
+
+        }
+        else if (fechaOrigen.contains(" ")) {
+
             String fechaFinal;
             String[] fechaHora = fechaOrigen.split("\\s+");
             String[] fechaYYYYMMDD = fechaHora[0].split("-");
@@ -44,7 +49,10 @@ public class SpEntradaService {
             fechaDDMMYYYY[2] = fechaYYYYMMDD[0];
             fechaFinal = fechaDDMMYYYY[0] + "-" + fechaDDMMYYYY[1]+ "-" + fechaDDMMYYYY [2]+ " " + fechaHora [1];
             return fechaFinal;
-        } else {
+
+        }
+        else {
+
             LOGGER.error("Fecha con formato incorrecto");
             long mili = System.currentTimeMillis();
             Date date = new Date(mili);
@@ -56,6 +64,7 @@ public class SpEntradaService {
             fechaDDMMYYYY[2] = fechaYYYYMMDD[0];
             actual = fechaDDMMYYYY[0] + "-" + fechaDDMMYYYY[1]+ "-" + fechaDDMMYYYY [2];
             return actual;
+            
         }
 
     }
