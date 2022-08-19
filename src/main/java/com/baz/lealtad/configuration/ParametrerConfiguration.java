@@ -1,13 +1,9 @@
 package com.baz.lealtad.configuration;
 
-import org.apache.log4j.Logger;
-
 public final class ParametrerConfiguration {
 
-    private static final Logger logger = Logger.getLogger(String.valueOf(ParametrerConfiguration.class));
 
-
-    public final static String NOMBRE_JAR = "SrvAcumuladorLealtad";
+    public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
     /*private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
             + NOMBRE_JAR + System.getProperty("file.separator") + "config" + System.getProperty("file.separator")
@@ -52,12 +48,6 @@ public final class ParametrerConfiguration {
     public static int Time_OUT_MILLISECONDS = 32000;
 
     public static int OK_STATUS_CODE_LIMIT = 299;
-
-    public static String Dcom_sun_net_ssl_checkRevocation = "";
-
-    public static String jdk_internal_httpclient_disableHostnameVerification = "";
-
-    public static String oracle_jdbc_fanEnabled = "";
 
     /*public void loadConfiguration(){
         try {

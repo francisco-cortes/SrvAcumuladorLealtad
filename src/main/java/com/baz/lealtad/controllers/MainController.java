@@ -9,13 +9,12 @@ import com.baz.lealtad.service.ConsultarApiLealtadService;
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainController {
 
     private static final ParametrerConfiguration configs = new ParametrerConfiguration();
+
 
 
     private static final ConsultaSalidaService salidaService = new ConsultaSalidaService();
@@ -33,16 +32,16 @@ public class MainController {
         //System.setProperty("MMUSER_HOME", MMUSER_HOME);
         //configs.loadConfiguration();
 
-
-
         log.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
-        // token = 0, idacceso = 1, simetricas = 2 y 3
+
+        int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
         String[] llavesAes = obtenerLlaves.getLlaves();
+
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
+
         String[] respuestaApi;
 
         if (responseDb.size() > 0) {
-
 
             log.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
 
@@ -62,17 +61,21 @@ public class MainController {
                  **/
 
                 String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
-                        llavesAes[2], llavesAes[3]);
+                        llavesAes[simetrica1], llavesAes[simetrica2]);
+
                 String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
-                        llavesAes[2], llavesAes[3]);
+                        llavesAes[simetrica1], llavesAes[simetrica2]);
 
 
                 log.info("Cifrado idCleinte: " + idCliente + "\n Cifrado improte:" + importe);
 
-                //idTipoCliente y idOperacion por defecto es 3;
-                respuestaApi = apiService.consultaApi(llavesAes[1], llavesAes[0],
-                        3,idCliente, importe,
-                        responseDb.get(i).getFNSUCURSAL(), 3,
+                //id tipo cliente y id operacion por defecto es 3;
+                int idTipoCliente = 3;
+                int idOperacion = 3;
+
+                respuestaApi = apiService.consultaApi(llavesAes[token], llavesAes[idacceso],
+                        idTipoCliente,idCliente, importe,
+                        responseDb.get(i).getFNSUCURSAL(), idOperacion,
                         responseDb.get(i).getFCFOLIOTRANSACCION());
 
                 spEntrada.guardarBase(responseDb.get(i).getFNIMPORTE(),
@@ -83,14 +86,11 @@ public class MainController {
                         respuestaApi[1],respuestaApi[0],
                         respuestaApi[2]);
             }
-
-        } else {
-
+        }
+        else {
             log.error("Respuesta nula o vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
-
         }
         log.info(" :FIN!");
     }
-
 }
