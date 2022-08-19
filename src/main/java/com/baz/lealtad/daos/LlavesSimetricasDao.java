@@ -14,13 +14,18 @@ import java.util.Objects;
 
 public class LlavesSimetricasDao {
 
-    private static final Logger log = Logger.getLogger(LlavesSimetricasDao.class);
+    private static final Logger LOGGER = Logger.getLogger(LlavesSimetricasDao.class);
+
     public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException {
 
+        final int accesoSimetrico = 0, codigoHash = 1;
+        final String jsonName = "Resultado";
         String[] simetricas = new String[2];
+
+
         HttpsURLConnection connection;
 
-        URL url = new URL(ParametrerConfiguration.SIMETRICAS_URL +idAcceso);
+        URL url = new URL(ParametrerConfiguration.SIMETRICAS_URL + idAcceso);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
@@ -30,29 +35,33 @@ public class LlavesSimetricasDao {
         connection.setRequestProperty("Accept","*/*");
 
         if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
+
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            StringBuilder errorResponse = new StringBuilder();
+
             String line;
             while ((line = errorReader.readLine()) != null) {
                 errorResponse.append(line).append('\r');
             }
             errorReader.close();
             connection.disconnect();
-            log.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
-            simetricas[0] = "";
-            simetricas[1] = "";
-        }else {
+            LOGGER.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
+
+        }
+        else {
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();
+
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
             br.close();
             connection.disconnect();
+
             JSONObject jsonResponse = new JSONObject(sb.toString());
-            simetricas[0] = jsonResponse.getJSONObject("resultado").getString("accesoSimetrico");
-            simetricas[1] = jsonResponse.getJSONObject("resultado").getString("codigoAutentificacionHash");
+            simetricas[accesoSimetrico] = jsonResponse.getJSONObject(jsonName).getString("accesoSimetrico");
+            simetricas[codigoHash] = jsonResponse.getJSONObject(jsonName).getString("codigoAutentificacionHash");
         }
 
         return simetricas;

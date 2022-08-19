@@ -14,10 +14,13 @@ import java.util.Objects;
 
 public class LlavesAsimetricasDao {
 
-    private static final Logger log = Logger.getLogger(TokenDao.class);
+    private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
     public String[] getLlavesAsimetricas(String token) throws IOException {
+        final int idAcesso = 0, accesoPublic = 1, accesoPrivado = 2;
+        final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
+
         HttpsURLConnection connection;
 
         URL url = new URL(ParametrerConfiguration.ASIMETRICAS_URL);
@@ -30,32 +33,39 @@ public class LlavesAsimetricasDao {
         connection.setRequestProperty("Accept","*/*");
 
         if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
+
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
             StringBuilder errorResponse = new StringBuilder();
+
             String line;
             while ((line = errorReader.readLine()) != null) {
+
                 errorResponse.append(line).append('\r');
+
             }
             errorReader.close();
             connection.disconnect();
-            log.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
-            asimetricas[0] = "";
-            asimetricas[1] = "";
-            asimetricas[2] = "";
+
+            LOGGER.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
         }
         else {
+
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();
+
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
             br.close();
             connection.disconnect();
+
             JSONObject jsonResponse = new JSONObject(sb.toString());
-            asimetricas[0] = jsonResponse.getJSONObject("resultado").getString("idAcceso");
-            asimetricas[1] = jsonResponse.getJSONObject("resultado").getString("accesoPublico");
-            asimetricas[2] = jsonResponse.getJSONObject("resultado").getString("accesoPrivado");
+
+            asimetricas[idAcesso] = jsonResponse.getJSONObject(jsonParametro).getString("idAcceso");
+            asimetricas[accesoPublic] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPublico");
+            asimetricas[accesoPrivado] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPrivado");
+
         }
         return asimetricas;
     }
