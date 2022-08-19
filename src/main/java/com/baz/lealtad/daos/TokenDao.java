@@ -6,7 +6,11 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -17,20 +21,23 @@ import java.util.stream.Collectors;
 
 public class TokenDao {
 
-    private static final Logger logger = Logger.getLogger(TokenDao.class);
+    private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
     public String getToken() throws IOException {
-        String token;
+
+        String token = "";
+
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
         parameters.put("client_id", ParametrerConfiguration.CONSUMER_SECRET);
         parameters.put("client_secret", ParametrerConfiguration.CONSUMER_KEY);
+
         String form = parameters.keySet().stream()
                 .map(key -> {
                     try {
                         return key + "=" + URLEncoder.encode(parameters.get(key), String.valueOf(StandardCharsets.UTF_8));
                     } catch (UnsupportedEncodingException e) {
-                        logger.error("Error de encoder Token: " + e);
+                        LOGGER.error("Error de encoder Token: " + e);
                     }
                     return key;
                 })
@@ -45,7 +52,7 @@ public class TokenDao {
         URL url = new URL(ParametrerConfiguration.TOKEN_URL);
         connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(32 * 1000);
+        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setRequestMethod("POST");
 
@@ -64,26 +71,30 @@ public class TokenDao {
         wr.close();
 
         if(connection.getResponseCode() > 299){
+
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-            StringBuilder errorResponse = new StringBuilder(); // or StringBuffer if Java version 5+
+            StringBuilder errorResponse = new StringBuilder();
+
             String line;
             while ((line = errorReader.readLine()) != null) {
                 errorResponse.append(line).append('\r');
             }
             errorReader.close();
             connection.disconnect();
-            logger.error(connection.getResponseCode() + " Error en Token: " + errorResponse);
-            token = "";
+
+            LOGGER.error(connection.getResponseCode() + " Error en Token: " + errorResponse);
         }else {
+
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();
+
             String line;
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
             br.close();
-
             connection.disconnect();
+
             JSONObject jsonResponse = new JSONObject(sb.toString());
             token = jsonResponse.getString("access_token");
         }
