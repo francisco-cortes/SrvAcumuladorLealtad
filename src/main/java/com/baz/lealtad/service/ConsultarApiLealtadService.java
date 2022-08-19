@@ -3,7 +3,6 @@ package com.baz.lealtad.service;
 import com.baz.lealtad.daos.ApiLealtadDao;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.util.Map;
 
 
@@ -19,7 +18,7 @@ public class ConsultarApiLealtadService {
         try {
             respuestaApi = leal.getAcumulaciones(idAcceso, token, params);
         }
-        catch (IOException | InterruptedException e) {
+        catch (Exception e) {
             Thread.currentThread().interrupt();
             LOGGER.error("Error: " + e );
         }
