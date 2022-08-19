@@ -11,15 +11,14 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
+import java.util.Map;
 import java.util.Objects;
 
 public class ApiLealtadDao {
 
-    private static final Logger log = Logger.getLogger(ApiLealtadDao.class);
+    private static final Logger LOGGER = Logger.getLogger(ApiLealtadDao.class);
 
-    public String[] getAcumulaciones(String idAcceso, String token, int idTipoCliente,
-                                     String idCliente, String importe, int sucursal,
-                                     int idOperacion, String folioTransaccion)
+    public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters)
             throws IOException, InterruptedException {
 
 
@@ -27,12 +26,12 @@ public class ApiLealtadDao {
         String bandera;
 
         String params = "{" +
-                "\"idTipoCliente\":" + idTipoCliente + "," +
-                "\"idCliente\":" + "\"" + idCliente + "\"" + "," +
-                "\"importe\":" + "\"" + importe + "\"" + "," +
-                "\"sucursal\":" + sucursal + "," +
-                "\"idOperacion\":" + idOperacion + "," +
-                "\"folioTransaccion\":" + "\"" + folioTransaccion + "\"" +
+                "\"idTipoCliente\":" + parameters.get("idTipoCliente") + "," +
+                "\"idCliente\":" + "\"" + parameters.get("idClienteCifrado") + "\"" + "," +
+                "\"importe\":" + "\"" + parameters.get("importeCifrado") + "\"" + "," +
+                "\"sucursal\":" + parameters.get("sucursal") + "," +
+                "\"idOperacion\":" + parameters.get("idOperacion") + "," +
+                "\"folioTransaccion\":" + "\"" + parameters.get("folioTransaccion") + "\"" +
                 "}";
 
         HttpsURLConnection connection;
@@ -55,7 +54,7 @@ public class ApiLealtadDao {
         wr.writeBytes(params);
         wr.close();
 
-        log.info(connection.getResponseCode() + "\n" + connection.getResponseMessage());
+        LOGGER.info(connection.getResponseCode() + "\n" + connection.getResponseMessage());
 
         if(connection.getResponseCode() > 299){
             bandera = "1";
@@ -63,11 +62,11 @@ public class ApiLealtadDao {
             StringBuilder errorResponse = new StringBuilder();
             String line;
             while ((line = errorReader.readLine()) != null) {
-                errorResponse.append(line).append('\r');
+                errorResponse.append(line);
             }
             errorReader.close();
             connection.disconnect();
-            log.error(errorResponse);
+            LOGGER.error(errorResponse);
             JSONObject jsonResponse = new JSONObject(errorReader.toString());
             respuesta[0] = jsonResponse.getString("mensaje");
             respuesta[1] = jsonResponse.getString("folio");
@@ -84,7 +83,7 @@ public class ApiLealtadDao {
 
             connection.disconnect();
             JSONObject jsonResponse = new JSONObject(sb.toString());
-            log.info(jsonResponse);
+            LOGGER.info(jsonResponse);
             respuesta[0] = jsonResponse.getString("mensaje");
             respuesta[1] = jsonResponse.getString("folio");
             respuesta[2] = bandera;

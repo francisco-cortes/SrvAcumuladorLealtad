@@ -9,7 +9,9 @@ import com.baz.lealtad.service.ConsultarApiLealtadService;
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainController {
 
@@ -34,11 +36,12 @@ public class MainController {
 
         log.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
 
-        int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
+        final int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
         String[] llavesAes = obtenerLlaves.getLlaves();
 
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
 
+        final int mensaje = 0, folio = 1, bandera = 2;
         String[] respuestaApi;
 
         if (responseDb.size() > 0) {
@@ -46,19 +49,6 @@ public class MainController {
             log.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
 
             for(int i = 0; i < responseDb.size(); i ++){
-
-                /**
-                Map<String, Object> parameters = new HashMap<>();
-                parameters.put("importe", responseDb.get(i).getFNIMPORTE());
-                parameters.put("sucursal", responseDb.get(i).getFNSUCURSAL());
-                parameters.put("fechaOperacion", responseDb.get(i).getFDFECHAOPERACION());
-                parameters.put("negocio", responseDb.get(i).getFCNEGOCIO());
-                parameters.put("tipoOperacion", responseDb.get(i).getFCTIPOOPERACION());
-                parameters.put("origenTransaccion", responseDb.get(i).getFIORIGENTRANSACCION());
-                parameters.put("paisId", responseDb.get(i).getFIPAISID());
-                parameters.put("folioTransaccion", responseDb.get(i).getFCFOLIOTRANSACCION());
-                parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE());
-                 **/
 
                 String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
                         llavesAes[simetrica1], llavesAes[simetrica2]);
@@ -73,18 +63,32 @@ public class MainController {
                 int idTipoCliente = 3;
                 int idOperacion = 3;
 
-                respuestaApi = apiService.consultaApi(llavesAes[token], llavesAes[idacceso],
-                        idTipoCliente,idCliente, importe,
-                        responseDb.get(i).getFNSUCURSAL(), idOperacion,
-                        responseDb.get(i).getFCFOLIOTRANSACCION());
+                Map<String, Object> parameters = new HashMap<>();
+                parameters.put("idTipoCliente", idTipoCliente);
+                parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE());
+                parameters.put("idClienteCifrado", idCliente);
+                parameters.put("importe", responseDb.get(i).getFNIMPORTE());
+                parameters.put("importeCifrado", importe);
+                parameters.put("sucursal", responseDb.get(i).getFNSUCURSAL());
+                parameters.put("idOperacion", idOperacion);
+                parameters.put("folioTransaccion", responseDb.get(i).getFCFOLIOTRANSACCION());
+                parameters.put("fechaOperacion", responseDb.get(i).getFDFECHAOPERACION());
+                parameters.put("negocio", responseDb.get(i).getFCNEGOCIO());
+                parameters.put("tipoOperacion", responseDb.get(i).getFCTIPOOPERACION());
+                parameters.put("origenTransaccion", responseDb.get(i).getFIORIGENTRANSACCION());
+                parameters.put("paisId", responseDb.get(i).getFIPAISID());
+
+
+                respuestaApi = apiService.consultaApi(llavesAes[idacceso], llavesAes[token],
+                        parameters);
 
                 spEntrada.guardarBase(responseDb.get(i).getFNIMPORTE(),
                         responseDb.get(i).getFNSUCURSAL(),responseDb.get(i).getFDFECHAOPERACION(),
                         responseDb.get(i).getFCNEGOCIO(),responseDb.get(i).getFCTIPOOPERACION(),
                         responseDb.get(i).getFIORIGENTRANSACCION(), responseDb.get(i).getFIPAISID(),
                         responseDb.get(i).getFCFOLIOTRANSACCION(),responseDb.get(i).getFCIDCLIENTE(),
-                        respuestaApi[1],respuestaApi[0],
-                        respuestaApi[2]);
+                        respuestaApi[folio],respuestaApi[mensaje],
+                        respuestaApi[bandera]);
             }
         }
         else {
