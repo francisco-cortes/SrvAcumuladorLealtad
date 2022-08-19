@@ -27,20 +27,20 @@ public class FabricaDaoUtil {
     public void cerrarConexion(Connection conexion, CallableStatement declaracionInvocable, ResultSet resultado)
             throws SQLException {
 
-        if (conexion != null || !conexion.isClosed()) {
+        if (!conexion.isClosed()) {
 
             LOGGER.info("Conexion cerrada");
             conexion.close();
 
         }
 
-        if(resultado != null){
+        if(!resultado.isClosed()){
 
             resultado.close();
 
         }
 
-        if (declaracionInvocable != null){
+        if (!declaracionInvocable.isClosed()){
 
             declaracionInvocable.close();
 
