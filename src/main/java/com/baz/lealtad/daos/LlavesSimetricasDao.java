@@ -19,7 +19,7 @@ public class LlavesSimetricasDao {
     public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException {
 
         final int accesoSimetrico = 0, codigoHash = 1;
-        final String jsonName = "Resultado";
+        final String jsonName = "resultado";
         String[] simetricas = new String[2];
 
 
