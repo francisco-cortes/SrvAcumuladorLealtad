@@ -24,6 +24,7 @@ public class TokenDao {
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
     public String getToken() throws IOException {
+        HttpsURLConnection connection = null;
 
         String token = "";
 
@@ -47,10 +48,13 @@ public class TokenDao {
                 .encodeToString((ParametrerConfiguration.CONSUMER_SECRET
                         + ":" + ParametrerConfiguration.CONSUMER_KEY).getBytes());
 
-        HttpsURLConnection connection;
+        LOGGER.info("Consumer : "  + ParametrerConfiguration.CONSUMER_SECRET
+                + ":" + ParametrerConfiguration.CONSUMER_KEY);
 
         URL url = new URL(ParametrerConfiguration.TOKEN_URL);
+        LOGGER.info("token url " + url);
         connection = (HttpsURLConnection) url.openConnection();
+        LOGGER.info("con " + connection);
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
         connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
@@ -65,9 +69,13 @@ public class TokenDao {
         connection.setDoInput(true);
         connection.setDoOutput(true);
 
+        LOGGER.info("conexxion:" + connection.getURL());
+        LOGGER.info("conexxion:" + connection);
+
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
         wr.writeBytes(form);
+        LOGGER.info("dataOut:" + wr);
         wr.close();
 
         if(connection.getResponseCode() > 299){

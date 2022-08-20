@@ -1,6 +1,5 @@
 package com.baz.lealtad.configuration;
 
-import com.baz.lealtad.controllers.MainController;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
@@ -8,13 +7,13 @@ import java.util.Properties;
 
 public final class ParametrerConfiguration {
 
-    private static final Logger LOGGER = Logger.getLogger(MainController.class);
+    private static final Logger LOGGER = Logger.getLogger(ParametrerConfiguration.class);
 
     public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
     private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
             + NOMBRE_JAR + System.getProperty("file.separator") + "config" + System.getProperty("file.separator")
-            + "SrvGeoBazDig.properties";
+            + "SrvAcumuladorLealtad.properties";
 
     public static String ORACLE_DATABASE_URL = "";
 
@@ -85,18 +84,18 @@ public final class ParametrerConfiguration {
 
             CONSUMER_SECRET = properties.getProperty("CONSUMER").trim();
 
-            CONSUMER_SECRET = properties.getProperty("CONSUMERKEY").trim();
+            CONSUMER_KEY = properties.getProperty("CONSUMERKEY").trim();
 
-            ASIMETRICAS_URL = properties.getProperty("ASIMETRICASSURL").trim();
+            ASIMETRICAS_URL = properties.getProperty("ASIMETRICASURL").trim();
 
-            SIMETRICAS_URL = properties.getProperty("SIMETRICASSURL").trim();
+            SIMETRICAS_URL = properties.getProperty("SIMETRICASURL").trim();
 
             API_ACUMULACIONES_URL = properties.getProperty("APIACUMULACIONESURL").trim();
 
         }
         catch (Exception e){
 
-            LOGGER.info("Hubo un error al cargar las porpiedades" + e);
+            LOGGER.error("Hubo un error al cargar las porpiedades" + e);
 
         }
     }
