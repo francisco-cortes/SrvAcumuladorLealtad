@@ -49,7 +49,7 @@ public final class ParametrerConfiguration {
 
     public static String API_ACUMULACIONES_URL = "";
 
-    public static String RSA_PADDING_SCHEME = "";
+    public static final String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
 
     public static final int TIME_OUT_MILLISECONDS = 32000;
 

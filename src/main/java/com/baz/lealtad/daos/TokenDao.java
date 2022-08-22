@@ -13,20 +13,37 @@ import java.io.UnsupportedEncodingException;
 import java.io.InputStreamReader;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 
 public class TokenDao {
 
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
-    public String getToken() throws IOException {
+    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException {
         HttpsURLConnection connection = null;
 
         String token = "";
+
+        SSLContext ctx = SSLContext.getInstance("TLS");
+        ctx.init(new KeyManager[0], new TrustManager[] {new DefaultTrustManager()}, new SecureRandom());
+        SSLContext.setDefault(ctx);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
@@ -57,19 +74,31 @@ public class TokenDao {
         LOGGER.info("con " + connection);
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
+        LOGGER.info("1");
+
+        //connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
+        connection.setHostnameVerifier((hostname, session) -> false);
+        LOGGER.info("2");
+
         connection.setRequestMethod("POST");
+        LOGGER.info("3");
 
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        LOGGER.info("4");
         connection.setRequestProperty("Authorization","Basic " + encoded);
+        LOGGER.info("5");
         connection.setRequestProperty("Accept","*/*");
+        LOGGER.info("6");
         connection.setRequestProperty("Content-Length",String.valueOf(form.length()));
+        LOGGER.info("7");
 
         connection.setUseCaches(false);
+        LOGGER.info("8");
         connection.setDoInput(true);
+        LOGGER.info("9");
         connection.setDoOutput(true);
+        LOGGER.info("10");
 
-        LOGGER.info("conexxion:" + connection.getURL());
         LOGGER.info("conexxion:" + connection);
 
         DataOutputStream wr = new DataOutputStream(
@@ -108,4 +137,19 @@ public class TokenDao {
         }
         return token;
     }
+
+    private static class DefaultTrustManager implements X509TrustManager {
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    }
+
 }

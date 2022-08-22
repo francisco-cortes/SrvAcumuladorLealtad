@@ -12,6 +12,7 @@ public class ObtenerLlavesService {
     private static final TokenDao Llavetoken = new TokenDao();
     private static final LlavesAsimetricasDao llavesAsimetricas = new LlavesAsimetricasDao();
     private static final LlavesSimetricasDao llavesSimetricas = new LlavesSimetricasDao();
+    private static final CifradorRsaUtil cifradorRsa = new CifradorRsaUtil();
 
     public String[] getLlaves (){
 
@@ -88,15 +89,14 @@ public class ObtenerLlavesService {
     private String decifrarRsa(String texto, String llavePublica, String llavePrivada){
 
         String decifradoRsa;
-        CifradorRsaUtil cifradorRsa = new CifradorRsaUtil(llavePublica, llavePrivada);
 
         try {
 
-            decifradoRsa = cifradorRsa.decrypt(texto);
+            decifradoRsa = cifradorRsa.decrypt(texto, llavePrivada);
 
         }catch (Exception e){
 
-            LOGGER.error("No se pudo decifrar en RSA Error:" + e);
+            LOGGER.error("No se pudo decifrar en RSA Error: " + e);
             decifradoRsa = texto;
 
         }
