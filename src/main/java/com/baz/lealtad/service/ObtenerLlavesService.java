@@ -27,7 +27,6 @@ public class ObtenerLlavesService {
         try {
 
             token = Llavetoken.getToken();
-            LOGGER.info("toke obtenido: " + token + "\n");
 
         }
         catch (Exception e){
@@ -40,10 +39,6 @@ public class ObtenerLlavesService {
             try {
 
                 asimeticas = llavesAsimetricas.getLlavesAsimetricas(token);
-                LOGGER.info("llaves asimetricas obtenidas: "
-                        + asimeticas[idAcesso] + "\n"
-                        + asimeticas[accesoPublic] + "\n"
-                        + asimeticas[accesoPrivado] + "\n");
 
             }
             catch (Exception e){
@@ -56,9 +51,6 @@ public class ObtenerLlavesService {
                 try {
 
                     simetricas = llavesSimetricas.getLlavesSimetricas(token, asimeticas[idAcesso]);
-                    LOGGER.info("llaves simetrcias obtenidas: "
-                            + simetricas[accesoSimetrico] + "\n"
-                            + simetricas[codigoHash] + "\n");
 
                 }
                 catch (Exception e){
@@ -71,10 +63,6 @@ public class ObtenerLlavesService {
 
         simetricasDecifradas = decifrarSimetricas(simetricas[accesoSimetrico], simetricas[codigoHash],
                 asimeticas[accesoPublic], asimeticas[accesoPrivado]);
-
-        LOGGER.info("llaves simetricas decifradas: "
-                + simetricasDecifradas[accesoSimetrico] + "\n"
-                + simetricasDecifradas[codigoHash] + "\n");
 
         String[] llavero = new String[4];
 

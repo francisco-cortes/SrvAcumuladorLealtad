@@ -40,6 +40,7 @@ public class EjecutarSpSalidaDao {
             declaracion.executeQuery();
 
             resultSet = (ResultSet) declaracion.getObject(1);
+            LOGGER.info(declaracion.getString(2) + " : " + declaracion.getString(3));
 
             if(resultSet != null){
 
@@ -53,13 +54,15 @@ public class EjecutarSpSalidaDao {
                     cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
                     cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
                     cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
-                    cursor.setFDFECHAOPERACION(resultSet.getString("FDFECHAOPERACION"));
+                    cursor.setFDFECHAOPERACION(resultSet.getDate("FDFECHAOPERACION"));
                     cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
                     cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
                     cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
                     cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
                     listaCursor.add(cursor);
                 }
+
+                LOGGER.info(listaCursor.get(0).getFCIDCLIENTE());
 
             }
             else {
@@ -70,7 +73,7 @@ public class EjecutarSpSalidaDao {
         }
         catch (Exception excepcion){
 
-            LOGGER.error("Error en db: \n" + excepcion);
+            LOGGER.error("Error en db: " + excepcion);
 
         }
         finally {

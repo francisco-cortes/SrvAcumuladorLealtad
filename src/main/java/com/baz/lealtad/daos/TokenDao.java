@@ -65,46 +65,23 @@ public class TokenDao {
                 .encodeToString((ParametrerConfiguration.CONSUMER_SECRET
                         + ":" + ParametrerConfiguration.CONSUMER_KEY).getBytes());
 
-        LOGGER.info("Consumer : "  + ParametrerConfiguration.CONSUMER_SECRET
-                + ":" + ParametrerConfiguration.CONSUMER_KEY);
-
         URL url = new URL(ParametrerConfiguration.TOKEN_URL);
-        LOGGER.info("token url " + url);
         connection = (HttpsURLConnection) url.openConnection();
-        LOGGER.info("con " + connection);
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        LOGGER.info("1");
-
-        //connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
         connection.setHostnameVerifier((hostname, session) -> false);
-        LOGGER.info("2");
-
         connection.setRequestMethod("POST");
-        LOGGER.info("3");
-
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        LOGGER.info("4");
         connection.setRequestProperty("Authorization","Basic " + encoded);
-        LOGGER.info("5");
         connection.setRequestProperty("Accept","*/*");
-        LOGGER.info("6");
         connection.setRequestProperty("Content-Length",String.valueOf(form.length()));
-        LOGGER.info("7");
-
         connection.setUseCaches(false);
-        LOGGER.info("8");
         connection.setDoInput(true);
-        LOGGER.info("9");
-        connection.setDoOutput(true);
-        LOGGER.info("10");
-
-        LOGGER.info("conexxion:" + connection);
+        connection.setDoOutput(true);;
 
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
         wr.writeBytes(form);
-        LOGGER.info("dataOut:" + wr);
         wr.close();
 
         if(connection.getResponseCode() > 299){

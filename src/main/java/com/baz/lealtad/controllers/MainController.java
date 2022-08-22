@@ -87,7 +87,7 @@ public class MainController {
             }
         }
         else {
-            LOGGER.error("Respuesta nula o vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
+            LOGGER.error("Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
         }
         LOGGER.info(" :FIN!");

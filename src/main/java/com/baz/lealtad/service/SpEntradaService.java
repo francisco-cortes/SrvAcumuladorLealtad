@@ -15,10 +15,7 @@ public class SpEntradaService {
     public void guardarBase (Map<String, Object> params, String folioPremia,
                              String comentarios, String bandera){
 
-        String fechaDDMMYYYY = parsearFecha(String.valueOf(params.get("fechaOperacion")));
-
-        baseEntradaSp.ejecutarSpEntrada(params,fechaDDMMYYYY,
-                folioPremia,comentarios,bandera);
+        baseEntradaSp.ejecutarSpEntrada(params, folioPremia,comentarios,bandera);
 
     }
 
@@ -64,7 +61,7 @@ public class SpEntradaService {
             fechaDDMMYYYY[2] = fechaYYYYMMDD[0];
             actual = fechaDDMMYYYY[0] + "-" + fechaDDMMYYYY[1]+ "-" + fechaDDMMYYYY [2];
             return actual;
-            
+
         }
 
     }

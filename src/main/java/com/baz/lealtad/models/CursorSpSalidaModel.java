@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Setter
 @Getter
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class CursorSpSalidaModel {
     private int FNSUCURSAL;
     private int FNIDOPERACION;
     private String FCFOLIOTRANSACCION;
-    private String FDFECHAOPERACION;
+    private Date FDFECHAOPERACION;
     private String FCNEGOCIO;
     private String FCTIPOOPERACION;
     private int FIORIGENTRANSACCION;

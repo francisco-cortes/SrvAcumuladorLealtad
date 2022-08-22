@@ -8,8 +8,11 @@ import org.json.JSONObject;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.*;
 import java.net.URL;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.Map;
 import java.util.Objects;
 
@@ -27,6 +30,10 @@ public class ApiLealtadDao {
         String[] respuesta = new String[3];
         String bandera;
 
+        SSLContext ctx = SSLContext.getInstance("TLS");
+        ctx.init(new KeyManager[0], new TrustManager[] {new ApiLealtadDao.DefaultTrustManager()}, new SecureRandom());
+        SSLContext.setDefault(ctx);
+
         String params = "{" +
                 "\"idTipoCliente\":" + parameters.get("idTipoCliente") + "," +
                 "\"idCliente\":" + "\"" + parameters.get("idClienteCifrado") + "\"" + "," +
@@ -41,7 +48,7 @@ public class ApiLealtadDao {
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        connection.setSSLSocketFactory(Objects.requireNonNull(InSslUtil.insecureContext()).getSocketFactory());
+        connection.setHostnameVerifier((hostname, session) -> false);
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("x-idAcceso", idAcceso);
@@ -100,5 +107,20 @@ public class ApiLealtadDao {
         return respuesta;
 
         }
+
+    private static class DefaultTrustManager implements X509TrustManager {
+
+        @Override
+        public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
+
+        @Override
+        public X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    }
+
     }
 
