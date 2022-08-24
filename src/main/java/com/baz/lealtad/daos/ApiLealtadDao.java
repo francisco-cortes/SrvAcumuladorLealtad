@@ -8,8 +8,6 @@ import java.io.*;
 import javax.net.ssl.*;
 import java.net.URL;
 import java.security.KeyStore;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Map;
@@ -52,7 +50,7 @@ public class ApiLealtadDao {
                 "}";
 
         HttpsURLConnection connection;
-        URL url = new URL(ParametrerConfiguration.API_ACUMULACIONES_URL);
+        URL url = new URL(ParametrerConfiguration.apiAcumulacionesUrl);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);

@@ -18,45 +18,47 @@ public final class ParametrerConfiguration {
     public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
             + NOMBRE_JAR + System.getProperty("file.separator") + "ca-ch.cert";
 
-    public static String ORACLE_DATABASE_URL = "";
+    public static String oracleDatabaseUrl = "";
 
-    public static String ORACLE_DATABASE_U = "";
+    public static String oracleDatabaseU = "";
 
-    public static String ORACLE_DATABASE_P = "";
+    public static String oracleDatabaseP = "";
 
-    public static String ORACLE_DATABASE_STOREPROCEDURE = "";
+    public static String oracleDatabaseStoreprocedure = "";
 
-    public static String ORACLE_DATABASE_IN_STOREPROCEDURE = "";
+    public static String oracleDatabaseInStoreprocedure = "";
 
-    public static String ENCODING_UTF8 = "";
+    public static final String ENCODING_UTF8 = "UTF-8";
 
-    public static String AES_KEY = "";
+    public static final String AES_KEY = "AES";
 
-    public static String ALGORITHM_AES = "";
+    public static final String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
 
-    public static String ALGORITHM_HMAC = "";
+    public static final String ALGORITHM_HMAC = "HmacSHA256";
 
     public static final int IV_SIZE = 16;
 
-    public static String SSL_PROTOCOLE = "";
+    public static String tokenUrl = "";
 
-    public static String TOKEN_URL = "";
+    public static String consumerSecret = "";
 
-    public static String CONSUMER_SECRET = "";
+    public static String consumerKey = "";
 
-    public static String CONSUMER_KEY = "";
+    public static String asimetricasUrl = "";
 
-    public static String ASIMETRICAS_URL = "";
+    public static String simetricasUrl = "";
 
-    public static String SIMETRICAS_URL = "";
-
-    public static String API_ACUMULACIONES_URL = "";
+    public static String apiAcumulacionesUrl = "";
 
     public static final String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
 
     public static final int TIME_OUT_MILLISECONDS = 32000;
 
     public static final int OK_STATUS_CODE_LIMIT = 299;
+
+    public static final int CANT_LOAD_SOMETHING = 1;
+
+    public static final int ERROR_OR_EXCEPTION = 2;
 
     public void loadConfiguration(){
 
@@ -65,40 +67,33 @@ public final class ParametrerConfiguration {
             Properties properties = new Properties();
             properties.load(new FileInputStream(CONF_FILE_PATH));
 
-            ORACLE_DATABASE_URL = properties.getProperty("BASEURL").trim();
+            oracleDatabaseUrl = properties.getProperty("BASEURL").trim();
 
-            ORACLE_DATABASE_U = properties.getProperty("BASEUSR").trim();
+            oracleDatabaseU = properties.getProperty("BASEUSR").trim();
 
-            ORACLE_DATABASE_P = properties.getProperty("BASEPWORD").trim();
+            oracleDatabaseP = properties.getProperty("BASEPWORD").trim();
 
-            ORACLE_DATABASE_STOREPROCEDURE = properties.getProperty("BASEPROCEDURE").trim();
+            oracleDatabaseStoreprocedure = properties.getProperty("BASEPROCEDURE").trim();
 
-            ORACLE_DATABASE_IN_STOREPROCEDURE = properties.getProperty("BASEINPROCEDURE").trim();
+            oracleDatabaseInStoreprocedure = properties.getProperty("BASEINPROCEDURE").trim();
 
-            ENCODING_UTF8 = properties.getProperty("ENCODINGUTF8").trim();
+            tokenUrl = properties.getProperty("TOKENURL").trim();
 
-            AES_KEY = properties.getProperty("AES").trim();
+            consumerSecret = properties.getProperty("CONSUMER").trim();
 
-            ALGORITHM_AES = properties.getProperty("ALGORITHMAES").trim();
+            consumerKey = properties.getProperty("CONSUMERKEY").trim();
 
-            ALGORITHM_HMAC = properties.getProperty("ALGORITHMHMAC").trim();
+            asimetricasUrl = properties.getProperty("ASIMETRICASURL").trim();
 
-            TOKEN_URL = properties.getProperty("TOKENURL").trim();
+            simetricasUrl = properties.getProperty("SIMETRICASURL").trim();
 
-            CONSUMER_SECRET = properties.getProperty("CONSUMER").trim();
-
-            CONSUMER_KEY = properties.getProperty("CONSUMERKEY").trim();
-
-            ASIMETRICAS_URL = properties.getProperty("ASIMETRICASURL").trim();
-
-            SIMETRICAS_URL = properties.getProperty("SIMETRICASURL").trim();
-
-            API_ACUMULACIONES_URL = properties.getProperty("APIACUMULACIONESURL").trim();
+            apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
 
         }
         catch (Exception e){
 
             LOGGER.error("Hubo un error al cargar las porpiedades" + e);
+            System.exit(CANT_LOAD_SOMETHING);
 
         }
     }

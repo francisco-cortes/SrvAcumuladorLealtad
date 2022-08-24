@@ -45,8 +45,8 @@ public class TokenDao {
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
-        parameters.put("client_id", ParametrerConfiguration.CONSUMER_SECRET);
-        parameters.put("client_secret", ParametrerConfiguration.CONSUMER_KEY);
+        parameters.put("client_id", ParametrerConfiguration.consumerSecret);
+        parameters.put("client_secret", ParametrerConfiguration.consumerKey);
 
         String form = parameters.keySet().stream()
                 .map(key -> {
@@ -60,10 +60,10 @@ public class TokenDao {
                 .collect(Collectors.joining("&"));
 
         String encoded = Base64.getEncoder()
-                .encodeToString((ParametrerConfiguration.CONSUMER_SECRET
-                        + ":" + ParametrerConfiguration.CONSUMER_KEY).getBytes());
+                .encodeToString((ParametrerConfiguration.consumerSecret
+                        + ":" + ParametrerConfiguration.consumerKey).getBytes());
 
-        URL url = new URL(ParametrerConfiguration.TOKEN_URL);
+        URL url = new URL(ParametrerConfiguration.tokenUrl);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);

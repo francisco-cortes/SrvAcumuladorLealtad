@@ -18,9 +18,9 @@ public class FabricaDaoUtil {
         System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
 
-        return DriverManager.getConnection(ParametrerConfiguration.ORACLE_DATABASE_URL,
-                ParametrerConfiguration.ORACLE_DATABASE_U,
-                ParametrerConfiguration.ORACLE_DATABASE_P);
+        return DriverManager.getConnection(ParametrerConfiguration.oracleDatabaseUrl,
+                ParametrerConfiguration.oracleDatabaseU,
+                ParametrerConfiguration.oracleDatabaseP);
 
     }
 

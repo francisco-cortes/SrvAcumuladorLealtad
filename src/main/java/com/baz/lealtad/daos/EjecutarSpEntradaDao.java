@@ -32,7 +32,7 @@ public class EjecutarSpEntradaDao {
 
             conexion = fabricaDao.obtenerConexion();
 
-            declaracion = conexion.prepareCall(ParametrerConfiguration.ORACLE_DATABASE_IN_STOREPROCEDURE);
+            declaracion = conexion.prepareCall(ParametrerConfiguration.oracleDatabaseInStoreprocedure);
             declaracion.setInt(idTipoCliente, (Integer) parameters.get("idTipoCliente"));//tipo cliente
             declaracion.setInt(importe, (Integer) parameters.get("importe") );//importe
             declaracion.setInt(sucursal, (Integer) parameters.get("sucursal"));//sucursal

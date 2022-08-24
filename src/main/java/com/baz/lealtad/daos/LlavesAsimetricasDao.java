@@ -38,7 +38,7 @@ public class LlavesAsimetricasDao {
         SSLContext contextSsl = SSLContext.getInstance("TLS");
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
-        URL url = new URL(ParametrerConfiguration.ASIMETRICAS_URL);
+        URL url = new URL(ParametrerConfiguration.asimetricasUrl);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
