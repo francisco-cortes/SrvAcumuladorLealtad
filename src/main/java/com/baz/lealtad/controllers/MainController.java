@@ -79,11 +79,12 @@ public class MainController {
                         ,respuestaApi[mensaje], respuestaApi[bandera]);
 
             }
+            System.exit(0);
         }
         else {
             LOGGER.error("Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
+            System.exit(-1);
         }
-        LOGGER.info(" : SrvAcumuladorLealtad - Ejecutado");
     }
 }

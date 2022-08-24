@@ -5,38 +5,45 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.net.ssl.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URL;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
+import java.security.*;
 import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
 public class LlavesAsimetricasDao {
 
     private static final Logger LOGGER = Logger.getLogger(LlavesAsimetricasDao.class);
 
-    public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException {
+    public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
         HttpsURLConnection connection = null;
 
         final int idAcesso = 0, accesoPublic = 1, accesoPrivado = 2;
         final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
 
+        FileInputStream fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
+        X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
+                "X.509").generateCertificate(new BufferedInputStream(fis));
 
-        SSLContext ctx = SSLContext.getInstance("TLS");
-        ctx.init(new KeyManager[0], new TrustManager[] {new LlavesAsimetricasDao.DefaultTrustManager()}, new SecureRandom());
-        SSLContext.setDefault(ctx);
+        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+        ks.load(null, null);
+        ks.setCertificateEntry(Integer.toString(1), ca);
+
+        TrustManagerFactory tmf = TrustManagerFactory
+                .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(ks);
+
+        SSLContext contextSsl = SSLContext.getInstance("TLS");
+        contextSsl.init(null, tmf.getTrustManagers(), null);
 
         URL url = new URL(ParametrerConfiguration.ASIMETRICAS_URL);
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
 
-        connection.setHostnameVerifier((hostname, session) -> false);
+        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
 
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Authorization","Bearer " + token);
@@ -78,20 +85,6 @@ public class LlavesAsimetricasDao {
 
         }
         return asimetricas;
-    }
-
-    private static class DefaultTrustManager implements X509TrustManager {
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
     }
 
 }

@@ -1,49 +1,47 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import com.baz.lealtad.utils.InSslUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
-import javax.net.ssl.HttpsURLConnection;
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.io.InputStreamReader;
+import javax.net.ssl.*;
+import java.io.*;
 import java.net.*;
 import java.nio.charset.StandardCharsets;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
+import java.security.*;
+import java.security.cert.CertificateFactory;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
-import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 
 public class TokenDao {
 
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
-    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException {
+    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
         HttpsURLConnection connection = null;
 
         String token = "";
 
-        SSLContext ctx = SSLContext.getInstance("TLS");
-        ctx.init(new KeyManager[0], new TrustManager[] {new DefaultTrustManager()}, new SecureRandom());
-        SSLContext.setDefault(ctx);
+        FileInputStream fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
+        X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
+                "X.509").generateCertificate(new BufferedInputStream(fis));
+
+        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+        ks.load(null, null);
+        ks.setCertificateEntry(Integer.toString(1), ca);
+
+        TrustManagerFactory tmf = TrustManagerFactory
+                .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+        tmf.init(ks);
+
+        SSLContext contextSsl = SSLContext.getInstance("TLS");
+        contextSsl.init(null, tmf.getTrustManagers(), null);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
@@ -69,7 +67,7 @@ public class TokenDao {
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        connection.setHostnameVerifier((hostname, session) -> false);
+        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Authorization","Basic " + encoded);
@@ -77,14 +75,14 @@ public class TokenDao {
         connection.setRequestProperty("Content-Length",String.valueOf(form.length()));
         connection.setUseCaches(false);
         connection.setDoInput(true);
-        connection.setDoOutput(true);;
+        connection.setDoOutput(true);
 
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
         wr.writeBytes(form);
         wr.close();
 
-        if(connection.getResponseCode() > 299){
+        if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
 
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
             StringBuilder errorResponse = new StringBuilder();
@@ -114,19 +112,4 @@ public class TokenDao {
         }
         return token;
     }
-
-    private static class DefaultTrustManager implements X509TrustManager {
-
-        @Override
-        public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
-
-        @Override
-        public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {}
-
-        @Override
-        public X509Certificate[] getAcceptedIssuers() {
-            return null;
-        }
-    }
-
 }

@@ -35,7 +35,7 @@ public class ObtenerLlavesService {
 
         }
         finally {
-
+            LOGGER.info("token: " + token);
             try {
 
                 asimeticas = llavesAsimetricas.getLlavesAsimetricas(token);
