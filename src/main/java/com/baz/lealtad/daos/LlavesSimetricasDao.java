@@ -19,22 +19,35 @@ public class LlavesSimetricasDao {
     public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
 
         HttpsURLConnection connection = null;
+        FileInputStream fis = null;
+        TrustManagerFactory tmf = null;
 
         final int accesoSimetrico = 0, codigoHash = 1;
         final String jsonName = "resultado";
         String[] simetricas = new String[2];
 
-        FileInputStream fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
-        X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
-                "X.509").generateCertificate(new BufferedInputStream(fis));
+        try {
+            fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
+            X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
+                    "X.509").generateCertificate(new BufferedInputStream(fis));
 
-        KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-        ks.load(null, null);
-        ks.setCertificateEntry(Integer.toString(1), ca);
+            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
+            ks.load(null, null);
+            ks.setCertificateEntry(Integer.toString(1), ca);
 
-        TrustManagerFactory tmf = TrustManagerFactory
-                .getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        tmf.init(ks);
+            tmf = TrustManagerFactory
+                    .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+            tmf.init(ks);
+        }
+        catch (Exception e){
+            LOGGER.error("Error al cargar el archivo de certificado" + e);
+            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+        }
+        finally {
+            if (fis != null) {
+                fis.close();
+            }
+        }
 
         SSLContext contextSsl = SSLContext.getInstance("TLS");
         contextSsl.init(null, tmf.getTrustManagers(), null);
