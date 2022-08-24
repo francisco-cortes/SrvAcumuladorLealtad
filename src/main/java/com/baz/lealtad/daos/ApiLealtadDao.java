@@ -1,7 +1,6 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import com.baz.lealtad.utils.InSslUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
@@ -14,7 +13,6 @@ import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.Map;
-import java.util.Objects;
 
 public class ApiLealtadDao {
 
@@ -63,8 +61,6 @@ public class ApiLealtadDao {
         wr.writeBytes(params);
         wr.close();
 
-        LOGGER.info(connection.getResponseCode() + "\n" + connection.getResponseMessage());
-
         if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
             bandera = bad;
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
@@ -97,7 +93,6 @@ public class ApiLealtadDao {
             connection.disconnect();
 
             JSONObject jsonResponse = new JSONObject(sb.toString());
-            LOGGER.info(jsonResponse);
 
             respuesta[mensaje] = jsonResponse.getString("mensaje");
             respuesta[folio] = jsonResponse.getString("folio");

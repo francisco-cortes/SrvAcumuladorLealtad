@@ -40,7 +40,6 @@ public class EjecutarSpSalidaDao {
             declaracion.executeQuery();
 
             resultSet = (ResultSet) declaracion.getObject(1);
-            LOGGER.info(declaracion.getString(2) + " : " + declaracion.getString(3));
 
             if(resultSet != null){
 
@@ -62,7 +61,6 @@ public class EjecutarSpSalidaDao {
                     listaCursor.add(cursor);
                 }
 
-                LOGGER.info(listaCursor.get(0).getFCIDCLIENTE());
 
             }
             else {

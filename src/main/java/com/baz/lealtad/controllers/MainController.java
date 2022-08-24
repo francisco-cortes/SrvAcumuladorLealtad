@@ -34,8 +34,6 @@ public class MainController {
         System.setProperty("MMUSER_HOME", MMUSER_HOME);
         configs.loadConfiguration();
 
-        LOGGER.info("Inicia: "+ ParametrerConfiguration.NOMBRE_JAR);
-
         final int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
         String[] llavesAes = obtenerLlaves.getLlaves();
 
@@ -46,8 +44,6 @@ public class MainController {
 
         if (responseDb.size() > 0) {
 
-            LOGGER.info("Se obtuvieron: " + responseDb.size() + " del primer sp");
-
             for(int i = 0; i < responseDb.size(); i ++){
 
                 String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
@@ -55,9 +51,6 @@ public class MainController {
 
                 String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
                         llavesAes[simetrica1], llavesAes[simetrica2]);
-
-
-                LOGGER.info("Cifrado idCleinte: " + idCliente + "\n Cifrado improte:" + importe);
 
                 //id tipo cliente y id operacion por defecto es 3;
                 final int idTipoCliente = 3;
@@ -84,12 +77,13 @@ public class MainController {
 
                 spEntrada.guardarBase(parameters,respuestaApi[folio]
                         ,respuestaApi[mensaje], respuestaApi[bandera]);
+
             }
         }
         else {
             LOGGER.error("Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
         }
-        LOGGER.info(" :FIN!");
+        LOGGER.info(" : SrvAcumuladorLealtad - Ejecutado");
     }
 }

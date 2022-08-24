@@ -29,7 +29,6 @@ public class FabricaDaoUtil {
 
         if (!conexion.isClosed()) {
 
-            LOGGER.info("Conexion cerrada");
             conexion.close();
 
         }
