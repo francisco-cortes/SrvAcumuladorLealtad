@@ -95,7 +95,10 @@ public class TokenDao {
             connection.disconnect();
 
             LOGGER.error(connection.getResponseCode() + " Error en Token: " + errorResponse);
-        }else {
+            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+
+        }
+        else {
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();

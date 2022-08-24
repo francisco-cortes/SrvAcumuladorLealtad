@@ -1,5 +1,6 @@
 package com.baz.lealtad.service;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.daos.LlavesAsimetricasDao;
 import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;
@@ -32,10 +33,11 @@ public class ObtenerLlavesService {
         catch (Exception e){
 
             LOGGER.error("No se pudo obtener Token: " + e);
+            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
         }
         finally {
-            LOGGER.info("token: " + token);
+
             try {
 
                 asimeticas = llavesAsimetricas.getLlavesAsimetricas(token);
@@ -44,6 +46,7 @@ public class ObtenerLlavesService {
             catch (Exception e){
 
                 LOGGER.error("No se pudo obtener Asimetricas: " + e);
+                System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
             }
             finally {
@@ -56,6 +59,7 @@ public class ObtenerLlavesService {
                 catch (Exception e){
 
                     LOGGER.error("No se pudo obtener Simetricas: " + e);
+                    System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
                 }
             }
@@ -86,6 +90,7 @@ public class ObtenerLlavesService {
 
             LOGGER.error("No se pudo decifrar en RSA Error: " + e);
             decifradoRsa = texto;
+            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
         }
 

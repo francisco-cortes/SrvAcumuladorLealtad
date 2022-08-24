@@ -66,12 +66,14 @@ public class EjecutarSpSalidaDao {
             else {
 
                 LOGGER.error("SPPUNTOSLEALTAD no ejecutado o respuesta nula");
+                System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
             }
         }
         catch (Exception excepcion){
 
             LOGGER.error("Error en db: " + excepcion);
+            System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
 
         }
         finally {
@@ -82,6 +84,7 @@ public class EjecutarSpSalidaDao {
             catch (Exception e) {
 
                 LOGGER.error("Error al cerrar conexion : \n" + e);
+                System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
             }
 
         }

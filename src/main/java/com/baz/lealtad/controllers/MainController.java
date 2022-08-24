@@ -84,7 +84,7 @@ public class MainController {
         else {
             LOGGER.error("Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
-            System.exit(-1);
+            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
         }
     }
 }
