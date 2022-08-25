@@ -30,15 +30,19 @@ public class CifradorAesUtil {
                     .decode(hmacKeyBase64.getBytes(ParametrerConfiguration.ENCODING_UTF8)),
                     ParametrerConfiguration.ALGORITHM_HMAC);
 
-            byte[] iv = generarInitializationVector();
+            byte[] bitesiv = new byte[ParametrerConfiguration.IV_SIZE];
+            SecureRandom secureRandom = new SecureRandom();
+            secureRandom.nextBytes(bitesiv);
+
+            IvParameterSpec iv = new IvParameterSpec(bitesiv);
 
             Cipher cipher = Cipher.getInstance(ParametrerConfiguration.ALGORITHM_AES);
-            cipher.init(Cipher.ENCRYPT_MODE, aesKey, new IvParameterSpec(iv));
+            cipher.init(Cipher.ENCRYPT_MODE, aesKey, iv);
 
             byte[] plainText = valorCampo.getBytes(ParametrerConfiguration.ENCODING_UTF8);
 
             byte[] cipherText = cipher.doFinal(plainText);
-            byte[] iv_cipherText = concatenateBytes(iv, cipherText);
+            byte[] iv_cipherText = concatenateBytes(bitesiv, cipherText);
             byte[] hmac = generarHMAC(hmacKey, iv_cipherText);
             byte[] iv_cipherText_hmac = concatenateBytes(iv_cipherText, hmac);
 
@@ -53,52 +57,6 @@ public class CifradorAesUtil {
         }
 
         return valorCampo;
-
-    }
-
-    public String decryptAes(String aesKeyBase64, String hmacKeyBase64, String valorCifrado) {
-
-        try {
-
-            SecretKey aesKey = new SecretKeySpec(Base64.getDecoder()
-                    .decode(aesKeyBase64.getBytes(ParametrerConfiguration.ENCODING_UTF8)),
-                    ParametrerConfiguration.AES_KEY);
-
-            SecretKey hmacKey = new SecretKeySpec(Base64.getDecoder()
-                    .decode(hmacKeyBase64.getBytes(ParametrerConfiguration.ENCODING_UTF8)),
-                    ParametrerConfiguration.ALGORITHM_HMAC);
-
-            int macLength = obtenerHMACLength(hmacKey);
-
-            byte[] iv_cipherText_hmac = Base64.getDecoder().decode(valorCifrado.getBytes(ParametrerConfiguration.ENCODING_UTF8));
-            int cipherTextLength = iv_cipherText_hmac.length - macLength;
-
-            byte[] iv = Arrays.copyOf(iv_cipherText_hmac, ParametrerConfiguration.IV_SIZE);
-            byte[] cipherText = Arrays.copyOfRange(iv_cipherText_hmac, ParametrerConfiguration.IV_SIZE, cipherTextLength);
-
-            Cipher cipher = Cipher.getInstance(ParametrerConfiguration.ALGORITHM_AES);
-            cipher.init(Cipher.DECRYPT_MODE, aesKey, new IvParameterSpec(iv));
-            byte[] plainText = cipher.doFinal(cipherText);
-            return new String(plainText, ParametrerConfiguration.ENCODING_UTF8);
-
-
-        }
-        catch (Exception e) {
-
-            LOGGER.error("Incidente al decifrar el parametro : " + e);
-
-        }
-
-        return valorCifrado;
-
-    }
-
-    private byte[] generarInitializationVector() {
-
-        byte[] iv = new byte[ParametrerConfiguration.IV_SIZE];
-        SecureRandom secureRandom = new SecureRandom();
-        secureRandom.nextBytes(iv);
-        return iv;
 
     }
 

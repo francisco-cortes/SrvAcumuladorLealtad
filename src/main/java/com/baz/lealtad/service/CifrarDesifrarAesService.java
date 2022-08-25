@@ -12,10 +12,4 @@ public class CifrarDesifrarAesService {
 
     }
 
-    public String decifrar (String texto, String aes, String hmac){
-
-        return cifradorAes.decryptAes(aes,hmac,texto);
-
-    }
-
 }

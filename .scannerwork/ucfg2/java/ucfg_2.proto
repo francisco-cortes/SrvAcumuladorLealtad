@@ -1,38 +1,39 @@
 
-Ecom.baz.lealtad.utils.CifradorAesUtil#generarInitializationVector()[Bo
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java` `(."1*œ	
+Ocom.baz.lealtad.utils.CifradorAesUtil#generarHMAC(Ljavax/crypto/SecretKey;[B)[Bo
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaH H("1*„
 1o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javab b(4ê
-ç
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(‹
+Ÿ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javab b(>
-ivbyte[]"__id*
-""≤Ø
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(J
+%0"Bjavax.crypto.Mac#getInstance(Ljava/lang/String;)Ljavax/crypto/Mac;*"
+javax.crypto.Mac*
+""ú
+ô
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javac( c(4 
-%0java.security.SecureRandom"java.security.SecureRandomƒ
-¡
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(K
+hmacjavax.crypto.Mac"__id*
+
+%0ÖÇ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javac$ c(6
-%1"$java.security.SecureRandom#<init>()V*"
- 
-%0java.security.SecureRandom 
-«
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javac c(7*
-secureRandomjava.security.SecureRandom"__id*"
- 
-%0java.security.SecureRandom¯ı
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javad d("
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaK K(
 
-%2void")java.security.SecureRandom#nextBytes([B)V*,
-*
-secureRandomjava.security.SecureRandom*
-
-ivbyte[]2nextBytes([B)"Å
+%1void"+javax.crypto.Mac#init(Ljava/security/Key;)V*
+
+hmacjavax.crypto.Mac*
+
+keyjavax.crypto.SecretKey2init(Ljava/security/Key;)‚ﬂ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javae e(
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaL L(&
+%2byte[]"javax.crypto.Mac#doFinal([B)[B*
+
+hmacjavax.crypto.Mac*
+
+	hmacInputbyte[]2doFinal([B)"Å
+o
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaL L('
 
-ivbyte[]B)'
+%2byte[]:
+keyjavax.crypto.SecretKey:
+	hmacInputbyte[]B)'
 %com.baz.lealtad.utils.CifradorAesUtil
