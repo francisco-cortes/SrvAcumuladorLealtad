@@ -33,6 +33,8 @@ public class EjecutarSpEntradaDao {
             conexion = fabricaDao.obtenerConexion();
 
             declaracion = conexion.prepareCall(ParametrerConfiguration.oracleDatabaseInStoreprocedure);
+
+
             declaracion.setInt(idTipoCliente, (Integer) parameters.get("idTipoCliente"));//tipo cliente
             declaracion.setInt(importe, (Integer) parameters.get("importe") );//importe
             declaracion.setInt(sucursal, (Integer) parameters.get("sucursal"));//sucursal
@@ -45,16 +47,16 @@ public class EjecutarSpEntradaDao {
             declaracion.setString(idCliente, (String) parameters.get("idCliente") );// id cliente
             declaracion.setInt(idOperacion, (Integer) parameters.get("idOperacion"));// id operacion
             declaracion.setString(folio, folioPremia);// folio premia
-            declaracion.setString(comentario,mensaje);
+            declaracion.setString(comentario, mensaje);
             declaracion.setString(usuario, ParametrerConfiguration.NOMBRE_JAR);
             declaracion.setInt(flag, Integer.parseInt(bandera));
             declaracion.registerOutParameter(respuesta1, OracleTypes.VARCHAR);
             declaracion.registerOutParameter(respuesta2, OracleTypes.VARCHAR);
+
             declaracion.executeQuery();
 
             if(declaracion.getString(respuesta2) == null ||
                     !declaracion.getString(respuesta2).contains("OPERACION EXITOSA.") ) {
-
                 LOGGER.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
 
             }
@@ -65,7 +67,10 @@ public class EjecutarSpEntradaDao {
         }
         finally {
             try {
-                fabricaDao.cerrarConexion(conexion, declaracion, null);
+                assert conexion != null;
+                conexion.close();
+                assert declaracion != null;
+                declaracion.close();
             }
             catch (Exception e) {
                 LOGGER.error("no se pudo cerrar conexion: " + e);
