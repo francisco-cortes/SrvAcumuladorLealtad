@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class MainController {
 
+
     private static final ParametrerConfiguration configs = new ParametrerConfiguration();
 
 
@@ -30,16 +31,26 @@ public class MainController {
 
 
     public static void main(String[] args){
-        String MMUSER_HOME = System.getenv("MMUSER_HOME");
+
+
+        final String MMUSER_HOME = System.getenv("MMUSER_HOME");
         System.setProperty("MMUSER_HOME", MMUSER_HOME);
         configs.loadConfiguration();
 
-        final int token = 0, idacceso = 1, simetrica1 = 2, simetrica2 = 3;
+        final int TOKEN = 0;
+        final int IDACCESO = 1;
+        final int SIMETRICA_1 = 2;
+        final int SIMETRICA_2 = 3;
+
+
         String[] llavesAes = obtenerLlaves.getLlaves();
 
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
 
-        final int mensaje = 0, folio = 1, bandera = 2;
+        final int MENSAJE = 0;
+        final int FOLIO = 1;
+        final int BANDERA = 2;
+
         String[] respuestaApi;
 
         if (responseDb.size() > 0) {
@@ -47,23 +58,23 @@ public class MainController {
             for(int i = 0; i < responseDb.size(); i ++){
 
                 String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
-                        llavesAes[simetrica1], llavesAes[simetrica2]);
+                        llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
                 String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
-                        llavesAes[simetrica1], llavesAes[simetrica2]);
+                        llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
                 //id tipo cliente y id operacion por defecto es 3;
-                final int idTipoCliente = 3;
-                final int idOperacion = 3;
+                final int ID_TIPO_CLIENTE = 3;
+                final int ID_OPERACION = 3;
 
                 Map<String, Object> parameters = new HashMap<>();
-                parameters.put("idTipoCliente", idTipoCliente);
+                parameters.put("idTipoCliente", ID_TIPO_CLIENTE);
                 parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE());
                 parameters.put("idClienteCifrado", idCliente);
                 parameters.put("importe", responseDb.get(i).getFNIMPORTE());
                 parameters.put("importeCifrado", importe);
                 parameters.put("sucursal", responseDb.get(i).getFNSUCURSAL());
-                parameters.put("idOperacion", idOperacion);
+                parameters.put("idOperacion", ID_OPERACION);
                 parameters.put("folioTransaccion", responseDb.get(i).getFCFOLIOTRANSACCION());
                 parameters.put("fechaOperacion", responseDb.get(i).getFDFECHAOPERACION());
                 parameters.put("negocio", responseDb.get(i).getFCNEGOCIO());
@@ -72,19 +83,22 @@ public class MainController {
                 parameters.put("paisId", responseDb.get(i).getFIPAISID());
 
 
-                respuestaApi = apiService.consultaApi(llavesAes[idacceso], llavesAes[token],
+                respuestaApi = apiService.consultaApi(llavesAes[IDACCESO], llavesAes[TOKEN],
                         parameters);
 
-                spEntrada.guardarBase(parameters,respuestaApi[folio]
-                        ,respuestaApi[mensaje], respuestaApi[bandera]);
+                spEntrada.guardarBase(parameters,respuestaApi[FOLIO]
+                        ,respuestaApi[MENSAJE], respuestaApi[BANDERA]);
 
             }
+
             System.exit(0);
         }
         else {
+
             LOGGER.error("Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
                     "No se realiza ninguna Accion");
             System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+
         }
     }
 }

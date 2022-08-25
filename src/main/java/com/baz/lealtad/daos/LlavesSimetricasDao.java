@@ -4,11 +4,19 @@ import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
-import javax.net.ssl.*;
-import java.io.*;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.net.URL;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+
+import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 
@@ -16,7 +24,7 @@ public class LlavesSimetricasDao {
 
     private static final Logger LOGGER = Logger.getLogger(LlavesSimetricasDao.class);
 
-    public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
+    public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
         HttpsURLConnection connection = null;
         FileInputStream fis = null;

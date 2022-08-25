@@ -5,7 +5,9 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.*;
-import javax.net.ssl.*;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
 import java.security.KeyStore;
 import java.security.cert.CertificateFactory;
@@ -16,19 +18,24 @@ public class ApiLealtadDao {
 
     private static final Logger LOGGER = Logger.getLogger(ApiLealtadDao.class);
 
-    private static final String ok = "0", bad = "1";
-    private static final int mensaje = 0, folio = 1, flag = 2;
+    private static final String OK = "0";
+    private static final String BAD = "1";
+    private static final int MENSAJE = 0;
+    private static final int FOLIO = 1;
+    private static final int FLAG = 2;
 
     public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters)
             throws Exception {
 
         FileInputStream fis = null;
+
         TrustManagerFactory tmf = null;
 
         String[] respuesta = new String[3];
         String bandera;
 
         try {
+
             fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
             X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
                     "X.509").generateCertificate(new BufferedInputStream(fis));
@@ -42,13 +49,17 @@ public class ApiLealtadDao {
             tmf.init(ks);
         }
         catch (Exception e){
+
             LOGGER.error("Error al cargar el archivo de certificado" + e);
             System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+
         }
         finally {
+
             if (fis != null) {
                 fis.close();
             }
+
         }
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
@@ -85,10 +96,12 @@ public class ApiLealtadDao {
         wr.close();
 
         if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-            bandera = bad;
+
+            bandera = BAD;
             BufferedReader errorReader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
             StringBuilder errorResponse = new StringBuilder();
             String line;
+
             while ((line = errorReader.readLine()) != null) {
                 errorResponse.append(line);
             }
@@ -101,12 +114,13 @@ public class ApiLealtadDao {
             LOGGER.error(errorString);
 
             JSONObject jsonResponse = new JSONObject(errorString.trim());
-            respuesta[mensaje] = jsonResponse.getString("mensaje");
-            respuesta[folio] = jsonResponse.getString("folio");
-            respuesta[flag] = bandera;
+            respuesta[MENSAJE] = jsonResponse.getString("mensaje");
+            respuesta[FOLIO] = jsonResponse.getString("folio");
+            respuesta[FLAG] = bandera;
 
         }else {
-            bandera = ok;
+
+            bandera = OK;
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder sb = new StringBuilder();
             String line;
@@ -119,9 +133,9 @@ public class ApiLealtadDao {
 
             JSONObject jsonResponse = new JSONObject(sb.toString());
 
-            respuesta[mensaje] = jsonResponse.getString("mensaje");
-            respuesta[folio] = jsonResponse.getString("folio");
-            respuesta[flag] = bandera;
+            respuesta[MENSAJE] = jsonResponse.getString("mensaje");
+            respuesta[FOLIO] = jsonResponse.getString("folio");
+            respuesta[FLAG] = bandera;
         }
 
         return respuesta;

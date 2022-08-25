@@ -4,18 +4,28 @@ import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
-import javax.net.ssl.*;
-import java.io.*;
-import java.net.*;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.security.*;
+import java.security.NoSuchAlgorithmException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
 import java.security.cert.CertificateFactory;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.security.cert.X509Certificate;
-import javax.net.ssl.HttpsURLConnection;
 
 
 public class TokenDao {

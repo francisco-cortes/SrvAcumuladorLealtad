@@ -4,24 +4,34 @@ import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
-import javax.net.ssl.*;
-import java.io.*;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.HttpsURLConnection;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.net.URL;
-import java.security.*;
-import java.security.cert.CertificateException;
+import java.security.KeyStore;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.security.NoSuchAlgorithmException;
+import java.security.KeyManagementException;
+
 
 public class LlavesAsimetricasDao {
 
     private static final Logger LOGGER = Logger.getLogger(LlavesAsimetricasDao.class);
 
-    public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
+    public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException {
         HttpsURLConnection connection = null;
         FileInputStream fis = null;
         TrustManagerFactory tmf = null;
 
-        final int idAcesso = 0, accesoPublic = 1, accesoPrivado = 2;
+        final int idAcesso = 0;
+        final int accesoPublic = 1;
+        final int accesoPrivado = 2;
         final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
 
