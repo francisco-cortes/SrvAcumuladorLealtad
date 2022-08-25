@@ -11,11 +11,13 @@ public final class ParametrerConfiguration {
 
     public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
-    private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
-            + NOMBRE_JAR + System.getProperty("file.separator") + "config" + System.getProperty("file.separator")
+    private static final String fileSeparator = "file.separator";
+
+    private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(fileSeparator)
+            + NOMBRE_JAR + System.getProperty(fileSeparator) + "config" + System.getProperty(fileSeparator)
             + "SrvAcumuladorLealtad.properties";
 
-    public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty("file.separator")
+    public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(fileSeparator)
             + NOMBRE_JAR + System.getProperty("file.separator") + "ca-ch.cert";
 
     public static String oracleDatabaseUrl = "";

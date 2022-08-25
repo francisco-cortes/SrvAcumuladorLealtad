@@ -14,16 +14,18 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import javax.net.ssl.HttpsURLConnection;
 
 
 public class TokenDao {
 
+
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
-    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException, CertificateException, KeyStoreException {
+    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException {
+
+
         HttpsURLConnection connection = null;
         FileInputStream fis = null;
         TrustManagerFactory tmf = null;
@@ -31,6 +33,7 @@ public class TokenDao {
         String token = "";
 
         try {
+
             fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
             X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
                     "X.509").generateCertificate(new BufferedInputStream(fis));
@@ -42,14 +45,20 @@ public class TokenDao {
             tmf = TrustManagerFactory
                     .getInstance(TrustManagerFactory.getDefaultAlgorithm());
             tmf.init(ks);
+
         }
         catch (Exception e){
+
             LOGGER.error("Error al cargar el archivo de certificado" + e);
             System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+
         }
         finally {
+
             if (fis != null) {
+
                 fis.close();
+
             }
         }
 
@@ -77,6 +86,8 @@ public class TokenDao {
                 .encodeToString((ParametrerConfiguration.consumerSecret
                         + ":" + ParametrerConfiguration.consumerKey).getBytes());
 
+        final String authorization = "Basic " + encoded;
+
         URL url = new URL(ParametrerConfiguration.tokenUrl);
         connection = (HttpsURLConnection) url.openConnection();
 
@@ -84,7 +95,7 @@ public class TokenDao {
         connection.setSSLSocketFactory(contextSsl.getSocketFactory());
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        connection.setRequestProperty("Authorization","Basic " + encoded);
+        connection.setRequestProperty("Authorization",authorization);
         connection.setRequestProperty("Accept","*/*");
         connection.setRequestProperty("Content-Length",String.valueOf(form.length()));
         connection.setUseCaches(false);
