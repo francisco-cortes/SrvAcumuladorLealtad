@@ -51,7 +51,7 @@ public class ApiLealtadDao {
             }
         }
 
-        SSLContext contextSsl = SSLContext.getInstance("TLS");
+        SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
         String params = "{" +

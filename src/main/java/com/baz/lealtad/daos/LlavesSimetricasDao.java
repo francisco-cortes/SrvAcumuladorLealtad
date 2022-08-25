@@ -49,7 +49,7 @@ public class LlavesSimetricasDao {
             }
         }
 
-        SSLContext contextSsl = SSLContext.getInstance("TLS");
+        SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
         URL url = new URL(ParametrerConfiguration.simetricasUrl + idAcceso);

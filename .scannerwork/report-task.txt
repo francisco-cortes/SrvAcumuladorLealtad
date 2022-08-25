@@ -1,0 +1,6 @@
+projectKey=SrvAcumuladorLealtad
+serverUrl=http://10.54.68.51:9000
+serverVersion=8.3.1.34397
+dashboardUrl=http://10.54.68.51:9000/dashboard?id=SrvAcumuladorLealtad
+ceTaskId=AYLSSuYkwYt6GUIbmdEr
+ceTaskUrl=http://10.54.68.51:9000/api/ce/task?id=AYLSSuYkwYt6GUIbmdEr
