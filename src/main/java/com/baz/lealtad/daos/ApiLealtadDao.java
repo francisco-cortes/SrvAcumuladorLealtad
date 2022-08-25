@@ -96,9 +96,11 @@ public class ApiLealtadDao {
 
             connection.disconnect();
 
-            LOGGER.error(errorResponse);
+            int i = errorResponse.indexOf("{");
+            String errorString = errorResponse.substring(i);
+            LOGGER.error(errorString);
 
-            JSONObject jsonResponse = new JSONObject(errorReader.toString());
+            JSONObject jsonResponse = new JSONObject(errorString.trim());
             respuesta[mensaje] = jsonResponse.getString("mensaje");
             respuesta[folio] = jsonResponse.getString("folio");
             respuesta[flag] = bandera;
