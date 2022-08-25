@@ -49,7 +49,6 @@ public class LlavesSimetricasDao {
         }
         catch (Exception e){
             LOGGER.error("Error al cargar el archivo de certificado" + e);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
         }
         finally {
             if (fis != null) {
@@ -82,7 +81,6 @@ public class LlavesSimetricasDao {
             errorReader.close();
             connection.disconnect();
             LOGGER.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
         }
         else {

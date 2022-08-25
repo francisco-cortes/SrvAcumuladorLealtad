@@ -49,8 +49,7 @@ public class LlavesAsimetricasDao {
             tmf.init(ks);
         }
         catch (Exception e){
-            LOGGER.error("Error al cargar el archivo de certificado" + e);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
+            LOGGER.error("No se pudo cargar certificado: " + e);
         }
         finally {
             if (fis != null) {
@@ -87,7 +86,6 @@ public class LlavesAsimetricasDao {
             connection.disconnect();
 
             LOGGER.error(connection.getResponseCode() + " Error en Asimetricas " + errorResponse);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
         }
         else {
 

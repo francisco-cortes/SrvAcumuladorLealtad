@@ -95,7 +95,6 @@ public final class ParametrerConfiguration {
         catch (Exception e){
 
             LOGGER.error("Hubo un error al cargar las porpiedades" + e);
-            System.exit(CANT_LOAD_SOMETHING);
 
         }
     }

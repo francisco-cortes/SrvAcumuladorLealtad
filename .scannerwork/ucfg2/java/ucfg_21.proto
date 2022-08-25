@@ -1,15 +1,7 @@
 
 Jcom.baz.lealtad.configuration.ParametrerConfiguration#loadConfiguration()V
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaA A(!"28*˜
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaA A(!"27*∆
 24
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(HÈÊ
-
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(H
-%7java.lang.String")java.lang.String#trim()Ljava/lang/String;*
-
-%6java.lang.String2trim()*
-23*∆
-25
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(*∏µ
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(A
@@ -18,8 +10,8 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*	
 BASEURL2getProperty(Ljava/lang/String;)*
-24*µ
-26
+23*µ
+25
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaF F(@ß§
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaF F(@
@@ -30,8 +22,8 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 propertiesjava.util.Properties*
 
 %3java.io.FileInputStream2load(Ljava/io/InputStream;)*
-25*√
-27
+24*√
+26
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaE E(5Ã
 …
 
@@ -56,8 +48,8 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 %3java.io.FileInputStream*
 
 %2java.lang.String*
-26*è
-28
+25*è
+27
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaE$ E(4∂≥
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaE( E(2
@@ -68,16 +60,8 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 %1"java.util.Properties#<init>()V*
 
 %0java.util.Properties*
-27*¯
+26*ø
 10
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaV V(FÎË
-
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaV V(F
-%21java.lang.String")java.lang.String#trim()Ljava/lang/String;*
-
-%20java.lang.String2trim()*
-9*¿
-11
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaT T(FÚ
 Ô
 
@@ -92,17 +76,17 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 "
 
 propertiesjava.util.Properties*
-CONSUMERKEY2getProperty(Ljava/lang/String;)*
-10*˘
-12
+CONSUMERKEY2getProperty(Ljava/lang/String;)*
+9*˘
+11
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaT T(FÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaT T(F
 %19java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %18java.lang.String2trim()*
-11*∑
-13
+10*∑
+12
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaR R(@Ï
 È
 
@@ -120,16 +104,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 propertiesjava.util.Properties*
 
 CONSUMER2getProperty(Ljava/lang/String;)*
-12*˘
-14
+11*˘
+13
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaR R(@ÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaR R(@
 %17java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %16java.lang.String2trim()*
-13*Õ
-15
+12*Õ
+14
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaP P(]Ç
 ˇ
 
@@ -146,16 +130,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 propertiesjava.util.Properties*
 
 TOKENURL2getProperty(Ljava/lang/String;)*
-14*˘
-16
+13*˘
+15
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaP- P(]ÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaP- P(]
 %15java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %14java.lang.String2trim()*
-15*“
-17
+14*“
+16
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaN N(YÄ
 ˝
 
@@ -171,16 +155,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 BASEINPROCEDURE2getProperty(Ljava/lang/String;)*
-16*˘
-18
+15*˘
+17
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaN+ N(YÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaN+ N(Y
 %13java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %12java.lang.String2trim()*
-17*√
-19
+16*√
+18
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaL L(HÛ
 
 
@@ -196,10 +180,18 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 BASEPROCEDURE2getProperty(Ljava/lang/String;)*
+17*˘
+19
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaL L(HÎË
+
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaL L(H
+%11java.lang.String")java.lang.String#trim()Ljava/lang/String;*
+
+%10java.lang.String2trim()*
 18*û
 0 "ñ
 
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javae e(
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javad d(
 implicit return*É
 1
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.java\ \(V˜
@@ -211,7 +203,7 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 %27java.lang.String*
 0*˜
-4
+3
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.java\" \(VÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.java\" \(V
@@ -219,7 +211,7 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 %26java.lang.String2trim()*
 1*≈
-5
+4
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaZ Z(JÒ
 Ó
 
@@ -235,16 +227,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 APIACUMULACIONESURL2getProperty(Ljava/lang/String;)*
-4*˜
-6
+3*˜
+5
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaZ Z(JÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaZ Z(J
 %25java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %24java.lang.String2trim()*
-5*¿
-7
+4*¿
+6
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaX X(LÚ
 Ô
 
@@ -260,16 +252,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 SIMETRICASURL2getProperty(Ljava/lang/String;)*
-6*˜
-8
+5*˜
+7
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaX X(LÎË
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaX X(L
 %23java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %22java.lang.String2trim()*
-7*æ
-9
+6*æ
+8
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaV V(FÔ
 Ï
 
@@ -285,16 +277,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 ASIMETRICASURL2getProperty(Ljava/lang/String;)*
-8*˘
-20
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaL L(HÎË
+7*˜
+9
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaV V(FÎË
 
-u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaL L(H
-%11java.lang.String")java.lang.String#trim()Ljava/lang/String;*
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaV V(F
+%21java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
-%10java.lang.String2trim()*
-19*æ
-21
+%20java.lang.String2trim()*
+8*æ
+20
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaJ J(FÚ
 Ô
 
@@ -310,16 +302,16 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*
 	BASEPWORD2getProperty(Ljava/lang/String;)*
-20*˜
-22
+19*˜
+21
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaJ J(FÈÊ
 
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaJ J(F
 %9java.lang.String")java.lang.String#trim()Ljava/lang/String;*
 
 %8java.lang.String2trim()*
-21*Ω
-23
+20*Ω
+22
 u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH H(HÙ
 Ò
 
@@ -335,5 +327,13 @@ u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/conf
 
 propertiesjava.util.Properties*	
 BASEUSR2getProperty(Ljava/lang/String;)*
+21*˜
+23
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(HÈÊ
+
+u/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.javaH  H(H
+%7java.lang.String")java.lang.String#trim()Ljava/lang/String;*
+
+%6java.lang.String2trim()*
 22B97
 5com.baz.lealtad.configuration.ParametrerConfiguration

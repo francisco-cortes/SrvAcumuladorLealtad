@@ -60,7 +60,6 @@ public class TokenDao {
         catch (Exception e){
 
             LOGGER.error("Error al cargar el archivo de certificado" + e);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
         }
         finally {
@@ -130,7 +129,6 @@ public class TokenDao {
             connection.disconnect();
 
             LOGGER.error(connection.getResponseCode() + " Error en Token: " + errorResponse);
-            System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
 
         }
         else {
