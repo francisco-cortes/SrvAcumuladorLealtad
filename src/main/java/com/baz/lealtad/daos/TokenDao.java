@@ -1,16 +1,15 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -19,17 +18,16 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.cert.CertificateFactory;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.security.cert.X509Certificate;
 
 
 public class TokenDao {
 
+
+    private static final GetCertUtil certGetter = new GetCertUtil();
 
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
@@ -37,42 +35,19 @@ public class TokenDao {
 
 
         HttpsURLConnection connection = null;
-        FileInputStream fis = null;
         TrustManagerFactory tmf = null;
 
         String token = "";
 
         try {
-
-            fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
-            X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
-                    "X.509").generateCertificate(new BufferedInputStream(fis));
-
-            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-            ks.load(null, null);
-            ks.setCertificateEntry(Integer.toString(1), ca);
-
-            tmf = TrustManagerFactory
-                    .getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            tmf.init(ks);
-
-        }
-        catch (Exception e){
-
-            LOGGER.error("Error al cargar el archivo de certificado" + e);
-
-        }
-        finally {
-
-            if (fis != null) {
-
-                fis.close();
-
-            }
+            tmf = certGetter.getCert();
+        }catch (Exception e){
+            LOGGER.error("no se pudo obtener el certificado: " + e);
         }
 
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
+        assert tmf != null;
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
         Map<String, String> parameters = new HashMap<>();
@@ -83,11 +58,17 @@ public class TokenDao {
         String form = parameters.keySet().stream()
                 .map(key -> {
                     try {
+
                         return key + "=" + URLEncoder.encode(parameters.get(key), String.valueOf(StandardCharsets.UTF_8));
+
                     } catch (UnsupportedEncodingException e) {
+
                         LOGGER.error("Error de encoder Token: " + e);
+
                     }
+
                     return key;
+
                 })
                 .collect(Collectors.joining("&"));
 
@@ -140,12 +121,16 @@ public class TokenDao {
             while ((line = br.readLine()) != null) {
                 sb.append(line);
             }
+
             br.close();
             connection.disconnect();
 
             JSONObject jsonResponse = new JSONObject(sb.toString());
             token = jsonResponse.getString("access_token");
+            LOGGER.info("Token: " + token);
         }
+
         return token;
+
     }
 }

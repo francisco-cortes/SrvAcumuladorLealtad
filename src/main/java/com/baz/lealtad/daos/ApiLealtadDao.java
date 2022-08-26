@@ -1,6 +1,7 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
@@ -9,12 +10,11 @@ import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.HttpsURLConnection;
 import java.net.URL;
-import java.security.KeyStore;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
 import java.util.Map;
 
 public class ApiLealtadDao {
+
+    private static final GetCertUtil certGetter = new GetCertUtil();
 
     private static final Logger LOGGER = Logger.getLogger(ApiLealtadDao.class);
 
@@ -27,41 +27,20 @@ public class ApiLealtadDao {
     public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters)
             throws Exception {
 
-        FileInputStream fis = null;
-
         TrustManagerFactory tmf = null;
 
         String[] respuesta = new String[3];
         String bandera;
 
         try {
-
-            fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
-            X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
-                    "X.509").generateCertificate(new BufferedInputStream(fis));
-
-            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-            ks.load(null, null);
-            ks.setCertificateEntry(Integer.toString(1), ca);
-
-            tmf = TrustManagerFactory
-                    .getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            tmf.init(ks);
+            tmf = certGetter.getCert();
         }
         catch (Exception e){
-
-            LOGGER.error("Error al cargar el archivo de certificado" + e);
-
-        }
-        finally {
-
-            if (fis != null) {
-                fis.close();
-            }
-
+            LOGGER.error("No se pudo obtener el certificado");
         }
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
+        assert tmf != null;
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
         String params = "{" +
@@ -88,7 +67,6 @@ public class ApiLealtadDao {
         connection.setUseCaches(false);
         connection.setDoOutput(true);
 
-        //Send request
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
         wr.writeBytes(params);

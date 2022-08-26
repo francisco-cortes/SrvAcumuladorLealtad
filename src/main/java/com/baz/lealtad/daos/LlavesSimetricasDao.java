@@ -1,33 +1,30 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.HttpsURLConnection;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.net.URL;
 import java.security.KeyManagementException;
-import java.security.KeyStore;
-
 import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertificateFactory;
-import java.security.cert.X509Certificate;
+
 
 public class LlavesSimetricasDao {
+
+    private static final GetCertUtil certGetter = new GetCertUtil();
 
     private static final Logger LOGGER = Logger.getLogger(LlavesSimetricasDao.class);
 
     public String[] getLlavesSimetricas(String token, String idAcceso) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
         HttpsURLConnection connection = null;
-        FileInputStream fis = null;
         TrustManagerFactory tmf = null;
 
         final int accesoSimetrico = 0, codigoHash = 1;
@@ -35,28 +32,14 @@ public class LlavesSimetricasDao {
         String[] simetricas = new String[2];
 
         try {
-            fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
-            X509Certificate ca = (X509Certificate) CertificateFactory.getInstance(
-                    "X.509").generateCertificate(new BufferedInputStream(fis));
-
-            KeyStore ks = KeyStore.getInstance(KeyStore.getDefaultType());
-            ks.load(null, null);
-            ks.setCertificateEntry(Integer.toString(1), ca);
-
-            tmf = TrustManagerFactory
-                    .getInstance(TrustManagerFactory.getDefaultAlgorithm());
-            tmf.init(ks);
+            tmf = certGetter.getCert();
         }
         catch (Exception e){
-            LOGGER.error("Error al cargar el archivo de certificado" + e);
-        }
-        finally {
-            if (fis != null) {
-                fis.close();
-            }
+            LOGGER.error("No se pudo obtener el certificado: " + e);
         }
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
+        assert tmf != null;
         contextSsl.init(null, tmf.getTrustManagers(), null);
 
         URL url = new URL(ParametrerConfiguration.simetricasUrl + idAcceso);

@@ -1,35 +1,39 @@
 
-Rcom.baz.lealtad.utils.CifradorAesUtil#obtenerHMACLength(Ljavax/crypto/SecretKey;)Io
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaP P(!"1*≈
+Ocom.baz.lealtad.utils.CifradorAesUtil#generarHMAC(Ljavax/crypto/SecretKey;[B)[Bo
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaH H("1*„
 1o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaR R(‹
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(‹
 Ÿ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaR R(J
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(J
 %0"Bjavax.crypto.Mac#getInstance(Ljava/lang/String;)Ljavax/crypto/Mac;*"
 javax.crypto.Mac*
 ""ú
 ô
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaR R(K
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaJ J(K
 hmacjavax.crypto.Mac"__id*
 
 %0ÖÇ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaS S(
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaK K(
 
 %1void"+javax.crypto.Mac#init(Ljava/security/Key;)V*
 
 hmacjavax.crypto.Mac*
 
-keyjavax.crypto.SecretKey2init(Ljava/security/Key;)Õ 
+keyjavax.crypto.SecretKey2init(Ljava/security/Key;)‚ﬂ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaT T("	
-%2int" javax.crypto.Mac#getMacLength()I*
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaL L(&
+%2byte[]"javax.crypto.Mac#doFinal([B)[B*
 
-hmacjavax.crypto.Mac2getMacLength()"y
+hmacjavax.crypto.Mac*
+
+	hmacInputbyte[]2doFinal([B)"Å
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaT T(#
-"":
-keyjavax.crypto.SecretKeyB)'
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaL L('
+
+%2byte[]:
+keyjavax.crypto.SecretKey:
+	hmacInputbyte[]B)'
 %com.baz.lealtad.utils.CifradorAesUtil
