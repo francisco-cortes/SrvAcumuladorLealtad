@@ -1,6 +1,7 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.ConectorHttpsUtil;
 import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -27,28 +28,15 @@ import java.util.stream.Collectors;
 public class TokenDao {
 
 
-    private static final GetCertUtil certGetter = new GetCertUtil();
+    private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
 
     private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
 
     public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
-
-        HttpsURLConnection connection = null;
-        TrustManagerFactory tmf = null;
+        HttpsURLConnection connection;
 
         String token = "";
-
-        try {
-            tmf = certGetter.getCert();
-        }catch (Exception e){
-            LOGGER.error("no se pudo obtener el certificado: " + e);
-        }
-
-
-        SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
-        assert tmf != null;
-        contextSsl.init(null, tmf.getTrustManagers(), null);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
@@ -78,12 +66,7 @@ public class TokenDao {
 
         final String authorization = "Basic " + encoded;
 
-        URL url = new URL(ParametrerConfiguration.tokenUrl);
-        connection = (HttpsURLConnection) url.openConnection();
-
-        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
-        connection.setRequestMethod("POST");
+        connection = con.crearConexion("POST", ParametrerConfiguration.tokenUrl);
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Authorization",authorization);
         connection.setRequestProperty("Accept","*/*");

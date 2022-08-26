@@ -1,6 +1,7 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.ConectorHttpsUtil;
 import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
@@ -19,15 +20,13 @@ import java.security.KeyManagementException;
 public class LlavesAsimetricasDao {
 
 
-    private static final GetCertUtil certGetter = new GetCertUtil();
+    private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
 
     private static final Logger LOGGER = Logger.getLogger(LlavesAsimetricasDao.class);
 
     public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
-
-        HttpsURLConnection connection = null;
-        TrustManagerFactory tmf = null;
+        HttpsURLConnection connection;
 
         final int idAcesso = 0;
         final int accesoPublic = 1;
@@ -35,25 +34,7 @@ public class LlavesAsimetricasDao {
         final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
 
-        try {
-            tmf = certGetter.getCert();
-        } catch (Exception e){
-            LOGGER.error("No se pudo Obtener el certificado: ");
-        }
-
-
-        SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
-        assert tmf != null;
-        contextSsl.init(null, tmf.getTrustManagers(), null);
-
-        URL url = new URL(ParametrerConfiguration.asimetricasUrl);
-        connection = (HttpsURLConnection) url.openConnection();
-
-        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-
-        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
-
-        connection.setRequestMethod("GET");
+        connection = con.crearConexion("GET", ParametrerConfiguration.asimetricasUrl);
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
@@ -90,9 +71,12 @@ public class LlavesAsimetricasDao {
             asimetricas[idAcesso] = jsonResponse.getJSONObject(jsonParametro).getString("idAcceso");
             asimetricas[accesoPublic] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPublico");
             asimetricas[accesoPrivado] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPrivado");
+            LOGGER.info("ID acceso: " + asimetricas[idAcesso]);
 
         }
+
         return asimetricas;
+
     }
 
 }
