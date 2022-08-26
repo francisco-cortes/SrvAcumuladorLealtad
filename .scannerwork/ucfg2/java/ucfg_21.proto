@@ -1,358 +1,130 @@
 
-ucom.baz.lealtad.daos.LlavesSimetricasDao#getLlavesSimetricas(Ljava/lang/String;Ljava/lang/String;)[Ljava/lang/String;r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java ('"10*Ù
-2r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java? ?(ÎË
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java? ?(
-%31void"java.io.BufferedReader#close()V*
-
-brjava.io.BufferedReader2close()îë
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaA A(#
-%32void"(java.net.HttpURLConnection#disconnect()V*0
-.
+}com.baz.lealtad.utils.ConectorHttpsUtil#crearConexion(Ljava/lang/String;Ljava/lang/String;)Ljavax/net/ssl/HttpsURLConnection;q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ()"5*¬
+2q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ( ®
+«
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ( (
+tmf!javax.net.ssl.TrustManagerFactory"__id*
+""*
+1*ˆ
+4q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (Š
+‡
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (
+%0"__id*
+""*
+2*ã
+5q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java$ ((´
+±
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ().
 
-connection javax.net.ssl.HttpsURLConnection2disconnect()óð
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaC5 C(B
-%33java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*
-
-sbjava.lang.StringBuilder2
-toString()¾
-»
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaD D(k
-%34"
-__arraySet*"
- 
-
-simetricasjava.lang.String[]*
-""*
-""¾
-»
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaE E(p
-%35"
-__arraySet*"
- 
-
-simetricasjava.lang.String[]*
-""*
-""Œ
-‰
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaF F(
-%36"__id*
-""È
-Å
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaF( F(C
-%37java.lang.String"
-__arrayGet*"
- 
-
-simetricasjava.lang.String[]*
-""Æ
+connection javax.net.ssl.HttpsURLConnection"__id*
+""®
+«
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (#(
+tmf!javax.net.ssl.TrustManagerFactory"__id*
+""*
+4*£
+1q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(&•
+’
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(=
+%3javax.net.ssl.SSLContext"Rjavax.net.ssl.SSLContext#getInstance(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;*"
+javax.net.ssl.SSLContext*	
+TLSv1.2Æ
 Ã
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaF F(C
-%38java.lang.String"__concat*
-Simetrico: *
-
-%37java.lang.String*
-1*¼
-3r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java= =(½º
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java= =(
-%30java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
-
-sbjava.lang.StringBuilder*
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(>&
+
+contextSsljavax.net.ssl.SSLContext"__id* 
+
+%3javax.net.ssl.SSLContext­ª
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java# #(0"
+%4javax.net.ssl.TrustManager[]"Qjavax.net.ssl.TrustManagerFactory#getTrustManagers()[Ljavax/net/ssl/TrustManager;**
+(
+tmf!javax.net.ssl.TrustManagerFactory2getTrustManagers()´±
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java# #(7
+
+%5void"tjavax.net.ssl.SSLContext#init([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)V*(
+&
+
+contextSsljavax.net.ssl.SSLContext*
+""*$
+"
+%4javax.net.ssl.TrustManager[]*
+""2Zinit([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)˜•
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
+%6java.net.URL"java.net.URLØ
+Õ
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
+%7"(java.net.URL#<init>(Ljava/lang/String;)V*
+
+%6java.net.URL*
 
-linejava.lang.String2append(Ljava/lang/String;)*
-4*¨
-4r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java< <(ñî
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java< <((
-%29java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*
+linkjava.lang.String§
+¤
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
+urljava.net.URL"__id*
+
+%6java.net.URLôñ
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java&& &(:
+%8java.net.URLConnection"5java.net.URL#openConnection()Ljava/net/URLConnection;*
+
+urljava.net.URL2openConnection()Ì
+É
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java& &(:.
+
+connection javax.net.ssl.HttpsURLConnection"__id*
 
-brjava.io.BufferedReader2
-readLine()²
-¯
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java< <((
-linejava.lang.String"__id*
-
-%29java.lang.String*
-2
-3*Œ
-5r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java8I 8(S•’
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java8I 8(d
-%22java.io.InputStream"<java.net.URLConnection#getInputStream()Ljava/io/InputStream;*0
+%8java.net.URLConnectionú÷
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java( ((O
+%9",java.net.URLConnection#setConnectTimeout(I)V*0
 .
 
-connection javax.net.ssl.HttpsURLConnection2getInputStream()´±
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java87 8(H 
-%23java.io.InputStreamReader"java.io.InputStreamReaderú
-÷
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java83 8(e
-%24"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*"
- 
-%23java.io.InputStreamReader*
+connection javax.net.ssl.HttpsURLConnection*
+""2setConnectTimeout(I)¨¥
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java)# )(@%
+%10javax.net.ssl.SSLSocketFactory"Kjavax.net.ssl.SSLContext#getSocketFactory()Ljavax/net/ssl/SSLSocketFactory;*(
+&
+
+contextSsljavax.net.ssl.SSLContext2getSocketFactory()îë
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java) )(A
+%11void"Wjavax.net.ssl.HttpsURLConnection#setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V*0
+.
+
+connection javax.net.ssl.HttpsURLConnection*'
+%
+%10javax.net.ssl.SSLSocketFactory25setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)»¸
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java* *('
+%12void"@java.net.HttpURLConnection#setRequestMethod(Ljava/lang/String;)V*0
+.
+
+connection javax.net.ssl.HttpsURLConnection*
 
-%22java.io.InputStream®«
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java8$ 8(2
-%25java.io.BufferedReader"java.io.BufferedReaderõ
-ò
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java8  8(f
-%26"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
-
-%25java.io.BufferedReader*"
- 
-%23java.io.InputStreamReader¼
-¹
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java8 8(g
-brjava.io.BufferedReader"__id*
-
-%25java.io.BufferedReader°­
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java9# 9(0
-%27java.lang.StringBuilder"java.lang.StringBuilderÃ
-À
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java9 9(2
-%28"!java.lang.StringBuilder#<init>()V* 
-
-%27java.lang.StringBuilder¾
-»
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java9 9(3
-sbjava.lang.StringBuilder"__id* 
-
-%27java.lang.StringBuilderŸ
-œ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java; ;(
-linejava.lang.String"__id*
-""*
-4*û
-
-6r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java0 0(×Ô
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java0 0(
-%16void"java.io.BufferedReader#close()V*'
-%
-errorReaderjava.io.BufferedReader2close()îë
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java2 2(#
-%17void"(java.net.HttpURLConnection#disconnect()V*0
+metodojava.lang.String2$setRequestMethod(Ljava/lang/String;)"¥
+q
+g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java, ,(0
 .
 
-connection javax.net.ssl.HttpsURLConnection2disconnect()Œ
-‰
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java3 3(
-%18"__id*
-""÷ô
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java3 3(5
-
-%19int"-java.net.HttpURLConnection#getResponseCode()I*0
-.
-
-connection javax.net.ssl.HttpsURLConnection2getResponseCode()Ä
-Á
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java3 3(P
-%20java.lang.String"__concat*
-
-
-%19int*
- Error en Asimetricas á
-Þ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java3 3(`
-%21java.lang.String"__concat*
-
-%20java.lang.String**
-(
-errorResponsejava.lang.StringBuilder*
-1*Ò
-7r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java. .(ÈÅ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java. .(*
-%14java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;**
-(
-errorResponsejava.lang.StringBuilder*
-
-linejava.lang.String2append(Ljava/lang/String;)ˆ…
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java. .(7
-%15java.lang.StringBuilder":java.lang.StringBuilder#append(C)Ljava/lang/StringBuilder;* 
-
-%14java.lang.StringBuilder*
-""2	append(C)*
-8*±
-8r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java- -(&ú÷
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java- -(1
-%13java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*'
-%
-errorReaderjava.io.BufferedReader2
-readLine()²
-¯
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java- -(1
-linejava.lang.String"__id*
-
-%13java.lang.String*
-6
-7*›
-9r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)R )(\˜•
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)R )(m
-%6java.io.InputStream"@java.net.HttpURLConnection#getErrorStream()Ljava/io/InputStream;*0
-.
-
-connection javax.net.ssl.HttpsURLConnection2getErrorStream()³°
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)@ )(Q
-%7java.io.InputStreamReader"java.io.InputStreamReader÷
-ô
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)< )(n
-%8"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*!
-
-%7java.io.InputStreamReader*
-
-%6java.io.InputStream­ª
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)- )(;
-%9java.io.BufferedReader"java.io.BufferedReaderó
-ð
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java)) )(o
-%10"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
-
-%9java.io.BufferedReader*!
-
-%7java.io.InputStreamReaderÄ
-Á
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java) )(p%
-errorReaderjava.io.BufferedReader"__id*
-
-%9java.io.BufferedReader°­
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java*. *(;
-%11java.lang.StringBuilder"java.lang.StringBuilderÃ
-À
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java** *(=
-%12"!java.lang.StringBuilder#<init>()V* 
-
-%11java.lang.StringBuilderÉ
-Æ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java* *(>(
-errorResponsejava.lang.StringBuilder"__id* 
-
-%11java.lang.StringBuilderŸ
-œ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java, ,(
-linejava.lang.String"__id*
-""*
-8*š
-10r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java (&µ
-²
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java (&.
-
-connection javax.net.ssl.HttpsURLConnection"__id*
-""ª
-§
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java   (,
-jsonNamejava.lang.String"__id*
-	resultado¥¢
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java! !(+
-%0java.lang.String[]"java.lang.String[]»
-¸
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java! !(, 
-
-simetricasjava.lang.String[]"__id*
-
-%0java.lang.String[]‹
-ˆ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java# #(
-%1"__id*
-""µ
-²
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java# #(_.
-
-connection javax.net.ssl.HttpsURLConnection"__id*
-""Ã
-À
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java$6 $(G
-%2java.lang.String"__concat*	
-Bearer *
-
-tokenjava.lang.Stringîë
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java$ $(H
-
-%3void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
-.
-
-connection javax.net.ssl.HttpsURLConnection*
-Authorization*
-
-%2java.lang.String28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)ÖÓ
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java% %(5
-
-%4void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
-.
-
-connection javax.net.ssl.HttpsURLConnection*
-
-Accept*
-*/*28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)öó
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.java' '('	
-%5int"-java.net.HttpURLConnection#getResponseCode()I*0
-.
-
-connection javax.net.ssl.HttpsURLConnection2getResponseCode()*
-5
-9*’
-1r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaJ J("˜
-r
-h/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/LlavesSimetricasDao.javaJ J("
- 
-
-simetricasjava.lang.String[]:
-tokenjava.lang.String:
-idAccesojava.lang.StringB,*
-(com.baz.lealtad.daos.LlavesSimetricasDao
+connection javax.net.ssl.HttpsURLConnection:
+metodojava.lang.String:
+linkjava.lang.StringB+)
+'com.baz.lealtad.utils.ConectorHttpsUtil
