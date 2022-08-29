@@ -19,7 +19,7 @@ public final class ParametrerConfiguration {
             + "SrvAcumuladorLealtad.properties";
 
     public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
-            + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "ca-ch.cert";
+            + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
 
     private static String oracleDatabaseUrl = "";
 
