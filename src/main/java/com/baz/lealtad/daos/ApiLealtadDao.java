@@ -5,7 +5,9 @@ import com.baz.lealtad.utils.GetCertUtil;
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
-import java.io.*;
+import java.io.DataOutputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.HttpsURLConnection;
@@ -36,7 +38,7 @@ public class ApiLealtadDao {
             tmf = certGetter.getCert();
         }
         catch (Exception e){
-            LOGGER.error("No se pudo obtener el certificado");
+            LOGGER.error("No se pudo obtener el certificado: " + e);
         }
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
