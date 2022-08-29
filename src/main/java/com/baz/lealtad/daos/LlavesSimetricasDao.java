@@ -28,7 +28,7 @@ public class LlavesSimetricasDao {
         final String jsonName = "resultado";
         String[] simetricas = new String[2];
 
-        connection = con.crearConexion("GET", ParametrerConfiguration.simetricasUrl + idAcceso);
+        connection = con.crearConexion("GET", ParametrerConfiguration.getSimetricasUrl() + idAcceso);
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
@@ -44,7 +44,6 @@ public class LlavesSimetricasDao {
             JSONObject jsonResponse = new JSONObject(sb);
             simetricas[accesoSimetrico] = jsonResponse.getJSONObject(jsonName).getString("accesoSimetrico");
             simetricas[codigoHash] = jsonResponse.getJSONObject(jsonName).getString("codigoAutentificacionHash");
-            LOGGER.info("Simetrico: " + simetricas[accesoSimetrico]);
 
         }
 

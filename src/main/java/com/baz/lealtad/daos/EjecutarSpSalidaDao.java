@@ -33,7 +33,7 @@ public class EjecutarSpSalidaDao {
 
             conexion = fabricaDao.obtenerConexion();
 
-            declaracion = conexion.prepareCall(ParametrerConfiguration.oracleDatabaseStoreprocedure);
+            declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseStoreprocedure());
             declaracion.registerOutParameter(cursorRespuesta, OracleTypes.REF_CURSOR);
             declaracion.registerOutParameter(mensajeRespuesta, OracleTypes.VARCHAR);
             declaracion.registerOutParameter(codigoRespuesta, OracleTypes.VARCHAR);

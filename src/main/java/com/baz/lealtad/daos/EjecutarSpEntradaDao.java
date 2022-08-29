@@ -34,7 +34,7 @@ public class EjecutarSpEntradaDao {
 
             try {
 
-                declaracion = conexion.prepareCall(ParametrerConfiguration.oracleDatabaseInStoreprocedure);
+                declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseInStoreprocedure());
 
                 declaracion.setInt(idTipoCliente, (Integer) parameters.get("idTipoCliente"));//tipo cliente
                 declaracion.setInt(importe, (Integer) parameters.get("importe") );//importe

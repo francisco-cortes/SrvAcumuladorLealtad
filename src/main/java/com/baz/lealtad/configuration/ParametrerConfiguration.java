@@ -3,6 +3,7 @@ package com.baz.lealtad.configuration;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 public final class ParametrerConfiguration {
@@ -20,15 +21,15 @@ public final class ParametrerConfiguration {
     public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
             + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "ca-ch.cert";
 
-    public static String oracleDatabaseUrl = "";
+    private static String oracleDatabaseUrl = "";
 
-    public static String oracleDatabaseU = "";
+    private static String oracleDatabaseU = "";
 
-    public static String oracleDatabaseP = "";
+    private static String oracleDatabaseP = "";
 
-    public static String oracleDatabaseStoreprocedure = "";
+    private static String oracleDatabaseStoreprocedure = "";
 
-    public static String oracleDatabaseInStoreprocedure = "";
+    private static String oracleDatabaseInStoreprocedure = "";
 
     public static final String ENCODING_UTF8 = "UTF-8";
 
@@ -40,17 +41,17 @@ public final class ParametrerConfiguration {
 
     public static final int IV_SIZE = 16;
 
-    public static String tokenUrl = "";
+    private static String tokenUrl = "";
 
-    public static String consumerSecret = "";
+    private static String consumerSecret = "";
 
-    public static String consumerKey = "";
+    private static String consumerKey = "";
 
-    public static String asimetricasUrl = "";
+    private static String asimetricasUrl = "";
 
-    public static String simetricasUrl = "";
+    private static String simetricasUrl = "";
 
-    public static String apiAcumulacionesUrl = "";
+    private static String apiAcumulacionesUrl = "";
 
     public static final String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
 
@@ -62,7 +63,7 @@ public final class ParametrerConfiguration {
 
     public static final int ERROR_OR_EXCEPTION = 2;
 
-    public void loadConfiguration(){
+    public static void loadConfiguration(){
 
         try {
 
@@ -91,12 +92,53 @@ public final class ParametrerConfiguration {
 
             apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
 
+        } catch (IOException e) {
+            LOGGER.error("Hubo un error al cargar las porpiedades: " + e);
         }
-        catch (Exception e){
+    }
 
-            LOGGER.error("Hubo un error al cargar las porpiedades" + e);
+    public static String getOracleDatabaseUrl (){
+        return oracleDatabaseUrl;
+    }
 
-        }
+    public static String getOracleDatabaseU (){
+        return oracleDatabaseU;
+    }
+
+    public static String getOracleDatabaseP(){
+        return oracleDatabaseP;
+    }
+
+    public static String getOracleDatabaseStoreprocedure(){
+        return oracleDatabaseStoreprocedure;
+    }
+
+    public static String getOracleDatabaseInStoreprocedure(){
+        return oracleDatabaseInStoreprocedure;
+    }
+
+    public static String getTokenUrl(){
+        return tokenUrl;
+    }
+
+    public static String getConsumerSecret(){
+        return consumerSecret;
+    }
+
+    public static String getConsumerKey(){
+        return consumerKey;
+    }
+
+    public static String getAsimetricasUrl(){
+        return asimetricasUrl;
+    }
+
+    public static String getSimetricasUrl(){
+        return simetricasUrl;
+    }
+
+    public static String getApiAcumulacionesUrl(){
+        return apiAcumulacionesUrl;
     }
 
 }

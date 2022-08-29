@@ -29,7 +29,7 @@ public class LlavesAsimetricasDao {
         final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
 
-        connection = con.crearConexion("GET", ParametrerConfiguration.asimetricasUrl);
+        connection = con.crearConexion("GET", ParametrerConfiguration.getAsimetricasUrl());
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
@@ -44,7 +44,6 @@ public class LlavesAsimetricasDao {
             asimetricas[idAcesso] = jsonResponse.getJSONObject(jsonParametro).getString("idAcceso");
             asimetricas[accesoPublic] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPublico");
             asimetricas[accesoPrivado] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPrivado");
-            LOGGER.info("ID acceso: " + asimetricas[idAcesso]);
         }
 
         connection.disconnect();

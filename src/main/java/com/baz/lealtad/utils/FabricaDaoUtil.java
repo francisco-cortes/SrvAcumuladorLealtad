@@ -1,7 +1,6 @@
 package com.baz.lealtad.utils;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.CallableStatement;
@@ -11,16 +10,14 @@ import java.sql.SQLException;
 
 public class FabricaDaoUtil {
 
-    private static final Logger LOGGER = Logger.getLogger(FabricaDaoUtil.class);
-
     public Connection obtenerConexion() throws Exception{
 
         System.setProperty("oracle.jdbc.fanEnabled","false");
         Class.forName("oracle.jdbc.OracleDriver");
 
-        return DriverManager.getConnection(ParametrerConfiguration.oracleDatabaseUrl,
-                ParametrerConfiguration.oracleDatabaseU,
-                ParametrerConfiguration.oracleDatabaseP);
+        return DriverManager.getConnection(ParametrerConfiguration.getOracleDatabaseUrl(),
+                ParametrerConfiguration.getOracleDatabaseU(),
+                ParametrerConfiguration.getOracleDatabaseP());
 
     }
 

@@ -35,8 +35,8 @@ public class TokenDao {
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put("grant_type", "client_credentials");
-        parameters.put("client_id", ParametrerConfiguration.consumerSecret);
-        parameters.put("client_secret", ParametrerConfiguration.consumerKey);
+        parameters.put("client_id", ParametrerConfiguration.getConsumerSecret());
+        parameters.put("client_secret", ParametrerConfiguration.getConsumerKey());
 
         String form = parameters.keySet().stream()
                 .map(key -> {
@@ -56,12 +56,12 @@ public class TokenDao {
                 .collect(Collectors.joining("&"));
 
         String encoded = Base64.getEncoder()
-                .encodeToString((ParametrerConfiguration.consumerSecret
-                        + ":" + ParametrerConfiguration.consumerKey).getBytes());
+                .encodeToString((ParametrerConfiguration.getConsumerSecret()
+                        + ":" + ParametrerConfiguration.getConsumerKey()).getBytes());
 
         final String authorization = "Basic " + encoded;
 
-        connection = con.crearConexion("POST", ParametrerConfiguration.tokenUrl);
+        connection = con.crearConexion("POST", ParametrerConfiguration.getTokenUrl());
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Authorization",authorization);
         connection.setRequestProperty("Accept","*/*");
@@ -84,7 +84,6 @@ public class TokenDao {
 
             JSONObject jsonResponse = new JSONObject(sb);
             token = jsonResponse.getString("access_token");
-            LOGGER.info("Token: " + token);
         }
 
         connection.disconnect();

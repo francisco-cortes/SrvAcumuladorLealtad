@@ -1,556 +1,556 @@
 
 {com.baz.lealtad.daos.ApiLealtadDao#getAcumulaciones(Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;)[Ljava/lang/String;l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java ($"14*Ä
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java ($"14*Ä
 13l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java$ $(Ö
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java& &(Ö
 Ç
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java$ $(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java& &(
 %1"__id*
 ""*
 11*ú
 14l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java" (&©
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java "  (&©
 ¶
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java ('(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java   ('(
 tmf!javax.net.ssl.TrustManagerFactory"__id*
 ""üú
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java   (*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java" "(*
 %0java.lang.String[]"java.lang.String[]¥
 ±
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java   (+
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java" "(+
 	respuestajava.lang.String[]"__id*
 
 %0java.lang.String[]ú
 ô
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java! !(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java# #(
 banderajava.lang.String"__id*
 ""*
 13*Ö
 1l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javav v("ë
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javax x("ë
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javav v(!
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javax x(!
 
 	respuestajava.lang.String[]*ù
 2l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javak k(»≈
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javam m(»≈
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javak k(
-%87void"java.io.BufferedReader#close()V*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javam m(
+%88void"java.io.BufferedReader#close()V*
 
 brjava.io.BufferedReader2close()ËÂ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javam m(#
-%88void"(java.net.HttpURLConnection#disconnect()V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javao o(#
+%89void"(java.net.HttpURLConnection#disconnect()V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2disconnect()ÌÍ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javao5 o(B
-%89java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaq5 q(B
+%90java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;*
 
 sbjava.lang.StringBuilder2
 toString()ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaq q(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javas s(
 
-%90int"__id*
+%91int"__id*
 ""Ω
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaq q(B
-%91"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javas s(B
+%92"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%90int*
+%91int*
 ""ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javar r(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javat t(
 
-%92int"__id*
+%93int"__id*
 ""Ω
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javar r(>
-%93"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javat t(>
+%94"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%92int*
+%93int*
 ""ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javas s(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javau u(
 
-%94int"__id*
+%95int"__id*
 ""‘
 —
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javas s(%
-%95"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javau u(%
+%96"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%94int*
+%95int*
 
 banderajava.lang.String*
 1*∞
 3l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javai i(∑¥
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javak k(∑¥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javai i(
-%86java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javak k(
+%87java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
 
 sbjava.lang.StringBuilder*
 
 linejava.lang.String2append(Ljava/lang/String;)*
 4*ñ
 4l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah h(ÎË
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaj j(ÎË
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah h((
-%85java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaj j((
+%86java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*
 
 brjava.io.BufferedReader2
 readLine()¨
 ©
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah h((
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaj j((
 linejava.lang.String"__id*
 
-%85java.lang.String*
+%86java.lang.String*
 2
 3*ó
 5l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javad d(ò
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf f(ò
 ï
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javad d(
-%77java.lang.String"__id*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf f(
+%78java.lang.String"__id*
 ""Ø
 ¨
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javad d(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf f(
 banderajava.lang.String"__id*
 
-%77java.lang.Stringèå
+%78java.lang.Stringèå
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaeI e(d
-%78java.io.InputStream"<java.net.URLConnection#getInputStream()Ljava/io/InputStream;*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javagI g(d
+%79java.io.InputStream"<java.net.URLConnection#getInputStream()Ljava/io/InputStream;*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2getInputStream()Æ´
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javae7 e(H 
-%79java.io.InputStreamReader"java.io.InputStreamReaderÙ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag7 g(H 
+%80java.io.InputStreamReader"java.io.InputStreamReaderÙ
 Ò
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javae3 e(e
-%80"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag3 g(e
+%81"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*"
  
-%79java.io.InputStreamReader*
+%80java.io.InputStreamReader*
 
-%78java.io.InputStream®•
+%79java.io.InputStream®•
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javae$ e(2
-%81java.io.BufferedReader"java.io.BufferedReaderÔ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag$ g(2
+%82java.io.BufferedReader"java.io.BufferedReaderÔ
 Ï
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javae  e(f
-%82"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag  g(f
+%83"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
 
-%81java.io.BufferedReader*"
+%82java.io.BufferedReader*"
  
-%79java.io.InputStreamReader∂
+%80java.io.InputStreamReader∂
 ≥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javae e(g
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag g(g
 brjava.io.BufferedReader"__id*
 
-%81java.io.BufferedReader™ß
+%82java.io.BufferedReader™ß
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf# f(0
-%83java.lang.StringBuilder"java.lang.StringBuilderΩ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah# h(0
+%84java.lang.StringBuilder"java.lang.StringBuilderΩ
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf f(2
-%84"!java.lang.StringBuilder#<init>()V* 
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah h(2
+%85"!java.lang.StringBuilder#<init>()V* 
 
-%83java.lang.StringBuilder∏
+%84java.lang.StringBuilder∏
 µ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaf f(3
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javah h(3
 sbjava.lang.StringBuilder"__id* 
 
-%83java.lang.StringBuilderô
+%84java.lang.StringBuilderô
 ñ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javag g(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javai i(
 linejava.lang.String"__id*
 ""*
 4*Ì
 6l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaU U(—Œ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaW W(—Œ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaU U(
-%65void"java.io.BufferedReader#close()V*'
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaW W(
+%66void"java.io.BufferedReader#close()V*'
 %
 errorReaderjava.io.BufferedReader2close()ËÂ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaW W(#
-%66void"(java.net.HttpURLConnection#disconnect()V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaY Y(#
+%67void"(java.net.HttpURLConnection#disconnect()V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2disconnect()ÉÄ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaY Y(.
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java[ [(.
 
-%67int"4java.lang.StringBuilder#indexOf(Ljava/lang/String;)I**
+%68int"4java.lang.StringBuilder#indexOf(Ljava/lang/String;)I**
 (
 errorResponsejava.lang.StringBuilder*
 {2indexOf(Ljava/lang/String;)åâ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaZ! Z(;
-%68java.lang.String">java.lang.AbstractStringBuilder#substring(I)Ljava/lang/String;**
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java\! \(;
+%69java.lang.String">java.lang.AbstractStringBuilder#substring(I)Ljava/lang/String;**
 (
 errorResponsejava.lang.StringBuilder*
 ""2substring(I)≥
 ∞
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaZ Z(<
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java\ \(<
 errorStringjava.lang.String"__id*
 
-%68java.lang.StringÜ
+%69java.lang.StringÜ
 É
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java[ [(
-%69"__id*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java] ](
+%70"__id*
 ""‡›
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java]5 ](G
-%70java.lang.String")java.lang.String#trim()Ljava/lang/String;*!
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java_5 _(G
+%71java.lang.String")java.lang.String#trim()Ljava/lang/String;*!
 
 errorStringjava.lang.String2trim()ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java^ ^(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java` `(
 
-%71int"__id*
+%72int"__id*
 ""Ω
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java^ ^(B
-%72"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java` `(B
+%73"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%71int*
+%72int*
 ""ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java_ _(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaa a(
 
-%73int"__id*
+%74int"__id*
 ""Ω
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java_ _(>
-%74"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaa a(>
+%75"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%73int*
+%74int*
 ""ã
 à
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java` `(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javab b(
 
-%75int"__id*
+%76int"__id*
 ""‘
 —
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java` `(%
-%76"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javab b(%
+%77"
 __arraySet*!
 
 	respuestajava.lang.String[]*
 
 
-%75int*
+%76int*
 
 banderajava.lang.String*
 1*ª
 7l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaS S(¬ø
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaU U(¬ø
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaS S(*
-%64java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;**
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaU U(*
+%65java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;**
 (
 errorResponsejava.lang.StringBuilder*
 
 linejava.lang.String2append(Ljava/lang/String;)*
 8*ü
 8l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaR R(&ÙÒ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaT T(&ÙÒ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaR R(1
-%63java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*'
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaT T(1
+%64java.lang.String"3java.io.BufferedReader#readLine()Ljava/lang/String;*'
 %
 errorReaderjava.io.BufferedReader2
 readLine()¨
 ©
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaR R(1
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaT T(1
 linejava.lang.String"__id*
 
-%63java.lang.String*
+%64java.lang.String*
 6
 7*Ø
 9l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaM M(ò
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO O(ò
 ï
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaM M(
-%55java.lang.String"__id*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO O(
+%56java.lang.String"__id*
 ""Ø
 ¨
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaM M(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO O(
 banderajava.lang.String"__id*
 
-%55java.lang.Stringìê
+%56java.lang.Stringìê
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaNR N(m
-%56java.io.InputStream"@java.net.HttpURLConnection#getErrorStream()Ljava/io/InputStream;*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaPR P(m
+%57java.io.InputStream"@java.net.HttpURLConnection#getErrorStream()Ljava/io/InputStream;*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2getErrorStream()Æ´
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaN@ N(Q 
-%57java.io.InputStreamReader"java.io.InputStreamReaderÙ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP@ P(Q 
+%58java.io.InputStreamReader"java.io.InputStreamReaderÙ
 Ò
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaN< N(n
-%58"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP< P(n
+%59"8java.io.InputStreamReader#<init>(Ljava/io/InputStream;)V*"
  
-%57java.io.InputStreamReader*
+%58java.io.InputStreamReader*
 
-%56java.io.InputStream®•
+%57java.io.InputStream®•
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaN- N(;
-%59java.io.BufferedReader"java.io.BufferedReaderÔ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP- P(;
+%60java.io.BufferedReader"java.io.BufferedReaderÔ
 Ï
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaN) N(o
-%60"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP) P(o
+%61"0java.io.BufferedReader#<init>(Ljava/io/Reader;)V*
 
-%59java.io.BufferedReader*"
+%60java.io.BufferedReader*"
  
-%57java.io.InputStreamReaderø
+%58java.io.InputStreamReaderø
 º
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaN N(p%
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP P(p%
 errorReaderjava.io.BufferedReader"__id*
 
-%59java.io.BufferedReader™ß
+%60java.io.BufferedReader™ß
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO. O(;
-%61java.lang.StringBuilder"java.lang.StringBuilderΩ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaQ. Q(;
+%62java.lang.StringBuilder"java.lang.StringBuilderΩ
 ∫
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO* O(=
-%62"!java.lang.StringBuilder#<init>()V* 
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaQ* Q(=
+%63"!java.lang.StringBuilder#<init>()V* 
 
-%61java.lang.StringBuilder√
+%62java.lang.StringBuilder√
 ¿
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaO O(>(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaQ Q(>(
 errorResponsejava.lang.StringBuilder"__id* 
 
-%61java.lang.StringBuilderô
+%62java.lang.StringBuilderô
 ñ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaP P(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaR R(
 linejava.lang.String"__id*
 ""*
-8*çf
+8*èf
 10l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java*  *(*ê
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java,  ,(*ê
 ç
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java*  *(A
-%3javax.net.ssl.SSLContext"Rjavax.net.ssl.SSLContext#getInstance(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;*"
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java,  ,(A
+%4javax.net.ssl.SSLContext"Rjavax.net.ssl.SSLContext#getInstance(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;*"
 javax.net.ssl.SSLContext*	
 TLSv1.2¡
 æ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java* *(B&
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java, ,(B&
 
 contextSsljavax.net.ssl.SSLContext"__id* 
 
-%3javax.net.ssl.SSLContext®•
+%4javax.net.ssl.SSLContext®•
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java, ,(4"
-%4javax.net.ssl.TrustManager[]"Qjavax.net.ssl.TrustManagerFactory#getTrustManagers()[Ljavax/net/ssl/TrustManager;**
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. .(4"
+%5javax.net.ssl.TrustManager[]"Qjavax.net.ssl.TrustManagerFactory#getTrustManagers()[Ljavax/net/ssl/TrustManager;**
 (
 tmf!javax.net.ssl.TrustManagerFactory2getTrustManagers()Ø¨
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java, ,(;
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. .(;
 
-%5void"tjavax.net.ssl.SSLContext#init([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)V*(
+%6void"tjavax.net.ssl.SSLContext#init([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)V*(
 &
 
 contextSsljavax.net.ssl.SSLContext*
 ""*$
 "
-%4javax.net.ssl.TrustManager[]*
+%5javax.net.ssl.TrustManager[]*
 ""2Zinit([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)≤
 Ø
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. /($
-%6java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 1($
+%7java.lang.String"__concat*
 {*
 \"idTipoCliente\":≈
 ¬
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java/' /(F
-%7java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java1' 1(F
+%8java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
 idTipoCliente«
 ƒ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. /(F
-%8java.lang.String"__concat*
-
-%6java.lang.String*
-
-%7java.lang.Object¥
-±
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. /(L
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 1(F
 %9java.lang.String"__concat*
 
-%8java.lang.String*
-,¬
-ø
+%7java.lang.String*
+
+%8java.lang.Objectµ
+≤
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 0( 
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 1(L
 %10java.lang.String"__concat*
 
-%9java.lang.String*
+%9java.lang.String*
+,√
+¿
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 2( 
+%11java.lang.String"__concat*
+
+%10java.lang.String*
 \"idCliente\":∑
 ¥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 0('
-%11java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 2('
+%12java.lang.String"__concat*
 
-%10java.lang.String*
+%11java.lang.String*
 \"…
 ∆
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0* 0(L
-%12java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java2* 2(L
+%13java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
 idClienteCifrado 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 0(L
-%13java.lang.String"__concat*
-
-%11java.lang.String*
-
-%12java.lang.Object∑
-¥
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 0(S
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 2(L
 %14java.lang.String"__concat*
 
-%13java.lang.String*
+%12java.lang.String*
+
+%13java.lang.Object∑
+¥
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 2(S
+%15java.lang.String"__concat*
+
+%14java.lang.String*
 \"∂
 ≥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 0(Y
-%15java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 2(Y
+%16java.lang.String"__concat*
 
-%14java.lang.String*
+%15java.lang.String*
 ,¡
 æ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 1(
-%16java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 3(
+%17java.lang.String"__concat*
 
-%15java.lang.String*
+%16java.lang.String*
 \"importe\":∑
 ¥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 1(%
-%17java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 3(%
+%18java.lang.String"__concat*
 
-%16java.lang.String*
+%17java.lang.String*
 \"«
 ƒ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java1( 1(H
-%18java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java3( 3(H
+%19java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
 importeCifrado 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 1(H
-%19java.lang.String"__concat*
-
-%17java.lang.String*
-
-%18java.lang.Object∑
-¥
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 1(O
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 3(H
 %20java.lang.String"__concat*
 
-%19java.lang.String*
+%18java.lang.String*
+
+%19java.lang.Object∑
+¥
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 3(O
+%21java.lang.String"__concat*
+
+%20java.lang.String*
 \"∂
 ≥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 1(U
-%21java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 3(U
+%22java.lang.String"__concat*
 
-%20java.lang.String*
+%21java.lang.String*
 ,¬
 ø
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 2(
-%22java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 4(
+%23java.lang.String"__concat*
 
-%21java.lang.String*
+%22java.lang.String*
 \"sucursal\":¡
 æ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java2" 2(<
-%23java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java4" 4(<
+%24java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
@@ -558,172 +558,172 @@ parametersjava.util.Map*
 sucursal 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 2(<
-%24java.lang.String"__concat*
-
-%22java.lang.String*
-
-%23java.lang.Object∂
-≥
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 2(B
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 4(<
 %25java.lang.String"__concat*
 
-%24java.lang.String*
+%23java.lang.String*
+
+%24java.lang.Object∂
+≥
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 4(B
+%26java.lang.String"__concat*
+
+%25java.lang.String*
 ,≈
 ¬
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 3("
-%26java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 5("
+%27java.lang.String"__concat*
 
-%25java.lang.String*
+%26java.lang.String*
 \"idOperacion\":ƒ
 ¡
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java3% 3(B
-%27java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java5% 5(B
+%28java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
 idOperacion 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 3(B
-%28java.lang.String"__concat*
-
-%26java.lang.String*
-
-%27java.lang.Object∂
-≥
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 3(H
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 5(B
 %29java.lang.String"__concat*
 
-%28java.lang.String*
+%27java.lang.String*
+
+%28java.lang.Object∂
+≥
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 5(H
+%30java.lang.String"__concat*
+
+%29java.lang.String*
 , 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 4('
-%30java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 6('
+%31java.lang.String"__concat*
 
-%29java.lang.String*
+%30java.lang.String*
 \"folioTransaccion\":∑
 ¥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 4(.
-%31java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 6(.
+%32java.lang.String"__concat*
 
-%30java.lang.String*
+%31java.lang.String*
 \"…
 ∆
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java41 4(S
-%32java.lang.Object"__mapGet*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java61 6(S
+%33java.lang.Object"__mapGet*
 
 
 parametersjava.util.Map*
 folioTransaccion 
 «
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 4(S
-%33java.lang.String"__concat*
-
-%31java.lang.String*
-
-%32java.lang.Object∑
-¥
-l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 4(Z
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 6(S
 %34java.lang.String"__concat*
 
-%33java.lang.String*
+%32java.lang.String*
+
+%33java.lang.Object∑
+¥
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 6(Z
+%35java.lang.String"__concat*
+
+%34java.lang.String*
 \"∂
 ≥
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 5(
-%35java.lang.String"__concat*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 7(
+%36java.lang.String"__concat*
 
-%34java.lang.String*
+%35java.lang.String*
 }Æ
 ´
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java. 5(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java0 7(
 paramsjava.lang.String"__id*
 
-%35java.lang.StringØ
+%36java.lang.StringØ
 ¨
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java7 7(&.
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java9 9(&.
 
 connection javax.net.ssl.HttpsURLConnection"__id*
 ""îë
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java8 8(
-%36java.net.URL"java.net.URL¡
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java: :(
+%37java.net.URL"java.net.URL¡
 æ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java8 8(F
-%37"(java.net.URL#<init>(Ljava/lang/String;)V*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java: :(K
+%38"(java.net.URL#<init>(Ljava/lang/String;)V*
 
-%36java.net.URL*
+%37java.net.URL*
 ""£
 †
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java8 8(G
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java: :(L
 urljava.net.URL"__id*
 
-%36java.net.URLÌ
+%37java.net.URLÌ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java9* 9(>
-%38java.net.URLConnection"5java.net.URL#openConnection()Ljava/net/URLConnection;*
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java;* ;(>
+%39java.net.URLConnection"5java.net.URL#openConnection()Ljava/net/URLConnection;*
 
 urljava.net.URL2openConnection()»
 ≈
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java9 9(>.
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java; ;(>.
 
 connection javax.net.ssl.HttpsURLConnection"__id*
 
-%38java.net.URLConnectionˆÛ
+%39java.net.URLConnectionˆÛ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java; ;(S
-%39",java.net.URLConnection#setConnectTimeout(I)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java= =(S
+%40",java.net.URLConnection#setConnectTimeout(I)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 ""2setConnectTimeout(I)£†
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java<' <(D%
-%40javax.net.ssl.SSLSocketFactory"Kjavax.net.ssl.SSLContext#getSocketFactory()Ljavax/net/ssl/SSLSocketFactory;*(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java>' >(D%
+%41javax.net.ssl.SSLSocketFactory"Kjavax.net.ssl.SSLContext#getSocketFactory()Ljavax/net/ssl/SSLSocketFactory;*(
 &
 
 contextSsljavax.net.ssl.SSLContext2getSocketFactory()ÈÊ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java< <(E
-%41void"Wjavax.net.ssl.HttpsURLConnection#setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java> >(E
+%42void"Wjavax.net.ssl.HttpsURLConnection#setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*'
 %
-%40javax.net.ssl.SSLSocketFactory25setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)¢ü
+%41javax.net.ssl.SSLSocketFactory25setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)¢ü
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java> >(+
-%42void"@java.net.HttpURLConnection#setRequestMethod(Ljava/lang/String;)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java@ @(+
+%43void"@java.net.HttpURLConnection#setRequestMethod(Ljava/lang/String;)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 POST2$setRequestMethod(Ljava/lang/String;)‰·
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java? ?(I
-%43void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaA A(I
+%44void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 Content-Type*
 application/json28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)ÏÈ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java@ @(=
-%44void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaB B(=
+%45void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
@@ -733,83 +733,83 @@ x-idAcceso*
 idAccesojava.lang.String28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)æ
 ª
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaA6 A(G
-%45java.lang.String"__concat*	
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaC6 C(G
+%46java.lang.String"__concat*	
 Bearer *
 
 tokenjava.lang.StringÍÁ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaA A(H
-%46void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaC C(H
+%47void"Pjava.net.URLConnection#setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 Authorization*
 
-%45java.lang.String28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)ÚÔ
+%46java.lang.String28setRequestProperty(Ljava/lang/String;Ljava/lang/String;)ÚÔ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaC C(&
-%47void"'java.net.URLConnection#setUseCaches(Z)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaE E(&
+%48void"'java.net.URLConnection#setUseCaches(Z)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 ""2setUseCaches(Z)Ì
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaD D($
-%48void"&java.net.URLConnection#setDoOutput(Z)V*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaF F($
+%49void"&java.net.URLConnection#setDoOutput(Z)V*0
 .
 
 connection javax.net.ssl.HttpsURLConnection*
 ""2setDoOutput(Z)ìê
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaG G(,
-%49java.io.OutputStream">java.net.URLConnection#getOutputStream()Ljava/io/OutputStream;*0
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaI I(,
+%50java.io.OutputStream">java.net.URLConnection#getOutputStream()Ljava/io/OutputStream;*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2getOutputStream()¨©
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaF" F(2
-%50java.io.DataOutputStream"java.io.DataOutputStreamÙ
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaH" H(2
+%51java.io.DataOutputStream"java.io.DataOutputStreamÙ
 Ò
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaF G(-
-%51"8java.io.DataOutputStream#<init>(Ljava/io/OutputStream;)V*!
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaH I(-
+%52"8java.io.DataOutputStream#<init>(Ljava/io/OutputStream;)V*!
 
-%50java.io.DataOutputStream*
+%51java.io.DataOutputStream*
 
-%49java.io.OutputStream∫
+%50java.io.OutputStream∫
 ∑
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaF G(.
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaH I(.
 wrjava.io.DataOutputStream"__id*!
 
-%50java.io.DataOutputStreamòï
+%51java.io.DataOutputStreamòï
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaH H(
-%52void"8java.io.DataOutputStream#writeBytes(Ljava/lang/String;)V* 
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaJ J(
+%53void"8java.io.DataOutputStream#writeBytes(Ljava/lang/String;)V* 
 
 wrjava.io.DataOutputStream*
 
 paramsjava.lang.String2writeBytes(Ljava/lang/String;)ŒÀ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaI I(
-%53void"#java.io.FilterOutputStream#close()V* 
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaK K(
+%54void"#java.io.FilterOutputStream#close()V* 
 
 wrjava.io.DataOutputStream2close()ÒÓ
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaK K('
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.javaM M('
 
-%54int"-java.net.HttpURLConnection#getResponseCode()I*0
+%55int"-java.net.HttpURLConnection#getResponseCode()I*0
 .
 
 connection javax.net.ssl.HttpsURLConnection2getResponseCode()*
 5
 9*§
 11l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java$ $(&©
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java& &(&©
 ¶
 l
-b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java$ $(&(
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/ApiLealtadDao.java& &(&(
 tmf!javax.net.ssl.TrustManagerFactory"__id*
 ""*
 10:

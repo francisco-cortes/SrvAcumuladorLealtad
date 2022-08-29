@@ -55,7 +55,7 @@ public class ApiLealtadDao {
                 "}";
 
         HttpsURLConnection connection;
-        URL url = new URL(ParametrerConfiguration.apiAcumulacionesUrl);
+        URL url = new URL(ParametrerConfiguration.getApiAcumulacionesUrl());
         connection = (HttpsURLConnection) url.openConnection();
 
         connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
