@@ -15,7 +15,7 @@ public class CursorSpSalidaModel {
 
     private int FNIDTIPOCLIENTE;
     private String FCIDCLIENTE;
-    private int FNIMPORTE;
+    private Double FNIMPORTE;
     private int FNSUCURSAL;
     private int FNIDOPERACION;
     private String FCFOLIOTRANSACCION;

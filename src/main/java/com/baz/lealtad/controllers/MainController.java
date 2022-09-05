@@ -55,6 +55,8 @@ public class MainController {
 
         if (responseDb.size() > 0) {
 
+            int fallidosLealtad = 0;
+
             for(int i = 0; i < responseDb.size(); i ++){
 
                 String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
@@ -89,9 +91,19 @@ public class MainController {
                 spEntrada.guardarBase(parameters,respuestaApi[FOLIO]
                         ,respuestaApi[MENSAJE], respuestaApi[BANDERA]);
 
+                if(respuestaApi[BANDERA].equals("1")){
+                    fallidosLealtad ++;
+                }
+
             }
 
-            System.exit(0);
+            if (fallidosLealtad > 0){
+                LOGGER.error("Hubo " + fallidosLealtad + " respuestas negativas de API Lealtad");
+                System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
+            }
+            else {
+                System.exit(0);
+            }
         }
         else {
 

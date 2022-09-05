@@ -36,7 +36,7 @@ public class LlavesSimetricasDao {
 
         if(connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
 
-            LOGGER.error(connection.getResponseCode() + " Error en Asimetricas " + sb);
+            LOGGER.error(connection.getResponseCode() + "Error en Simetricas " + sb);
 
         }
         else {

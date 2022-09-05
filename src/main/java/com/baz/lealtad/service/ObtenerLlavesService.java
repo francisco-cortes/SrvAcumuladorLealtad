@@ -1,6 +1,5 @@
 package com.baz.lealtad.service;
 
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.daos.LlavesAsimetricasDao;
 import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;

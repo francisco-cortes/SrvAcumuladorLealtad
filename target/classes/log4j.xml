@@ -10,19 +10,26 @@
         </layout>
     </appender>
 
-    <appender name="file" class="org.apache.log4j.RollingFileAppender">
-        <param name="append" value="true" />
-        <param name="maxFileSize" value="10MB" />
-        <param name="maxBackupIndex" value="10" />
+    <appender name="file" class="org.apache.log4j.DailyRollingFileAppender">
         <param name="file" value="./log/logSrvAcumuladorLealtad.log" />
+        <param name="immediateFlush" value="true"/>
+        <param name="append" value="true" />
+        <param name="maxFileSize" value="20MB" />
+        <param name="maxBackupIndex" value="6" />
+        <param name="DatePattern" value="'.'yyyy-MM-dd" />
         <layout class="org.apache.log4j.PatternLayout">
             <param name="ConversionPattern"
                    value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
         </layout>
+
     </appender>
 
+    <category name="se.jayway.ddsteps">
+        <priority value="error"></priority>
+    </category>
+
     <root>
-        <level value="DEBUG" />
+        <priority value="ERROR"/>
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>

@@ -69,6 +69,8 @@ public class ApiLealtadDao {
         connection.setUseCaches(false);
         connection.setDoOutput(true);
 
+        LOGGER.info(params);
+
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
         wr.writeBytes(params);
@@ -90,7 +92,7 @@ public class ApiLealtadDao {
 
             int i = errorResponse.indexOf("{");
             String errorString = errorResponse.substring(i);
-            LOGGER.error(errorString);
+            LOGGER.error("Error con el idCliente: " + parameters.get("idCliente") + "\n" + errorString);
 
             JSONObject jsonResponse = new JSONObject(errorString.trim());
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
@@ -115,6 +117,7 @@ public class ApiLealtadDao {
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
             respuesta[FOLIO] = jsonResponse.getString("folio");
             respuesta[FLAG] = bandera;
+            LOGGER.info(sb);
         }
 
         return respuesta;

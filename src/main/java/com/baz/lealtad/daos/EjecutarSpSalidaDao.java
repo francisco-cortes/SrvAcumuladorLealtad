@@ -49,7 +49,7 @@ public class EjecutarSpSalidaDao {
 
                     cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
                     cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
-                    cursor.setFNIMPORTE(resultSet.getInt("FNIMPORTE"));
+                    cursor.setFNIMPORTE(resultSet.getDouble("FNIMPORTE"));
                     cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
                     cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
                     cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
