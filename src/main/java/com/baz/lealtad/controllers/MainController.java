@@ -7,6 +7,7 @@ import com.baz.lealtad.service.ObtenerLlavesService;
 import com.baz.lealtad.service.CifrarDesifrarAesService;
 import com.baz.lealtad.service.ConsultarApiLealtadService;
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.utils.ClienteUnicoParserUtil;
 import org.apache.log4j.Logger;
 
 import java.util.HashMap;
@@ -25,6 +26,7 @@ public class MainController {
     private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
     private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
     private static final ConsultarApiLealtadService apiService = new ConsultarApiLealtadService();
+    private static final ClienteUnicoParserUtil idClienteParser = new ClienteUnicoParserUtil();
 
 
     private static final Logger LOGGER = Logger.getLogger(MainController.class);
@@ -59,7 +61,9 @@ public class MainController {
 
             for(int i = 0; i < responseDb.size(); i ++){
 
-                String idCliente = cifrarService.cifrar(responseDb.get(i).getFCIDCLIENTE(),
+                String idClienteParseado = idClienteParser.parsear(responseDb.get(i).getFCIDCLIENTE());
+
+                String idCliente = cifrarService.cifrar(idClienteParseado,
                         llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
                 String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
