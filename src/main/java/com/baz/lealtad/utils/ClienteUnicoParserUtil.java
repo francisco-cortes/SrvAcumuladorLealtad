@@ -8,7 +8,7 @@ public class ClienteUnicoParserUtil {
 
   public static String parsear (String idCliente) {
 
-    if(idCliente.matches("((\\d{4,4})-(\\d{4,4})-(\\d{4,4}))-(\\d{1,4})")){
+    if(idCliente.matches("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})")){
       return idCliente;
     }
     else{
@@ -24,6 +24,9 @@ public class ClienteUnicoParserUtil {
         LOGGER.error("Se recibio un idCliente con formato x-x-xxxx-xxxxx");
         return parsaerNumeros(parsearFormato(idCliente));
 
+      }
+      else if (idCliente.matches("(\\d)-(\\d{1,4})-(\\d{2,4})-(\\d{4,})")){
+        return idCliente;
       }
       else {
 
@@ -50,6 +53,7 @@ public class ClienteUnicoParserUtil {
       str.insert(2,"0");
       str.insert(4,"-");
       str.insert(9,"-");
+      str.insert(10,"0");
       aux = str.toString();
     }
     else if (inputLenght > 9){
@@ -68,6 +72,24 @@ public class ClienteUnicoParserUtil {
 
   private static String parsearFormato(String input){
     return input.replace("-", "");
+  }
+
+  private static void specialCase(String input){
+
+    if (input.contains("-")){
+      String[] separado = input.split("-");
+    }
+    else if (input.contains(" ")){
+      String[] separado = input.split(" ");
+    }
+    else {
+      String[] separado = new String[4];
+      separado[0] = input.substring(1);
+      separado[1] = input.substring(2);
+      separado[2] = input.substring(3);
+      separado[3] = input.substring(4);
+    }
+
   }
 
 }

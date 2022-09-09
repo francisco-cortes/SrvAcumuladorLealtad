@@ -26,7 +26,6 @@ public class MainController {
     private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
     private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
     private static final ConsultarApiLealtadService apiService = new ConsultarApiLealtadService();
-    private static final ClienteUnicoParserUtil idClienteParser = new ClienteUnicoParserUtil();
 
 
     private static final Logger LOGGER = Logger.getLogger(MainController.class);
@@ -61,12 +60,14 @@ public class MainController {
 
             for(int i = 0; i < responseDb.size(); i ++){
 
-                String idClienteParseado = idClienteParser.parsear(responseDb.get(i).getFCIDCLIENTE());
+                String idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFCIDCLIENTE());
+
+                int importeRedondeado =  (int) Math.round(responseDb.get(i).getFNIMPORTE());
 
                 String idCliente = cifrarService.cifrar(idClienteParseado,
                         llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
-                String importe = cifrarService.cifrar(String.valueOf(responseDb.get(i).getFNIMPORTE()),
+                String importe = cifrarService.cifrar(String.valueOf(importeRedondeado),
                         llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
                 //id tipo cliente y id operacion por defecto es 3;
@@ -77,8 +78,10 @@ public class MainController {
                 parameters.put("idTipoCliente", ID_TIPO_CLIENTE);
                 parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE());
                 parameters.put("idClienteCifrado", idCliente);
+                parameters.put("idClienteParseado", idClienteParseado);
                 parameters.put("importe", responseDb.get(i).getFNIMPORTE());
                 parameters.put("importeCifrado", importe);
+                parameters.put("importeRedondo", importeRedondeado);
                 parameters.put("sucursal", responseDb.get(i).getFNSUCURSAL());
                 parameters.put("idOperacion", ID_OPERACION);
                 parameters.put("folioTransaccion", responseDb.get(i).getFCFOLIOTRANSACCION());
@@ -87,7 +90,6 @@ public class MainController {
                 parameters.put("tipoOperacion", responseDb.get(i).getFCTIPOOPERACION());
                 parameters.put("origenTransaccion", responseDb.get(i).getFIORIGENTRANSACCION());
                 parameters.put("paisId", responseDb.get(i).getFIPAISID());
-
 
                 respuestaApi = apiService.consultaApi(llavesAes[IDACCESO], llavesAes[TOKEN],
                         parameters);

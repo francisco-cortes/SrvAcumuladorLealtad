@@ -92,7 +92,8 @@ public class ApiLealtadDao {
 
             int i = errorResponse.indexOf("{");
             String errorString = errorResponse.substring(i);
-            LOGGER.error("Error con el idCliente: " + parameters.get("idCliente") + "\n" + errorString);
+            LOGGER.error("Error con el idCliente: " + parameters.get("idCliente") +
+              " forma parseada: " + parameters.get("idClienteParseado") + "\n" + errorString);
 
             JSONObject jsonResponse = new JSONObject(errorString.trim());
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
@@ -118,6 +119,7 @@ public class ApiLealtadDao {
             respuesta[FOLIO] = jsonResponse.getString("folio");
             respuesta[FLAG] = bandera;
             LOGGER.info(sb);
+            LOGGER.info("La peticion: " + params + "Se envio Correctamente");
         }
 
         return respuesta;
