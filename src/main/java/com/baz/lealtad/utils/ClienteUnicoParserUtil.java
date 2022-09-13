@@ -2,6 +2,9 @@ package com.baz.lealtad.utils;
 
 import org.apache.log4j.Logger;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class ClienteUnicoParserUtil {
 
   private static final Logger LOGGER = Logger.getLogger(ClienteUnicoParserUtil.class);
@@ -13,10 +16,15 @@ public class ClienteUnicoParserUtil {
     }
     else{
 
-      if(idCliente.matches("(\\d{9,})")){
+      if(idCliente.matches("(\\d{8,})")){
 
-        LOGGER.error("Se recibio un idCliente numerico");
-        return parsaerNumeros(idCliente);
+        if(idCliente.matches("(\\d{8,9})")){
+          return idCliente;
+          //return onlyAddTen(idCliente);
+        }
+        else {
+          return onlyAddDash(idCliente);
+        }
 
       }
       else if (idCliente.matches("(\\d)-(\\d)-(\\d{4})-(\\d{4,})")){
@@ -26,11 +34,11 @@ public class ClienteUnicoParserUtil {
 
       }
       else if (idCliente.matches("(\\d)-(\\d{1,4})-(\\d{2,4})-(\\d{4,})")){
-        return idCliente;
+        return parsaerNumeros(parsearFormato(idCliente));
       }
       else {
 
-        LOGGER.error("no se pudo hallar la forma de la entrada");
+        LOGGER.error("no se pudo hallar la forma de la entrada ID Cliente");
         return idCliente;
 
       }
@@ -90,6 +98,27 @@ public class ClienteUnicoParserUtil {
       separado[3] = input.substring(4);
     }
 
+  }
+
+  private static String onlyAddTen(String input){
+    String tenOfDeath = "10";
+    return tenOfDeath + input;
+  }
+
+  private static String onlyAddDash(String input){
+    Pattern p = Pattern.compile("(.{" + 4 + "})", Pattern.DOTALL);
+    Matcher m = p.matcher(input);
+    String aux = m.replaceAll("$1" + "-");
+    int newLenght = aux.length();
+    String aux2 = "";
+    String[] checker = aux.split("");
+    if (checker[checker.length - 1].contains("-")) {
+      newLenght = newLenght - 1;
+    }
+    for (int i = 0; i < newLenght; i++) {
+      aux2 = aux2 + checker[i];
+    }
+    return aux2;
   }
 
 }

@@ -69,7 +69,7 @@ public class ApiLealtadDao {
         connection.setUseCaches(false);
         connection.setDoOutput(true);
 
-        LOGGER.info(params);
+        LOGGER.error(params);
 
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
@@ -119,7 +119,7 @@ public class ApiLealtadDao {
             respuesta[FOLIO] = jsonResponse.getString("folio");
             respuesta[FLAG] = bandera;
             LOGGER.info(sb);
-            LOGGER.info("La peticion: " + params + "Se envio Correctamente");
+            LOGGER.error("La peticion: " + params + "Se envio Correctamente");
         }
 
         return respuesta;

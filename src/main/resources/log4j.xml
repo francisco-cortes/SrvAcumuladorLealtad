@@ -22,12 +22,8 @@
 
     </appender>
 
-    <category name="se.jayway.ddsteps">
-        <priority value="error"></priority>
-    </category>
-
     <root>
-        <priority value="ERROR"/>
+        <priority value="ALL"/>
         <appender-ref ref="console" />
         <appender-ref ref="file" />
     </root>

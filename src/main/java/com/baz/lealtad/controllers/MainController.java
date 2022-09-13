@@ -42,8 +42,6 @@ public class MainController {
         final int IDACCESO = 1;
         final int SIMETRICA_1 = 2;
         final int SIMETRICA_2 = 3;
-
-
         String[] llavesAes = obtenerLlaves.getLlaves();
 
         List<CursorSpSalidaModel> responseDb = salidaService.consulta();
@@ -51,14 +49,61 @@ public class MainController {
         final int MENSAJE = 0;
         final int FOLIO = 1;
         final int BANDERA = 2;
-
         String[] respuestaApi;
 
+        //------------
+        /*int idTipoCliente = 3;
+        String idC = "176643425";
+        String fol = "MC-3425";
+        int idclienteTam = idC.length();
+
+        String idClienteParseado = ClienteUnicoParserUtil.parsear(idC);
+
+        int importeRedondeado =  (int) Math.round(900.02);
+
+        String idCliente = cifrarService.cifrar(idClienteParseado,
+          llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
+
+        String importe = cifrarService.cifrar(String.valueOf(importeRedondeado),
+          llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
+
+        //id tipo cliente y id operacion por defecto es 3;
+        if(idclienteTam > 10){
+                    idTipoCliente = 3;
+                }
+                else{
+                    idTipoCliente = 5;
+                }
+        final int ID_OPERACION = 3;
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("idTipoCliente", idTipoCliente);
+        parameters.put("idCliente", idC);
+        parameters.put("idClienteCifrado", idCliente);
+        parameters.put("idClienteParseado", idClienteParseado);
+        parameters.put("importe", 100.01);
+        parameters.put("importeCifrado", importe);
+        parameters.put("importeRedondo", importeRedondeado);
+        parameters.put("sucursal", "200");
+        parameters.put("idOperacion", ID_OPERACION);
+        parameters.put("folioTransaccion", fol);
+        parameters.put("fechaOperacion", "");
+        parameters.put("negocio", "DEX");
+        parameters.put("tipoOperacion", "ENVIO");
+        parameters.put("origenTransaccion", "3");
+        parameters.put("paisId", "1");
+
+        respuestaApi = apiService.consultaApi(llavesAes[IDACCESO], llavesAes[TOKEN],
+          parameters);*/
+        //---------------------------
         if (responseDb.size() > 0) {
 
             int fallidosLealtad = 0;
+            int idTipoCliente = 3;
 
             for(int i = 0; i < responseDb.size(); i ++){
+
+                int idclienteTam = responseDb.get(i).getFCIDCLIENTE().length();
 
                 String idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFCIDCLIENTE());
 
@@ -71,11 +116,17 @@ public class MainController {
                         llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
                 //id tipo cliente y id operacion por defecto es 3;
-                final int ID_TIPO_CLIENTE = 3;
+                if(idclienteTam > 10){
+                    idTipoCliente = 3;
+                }
+                else{
+                    idTipoCliente = 5;
+                }
+
                 final int ID_OPERACION = 3;
 
                 Map<String, Object> parameters = new HashMap<>();
-                parameters.put("idTipoCliente", ID_TIPO_CLIENTE);
+                parameters.put("idTipoCliente", idTipoCliente);
                 parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE());
                 parameters.put("idClienteCifrado", idCliente);
                 parameters.put("idClienteParseado", idClienteParseado);
