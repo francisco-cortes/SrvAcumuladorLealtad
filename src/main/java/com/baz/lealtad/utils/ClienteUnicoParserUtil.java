@@ -16,9 +16,9 @@ public class ClienteUnicoParserUtil {
     }
     else{
 
-      if(idCliente.matches("(\\d{8,})")){
+      if(idCliente.matches("(\\d{7,})")){
 
-        if(idCliente.matches("(\\d{8,9})")){
+        if(idCliente.matches("(\\d{7,10})")){
           return idCliente;
           //return onlyAddTen(idCliente);
         }
@@ -29,12 +29,11 @@ public class ClienteUnicoParserUtil {
       }
       else if (idCliente.matches("(\\d)-(\\d)-(\\d{4})-(\\d{4,})")){
 
-        LOGGER.error("Se recibio un idCliente con formato x-x-xxxx-xxxxx");
-        return parsaerNumeros(parsearFormato(idCliente));
+        return specialCase(idCliente);
 
       }
       else if (idCliente.matches("(\\d)-(\\d{1,4})-(\\d{2,4})-(\\d{4,})")){
-        return parsaerNumeros(parsearFormato(idCliente));
+        return specialCase(idCliente);
       }
       else {
 
@@ -82,21 +81,75 @@ public class ClienteUnicoParserUtil {
     return input.replace("-", "");
   }
 
-  private static void specialCase(String input){
+  private static String specialCase(String input){
+
+    String aux = "";
+    String[] separado = new String[6];
 
     if (input.contains("-")){
-      String[] separado = input.split("-");
+
+      separado = input.split("-");
+
     }
     else if (input.contains(" ")){
-      String[] separado = input.split(" ");
+      separado = input.split(" ");
     }
     else {
-      String[] separado = new String[4];
-      separado[0] = input.substring(1);
-      separado[1] = input.substring(2);
-      separado[2] = input.substring(3);
-      separado[3] = input.substring(4);
+      //separado[0] = input.substring(1);
+      //separado[1] = input.substring(2);
+      //separado[2] = input.substring(3);
+      //separado[3] = input.substring(4);
     }
+
+    int pais = Integer.parseInt(separado[0]);
+    if(pais<10){
+      separado[0] = "0" + separado[0];
+    }
+    else {
+      separado[0] = separado[0];
+    }
+
+    int canal = Integer.parseInt(separado[1]);
+    if(canal<10){
+      separado[1] = "0" + separado[1] + "-";
+    }
+    else {
+      separado[0] = separado[0] + "-";
+    }
+
+    int sucursal = Integer.parseInt(separado[2]);
+    if (sucursal < 10){
+      separado[2] = "0" + "0" + "0" + separado[2] + "-";
+    }
+    else if (sucursal < 100){
+      separado[2] = "0" + "0" + separado[2] + "-";
+    }
+    else if (sucursal < 1000){
+      separado[2] = "0" + separado[2] + "-";
+    }
+    else if (sucursal < 10000){
+      separado[2] = separado[2] + "-";
+    }
+
+    int lastLenght = separado[3].length();
+    if(lastLenght <= 4){
+      separado[3] = separado[3];
+    }
+    else if (lastLenght <= 8){
+      StringBuilder str = new StringBuilder(separado[3]);
+      str.insert(4, "-");
+      separado[3] = str.toString();
+    }
+    else if (lastLenght <= 12){
+      StringBuilder str = new StringBuilder(separado[3]);
+      str.insert(4,"-");
+      str.insert(9,"-");
+      separado[3] = str.toString();
+    }
+    for(int i = 0; i < separado.length; i++){
+      aux = aux + separado[i];
+    }
+    return aux;
 
   }
 

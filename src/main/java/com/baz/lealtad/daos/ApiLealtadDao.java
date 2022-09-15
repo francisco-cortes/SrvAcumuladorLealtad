@@ -69,7 +69,6 @@ public class ApiLealtadDao {
         connection.setUseCaches(false);
         connection.setDoOutput(true);
 
-        LOGGER.error(params);
 
         DataOutputStream wr = new DataOutputStream(
                 connection.getOutputStream());
@@ -94,6 +93,7 @@ public class ApiLealtadDao {
             String errorString = errorResponse.substring(i);
             LOGGER.error("Error con el idCliente: " + parameters.get("idCliente") +
               " forma parseada: " + parameters.get("idClienteParseado") + "\n" + errorString);
+            LOGGER.error("\n Error con La peticion: " + params);
 
             JSONObject jsonResponse = new JSONObject(errorString.trim());
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
@@ -118,8 +118,9 @@ public class ApiLealtadDao {
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
             respuesta[FOLIO] = jsonResponse.getString("folio");
             respuesta[FLAG] = bandera;
-            LOGGER.info(sb);
-            LOGGER.error("La peticion: " + params + "Se envio Correctamente");
+            //LOGGER.info(sb);
+            //LOGGER.error("el id cliente" + parameters.get("idCliente")
+              //+ "La peticion: " + params + "Se envio Correctamente");
         }
 
         return respuesta;

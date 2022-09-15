@@ -53,13 +53,24 @@ public class MainController {
 
         //------------
         /*int idTipoCliente = 3;
-        String idC = "176643425";
-        String fol = "MC-3425";
-        int idclienteTam = idC.length();
+        String idClienteParseado = "";
+        String idCu = "160510414";
+        String tipoOperacion = "E";
 
-        String idClienteParseado = ClienteUnicoParserUtil.parsear(idC);
+        int idclienteTam = idCu.length();
+        String negocio = "DEX".toLowerCase();
 
-        int importeRedondeado =  (int) Math.round(900.02);
+        if(idCu.matches("(\\d{7,10})")
+          && negocio.equals("dex") ){
+            idTipoCliente = 5;
+            idClienteParseado = idCu;
+        }
+        else{
+            idTipoCliente = 3;
+            idClienteParseado = idCu;
+        }
+
+        int importeRedondeado =  (int) Math.round(1000.09);
 
         String idCliente = cifrarService.cifrar(idClienteParseado,
           llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
@@ -67,45 +78,49 @@ public class MainController {
         String importe = cifrarService.cifrar(String.valueOf(importeRedondeado),
           llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
 
-        //id tipo cliente y id operacion por defecto es 3;
-        if(idclienteTam > 10){
-                    idTipoCliente = 3;
-                }
-                else{
-                    idTipoCliente = 5;
-                }
         final int ID_OPERACION = 3;
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idTipoCliente", idTipoCliente);
-        parameters.put("idCliente", idC);
+        parameters.put("idCliente", idCu);
         parameters.put("idClienteCifrado", idCliente);
         parameters.put("idClienteParseado", idClienteParseado);
-        parameters.put("importe", 100.01);
+        parameters.put("importe", 1000.02);
         parameters.put("importeCifrado", importe);
         parameters.put("importeRedondo", importeRedondeado);
-        parameters.put("sucursal", "200");
+        parameters.put("sucursal", "578");
         parameters.put("idOperacion", ID_OPERACION);
-        parameters.put("folioTransaccion", fol);
+        parameters.put("folioTransaccion", "mc");
         parameters.put("fechaOperacion", "");
-        parameters.put("negocio", "DEX");
-        parameters.put("tipoOperacion", "ENVIO");
-        parameters.put("origenTransaccion", "3");
-        parameters.put("paisId", "1");
+        parameters.put("negocio", negocio);
+        parameters.put("tipoOperacion", "Envio");
+        parameters.put("origenTransaccion", "");
+        parameters.put("paisId", "02");
 
         respuestaApi = apiService.consultaApi(llavesAes[IDACCESO], llavesAes[TOKEN],
           parameters);*/
+
+
         //---------------------------
         if (responseDb.size() > 0) {
 
             int fallidosLealtad = 0;
-            int idTipoCliente = 3;
+            int idTipoCliente;
+            String idClienteParseado;
 
             for(int i = 0; i < responseDb.size(); i ++){
 
-                int idclienteTam = responseDb.get(i).getFCIDCLIENTE().length();
+                String negocio = responseDb.get(i).getFCNEGOCIO().toLowerCase();
 
-                String idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFCIDCLIENTE());
+                if(responseDb.get(i).getFCIDCLIENTE().matches("(\\d{7,10})")
+                  && negocio.equals("dex") ){
+                    idTipoCliente = 5;
+                    idClienteParseado = responseDb.get(i).getFCIDCLIENTE();
+                }
+                else{
+                    idTipoCliente = 3;
+                    idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFCIDCLIENTE());
+                }
 
                 int importeRedondeado =  (int) Math.round(responseDb.get(i).getFNIMPORTE());
 
@@ -114,14 +129,6 @@ public class MainController {
 
                 String importe = cifrarService.cifrar(String.valueOf(importeRedondeado),
                         llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
-
-                //id tipo cliente y id operacion por defecto es 3;
-                if(idclienteTam > 10){
-                    idTipoCliente = 3;
-                }
-                else{
-                    idTipoCliente = 5;
-                }
 
                 final int ID_OPERACION = 3;
 
