@@ -332,25 +332,24 @@ i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos
 parametersjava.util.Map*
 
 sucursal*
-39*â
+39*è
 41s
-i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java(, ((OáÑ
+i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java(0 ((Rçä
 s
-i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java( ((Q
+i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java( ((T
 
-%5void"&java.sql.PreparedStatement#setInt(II)V*+
+%5void")java.sql.PreparedStatement#setDouble(ID)V*+
 )
 declaracionjava.sql.CallableStatement*
 ""*
 
-%4java.lang.Object2
-setInt(II)*
+%4java.lang.Object2setDouble(ID)*
 40*»
 42s
 i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java( ((∆
 √
 s
-i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java(6 ((O
+i/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpEntradaDao.java(9 ((R
 %4java.lang.Object"__mapGet*
 
 

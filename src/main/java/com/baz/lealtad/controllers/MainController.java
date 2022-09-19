@@ -51,56 +51,6 @@ public class MainController {
         final int BANDERA = 2;
         String[] respuestaApi;
 
-        //------------
-        /*int idTipoCliente = 3;
-        String idClienteParseado = "";
-        String idCu = "160510414";
-        String tipoOperacion = "E";
-
-        int idclienteTam = idCu.length();
-        String negocio = "DEX".toLowerCase();
-
-        if(idCu.matches("(\\d{7,10})")
-          && negocio.equals("dex") ){
-            idTipoCliente = 5;
-            idClienteParseado = idCu;
-        }
-        else{
-            idTipoCliente = 3;
-            idClienteParseado = idCu;
-        }
-
-        int importeRedondeado =  (int) Math.round(1000.09);
-
-        String idCliente = cifrarService.cifrar(idClienteParseado,
-          llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
-
-        String importe = cifrarService.cifrar(String.valueOf(importeRedondeado),
-          llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2]);
-
-        final int ID_OPERACION = 3;
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("idTipoCliente", idTipoCliente);
-        parameters.put("idCliente", idCu);
-        parameters.put("idClienteCifrado", idCliente);
-        parameters.put("idClienteParseado", idClienteParseado);
-        parameters.put("importe", 1000.02);
-        parameters.put("importeCifrado", importe);
-        parameters.put("importeRedondo", importeRedondeado);
-        parameters.put("sucursal", "578");
-        parameters.put("idOperacion", ID_OPERACION);
-        parameters.put("folioTransaccion", "mc");
-        parameters.put("fechaOperacion", "");
-        parameters.put("negocio", negocio);
-        parameters.put("tipoOperacion", "Envio");
-        parameters.put("origenTransaccion", "");
-        parameters.put("paisId", "02");
-
-        respuestaApi = apiService.consultaApi(llavesAes[IDACCESO], llavesAes[TOKEN],
-          parameters);*/
-
-
         //---------------------------
         if (responseDb.size() > 0) {
 

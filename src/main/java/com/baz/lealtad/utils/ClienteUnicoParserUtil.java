@@ -105,16 +105,10 @@ public class ClienteUnicoParserUtil {
     if(pais<10){
       separado[0] = "0" + separado[0];
     }
-    else {
-      separado[0] = separado[0];
-    }
 
     int canal = Integer.parseInt(separado[1]);
     if(canal<10){
       separado[1] = "0" + separado[1] + "-";
-    }
-    else {
-      separado[0] = separado[0] + "-";
     }
 
     int sucursal = Integer.parseInt(separado[2]);
