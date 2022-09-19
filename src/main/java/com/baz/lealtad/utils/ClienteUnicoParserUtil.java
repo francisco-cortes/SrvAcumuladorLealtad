@@ -126,10 +126,7 @@ public class ClienteUnicoParserUtil {
     }
 
     int lastLenght = separado[3].length();
-    if(lastLenght <= 4){
-      separado[3] = separado[3];
-    }
-    else if (lastLenght <= 8){
+    if (lastLenght <= 8){
       StringBuilder str = new StringBuilder(separado[3]);
       str.insert(4, "-");
       separado[3] = str.toString();
@@ -138,6 +135,13 @@ public class ClienteUnicoParserUtil {
       StringBuilder str = new StringBuilder(separado[3]);
       str.insert(4,"-");
       str.insert(9,"-");
+      separado[3] = str.toString();
+    }
+    else if (lastLenght <= 16){
+      StringBuilder str = new StringBuilder(separado[3]);
+      str.insert(4,"-");
+      str.insert(9,"-");
+      str.insert(13,"-");
       separado[3] = str.toString();
     }
     for(int i = 0; i < separado.length; i++){
