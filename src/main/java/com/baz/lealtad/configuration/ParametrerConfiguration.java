@@ -21,7 +21,11 @@ public final class ParametrerConfiguration {
     public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
             + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
 
-    private static String oracleDatabaseUrl = "";
+    private static String oracleDatabaseIp = "";
+
+    private static String oracleDatabasePort = "";
+
+    private static String oracleDatabaseName = "";
 
     private static String oracleDatabaseU = "";
 
@@ -70,7 +74,11 @@ public final class ParametrerConfiguration {
             Properties properties = new Properties();
             properties.load(new FileInputStream(CONF_FILE_PATH));
 
-            oracleDatabaseUrl = properties.getProperty("BASEURL").trim();
+            oracleDatabaseIp = properties.getProperty("BASEIP").trim();
+
+            oracleDatabasePort = properties.getProperty("BASEPORT").trim();
+
+            oracleDatabaseName = properties.getProperty("BASENAME").trim();
 
             oracleDatabaseU = properties.getProperty("BASEUSR").trim();
 
@@ -97,9 +105,13 @@ public final class ParametrerConfiguration {
         }
     }
 
-    public static String getOracleDatabaseUrl (){
-        return oracleDatabaseUrl;
+    public static String getOracleDatabaseIp (){
+        return oracleDatabaseIp;
     }
+
+    public static String getOracleDatabasePort () { return oracleDatabasePort;}
+
+    public static String getOracleDatabaseName () { return oracleDatabaseName;}
 
     public static String getOracleDatabaseU (){
         return oracleDatabaseU;
