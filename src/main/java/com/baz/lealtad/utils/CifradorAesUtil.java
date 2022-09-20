@@ -1,7 +1,7 @@
 package com.baz.lealtad.utils;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import org.apache.log4j.Logger;
+import com.baz.lealtad.logger.LogServicio;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
@@ -11,15 +11,12 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.Arrays;
 import java.util.Base64;
 
 public class CifradorAesUtil {
 
-    private static final Logger LOGGER = Logger.getLogger(CifradorAesUtil.class);
-
-    public String encryptAes(String aesKeyBase64, String hmacKeyBase64, String valorCampo) {
-
+    public String encryptAes(String aesKeyBase64, String hmacKeyBase64, String valorCampo, LogServicio log) {
+        log.setBegTimeMethod("CifradorAesUtil.encryptAes", ParametrerConfiguration.SYSTEM_NAME);
         try {
 
             SecretKey aesKey = new SecretKeySpec(java.util.Base64.getDecoder()
@@ -52,7 +49,7 @@ public class CifradorAesUtil {
         }
         catch (Exception e) {
 
-            LOGGER.error("Incidente al cifrar el parametro : " + e);
+            log.exepcion(e,"ERROR al cifrar en AES");
 
         }
 

@@ -1,9 +1,9 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.logger.LogServicio;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
-import org.apache.log4j.Logger;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -12,11 +12,11 @@ import java.util.Map;
 
 public class EjecutarSpEntradaDao {
 
-    private static final Logger LOGGER = Logger.getLogger(EjecutarSpEntradaDao.class);
     private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
     public void ejecutarSpEntrada(Map<String, Object> parameters, String folioPremia,
-                                  String mensaje, String bandera){
+                                  String mensaje, String bandera, LogServicio log){
+        log.setBegTimeMethod("EjecutarSpEntradaDao.ejecutarSpEntrada", ParametrerConfiguration.SYSTEM_NAME);
 
         final int idTipoCliente = 1, importe = 2 , sucursal = 3, fecha = 4,
                 negocio = 5, tipoOperacion = 6, origenTransaccion = 7,
@@ -58,13 +58,14 @@ public class EjecutarSpEntradaDao {
 
                 if(declaracion.getString(respuesta2) == null ||
                   !declaracion.getString(respuesta2).contains("OPERACION EXITOSA.") ) {
-                    LOGGER.error("SPTRANSPUNTLEAL no ejecutado o respuesta nula");
+                    log.mensaje("EjecutarSpEntradaDao.ejecutarSpEntrada",
+                    "ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
 
                 }
             }
             catch (Exception E){
 
-                LOGGER.error("Error en db : " + E);
+                log.exepcion(E, "ERROR en BD sp 2");
 
             }
             finally {
@@ -74,14 +75,14 @@ public class EjecutarSpEntradaDao {
                     declaracion.close();
                 }
                 catch (Exception e) {
-                    LOGGER.error("no se pudo cerrar declaracion: " + e);
+                    log.exepcion(e,"ERROR al cerrar declaracion sp2");
                 }
             }
 
         }
         catch (Exception excepcion){
 
-            LOGGER.error("Error en db : " + excepcion);
+            log.exepcion(excepcion, "ERROR en BD sp2");
 
         }
         finally {
@@ -95,7 +96,7 @@ public class EjecutarSpEntradaDao {
 
             catch (Exception e) {
 
-                LOGGER.error("no se pudo cerrar conexion: " + e);
+                log.exepcion(e,"No se pudo cerrar Conexion sp2");
                 
             }
         }

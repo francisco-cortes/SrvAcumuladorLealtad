@@ -1,21 +1,19 @@
 package com.baz.lealtad.service;
 
 import com.baz.lealtad.daos.EjecutarSpEntradaDao;
-import org.apache.log4j.Logger;
+import com.baz.lealtad.logger.LogServicio;
 
 import java.sql.Date;
 import java.util.Map;
 
 public class SpEntradaService {
 
-    private static final Logger LOGGER = Logger.getLogger(ConsultaSalidaService.class);
-
     private static final EjecutarSpEntradaDao baseEntradaSp = new EjecutarSpEntradaDao();
 
     public void guardarBase (Map<String, Object> params, String folioPremia,
-                             String comentarios, String bandera){
+                             String comentarios, String bandera, LogServicio log){
 
-        baseEntradaSp.ejecutarSpEntrada(params, folioPremia,comentarios,bandera);
+        baseEntradaSp.ejecutarSpEntrada(params, folioPremia,comentarios,bandera, log);
 
     }
 
@@ -50,7 +48,6 @@ public class SpEntradaService {
         }
         else {
 
-            LOGGER.error("Fecha con formato incorrecto");
             long mili = System.currentTimeMillis();
             Date date = new Date(mili);
             String actual = date.toString();

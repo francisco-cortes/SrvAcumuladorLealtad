@@ -1,7 +1,7 @@
 package com.baz.lealtad.utils;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import org.apache.log4j.Logger;
+import com.baz.lealtad.logger.LogServicio;
 
 import javax.net.ssl.TrustManagerFactory;
 import java.io.BufferedInputStream;
@@ -12,10 +12,8 @@ import java.security.cert.X509Certificate;
 
 public class GetCertUtil {
 
-  private static final Logger LOGGER = Logger.getLogger(GetCertUtil.class);
-
-  public TrustManagerFactory getCert (){
-
+  public TrustManagerFactory getCert (LogServicio log){
+    log.setBegTimeMethod("GetCertUtil.getCert", ParametrerConfiguration.SYSTEM_NAME);
     FileInputStream fis = null;
     X509Certificate ca = null;
     KeyStore ks = null;
@@ -37,7 +35,7 @@ public class GetCertUtil {
     }
     catch (Exception e){
 
-      LOGGER.error("No se pudo obtener el certificado: " + e);
+      log.exepcion(e,"ERROR No se pudo obtener el certificado");
 
     }
     finally {
@@ -50,12 +48,12 @@ public class GetCertUtil {
 
       }catch (Exception e){
 
-        LOGGER.error("No se pudo cerrar el fileInputStream de cert: " + e);
+        log.exepcion(e,"ERROR No se puede cerrar el fileInputStream de cert");
 
       }
 
     }
-
+    log.setEndTimeMethod("GetCertUtil.getCert");
     return tmf;
 
   }

@@ -1,8 +1,8 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.logger.LogServicio;
 import com.baz.lealtad.utils.GetCertUtil;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.DataOutputStream;
@@ -18,16 +18,15 @@ public class ApiLealtadDao {
 
     private static final GetCertUtil certGetter = new GetCertUtil();
 
-    private static final Logger LOGGER = Logger.getLogger(ApiLealtadDao.class);
-
     private static final String OK = "0";
     private static final String BAD = "1";
     private static final int MENSAJE = 0;
     private static final int FOLIO = 1;
     private static final int FLAG = 2;
 
-    public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters)
+    public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters, LogServicio log)
             throws Exception {
+        log.setBegTimeMethod("ApiLealtadDao.getAcumulaciones", ParametrerConfiguration.SYSTEM_NAME);
 
         TrustManagerFactory tmf = null;
 
@@ -35,10 +34,10 @@ public class ApiLealtadDao {
         String bandera;
 
         try {
-            tmf = certGetter.getCert();
+            tmf = certGetter.getCert(log);
         }
         catch (Exception e){
-            LOGGER.error("No se pudo obtener el certificado: " + e);
+            log.exepcion(e, "No se pudo obtener el certificado");
         }
 
         SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
@@ -91,9 +90,9 @@ public class ApiLealtadDao {
 
             int i = errorResponse.indexOf("{");
             String errorString = errorResponse.substring(i);
-            LOGGER.error("Error con el idCliente: " + parameters.get("idCliente") +
-              " forma parseada: " + parameters.get("idClienteParseado") + "\n" + errorString);
-            LOGGER.error("\n Error con La peticion: " + params);
+            log.mensaje("ApiLealtadDao.getAcumulaciones", "ERROR: con el idCliente: " + parameters.get("idCliente") +
+              " forma parseada: " + parameters.get("idClienteParseado") + "\n" + errorString +
+              "\n ERROR con La peticion: " + params);
 
             JSONObject jsonResponse = new JSONObject(errorString.trim());
             respuesta[MENSAJE] = jsonResponse.getString("mensaje");
@@ -122,7 +121,7 @@ public class ApiLealtadDao {
             //LOGGER.error("el id cliente" + parameters.get("idCliente")
               //+ "La peticion: " + params + "Se envio Correctamente");
         }
-
+        log.setEndTimeMethod("ApiLealtadDao.getAcumulaciones");
         return respuesta;
 
         }

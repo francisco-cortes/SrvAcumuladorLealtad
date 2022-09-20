@@ -1,9 +1,9 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.logger.LogServicio;
 import com.baz.lealtad.utils.ConectorHttpsUtil;
 import com.baz.lealtad.utils.HttpsResponseReaderUtil;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
@@ -25,10 +25,9 @@ public class TokenDao {
     private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
     private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
 
-    private static final Logger LOGGER = Logger.getLogger(TokenDao.class);
+    public String getToken(LogServicio log) throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
-    public String getToken() throws IOException, NoSuchAlgorithmException, KeyManagementException {
-
+        log.setBegTimeMethod("TokenDao.getToken",ParametrerConfiguration.SYSTEM_NAME);
         HttpsURLConnection connection;
 
         String token = "";
@@ -46,7 +45,7 @@ public class TokenDao {
 
                     } catch (UnsupportedEncodingException e) {
 
-                        LOGGER.error("Error de encoder Token: " + e);
+                        log.exepcion(e,"ERROR de Encoder Token");
 
                     }
 
@@ -61,7 +60,7 @@ public class TokenDao {
 
         final String authorization = "Basic " + encoded;
 
-        connection = con.crearConexion("POST", ParametrerConfiguration.getTokenUrl());
+        connection = con.crearConexion("POST", ParametrerConfiguration.getTokenUrl(),log);
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         connection.setRequestProperty("Authorization",authorization);
         connection.setRequestProperty("Accept","*/*");
@@ -78,7 +77,7 @@ public class TokenDao {
         String sb = responseReader.responseReader(connection);
 
         if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-            LOGGER.error(connection.getResponseCode() + " Error en Token: " + sb);
+            log.mensaje("TokenDao.getToken",connection.getResponseCode() + " ERROR en Token: " + sb);
         }
         else {
 
@@ -88,6 +87,7 @@ public class TokenDao {
 
         connection.disconnect();
 
+        log.setEndTimeMethod("TokenDao.getToken");
         return token;
 
     }

@@ -1,13 +1,12 @@
 package com.baz.lealtad.utils;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import org.apache.log4j.Logger;
+import com.baz.lealtad.logger.LogServicio;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
@@ -16,18 +15,16 @@ public class ConectorHttpsUtil {
 
   private static final GetCertUtil certGetter = new GetCertUtil();
 
-  private static final Logger LOGGER = Logger.getLogger(ConectorHttpsUtil.class);
-
-  public HttpsURLConnection crearConexion (String metodo, String link)
+  public HttpsURLConnection crearConexion (String metodo, String link, LogServicio log)
     throws NoSuchAlgorithmException, KeyManagementException, IOException {
 
     HttpsURLConnection connection = null;
     TrustManagerFactory tmf = null;
 
     try {
-      tmf = certGetter.getCert();
+      tmf = certGetter.getCert(log);
     }catch (Exception e){
-      LOGGER.error("no se pudo obtener el certificado: " + e);
+      log.exepcion(e,"ERROR No se pudo obtener el certificado");
     }
 
     SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");

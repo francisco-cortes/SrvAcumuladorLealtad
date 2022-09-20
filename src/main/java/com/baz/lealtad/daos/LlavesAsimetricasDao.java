@@ -1,9 +1,9 @@
 package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
+import com.baz.lealtad.logger.LogServicio;
 import com.baz.lealtad.utils.ConectorHttpsUtil;
 import com.baz.lealtad.utils.HttpsResponseReaderUtil;
-import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.IOException;
@@ -17,10 +17,8 @@ public class LlavesAsimetricasDao {
     private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
     private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
 
-    private static final Logger LOGGER = Logger.getLogger(LlavesAsimetricasDao.class);
-
-    public String[] getLlavesAsimetricas(String token) throws IOException, NoSuchAlgorithmException, KeyManagementException {
-
+    public String[] getLlavesAsimetricas(String token, LogServicio log) throws IOException, NoSuchAlgorithmException, KeyManagementException {
+        log.setBegTimeMethod("LavesAsmetricasDao.getLlavesAsimetricas",ParametrerConfiguration.SYSTEM_NAME);
         HttpsURLConnection connection;
 
         final int idAcesso = 0;
@@ -29,14 +27,15 @@ public class LlavesAsimetricasDao {
         final String jsonParametro = "resultado";
         String[] asimetricas = new String[3];
 
-        connection = con.crearConexion("GET", ParametrerConfiguration.getAsimetricasUrl());
+        connection = con.crearConexion("GET", ParametrerConfiguration.getAsimetricasUrl(),log);
         connection.setRequestProperty("Authorization","Bearer " + token);
         connection.setRequestProperty("Accept","*/*");
 
         String sb = responseReader.responseReader(connection);
 
         if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-            LOGGER.error("Error en asimetricas: " + sb);
+            log.mensaje("LlavesAsimetricasDao.getLlavesAsimetricas",
+            "ERROR en asimetricas: " + sb);
         }
         else {
             JSONObject jsonResponse = new JSONObject(sb);
@@ -48,6 +47,7 @@ public class LlavesAsimetricasDao {
 
         connection.disconnect();
 
+        log.setEndTimeMethod("LavesAsmetricasDao.getLlavesAsimetricas");
         return asimetricas;
 
     }

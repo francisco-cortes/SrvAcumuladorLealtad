@@ -1,14 +1,11 @@
 package com.baz.lealtad.configuration;
 
-import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
 public final class ParametrerConfiguration {
-
-    private static final Logger LOGGER = Logger.getLogger(ParametrerConfiguration.class);
 
     public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
 
@@ -67,6 +64,8 @@ public final class ParametrerConfiguration {
 
     public static final int ERROR_OR_EXCEPTION = 2;
 
+    public static final String SYSTEM_NAME = "SrvAcumuladorLealtad";
+
     public static void loadConfiguration(){
 
         try {
@@ -101,7 +100,7 @@ public final class ParametrerConfiguration {
             apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
 
         } catch (IOException e) {
-            LOGGER.error("Hubo un error al cargar las porpiedades: " + e);
+            System.out.println ("Hubo un error al cargar las porpiedades: " + e);
         }
     }
 

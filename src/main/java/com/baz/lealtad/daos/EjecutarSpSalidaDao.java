@@ -1,10 +1,10 @@
 package com.baz.lealtad.daos;
 
+import com.baz.lealtad.logger.LogServicio;
 import com.baz.lealtad.models.CursorSpSalidaModel;
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import oracle.jdbc.OracleTypes;
-import org.apache.log4j.Logger;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -14,13 +14,11 @@ import java.util.List;
 
 public class EjecutarSpSalidaDao {
 
-
-    private static final Logger LOGGER = Logger.getLogger(EjecutarSpSalidaDao.class);
     private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
 
-    public List<CursorSpSalidaModel> ejecutarSpSalida(){
-
+    public List<CursorSpSalidaModel> ejecutarSpSalida(LogServicio log){
+        log.setBegTimeMethod("EjecutarSpSalidaDao.ejecutarSpSalida", ParametrerConfiguration.SYSTEM_NAME);
         List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
 
         final int cursorRespuesta = 1, mensajeRespuesta = 2, codigoRespuesta = 3;
@@ -65,13 +63,14 @@ public class EjecutarSpSalidaDao {
             }
             else {
 
-                LOGGER.error("SPPUNTOSLEALTAD no ejecutado o respuesta nula");
+                log.mensaje("EjecutarSpSalidaDao.ejecutarSpSalida",
+                  "SPPUNTOSLEALTAD no ejecutado o respuesta nula");
 
             }
         }
         catch (Exception excepcion){
 
-            LOGGER.error("Error en db: " + excepcion);
+            log.exepcion(excepcion, "ERROR en BD");
 
         }
         finally {
@@ -81,7 +80,7 @@ public class EjecutarSpSalidaDao {
             }
             catch (Exception e) {
 
-                LOGGER.error("Error al cerrar conexion : \n" + e);
+                log.exepcion(e,"ERROR al cerrar Conexion SP 1");
 
             }
 
