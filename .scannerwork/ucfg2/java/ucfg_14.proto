@@ -1,31 +1,134 @@
 
-Kcom.baz.lealtad.utils.FabricaDaoUtil#obtenerConexion()Ljava/sql/Connection;n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (%"1*¯
-1n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (ž
-›
-n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (<
-%0java.lang.String"Tjava.lang.System#setProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;*"
-java.lang.System*
-oracle.jdbc.fanEnabled*	
-falseû
-ø
-n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (1
-%1java.lang.Class"<java.lang.Class#forName(Ljava/lang/String;)Ljava/lang/Class;*"
-java.lang.Class*
-oracle.jdbc.OracleDriver 
-
-n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (=
-%2"qjava.sql.DriverManager#getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection;*"
-java.sql.DriverManager*
-""*
-""*
-"""x
-n
-d/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/FabricaDaoUtil.java (>
-
-%2B(&
-$com.baz.lealtad.utils.FabricaDaoUtil
+Gcom.baz.lealtad.logger.LogServicio#getServiceFotmat()Ljava/lang/String;l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaP P( "5"1*ê
+3l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java^ ^(
+Ç
+Ä
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java^ ^(
+
+%14java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb¤¡
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java^ ^(
+%15java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;* 
+
+%14java.lang.StringBuilder*
+},2append(Ljava/lang/String;)*
+5
+1*é
+4l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java\ \(
+Ç
+Ä
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java\ \(
+
+%12java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb£ 
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.java\ \(
+%13java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;* 
+
+%12java.lang.StringBuilder*
+}2append(Ljava/lang/String;)*
+5
+1*î
+5l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaU U(Æ
+Ã
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaU U(
+%0java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb°­
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaU U(#
+%1java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
+
+%0java.lang.StringBuilder*
+{\"servicio\":\"2append(Ljava/lang/String;)Æ
+Ã
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaV V(
+%2java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb‰†
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaV V(!
+%3"Kjava.lang.StringBuilder#append(Ljava/lang/Object;)Ljava/lang/StringBuilder;*
+
+%2java.lang.StringBuilder*
+""2append(Ljava/lang/Object;)Æ
+Ã
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaW W(
+%4java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb±®
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaW W($
+%5java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
+
+%4java.lang.StringBuilder*
+\",\"Sistema\":\"2append(Ljava/lang/String;)Æ
+Ã
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaX X(
+%6java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb‰†
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaX X( 
+%7"Kjava.lang.StringBuilder#append(Ljava/lang/Object;)Ljava/lang/StringBuilder;*
+
+%6java.lang.StringBuilder*
+""2append(Ljava/lang/Object;)Æ
+Ã
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaY Y(
+%8java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb®«
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaY Y(!
+%9java.lang.StringBuilder"Kjava.lang.StringBuilder#append(Ljava/lang/String;)Ljava/lang/StringBuilder;*
+
+%8java.lang.StringBuilder*
+\",\"Tiempo\":2append(Ljava/lang/String;)Ç
+Ä
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaZ Z(
+%10java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sb‹ˆ
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaZ Z(
+%11"Kjava.lang.StringBuilder#append(Ljava/lang/Object;)Ljava/lang/StringBuilder;* 
+
+%10java.lang.StringBuilder*
+""2append(Ljava/lang/Object;)*
+3
+4*¸
+1l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaa a(Ç
+Ä
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaa a(
+%16java.lang.StringBuilder"__id*.*,$
+"com.baz.lealtad.logger.LogServicio"
+sbîë
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaa a(
+%17java.lang.String"4java.lang.StringBuilder#toString()Ljava/lang/String;* 
+
+%16java.lang.StringBuilder2
+toString()"‰
+l
+b/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/LogServicio.javaa a(
+
+%17java.lang.StringB&$
+"com.baz.lealtad.logger.LogServicio

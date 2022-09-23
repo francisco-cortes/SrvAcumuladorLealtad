@@ -152,4 +152,18 @@ public final class ParametrerConfiguration {
         return apiAcumulacionesUrl;
     }
 
+    public static void setOracleDatabaseIp (String ip){ oracleDatabaseIp = ip; }
+
+    public static void setOracleDatabasePort (String port) {oracleDatabasePort = port;}
+
+    public static void setOracleDatabaseName (String name) { oracleDatabaseName = name;}
+
+    public static void setOracleDatabaseU (String user){
+        oracleDatabaseU = user;
+    }
+
+    public static void setOracleDatabaseP(String p){
+        oracleDatabaseP = p;
+    }
+
 }

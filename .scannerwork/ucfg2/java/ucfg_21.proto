@@ -1,130 +1,26 @@
 
-}com.baz.lealtad.utils.ConectorHttpsUtil#crearConexion(Ljava/lang/String;Ljava/lang/String;)Ljavax/net/ssl/HttpsURLConnection;q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ()"5*¬
-2q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ( ®
-«
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ( (
-tmf!javax.net.ssl.TrustManagerFactory"__id*
-""*
-1*ˆ
-4q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (Š
-‡
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (
-%0"__id*
-""*
-2*ã
-5q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java$ ((´
-±
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java ().
+]com.baz.lealtad.utils.ClienteUnicoParserUtil#onlyAddTen(Ljava/lang/String;)Ljava/lang/String;v
+l/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ClienteUnicoParserUtil.javaw w(""1*›
+1v
+l/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ClienteUnicoParserUtil.javax x(©
+¦
+v
+l/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ClienteUnicoParserUtil.javax x(
 
-connection javax.net.ssl.HttpsURLConnection"__id*
-""®
-«
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java (#(
-tmf!javax.net.ssl.TrustManagerFactory"__id*
-""*
-4*£
-1q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(&•
-’
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(=
-%3javax.net.ssl.SSLContext"Rjavax.net.ssl.SSLContext#getInstance(Ljava/lang/String;)Ljavax/net/ssl/SSLContext;*"
-javax.net.ssl.SSLContext*	
-TLSv1.2Æ
-Ã
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java! !(>&
-
-contextSsljavax.net.ssl.SSLContext"__id* 
+tenOfDeathjava.lang.String"__id*
+10Ü
+Ù
+v
+l/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ClienteUnicoParserUtil.javay y(
+%0java.lang.String"__concat* 
 
-%3javax.net.ssl.SSLContext­ª
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java# #(0"
-%4javax.net.ssl.TrustManager[]"Qjavax.net.ssl.TrustManagerFactory#getTrustManagers()[Ljavax/net/ssl/TrustManager;**
-(
-tmf!javax.net.ssl.TrustManagerFactory2getTrustManagers()´±
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java# #(7
 
-%5void"tjavax.net.ssl.SSLContext#init([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)V*(
-&
-
-contextSsljavax.net.ssl.SSLContext*
-""*$
-"
-%4javax.net.ssl.TrustManager[]*
-""2Zinit([Ljavax/net/ssl/KeyManager;[Ljavax/net/ssl/TrustManager;Ljava/security/SecureRandom;)˜•
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
-%6java.net.URL"java.net.URLØ
-Õ
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
-%7"(java.net.URL#<init>(Ljava/lang/String;)V*
-
-%6java.net.URL*
-
-linkjava.lang.String§
-¤
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java% %(
-urljava.net.URL"__id*
-
-%6java.net.URLôñ
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java&& &(:
-%8java.net.URLConnection"5java.net.URL#openConnection()Ljava/net/URLConnection;*
-
-urljava.net.URL2openConnection()Ì
-É
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java& &(:.
-
-connection javax.net.ssl.HttpsURLConnection"__id*
-
-%8java.net.URLConnectionú÷
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java( ((O
-%9",java.net.URLConnection#setConnectTimeout(I)V*0
-.
-
-connection javax.net.ssl.HttpsURLConnection*
-""2setConnectTimeout(I)¨¥
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java)# )(@%
-%10javax.net.ssl.SSLSocketFactory"Kjavax.net.ssl.SSLContext#getSocketFactory()Ljavax/net/ssl/SSLSocketFactory;*(
-&
-
-contextSsljavax.net.ssl.SSLContext2getSocketFactory()îë
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java) )(A
-%11void"Wjavax.net.ssl.HttpsURLConnection#setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V*0
-.
-
-connection javax.net.ssl.HttpsURLConnection*'
-%
-%10javax.net.ssl.SSLSocketFactory25setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)»¸
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java* *('
-%12void"@java.net.HttpURLConnection#setRequestMethod(Ljava/lang/String;)V*0
-.
-
-connection javax.net.ssl.HttpsURLConnection*
-
-metodojava.lang.String2$setRequestMethod(Ljava/lang/String;)"¥
-q
-g/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ConectorHttpsUtil.java, ,(0
-.
-
-connection javax.net.ssl.HttpsURLConnection:
-metodojava.lang.String:
-linkjava.lang.StringB+)
-'com.baz.lealtad.utils.ConectorHttpsUtil
+tenOfDeathjava.lang.String*
+
+inputjava.lang.String"’
+v
+l/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/ClienteUnicoParserUtil.javay y(
+
+%0java.lang.String:
+inputjava.lang.StringB0".
+,com.baz.lealtad.utils.ClienteUnicoParserUtil

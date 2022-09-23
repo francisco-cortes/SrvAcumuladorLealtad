@@ -1,329 +1,39 @@
 
-zcom.baz.lealtad.utils.CifradorAesUtil#encryptAes(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java ("24*·
-24o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 (5„
-‡
+Ocom.baz.lealtad.utils.CifradorAesUtil#generarHMAC(Ljavax/crypto/SecretKey;[B)[Bo
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaE E("1*„
+1o
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaG G(‹
+Ÿ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 (N
-%0java.util.Base64$Decoder"7java.util.Base64#getDecoder()Ljava/util/Base64$Decoder;*"
-java.util.Base64*
-23*∂
-13o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java% %(>œ
-Ã
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaG G(J
+%0"Bjavax.crypto.Mac#getInstance(Ljava/lang/String;)Ljavax/crypto/Mac;*"
+javax.crypto.Mac*
+""ú
+ô
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java% %(>'
-iv!javax.crypto.spec.IvParameterSpec"__id**
-(
-%13!javax.crypto.spec.IvParameterSpecÊ
-„
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java' '(U
-%15"Hjavax.crypto.Cipher#getInstance(Ljava/lang/String;)Ljavax/crypto/Cipher;*"
-javax.crypto.Cipher*
-""*
-12*≠
-14o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java%5 %(<¡æ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java%% %(4(
-%13!javax.crypto.spec.IvParameterSpec"!javax.crypto.spec.IvParameterSpecÎ
-Ë
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java%! %(=
-%14"-javax.crypto.spec.IvParameterSpec#<init>([B)V**
-(
-%13!javax.crypto.spec.IvParameterSpec*
-
-bitesivbyte[]*
-13* 
-15o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java" "(;À
-»
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java" "(;*
-secureRandomjava.security.SecureRandom"__id*#
-!
-%10java.security.SecureRandom˛˚
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java# #(+
-%12void")java.security.SecureRandom#nextBytes([B)V*,
-*
-secureRandomjava.security.SecureRandom*
-
-bitesivbyte[]2nextBytes([B)*
-14*€
-16o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (<∆
-√
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (<!
-hmacKeyjavax.crypto.SecretKey"__id*'
-%
-%8javax.crypto.spec.SecretKeySpecï
-í
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java! !(G
-bitesivbyte[]"__id*
-""≥∞
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java", "(8!
-%10java.security.SecureRandom"java.security.SecureRandom∆
-√
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java"( "(:
-%11"$java.security.SecureRandom#<init>()V*#
-!
-%10java.security.SecureRandom*
-15*Ø
-17o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (+ºπ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java$ (1%
-%8javax.crypto.spec.SecretKeySpec"javax.crypto.spec.SecretKeySpecÚ
-Ô
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java  (;
-%9"=javax.crypto.spec.SecretKeySpec#<init>([BLjava/lang/String;)V*'
-%
-%8javax.crypto.spec.SecretKeySpec*
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaG G(K
+hmacjavax.crypto.Mac"__id*
 
-%7*
-""*
-16*’
-18o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 (Z◊‘
+%0ÖÇ
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 (Z
-%7"%java.util.Base64$Decoder#decode([B)[B* 
-
-%5java.util.Base64$Decoder*
-
-%62
-decode([B)*
-17*Ù
-19o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java ()ˆÛ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (Y
-%6"/java.lang.String#getBytes(Ljava/lang/String;)[B*#
-!
-hmacKeyBase64java.lang.String*
-""2getBytes(Ljava/lang/String;)*
-18*É
-3o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 2(`"å
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 2(`
-
-%25java.lang.String*∆
-4o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 1(^∞
-≠
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 1(^#
-iv_cipherText_hmac_base64byte[]"__id*
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaH H(
 
-%24byte[]üú
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 2(
-%25java.lang.String"java.lang.Stringı
-Ú
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 2(_
-%26".java.lang.String#<init>([BLjava/lang/String;)V*
-
-%25java.lang.String*%
-#
-iv_cipherText_hmac_base64byte[]*
-""*
-3*ı
-5o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1J 1(\˘ˆ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1/ 1(]
-%24byte[]"%java.util.Base64$Encoder#encode([B)[B*!
-
-%23java.util.Base64$Encoder*
-
-iv_cipherText_hmacbyte[]2
-encode([B)*
-4*å
-6o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java/ /(N©
-¶
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java/ /(N
-iv_cipherText_hmacbyte[]"__id*
-
-%22byte[]‰
-·
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1/ 1(B
-%23java.util.Base64$Encoder"7java.util.Base64#getEncoder()Ljava/util/Base64$Encoder;*"
-java.util.Base64*
-5*µ
-7o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java. .(>õ
-ò
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java. .(>
-hmacbyte[]"__id*
-
-%21byte[]õ
-ò
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java/( /(M
-%22byte[]">com.baz.lealtad.utils.CifradorAesUtil#concatenateBytes([B[B)[B*)'
-%com.baz.lealtad.utils.CifradorAesUtil*
-
-iv_cipherTextbyte[]*
-
-hmacbyte[]*
-6*‚
-8o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java- -(I§
-°
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java- -(I
-iv_cipherTextbyte[]"__id*
-
-%20byte[]ø
-º
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java. .(=
-%21byte[]"Ocom.baz.lealtad.utils.CifradorAesUtil#generarHMAC(Ljavax/crypto/SecretKey;[B)[B*)'
-%com.baz.lealtad.utils.CifradorAesUtil*#
-!
-hmacKeyjavax.crypto.SecretKey*
-
-iv_cipherTextbyte[]*
-7*ª
-9o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java, ,(:°
-û
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java, ,(:
-
-cipherTextbyte[]"__id*
-
-%19byte[]õ
-ò
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java-# -(H
-%20byte[]">com.baz.lealtad.utils.CifradorAesUtil#concatenateBytes([B[B)[B*)'
-%com.baz.lealtad.utils.CifradorAesUtil*
-
-bitesivbyte[]*
-
-
-cipherTextbyte[]*
-8*©
-20o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (5≈
-¬
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (5 
-aesKeyjavax.crypto.SecretKey"__id*'
-%
-%3javax.crypto.spec.SecretKeySpec„
-‡
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java2 (O
-%5java.util.Base64$Decoder"7java.util.Base64#getDecoder()Ljava/util/Base64$Decoder;*"
-java.util.Base64*
-19*Ø
-21o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (+ºπ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java# (0%
-%3javax.crypto.spec.SecretKeySpec"javax.crypto.spec.SecretKeySpecÚ
-Ô
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (4
-%4"=javax.crypto.spec.SecretKeySpec#<init>([BLjava/lang/String;)V*'
-%
-%3javax.crypto.spec.SecretKeySpec*
-
-%2*
-""*
-20*É
-10o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java* *(Zò
-ï
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java* *(Z
-	plainTextbyte[]"__id*
-
-%18ÎË
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java,  ,(9
-%19byte[]"!javax.crypto.Cipher#doFinal([B)[B*
+%1void"+javax.crypto.Mac#init(Ljava/security/Key;)V*
+
+hmacjavax.crypto.Mac*
 
-cipherjavax.crypto.Cipher*
+keyjavax.crypto.SecretKey2init(Ljava/security/Key;)‚ﬂ
+o
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaI I(&
+%2byte[]"javax.crypto.Mac#doFinal([B)[B*
+
+hmacjavax.crypto.Mac*
 
-	plainTextbyte[]2doFinal([B)*
-9*’
-22o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 (Y◊‘
+	hmacInputbyte[]2doFinal([B)"Å
 o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java1 (Y
-%2"%java.util.Base64$Decoder#decode([B)[B* 
-
-%0java.util.Base64$Decoder*
-
-%12
-decode([B)*
-21*Ú
-11o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java* *()ÙÒ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java* *(Y
-%18"/java.lang.String#getBytes(Ljava/lang/String;)[B* 
-
-
-valorCampojava.lang.String*
-""2getBytes(Ljava/lang/String;)*
-10*Û
-23o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java ((ıÚ
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java (X
-%1"/java.lang.String#getBytes(Ljava/lang/String;)[B*"
- 
-aesKeyBase64java.lang.String*
-""2getBytes(Ljava/lang/String;)*
-22*÷
-12o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java' '(V¢
-ü
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java' '(V
-cipherjavax.crypto.Cipher"__id*
-
-%15é
-ã
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java( ((+
-
-%16int"__id*
-""¢ü
-o
-e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java( ((8
-%17void"Zjavax.crypto.Cipher#init(ILjava/security/Key;Ljava/security/spec/AlgorithmParameterSpec;)V*
-
-cipherjavax.crypto.Cipher*
-
-
-%16int*"
- 
-aesKeyjavax.crypto.SecretKey*)
-'
-iv!javax.crypto.spec.IvParameterSpec2Einit(ILjava/security/Key;Ljava/security/spec/AlgorithmParameterSpec;)*
-11: 
-aesKeyBase64java.lang.String:!
-hmacKeyBase64java.lang.String:
-
-valorCampojava.lang.StringB)'
+e/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.javaI I('
+
+%2byte[]:
+keyjavax.crypto.SecretKey:
+	hmacInputbyte[]B)'
 %com.baz.lealtad.utils.CifradorAesUtil
