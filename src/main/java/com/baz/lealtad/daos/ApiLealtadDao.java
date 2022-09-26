@@ -2,6 +2,7 @@ package com.baz.lealtad.daos;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.logger.LogServicio;
+import com.baz.lealtad.utils.ConectorHttpsUtil;
 import com.baz.lealtad.utils.GetCertUtil;
 import org.json.JSONObject;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 public class ApiLealtadDao {
 
     private static final GetCertUtil certGetter = new GetCertUtil();
+    private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
 
     private static final String OK = "0";
     private static final String BAD = "1";
@@ -28,21 +30,9 @@ public class ApiLealtadDao {
             throws Exception {
         log.setBegTimeMethod("ApiLealtadDao.getAcumulaciones", ParametrerConfiguration.SYSTEM_NAME);
 
-        TrustManagerFactory tmf = null;
-
         String[] respuesta = new String[3];
         String bandera;
 
-        try {
-            tmf = certGetter.getCert(log);
-        }
-        catch (Exception e){
-            log.exepcion(e, "No se pudo obtener el certificado");
-        }
-
-        SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
-        assert tmf != null;
-        contextSsl.init(null, tmf.getTrustManagers(), null);
 
         String params = "{" +
                 "\"idTipoCliente\":" + parameters.get("idTipoCliente") + "," +
@@ -54,13 +44,8 @@ public class ApiLealtadDao {
                 "}";
 
         HttpsURLConnection connection;
-        URL url = new URL(ParametrerConfiguration.getApiAcumulacionesUrl());
-        connection = (HttpsURLConnection) url.openConnection();
 
-        connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
-
-        connection.setRequestMethod("POST");
+        connection = con.crearConexion("POST", ParametrerConfiguration.getApiAcumulacionesUrl(),log);
         connection.setRequestProperty("Content-Type", "application/json");
         connection.setRequestProperty("x-idAcceso", idAcceso);
         connection.setRequestProperty("Authorization","Bearer " + token);

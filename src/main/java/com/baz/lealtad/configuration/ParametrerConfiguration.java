@@ -184,6 +184,6 @@ public final class ParametrerConfiguration {
 
     public static void setSimetricasUrl(String simetrica){ simetricasUrl = simetrica; }
 
-    public static void getApiAcumulacionesUrl(String piUrl){ apiAcumulacionesUrl = piUrl; }
+    public static void setApiAcumulacionesUrl(String piUrl){ apiAcumulacionesUrl = piUrl; }
 
 }
