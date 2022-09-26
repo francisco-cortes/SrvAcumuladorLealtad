@@ -1,12 +1,11 @@
 package com.baz.lealtad.utils;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FabricaDaoUtilTest {
@@ -21,13 +20,14 @@ public class FabricaDaoUtilTest {
     ParametrerConfiguration.setOracleDatabaseU("C3Multimarcas");
   }
 
-  @DisplayName("Single test successful")
+  @DisplayName("Prueba Unitaria sobre FabricaDao")
   @Test
   public void testObtenerConexion() throws Exception {
     FabricaDaoUtil fabricaDaoUtil = new FabricaDaoUtil();
-    assertEquals(null, fabricaDaoUtil.obtenerConexion());
+    assertNotNull(fabricaDaoUtil.obtenerConexion());
   }
 
+  @DisplayName("Prueba Unitaria sobre exepcion FabricaDao")
   @Test
   void shouldThrowException() throws Exception {
     FabricaDaoUtil fabricaDaoUtil = new FabricaDaoUtil();

@@ -166,4 +166,24 @@ public final class ParametrerConfiguration {
         oracleDatabaseP = p;
     }
 
+    public static void setOracleDatabaseStoreprocedure(String outSp ){
+        oracleDatabaseStoreprocedure = outSp;
+    }
+
+    public static void setOracleDatabaseInStoreprocedure(String inSp){ oracleDatabaseInStoreprocedure = inSp; }
+
+    public static void setTokenUrl(String tokeUrl){ tokenUrl = tokeUrl; }
+
+    public static void setConsumerSecret(String userConsumer){ consumerSecret = userConsumer; }
+
+    public static void setConsumerKey(String pConsumer){ consumerKey = pConsumer; }
+
+    public static void setAsimetricasUrl(String asimetrica){
+        asimetricasUrl = asimetrica;
+    }
+
+    public static void setSimetricasUrl(String simetrica){ simetricasUrl = simetrica; }
+
+    public static void getApiAcumulacionesUrl(String piUrl){ apiAcumulacionesUrl = piUrl; }
+
 }

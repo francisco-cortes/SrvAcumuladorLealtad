@@ -14,30 +14,33 @@ import java.security.NoSuchAlgorithmException;
 public class ConectorHttpsUtil {
 
   private static final GetCertUtil certGetter = new GetCertUtil();
+  private static SkipSslContextUtil sslInContext = new SkipSslContextUtil();
 
   public HttpsURLConnection crearConexion (String metodo, String link, LogServicio log)
     throws NoSuchAlgorithmException, KeyManagementException, IOException {
 
     HttpsURLConnection connection = null;
     TrustManagerFactory tmf = null;
+    SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
+    URL url = new URL(link);
+    connection = (HttpsURLConnection) url.openConnection();
+    connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
+    connection.setRequestMethod(metodo);
 
     try {
       tmf = certGetter.getCert(log);
     }catch (Exception e){
       log.exepcion(e,"ERROR No se pudo obtener el certificado");
+    }finally {
+      if(tmf == null){
+        connection.setSSLSocketFactory(sslInContext.insecureContext().getSocketFactory());
+      }
+      else {
+        //assert tmf != null;
+        contextSsl.init(null, tmf.getTrustManagers(), null);
+        connection.setSSLSocketFactory(contextSsl.getSocketFactory());
+      }
     }
-
-    SSLContext contextSsl = SSLContext.getInstance("TLSv1.2");
-    assert tmf != null;
-    contextSsl.init(null, tmf.getTrustManagers(), null);
-
-    URL url = new URL(link);
-    connection = (HttpsURLConnection) url.openConnection();
-
-    connection.setConnectTimeout(ParametrerConfiguration.TIME_OUT_MILLISECONDS);
-    connection.setSSLSocketFactory(contextSsl.getSocketFactory());
-    connection.setRequestMethod(metodo);
-
     return connection;
   }
 
