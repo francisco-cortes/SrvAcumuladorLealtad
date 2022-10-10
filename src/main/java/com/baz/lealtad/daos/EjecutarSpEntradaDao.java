@@ -8,98 +8,146 @@ import oracle.jdbc.OracleTypes;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Map;
+
+/**
+ * EjecutarSpEntradaDao.java
+ * Descrpcion: Se encarga de realizar la conexion y el statement para el segundo sp
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
 
 public class EjecutarSpEntradaDao {
 
-    private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+  /*
+  Crear conexion a base de dato con FabricaDao
+   */
+  private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+  /*
+  Constantes
+   */
+  private static final String SERVICE_NAME = "EjecutarSpEntradaDao.ejecutarSpEntrada";
 
-    public void ejecutarSpEntrada(Map<String, Object> parameters, String folioPremia,
-                                  String mensaje, String bandera, LogServicio log){
-        log.setBegTimeMethod("EjecutarSpEntradaDao.ejecutarSpEntrada", ParametrerConfiguration.SYSTEM_NAME);
+  /**
+   * Metodo ejecutarSPEntrada
+   * Descrpcion: realiza la invocacion del sp
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Params: parameters(Map), folioPremia(String), mensaje(String), log(LogServisio
+   **/
 
-        final int idTipoCliente = 1, importe = 2 , sucursal = 3, fecha = 4,
-                negocio = 5, tipoOperacion = 6, origenTransaccion = 7,
-                paisId = 8, folioTransaccion = 9, idCliente = 10, idOperacion = 11,
-                folio = 12, comentario = 13, usuario = 14, flag = 15,
-                respuesta1 = 16, respuesta2 = 17;
+  public String ejecutarSpEntrada(Map<String, Object> parameters, String folioPremia,
+                                String mensaje, String bandera, LogServicio log){
+    String resp = "OPERACION EXITOSA";
+    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    /*
+    Constantes para el indice de los objetos del SP
+     */
+    final int ID_TIPO_CLIENTE = 1;
+    final int IMPORTE = 2;
+    final int SUCURSAL = 3;
+    final int FECHA = 4;
+    final int NEGOCIO = 5;
+    final int TIPO_OPERACION = 6;
+    final int ORIGEN_TRANSACCION = 7;
+    final int PAIS_ID = 8;
+    final int FOLIO_TRANSACCION = 9;
+    final int ID_CLIENTE = 10;
+    final int ID_OPERACION = 11;
+    final int FOLIO = 12;
+    final int COMENTARIO = 13;
+    final int USUARIO = 14;
+    final int FLAG = 15;
+    final int RESPUESTA_1 = 16;
+    final int RESPUESTA_2 = 17;
 
-        Connection conexion = null;
+    /*
+    inizializacion de conexion
+     */
+    Connection conexion = null;
+    CallableStatement declaracion = null;
 
-        CallableStatement declaracion = null;
+    try {
+      /*
+      crea conexion con fabrica dao
+       */
+      conexion = fabricaDao.obtenerConexion();
+      /*
+      crea declaracion statemen
+       */
+      declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseInStoreprocedure());
 
-        try {
+      //tipo cliente
+      declaracion.setInt(ID_TIPO_CLIENTE, (Integer) parameters.get("idTipoCliente"));
+      //importe
+      declaracion.setDouble (IMPORTE, (Double) parameters.get("importe") );
+      //sucursal
+      declaracion.setInt(SUCURSAL, (Integer) parameters.get("sucursal"));
+      //fecha de operacion
+      declaracion.setDate(FECHA, (Date) parameters.get("fechaOperacion"));
+      //negocio
+      declaracion.setString(NEGOCIO, (String) parameters.get("negocio"));
+      //tipo operacion
+      declaracion.setString(TIPO_OPERACION, (String) parameters.get("tipoOperacion"));
+      //origine transaccion
+      declaracion.setInt(ORIGEN_TRANSACCION, (Integer) parameters.get("origenTransaccion"));
+      //pais id
+      declaracion.setInt(PAIS_ID, (Integer) parameters.get("paisId"));
+      // folio Transaccion
+      declaracion.setString(FOLIO_TRANSACCION, (String) parameters.get("folioTransaccion") );
+      // id cliente
+      declaracion.setString(ID_CLIENTE, (String) parameters.get("idCliente") );
+      // id operacion
+      declaracion.setInt(ID_OPERACION, (Integer) parameters.get("idOperacion"));
+      // folio premia
+      declaracion.setString(FOLIO, folioPremia);
+      // mensaje de lealtad
+      declaracion.setString(COMENTARIO, mensaje);
+      // usuario de ultima modificacion
+      declaracion.setString(USUARIO, ParametrerConfiguration.NOMBRE_JAR);
+      // bien o mal
+      declaracion.setInt(FLAG, Integer.parseInt(bandera));
+      //salida uno
+      declaracion.registerOutParameter(RESPUESTA_1, OracleTypes.VARCHAR);
+      //salida dos
+      declaracion.registerOutParameter(RESPUESTA_2, OracleTypes.VARCHAR);
+      /*
+      ejecuta el sp con la configuracion previa
+       */
+      declaracion.executeQuery();
+      /*
+      si la respuesta es null o no dice operacion EXITOSA se considera un fallo
+       */
+      if(declaracion.getString(RESPUESTA_2) == null ||
+        !"OPERACION EXITOSA.".contains(declaracion.getString(RESPUESTA_2)) ) {
+        log.mensaje(SERVICE_NAME,
+          "ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
+        resp = "OPERRACION FALLIDA";
+      }
 
-            conexion = fabricaDao.obtenerConexion();
-
-            try {
-
-                declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseInStoreprocedure());
-
-                declaracion.setInt(idTipoCliente, (Integer) parameters.get("idTipoCliente"));//tipo cliente
-                declaracion.setDouble (importe, (Double) parameters.get("importe") );//importe
-                declaracion.setInt(sucursal, (Integer) parameters.get("sucursal"));//sucursal
-                declaracion.setDate(fecha, (Date) parameters.get("fechaOperacion"));
-                declaracion.setString(negocio, (String) parameters.get("negocio"));//negocio
-                declaracion.setString(tipoOperacion, (String) parameters.get("tipoOperacion"));//tipo operacion
-                declaracion.setInt(origenTransaccion, (Integer) parameters.get("origenTransaccion"));//origine transaccion
-                declaracion.setInt(paisId, (Integer) parameters.get("paisId"));//pais id
-                declaracion.setString(folioTransaccion, (String) parameters.get("folioTransaccion") );// folio Transaccion
-                declaracion.setString(idCliente, (String) parameters.get("idCliente") );// id cliente
-                declaracion.setInt(idOperacion, (Integer) parameters.get("idOperacion"));// id operacion
-                declaracion.setString(folio, folioPremia);// folio premia
-                declaracion.setString(comentario, mensaje);
-                declaracion.setString(usuario, ParametrerConfiguration.NOMBRE_JAR);
-                declaracion.setInt(flag, Integer.parseInt(bandera));
-                declaracion.registerOutParameter(respuesta1, OracleTypes.VARCHAR);
-                declaracion.registerOutParameter(respuesta2, OracleTypes.VARCHAR);
-
-                declaracion.executeQuery();
-
-                if(declaracion.getString(respuesta2) == null ||
-                  !declaracion.getString(respuesta2).contains("OPERACION EXITOSA.") ) {
-                    log.mensaje("EjecutarSpEntradaDao.ejecutarSpEntrada",
-                    "ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
-
-                }
-            }
-            catch (Exception E){
-
-                log.exepcion(E, "ERROR en BD sp 2");
-
-            }
-            finally {
-
-                try {
-                    assert declaracion != null;
-                    declaracion.close();
-                }
-                catch (Exception e) {
-                    log.exepcion(e,"ERROR al cerrar declaracion sp2");
-                }
-            }
-
-        }
-        catch (Exception excepcion){
-
-            log.exepcion(excepcion, "ERROR en BD sp2");
-
-        }
-        finally {
-
-            try {
-
-                assert conexion != null;
-                conexion.close();
-
-            }
-
-            catch (Exception e) {
-
-                log.exepcion(e,"No se pudo cerrar Conexion sp2");
-                
-            }
-        }
     }
+    catch (ClassNotFoundException | SQLException e) {
+      /*
+      sql exepcion
+       */
+      log.exepcion(e,"Error en conexion a SP2");
+    }
+    finally {
+      try {
+        /*
+        evitar conexiones nulas
+         */
+        assert conexion != null;
+        assert declaracion != null;
+        /*
+        cerrar conexiones
+         */
+        fabricaDao.cerrarConexionSinResult(conexion, declaracion);
+      }
+      catch (SQLException e) {
+        log.exepcion(e,"Error en conexion a SP2");
+      }
+    }
+    return resp;
+  }
 
 }

@@ -5,136 +5,254 @@ import com.baz.lealtad.logger.LogServicio;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * Cliente UnicoParserUtil
+ * Descrpcion: Clase cambiar el formato de ID Cliente y poder ser procesado por la api lealtad
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
 public class ClienteUnicoParserUtil {
+  /*
+  Constantes globales
+   */
+  private static final String SERVICE_NAME = "ClienteUnicoParserUtil.parsear";
+  private static final int ZERO = 0;
+  private static final int ONE = 1;
+  private static final int TWO = 2;
+  private static final int THREE = 3;
+  private static final int FOUR = 4;
+  private static final int EIGHT = 8;
+  private static final int NINE = 9;
+  private static final int TEN = 10;
+  private static final int TWELVE = 12;
+  private static final int TWELVE_PLUS_ONE = 13;
+  private static final int SIXTEN = 16;
+  private static final int HUNDRED = 100;
+  private static final int THOUSAND = 1000;
+  /*
+  Regex
+   */
+  private static final Pattern IDEAL_CU = Pattern.compile("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})");
+  private static final Pattern SEVEN_MORE_DIGITS_DEX = Pattern.compile("(\\d{7,})");
+  private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
+  private static final Pattern SPECIAL_CASE = Pattern.compile("(\\d)-(\\d)-(\\d{4})-(\\d{4,})");
+  private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{4,})");
+
+  /**
+   * parserar
+   * Descrpcion: Metodo principal valida la entrada con las regex definidas para identificar su tipo
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: idcliente(String), log(LogServicio)
+   * returns: String
+   **/
 
   public static String parsear (String idCliente, LogServicio log) {
-    log.setBegTimeMethod("ClienteUnicoParserUtil.parsear", ParametrerConfiguration.SYSTEM_NAME);
-
-    if(idCliente.matches("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})")){
-      return idCliente;
+    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    String newIdCliente = "";
+    //entrada ideal
+    if(IDEAL_CU.matcher(idCliente).matches()){
+      newIdCliente = idCliente;
     }
     else{
-
-      if(idCliente.matches("(\\d{7,})")){
-
-        if(idCliente.matches("(\\d{7,10})")){
-          return idCliente;
-          //return onlyAddTen(idCliente);
+      // solo digitos mayor a 7 digitos
+      if(SEVEN_MORE_DIGITS_DEX.matcher(idCliente).matches()){
+        // digitos de 7 a 10
+        if(SEVEN_TEN_IS_DEX.matcher(idCliente).matches()){
+          newIdCliente = idCliente;
         }
         else {
-          return onlyAddDash(idCliente);
+          // si son mas de 1 0solo se anade guines
+          newIdCliente = onlyAddDash(idCliente);
         }
 
       }
-      else if (idCliente.matches("(\\d)-(\\d)-(\\d{4})-(\\d{4,})")){
+      // caso especial x-x-xxxx-xxxxxx
+      else if (SPECIAL_CASE.matcher(idCliente).matches()){
 
-        return specialCase(idCliente);
+        newIdCliente = specialCase(idCliente);
 
       }
-      else if (idCliente.matches("(\\d)-(\\d{1,4})-(\\d{2,4})-(\\d{4,})")){
-        return specialCase(idCliente);
+      // caosi espeical x-x-x-xxxx-xxxxx
+      else if (IDEAL_SPECIAL_CASE.matcher(idCliente).matches()){
+        newIdCliente = specialCase(idCliente);
       }
       else {
-
-        log.mensaje("ClienteUnicoParserUtil.parsear",
+        //la entrada no puede ser paseada por que no hay concide con ninguna regex
+        log.mensaje(SERVICE_NAME,
           "ERROR no se pudo hallar la forma de la entrada ID Cliente");
-        log.setEndTimeMethod("ClienteUnicoParserUtil.parsear");
-        return idCliente;
+        log.setEndTimeMethod(SERVICE_NAME);
+        newIdCliente = idCliente;
 
       }
     }
+    return newIdCliente;
   }
+
+  /**
+   * specialCase
+   * Descrpcion: elimina en guion separnadolo y reconstrullendo la cadena
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
 
   private static String specialCase(String input){
 
-    String aux = "";
-    String[] separado = new String[6];
+    StringBuilder auxBuild = new StringBuilder();
 
-    if (input.contains("-")){
+    String[] separado = input.split("-");
+    // pais
+    auxBuild.append(specialCasePais(separado[ZERO]));
+    // canal
+    auxBuild.append(specialCaseCanal(separado[ONE]));
+    // sucursal
+    auxBuild.append(specialCaseSucc(separado[TWO]));
+    // folio
+    auxBuild.append(specialCaseLast(separado[THREE]));
+    // construye la cadena
+    return auxBuild.toString();
 
-      separado = input.split("-");
+  }
 
-    }
-    else if (input.contains(" ")){
-      separado = input.split(" ");
+  /**
+   * specialCasepais
+   * Descrpcion: valida el valor pais y retorna valores concatenados
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: paisCero(String)
+   * returns: String
+   **/
+  private static String specialCasePais(String paisCero){
+    int pais = Integer.parseInt(paisCero);
+    /*
+    concatena un 0 a la cadena si es menor a 10
+     */
+    if(pais<TEN){
+      return "0" + paisCero;
     }
     else {
-      //separado[0] = input.substring(1);
-      //separado[1] = input.substring(2);
-      //separado[2] = input.substring(3);
-      //separado[3] = input.substring(4);
+      return paisCero;
     }
+  }
 
-    int pais = Integer.parseInt(separado[0]);
-    if(pais<10){
-      separado[0] = "0" + separado[0];
+  /**
+   * specialCaseCanal
+   * Descrpcion: valida el valor canal y retorna valores concatenados
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: canalOne(String)
+   * returns: String
+   **/
+  private static String specialCaseCanal(String canalOne){
+    int canal = Integer.parseInt(canalOne);
+    /*
+    concatena un 0 si el valor es menor a 10
+     */
+    if(canal<TEN){
+      return  "0" + canalOne + "-";
     }
+    else {
+      return canalOne + "-";
+    }
+  }
 
-    int canal = Integer.parseInt(separado[1]);
-    if(canal<10){
-      separado[1] = "0" + separado[1] + "-";
+  /**
+   * specialCaseSucc
+   * Descrpcion: valida el valor succursal y retorna valores concatenados
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: sucursalTwo(String)
+   * returns: String
+   **/
+  private static String specialCaseSucc(String sucursalTwo){
+    /*
+    concatena 3 ceros si es menor a 10
+     */
+    int sucursal = Integer.parseInt(sucursalTwo);
+    if (sucursal < TEN){
+      return  "0" + "0" + "0" + sucursalTwo + "-";
     }
+    /*
+    concatena 2 ceros si es meno a 100
+     */
+    else if (sucursal < HUNDRED){
+      return  "0" + "0" + sucursalTwo + "-";
+    }
+    /*
+    concatena un 0 si es menor a 1000
+     */
+    else if (sucursal < THOUSAND){
+      return  "0" + sucursalTwo + "-";
+    }
+    else {
+      return sucursalTwo + "-";
+    }
+  }
 
-    int sucursal = Integer.parseInt(separado[2]);
-    if (sucursal < 10){
-      separado[2] = "0" + "0" + "0" + separado[2] + "-";
+  /**
+   * specialCaseLast
+   * Descrpcion: valida el valor de la ultima parte de la cadena y retorna valores concatenados
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: paisCero(String)
+   * returns: String
+   **/
+  private static String specialCaseLast(String lastThree){
+    /*
+    obtiene el tamano de la uultima parte del arrgglo
+     */
+    int lastLenght = lastThree.length();
+    String aux = "";
+    /*
+    si el tamano es meno o igual a 8 inserta un guion
+     */
+    if (lastLenght <= EIGHT){
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(FOUR, "-");
+      aux = str.toString();
     }
-    else if (sucursal < 100){
-      separado[2] = "0" + "0" + separado[2] + "-";
+    /*
+    si el tamano es menor o igual a 12 inserta 2 guiones
+     */
+    else if (lastLenght <= TWELVE){
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(FOUR,"-");
+      str.insert(NINE,"-");
+      aux = str.toString();
     }
-    else if (sucursal < 1000){
-      separado[2] = "0" + separado[2] + "-";
+    /*
+    si el tamano es menor o igula a 16 inserta 3 guiones
+     */
+    else if (lastLenght <= SIXTEN){
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(FOUR,"-");
+      str.insert(NINE,"-");
+      str.insert(14,"-");
+      aux = str.toString();
     }
-    else if (sucursal < 10000){
-      separado[2] = separado[2] + "-";
-    }
-
-    int lastLenght = separado[3].length();
-    if (lastLenght <= 8){
-      StringBuilder str = new StringBuilder(separado[3]);
-      str.insert(4, "-");
-      separado[3] = str.toString();
-    }
-    else if (lastLenght <= 12){
-      StringBuilder str = new StringBuilder(separado[3]);
-      str.insert(4,"-");
-      str.insert(9,"-");
-      separado[3] = str.toString();
-    }
-    else if (lastLenght <= 16){
-      StringBuilder str = new StringBuilder(separado[3]);
-      str.insert(4,"-");
-      str.insert(9,"-");
-      str.insert(13,"-");
-      separado[3] = str.toString();
-    }
-    for(int i = 0; i < separado.length; i++){
-      aux = aux + separado[i];
+    /*
+    si el tamano no se encuentra en los if regresa la cadena igual
+     */
+    else{
+      aux = lastThree;
     }
     return aux;
-
   }
 
-  private static String onlyAddTen(String input){
-    String tenOfDeath = "10";
-    return tenOfDeath + input;
-  }
-
+  /**
+   * onlyAddDash
+   * Descrpcion: Si el tamano de la cadena es mayor a 10 solo agrega un guion cada 4 caracteres de la cadena original
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: paisCero(String)
+   * returns: String
+   **/
   private static String onlyAddDash(String input){
-    Pattern p = Pattern.compile("(.{" + 4 + "})", Pattern.DOTALL);
+    Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);
     Matcher m = p.matcher(input);
     String aux = m.replaceAll("$1" + "-");
     int newLenght = aux.length();
-    String aux2 = "";
     String[] checker = aux.split("");
-    if (checker[checker.length - 1].contains("-")) {
-      newLenght = newLenght - 1;
+    if (checker[checker.length - ONE].contains("-")) {
+      newLenght = newLenght - ONE;
     }
+    StringBuilder auxBuild = new StringBuilder();
     for (int i = 0; i < newLenght; i++) {
-      aux2 = aux2 + checker[i];
+      auxBuild.append(checker[i]);
     }
-    return aux2;
+    return auxBuild.toString();
   }
 
 }

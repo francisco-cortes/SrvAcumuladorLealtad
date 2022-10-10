@@ -8,12 +8,14 @@ import java.util.HashMap;
 
 public class LogServicio {
 
-  private static final Logger serviceLogger = LogManager.getLogger(LogServicio.class);
+  private static final Logger LOGGER = LogManager.getLogger(LogServicio.class);
+  private static final String TIEMPO_CON = "tiempo";
 
-  private StringBuilder sb = null;
-  private HashMap<String, BeanLog> hs = null;
+  private StringBuilder sb;
+  private HashMap<String, BeanLog> hs;
   /**
-   * Solo en caso de ser necesario excluir una palabra que genere falsos positivos en respuestas exitosas, sera necesario agregarla a la lista.
+   * Solo en caso de ser necesario excluir una palabra que genere falsos positivos en respuestas exitosas,
+   * sera necesario agregarla a la lista.
    * */
   private static final String[] arrExclusions = { "WARN", "ERROR", "SEVERE", "EXCEPTION" };
 
@@ -28,48 +30,32 @@ public class LogServicio {
 
   /**
    * Funcion para inicializar tiempo de consumo.
-   * @param service_name: Nombre del servicio que se consume.
-   * @param system_name : Nombre del sistema.
+   * @param serviceName: Nombre del servicio que se consume.
+   * @param systemName : Nombre del sistema.
    * @return: void.
    */
-  public void setBegTimeMethod(String service_name, String system_name) {
-    hs.put(service_name, new BeanLog(service_name
-      ,system_name
+  public void setBegTimeMethod(String serviceName, String systemName) {
+    hs.put(serviceName, new BeanLog(serviceName
+      ,systemName
       ,System.currentTimeMillis())
     );
   }
 
   /**
    * Funcion para finalizar tiempo de consumo.
-   * @param service_name: Nombre del servicio que se consume.
+   * @param serviceName: Nombre del servicio que se consume.
    * @return: void.
    */
-  public void setEndTimeMethod(String service_name) {
-    if (null != hs.get(service_name)) {
+  public void setEndTimeMethod(String serviceName) {
+    if (null != hs.get(serviceName)) {
 
-      long tiempoService = 0L;
+      long tiempoService;
 
-      tiempoService  = System.currentTimeMillis() - hs.get(service_name).getTime();
+      tiempoService  = System.currentTimeMillis() - hs.get(serviceName).getTime();
 
-      hs.get(service_name).setTime(tiempoService);
-      hs.get(service_name).setTimeTotal(tiempoService);
-      hs.get(service_name).setTerminateTime(true);
-    }
-  }
-
-  public void setEndTimeMethod(String service_name, String service_name_anidado) {
-    if (null != hs.get(service_name) && null != hs.get(service_name_anidado)) {
-      long tiempoServiceReal = 0L;
-      long tiempototal = 0L;
-
-      tiempoServiceReal = (System.currentTimeMillis() - hs.get(service_name).getTime()) - hs.get(service_name_anidado).getTimeTotal();
-      tiempototal =  hs.get(service_name_anidado).getTimeTotal() + tiempoServiceReal;
-
-      hs.get(service_name).setTime(tiempoServiceReal);
-      hs.get(service_name).setTimeTotal(tiempototal);
-      hs.get(service_name).setTerminateTime(true);
-    } else {
-      setEndTimeMethod(service_name);
+      hs.get(serviceName).setTime(tiempoService);
+      hs.get(serviceName).setTimeTotal(tiempoService);
+      hs.get(serviceName).setTerminateTime(true);
     }
   }
 
@@ -90,7 +76,8 @@ public class LogServicio {
       sb.append(bl.getTime());
       if (hs.get( (hs.keySet().toArray())[ hs.size()-1 ])== bl) {
         sb.append("}");
-      }else{
+      }
+      else{
         sb.append("},");
       }
     }
@@ -126,9 +113,9 @@ public class LogServicio {
    * @param msg: Comlemento informativo, para el mensaje final.
    * @return: void.
    */
-  public void exepcion(Exception e, String msg) {
+  public void exepcion(Throwable e, String msg) {
 
-    ThreadContext.put("tiempo", "0");
+    ThreadContext.put(TIEMPO_CON, "0");
 
     StringBuilder error = new StringBuilder();
 
@@ -146,22 +133,29 @@ public class LogServicio {
             error.append(" LINEA -->> ");
             error.append(e.getStackTrace()[i].getLineNumber());
             error.append(" EXCEPTION -->> ");
-            error.append(e.toString().replace("\n", " ").replace("\r", " ").replace('\"', '\'').trim());
+            error.append(e.toString().replace("\n", " ")
+              .replace("\r", " ")
+              .replace('\"', '\'').trim());
             error.append(msg == null ? "" : " MENSAJE -->> " + msg.trim());
             break;
           }
         }
-      } else {
+      }
+      else {
         error.append("Exception: ");
-        error.append(e.toString().replace('\n', '_').replace('\r', '_'));
-        error.append(msg == null ? "" : " MENSAJE -->> " + msg.replace('\n', '_').replace('\r', '_').replace('\"', '\'').trim());
+        error.append(e.toString()
+          .replace('\n', '_')
+          .replace('\r', '_'));
+        error.append(msg == null ? "" : " MENSAJE -->> " + msg.replace('\n', '_')
+          .replace('\r', '_')
+          .replace('\"', '\'').trim());
       }
 
-    } catch (Exception e1) {
-
-      serviceLogger.error(e1.toString().trim());
     }
-    serviceLogger.error(error.toString().trim());
+    catch (Exception e1) {
+      LOGGER.error(e1);
+    }
+    LOGGER.error(error.toString().trim());
   }
 
   /**
@@ -182,24 +176,11 @@ public class LogServicio {
       msg = msg.replace(str, " T_T");
     }
 
-    ThreadContext.put("tiempo", getTimeTotal(servicio));
+    ThreadContext.put(TIEMPO_CON, getTimeTotal(servicio));
     ThreadContext.put("servicios", getServiceFotmat());
-    serviceLogger.info(msg.replace('\n', '_').replace('\r', '_').replace("error", "incidencia").replace("Error", "Incidencia"));
-    ThreadContext.clearAll();
-  }
-
-
-  /**
-   *
-   * @param servicio
-   * @param msg
-   */
-  public void tramaSocio(String servicio, String msg) {
-
-    ThreadContext.put("servicios",'\"'+ servicio + '\"');
-    ThreadContext.put("tiempo", (System.currentTimeMillis() - hs.get(servicio).getTime())+"");
-    serviceLogger.info(msg.replace('\n', '_').replace('\r', '_').replace('\"', '\''));
-
+    LOGGER.info(msg.replace('\n', '_').replace('\r', '_')
+      .replace("error", "incidencia")
+      .replace("Error", "Incidencia"));
     ThreadContext.clearAll();
   }
 

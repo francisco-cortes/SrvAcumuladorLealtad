@@ -1,5 +1,10 @@
 package com.baz.lealtad.configuration;
 
+/**
+ * ParameterConfiguracion.java
+ * Descrpcion: Clase  para cargar las configuraciones o propiedades par el funcionamiento del jar
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,183 +12,321 @@ import java.util.Properties;
 
 public final class ParametrerConfiguration {
 
-    public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
+  /*
+  Usuario en BD y nombre de aplicativo
+   */
+  public static final String NOMBRE_JAR = "SrvAcumuladorLealtad";
+  /*
+  Separador de archivos = /
+   */
+  private static final String FILE_SEPARATOR = "file.separator";
+  /*
+  Ruta donde se aloja el jar
+   */
+  private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
+    + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "config" + System.getProperty(FILE_SEPARATOR)
+    + "SrvAcumuladorLealtad.properties";
+  /*
+  Ruta del certificado para conexion HTTPS a apis internas Baz
+  */
+  public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
+    + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
+  
+  //public static final String CERT_FILE_PATH = "/Users/fcortest/Downloads/certs.cert";
+  /*
+  ip para base de datos oracle
+   */
+  private static String oracleDatabaseIp = "";
+  /*
+  puerto para base de datos oracle
+   */
+  private static String oracleDatabasePort = "";
+  /*
+  nombre para base de datos oracle
+   */
+  private static String oracleDatabaseName = "";
+  /*
+  usuario para base de datos oracle
+   */
+  private static String oracleDatabaseU = "";
+  /*
+  contrase;a para base de datos oracle
+   */
+  private static String oracleDatabaseP = "";
+  /*
+  procedimiento almacenado
+   */
+  private static String oracleDatabaseStoreprocedure = "";
+  /*
+  segundo procedimiento almacenado
+   */
+  private static String oracleDatabaseInStoreprocedure = "";
+  /*
+  UTF 8
+   */
+  public static final String ENCODING_UTF8 = "UTF-8";
+  /*
+  llave AES
+   */
+  public static final String AES_KEY = "AES";
+  /*
+  algoritmo AES
+   */
+  public static final String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
+  /*
+  algoritmo HMAC
+   */
+  public static final String ALGORITHM_HMAC = "HmacSHA256";
+  /*
+  tamano de vector IV
+   */
+  public static final int IV_SIZE = 16;
 
-    private static final String FILE_SEPARATOR = "file.separator";
+  /*
+  Url para obtener el token baz
+   */
+  private static String tokenUrl = "";
+  /*
+  Usuario Consumer para auth2
+   */
+  private static String consumerSecret = "";
+  /*
+  contrasena Consumer para auth2
+   */
+  private static String consumerKey = "";
+  /*
+  url para obtener llaves Asimetricas
+   */
+  private static String asimetricasUrl = "";
+  /*
+  url para obtener llaves simetricas
+   */
+  private static String simetricasUrl = "";
+  /*
+  url para obtener acumulaciones lealtad
+   */
+  private static String apiAcumulacionesUrl = "";
 
-    private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
-            + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "config" + System.getProperty(FILE_SEPARATOR)
-            + "SrvAcumuladorLealtad.properties";
+  public static final String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
+  /*
+  time out para respuestas en milisegundos
+   */
+  public static final int TIME_OUT_MILLISECONDS = 32000;
+  /*
+  codigos menores a 299 son repuestas positivas
+   */
+  public static final int OK_STATUS_CODE_LIMIT = 299;
+  /*
+  constante para salida sistema no pudo cargar algo
+   */
+  public static final int CANT_LOAD_SOMETHING = 1;
+  /*
+  constante para salida de sistema en exepciones
+   */
+  public static final int ERROR_OR_EXCEPTION = 2;
+  /*
+  Nombre del sistema para log
+   */
+  public static final String SYSTEM_NAME = "SrvAcumuladorLealtad";
 
-    public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
-            + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
+  /**
+   * Metodo: loadConfiguration
+   * Descrpcion: metodo para obtener propiedades del archivo SrvAcumuladorLealtad.properties
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
 
-    private static String oracleDatabaseIp = "";
+  public static void loadConfiguration(){
 
-    private static String oracleDatabasePort = "";
+    try {
+      /*
+      carga de archivo properties con un fileInputStream
+      .trim para evitar errores por espacios en propiedades
+       */
+      Properties properties = new Properties();
+      properties.load(new FileInputStream(CONF_FILE_PATH));
 
-    private static String oracleDatabaseName = "";
+      oracleDatabaseIp = properties.getProperty("BASEIP").trim();
 
-    private static String oracleDatabaseU = "";
+      oracleDatabasePort = properties.getProperty("BASEPORT").trim();
 
-    private static String oracleDatabaseP = "";
+      oracleDatabaseName = properties.getProperty("BASENAME").trim();
 
-    private static String oracleDatabaseStoreprocedure = "";
+      oracleDatabaseU = properties.getProperty("BASEUSR").trim();
 
-    private static String oracleDatabaseInStoreprocedure = "";
+      oracleDatabaseP = properties.getProperty("BASEPWORD").trim();
 
-    public static final String ENCODING_UTF8 = "UTF-8";
+      oracleDatabaseStoreprocedure = properties.getProperty("BASEPROCEDURE").trim();
 
-    public static final String AES_KEY = "AES";
+      oracleDatabaseInStoreprocedure = properties.getProperty("BASEINPROCEDURE").trim();
 
-    public static final String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
+      tokenUrl = properties.getProperty("TOKENURL").trim();
 
-    public static final String ALGORITHM_HMAC = "HmacSHA256";
+      consumerSecret = properties.getProperty("CONSUMER").trim();
 
-    public static final int IV_SIZE = 16;
+      consumerKey = properties.getProperty("CONSUMERKEY").trim();
 
-    private static String tokenUrl = "";
+      asimetricasUrl = properties.getProperty("ASIMETRICASURL").trim();
 
-    private static String consumerSecret = "";
+      simetricasUrl = properties.getProperty("SIMETRICASURL").trim();
 
-    private static String consumerKey = "";
+      apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
 
-    private static String asimetricasUrl = "";
-
-    private static String simetricasUrl = "";
-
-    private static String apiAcumulacionesUrl = "";
-
-    public static final String RSA_PADDING_SCHEME = "RSA/ECB/PKCS1Padding";
-
-    public static final int TIME_OUT_MILLISECONDS = 32000;
-
-    public static final int OK_STATUS_CODE_LIMIT = 299;
-
-    public static final int CANT_LOAD_SOMETHING = 1;
-
-    public static final int ERROR_OR_EXCEPTION = 2;
-
-    public static final String SYSTEM_NAME = "SrvAcumuladorLealtad";
-
-    public static void loadConfiguration(){
-
-        try {
-
-            Properties properties = new Properties();
-            properties.load(new FileInputStream(CONF_FILE_PATH));
-
-            oracleDatabaseIp = properties.getProperty("BASEIP").trim();
-
-            oracleDatabasePort = properties.getProperty("BASEPORT").trim();
-
-            oracleDatabaseName = properties.getProperty("BASENAME").trim();
-
-            oracleDatabaseU = properties.getProperty("BASEUSR").trim();
-
-            oracleDatabaseP = properties.getProperty("BASEPWORD").trim();
-
-            oracleDatabaseStoreprocedure = properties.getProperty("BASEPROCEDURE").trim();
-
-            oracleDatabaseInStoreprocedure = properties.getProperty("BASEINPROCEDURE").trim();
-
-            tokenUrl = properties.getProperty("TOKENURL").trim();
-
-            consumerSecret = properties.getProperty("CONSUMER").trim();
-
-            consumerKey = properties.getProperty("CONSUMERKEY").trim();
-
-            asimetricasUrl = properties.getProperty("ASIMETRICASURL").trim();
-
-            simetricasUrl = properties.getProperty("SIMETRICASURL").trim();
-
-            apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
-
-        } catch (IOException e) {
-            System.out.println ("Hubo un error al cargar las porpiedades: " + e);
-        }
     }
-
-    public static String getOracleDatabaseIp (){
-        return oracleDatabaseIp;
+    catch (IOException e) {
+      /*
+      expecion impresa en consola al punto de llamar esta todavia no se llama al loger
+       */
+      System.out.println ("Hubo un error al cargar las porpiedades: " + e);
     }
+  }
 
-    public static String getOracleDatabasePort () { return oracleDatabasePort;}
+  /**
+   * Seccion Getter
+   * Descrpcion: metodos get para obtener las variables static
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
+  /*
+  get depara la ip de base
+   */
+  public static String getOracleDatabaseIp (){
+    return oracleDatabaseIp;
+  }
+  /*
+  get para el puerto de la base
+ */
+  public static String getOracleDatabasePort () {
+    return oracleDatabasePort;
+  }
+  /*
+  get para la base de datos
+   */
+  public static String getOracleDatabaseName () {
+    return oracleDatabaseName;
+  }
+  /*
+  get para el usuario de base de datos
+   */
+  public static String getOracleDatabaseU (){
+    return oracleDatabaseU;
+  }
+  /*
+  get para la contrase;a de base
+   */
+  public static String getOracleDatabaseP(){
+    return oracleDatabaseP;
+  }
+  /*
+  get primer sp
+   */
+  public static String getOracleDatabaseStoreprocedure(){
+    return oracleDatabaseStoreprocedure;
+  }
+  /*
+  get segundo sp
+   */
+  public static String getOracleDatabaseInStoreprocedure(){
+    return oracleDatabaseInStoreprocedure;
+  }
+  /*
+  get para url de TOKEN
+   */
+  public static String getTokenUrl(){
+    return tokenUrl;
+  }
+  /*
+  get para credenical de api
+   */
+  public static String getConsumerSecret(){
+    return consumerSecret;
+  }
+  /*
+  gewt para credencial de api
+   */
+  public static String getConsumerKey(){
+    return consumerKey;
+  }
+  /*
+  get para url de llaves asimetricas
+   */
+  public static String getAsimetricasUrl(){
+    return asimetricasUrl;
+  }
+  /*
+  getp para url de simetricas
+   */
+  public static String getSimetricasUrl(){
+    return simetricasUrl;
+  }
+  /*
+  get para url de acumulaciones
+   */
+  public static String getApiAcumulacionesUrl(){
+    return apiAcumulacionesUrl;
+  }
 
-    public static String getOracleDatabaseName () { return oracleDatabaseName;}
+  /**
+   * Fin de seccion Getters
+   **/
 
-    public static String getOracleDatabaseU (){
-        return oracleDatabaseU;
-    }
+  /**
+   * Seccion Setter
+   * Descrpcion: metodos getter usados por las clases de test
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
+  public static void setOracleDatabaseIp (String ip){
+    oracleDatabaseIp = ip;
+  }
 
-    public static String getOracleDatabaseP(){
-        return oracleDatabaseP;
-    }
+  public static void setOracleDatabasePort (String port) {
+    oracleDatabasePort = port;
+  }
 
-    public static String getOracleDatabaseStoreprocedure(){
-        return oracleDatabaseStoreprocedure;
-    }
+  public static void setOracleDatabaseName (String name) {
+    oracleDatabaseName = name;
+  }
 
-    public static String getOracleDatabaseInStoreprocedure(){
-        return oracleDatabaseInStoreprocedure;
-    }
+  public static void setOracleDatabaseU (String user){
+    oracleDatabaseU = user;
+  }
 
-    public static String getTokenUrl(){
-        return tokenUrl;
-    }
+  public static void setOracleDatabaseP(String p){
+    oracleDatabaseP = p;
+  }
 
-    public static String getConsumerSecret(){
-        return consumerSecret;
-    }
+  public static void setOracleDatabaseStoreprocedure(String outSp ){
+    oracleDatabaseStoreprocedure = outSp;
+  }
 
-    public static String getConsumerKey(){
-        return consumerKey;
-    }
+  public static void setOracleDatabaseInStoreprocedure(String inSp){
+    oracleDatabaseInStoreprocedure = inSp;
+  }
 
-    public static String getAsimetricasUrl(){
-        return asimetricasUrl;
-    }
+  public static void setTokenUrl(String tokeUrl){
+    tokenUrl = tokeUrl;
+  }
 
-    public static String getSimetricasUrl(){
-        return simetricasUrl;
-    }
+  public static void setConsumerSecret(String userConsumer){
+    consumerSecret = userConsumer;
+  }
 
-    public static String getApiAcumulacionesUrl(){
-        return apiAcumulacionesUrl;
-    }
+  public static void setConsumerKey(String pConsumer){
+    consumerKey = pConsumer;
+  }
 
-    public static void setOracleDatabaseIp (String ip){ oracleDatabaseIp = ip; }
+  public static void setAsimetricasUrl(String asimetrica){
+    asimetricasUrl = asimetrica;
+  }
 
-    public static void setOracleDatabasePort (String port) {oracleDatabasePort = port;}
+  public static void setSimetricasUrl(String simetrica){
+    simetricasUrl = simetrica;
+  }
 
-    public static void setOracleDatabaseName (String name) { oracleDatabaseName = name;}
+  public static void setApiAcumulacionesUrl(String piUrl){
+    apiAcumulacionesUrl = piUrl;
+  }
 
-    public static void setOracleDatabaseU (String user){
-        oracleDatabaseU = user;
-    }
-
-    public static void setOracleDatabaseP(String p){
-        oracleDatabaseP = p;
-    }
-
-    public static void setOracleDatabaseStoreprocedure(String outSp ){
-        oracleDatabaseStoreprocedure = outSp;
-    }
-
-    public static void setOracleDatabaseInStoreprocedure(String inSp){ oracleDatabaseInStoreprocedure = inSp; }
-
-    public static void setTokenUrl(String tokeUrl){ tokenUrl = tokeUrl; }
-
-    public static void setConsumerSecret(String userConsumer){ consumerSecret = userConsumer; }
-
-    public static void setConsumerKey(String pConsumer){ consumerKey = pConsumer; }
-
-    public static void setAsimetricasUrl(String asimetrica){
-        asimetricasUrl = asimetrica;
-    }
-
-    public static void setSimetricasUrl(String simetrica){ simetricasUrl = simetrica; }
-
-    public static void setApiAcumulacionesUrl(String piUrl){ apiAcumulacionesUrl = piUrl; }
+  /**
+   * fin setters
+   **/
 
 }

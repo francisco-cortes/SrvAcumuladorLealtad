@@ -12,18 +12,50 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CursorSpSalidaModel {
-
-    private int FNIDTIPOCLIENTE;
-    private String FCIDCLIENTE;
-    private Double FNIMPORTE;
-    private int FNSUCURSAL;
-    private int FNIDOPERACION;
-    private String FCFOLIOTRANSACCION;
-    private Date FDFECHAOPERACION;
-    private String FCNEGOCIO;
-    private String FCTIPOOPERACION;
-    private int FIORIGENTRANSACCION;
-    private int FIPAISID;
+  /*
+  id tipo cliente
+   */
+  private int FNIDTIPOCLIENTE;
+  /*
+  id cliente
+   */
+  private String FCIDCLIENTE;
+  /*
+  importe
+   */
+  private Double FNIMPORTE;
+  /*
+  sucursal
+   */
+  private int FNSUCURSAL;
+  /*
+  id operacion
+   */
+  private int FNIDOPERACION;
+  /*
+  folio transaccion
+   */
+  private String FCFOLIOTRANSACCION;
+  /*
+  fecha operacion
+   */
+  private Date FDFECHAOPERACION;
+  /*
+  negocio
+   */
+  private String FCNEGOCIO;
+  /*
+  tipo de operacion
+   */
+  private String FCTIPOOPERACION;
+  /*
+  origen transaccion
+   */
+  private int FIORIGENTRANSACCION;
+  /*
+  id pais
+   */
+  private int FIPAISID;
 
 
 }

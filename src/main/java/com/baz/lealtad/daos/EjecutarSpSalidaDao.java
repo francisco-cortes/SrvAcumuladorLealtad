@@ -12,82 +12,135 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * EjecutarSpSalidaDao.java
+ * Descrpcion: Clase  para ejecutar el primer SP
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
+
 public class EjecutarSpSalidaDao {
 
-    private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
+  /*
+  objeto de conexion a base de daots
+   */
+  private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
 
 
-    public List<CursorSpSalidaModel> ejecutarSpSalida(LogServicio log){
-        log.setBegTimeMethod("EjecutarSpSalidaDao.ejecutarSpSalida", ParametrerConfiguration.SYSTEM_NAME);
-        List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
-
-        final int cursorRespuesta = 1, mensajeRespuesta = 2, codigoRespuesta = 3;
-
-        Connection conexion = null;
-        CallableStatement declaracion = null;
-        ResultSet resultSet = null;
-
-        try {
-
-            conexion = fabricaDao.obtenerConexion();
-
-            declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseStoreprocedure());
-            declaracion.registerOutParameter(cursorRespuesta, OracleTypes.REF_CURSOR);
-            declaracion.registerOutParameter(mensajeRespuesta, OracleTypes.VARCHAR);
-            declaracion.registerOutParameter(codigoRespuesta, OracleTypes.VARCHAR);
-            declaracion.executeQuery();
-
-            resultSet = (ResultSet) declaracion.getObject(1);
-
-            if(resultSet != null){
-
-                while (resultSet.next()){
-
-                    CursorSpSalidaModel cursor = new CursorSpSalidaModel();
-
-                    cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
-                    cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
-                    cursor.setFNIMPORTE(resultSet.getDouble("FNIMPORTE"));
-                    cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
-                    cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
-                    cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
-                    cursor.setFDFECHAOPERACION(resultSet.getDate("FDFECHAOPERACION"));
-                    cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
-                    cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
-                    cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
-                    cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
-                    listaCursor.add(cursor);
-                }
+  /**
+   * ParameterConfiguracion.java
+   * Descrpcion: Clase  para cargar las configuraciones o propiedades par el funcionamiento del jar
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
+  public List<CursorSpSalidaModel> ejecutarSpSalida(LogServicio log){
+    log.setBegTimeMethod("EjecutarSpSalidaDao.ejecutarSpSalida", ParametrerConfiguration.SYSTEM_NAME);
+    List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
+    /*
+    Constantes
+     */
+    final int CURSOR_RESPUESTA = 1;
+    final int MENSAJE_RESPUESTA = 2;
+    final int CODIGO_RESPUESTA = 3;
+    /*
+    inicializacion de conexion
+     */
+    Connection conexion = null;
+    CallableStatement declaracion = null;
+    ResultSet resultSet = null;
 
 
-            }
-            else {
-
-                log.mensaje("EjecutarSpSalidaDao.ejecutarSpSalida",
-                  "SPPUNTOSLEALTAD no ejecutado o respuesta nula");
-
-            }
+    try {
+      /*
+      conexion obtenida atravez de fabrica dao
+       */
+      conexion = fabricaDao.obtenerConexion();
+      /*
+      creacion de declaracio estatemen
+       */
+      declaracion = conexion.prepareCall(ParametrerConfiguration.getOracleDatabaseStoreprocedure());
+      declaracion.registerOutParameter(CURSOR_RESPUESTA, OracleTypes.REF_CURSOR);
+      declaracion.registerOutParameter(MENSAJE_RESPUESTA, OracleTypes.VARCHAR);
+      declaracion.registerOutParameter(CODIGO_RESPUESTA, OracleTypes.VARCHAR);
+      /*
+      ejecuionde query
+       */
+      declaracion.executeQuery();
+      /*
+      obtencion de cursor
+       */
+      resultSet = (ResultSet) declaracion.getObject(1);
+      /*
+      si el resulset es null se considera error
+       */
+      if(resultSet != null){
+        /*
+        iteracion de el cursor para llenado de data class
+         */
+        while (resultSet.next()){
+          //instacia del modelo data class
+          CursorSpSalidaModel cursor = new CursorSpSalidaModel();
+          // id tipo cliente
+          cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
+          // id cliente
+          cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
+          // importe
+          cursor.setFNIMPORTE(resultSet.getDouble("FNIMPORTE"));
+          // succursal
+          cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
+          // operacion
+          cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
+          // mtcn
+          cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
+          // fecha de operacion
+          cursor.setFDFECHAOPERACION(resultSet.getDate("FDFECHAOPERACION"));
+          // oicogen
+          cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
+          // tipo de operacion
+          cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
+          // origen
+          cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
+          // pais
+          cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
+          listaCursor.add(cursor);
         }
-        catch (Exception excepcion){
 
-            log.exepcion(excepcion, "ERROR en BD");
 
-        }
-        finally {
+      }
+      else {
+        /*
+        result set vacio
+         */
+        log.mensaje("EjecutarSpSalidaDao.ejecutarSpSalida",
+          "SPPUNTOSLEALTAD no ejecutado o respuesta nula");
 
-            try {
-                fabricaDao.cerrarConexion(conexion, declaracion, resultSet);
-            }
-            catch (Exception e) {
-
-                log.exepcion(e,"ERROR al cerrar Conexion SP 1");
-
-            }
-
-        }
-
-        return listaCursor;
+      }
+    }
+    catch (Exception excepcion){
+      /*
+      Sql exepcion
+       */
+      log.exepcion(excepcion, "ERROR en BD");
 
     }
+    finally {
+
+      try {
+        /*
+        cerrar conexiones
+         */
+        fabricaDao.cerrarConexion(conexion, declaracion, resultSet);
+      }
+      catch (Exception e) {
+        /*
+        sql exepcion
+         */
+        log.exepcion(e,"ERROR al cerrar Conexion SP 1");
+
+      }
+
+    }
+
+    return listaCursor;
+
+  }
 
 }

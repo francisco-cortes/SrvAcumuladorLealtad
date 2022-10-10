@@ -3,5 +3,5 @@
  **/
 @ParametersAreNonnullByDefault
 package com.baz.lealtad.models;
-
+// package models
 import javax.annotation.ParametersAreNonnullByDefault;

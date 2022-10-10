@@ -10,46 +10,87 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.KeyManagementException;
 
+/**
+ * LlavesSimetricasDao.java
+ * Descrpcion: Clase para el manejo de conexion y obtencion de llaves asimetricas
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
 
 public class LlavesAsimetricasDao {
+  /*
+  objetos para clases y metodos
+   */
+  private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
+  private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
+  /*
+  constantes
+   */
+  private static final String SERVICE_NAME = "LlavesAsimetricasDao.getLlavesAsimetricas";
 
 
-    private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
-    private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
-
-    public String[] getLlavesAsimetricas(String token, LogServicio log) throws IOException, NoSuchAlgorithmException, KeyManagementException {
-        log.setBegTimeMethod("LavesAsmetricasDao.getLlavesAsimetricas",ParametrerConfiguration.SYSTEM_NAME);
-        HttpsURLConnection connection;
-
-        final int idAcesso = 0;
-        final int accesoPublic = 1;
-        final int accesoPrivado = 2;
-        final String jsonParametro = "resultado";
-        String[] asimetricas = new String[3];
-
-        connection = con.crearConexion("GET", ParametrerConfiguration.getAsimetricasUrl(),log);
-        connection.setRequestProperty("Authorization","Bearer " + token);
-        connection.setRequestProperty("Accept","*/*");
-
-        String sb = responseReader.responseReader(connection);
-
-        if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-            log.mensaje("LlavesAsimetricasDao.getLlavesAsimetricas",
-            "ERROR en asimetricas: " + sb);
-        }
-        else {
-            JSONObject jsonResponse = new JSONObject(sb);
-
-            asimetricas[idAcesso] = jsonResponse.getJSONObject(jsonParametro).getString("idAcceso");
-            asimetricas[accesoPublic] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPublico");
-            asimetricas[accesoPrivado] = jsonResponse.getJSONObject(jsonParametro).getString("accesoPrivado");
-        }
-
-        connection.disconnect();
-
-        log.setEndTimeMethod("LavesAsmetricasDao.getLlavesAsimetricas");
-        return asimetricas;
-
+  /**
+   * Metodos getLllavesAsimetricas
+   * Descrpcion: Clase  para cargar las configuraciones o propiedades par el funcionamiento del jar
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: toke(String), log(LogServicio)
+   **/
+  public String[] getLlavesAsimetricas(String token, LogServicio log)
+    throws IOException, NoSuchAlgorithmException, KeyManagementException {
+    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    /*
+    conector https
+     */
+    HttpsURLConnection connection;
+    /*
+    constantes
+     */
+    final int ID_ACCESO = 0;
+    final int ACCESO_PUBLICO = 1;
+    final int ACCESO_PRIVADO = 2;
+    final int TAMANO_RESPUESTA = 3;
+    final String PARAMETRO_JSON = "resultado";
+    String[] asimetricas = new String[TAMANO_RESPUESTA];
+    /*
+    creacion de conexion httos
+    con conecotrHTTPSUtil
+     */
+    connection = con.crearConexion("GET", ParametrerConfiguration.getAsimetricasUrl(),log);
+    connection.setRequestProperty("Authorization","Bearer " + token);
+    connection.setRequestProperty("Accept","*/*");
+    /*
+    String Builder para la respuesta
+     */
+    String sb = responseReader.responseReader(connection);
+    /*
+    validacion de codigo de respuesta
+     */
+    if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
+      log.mensaje(SERVICE_NAME,
+        "ERROR en asimetricas: " + sb);
     }
+    else {
+      /*
+      objeto json para parseo de respuesta St6ring
+       */
+      JSONObject jsonResponse = new JSONObject(sb);
+      /*
+      obtencion de objetos relevantes del JSON de rerpuesta
+       */
+      asimetricas[ID_ACCESO] = jsonResponse.getJSONObject(PARAMETRO_JSON).getString("idAcceso");
+      asimetricas[ACCESO_PUBLICO] = jsonResponse.getJSONObject(PARAMETRO_JSON).getString("accesoPublico");
+      asimetricas[ACCESO_PRIVADO] = jsonResponse.getJSONObject(PARAMETRO_JSON).getString("accesoPrivado");
+    }
+    /*
+    desconectar
+     */
+    connection.disconnect();
+
+    log.setEndTimeMethod(SERVICE_NAME);
+    /*
+    retorna arreglo de string, id acceso, acceso publico, acceso privado
+     */
+    return asimetricas;
+
+  }
 
 }

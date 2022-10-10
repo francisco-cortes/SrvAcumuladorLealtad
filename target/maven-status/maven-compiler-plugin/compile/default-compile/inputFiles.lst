@@ -2,7 +2,9 @@
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/BeanLog.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/service/ConsultaSalidaService.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/service/ConsultarApiLealtadService.java
+/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/SkipSslContextUtil.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/daos/EjecutarSpSalidaDao.java
+/Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/logger/package-info.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/configuration/ParametrerConfiguration.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/utils/CifradorAesUtil.java
 /Users/fcortest/Documents/lealtatjavaarchive/src/main/java/com/baz/lealtad/models/CursorSpSalidaModel.java

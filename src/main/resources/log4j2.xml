@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
     <Properties>
+
         <Property name="logpath">/home/mmuser/multimarcas/jars/SrvAcumuladorLealtad/log/</Property>
+
+        <!--
+        <Property name="logpath">/Users/fcortest/Desktop/SrvAcumuladorLealtad/log</Property>
+        -->
         <Property name="filename">logSrvAcumuladorLealtad.log</Property>
     </Properties>
 

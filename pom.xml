@@ -131,16 +131,29 @@
                 <version>0.8.5</version>
                 <executions>
                     <execution>
-                        <id>prepare-test</id>
+                    	<id>default-prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
                     <execution>
-                        <id>test-report</id>
-                        <phase>post-integration-test</phase>
+                    	<id>default-report</id>
+                    	<phase>prepare-package</phase>
+                    	<goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
                         <goals>
                             <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                    	<id>default-check</id>
+                    	<goals>
+                            <goal>check</goal>
                         </goals>
                     </execution>
                 </executions>

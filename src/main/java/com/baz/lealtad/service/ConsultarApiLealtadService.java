@@ -6,28 +6,50 @@ import com.baz.lealtad.logger.LogServicio;
 
 import java.util.Map;
 
-
+/**
+ * ConsultarApiLealtadService
+ * Descrpcion: services para invocar el DAo de api lealtad
+ * Autor: Francisco Javier Cortes Torres, Desarrollador
+ **/
 public class ConsultarApiLealtadService {
+  /*
+  objetos
+   */
+  private static final ApiLealtadDao leal = new ApiLealtadDao();
+  private static final String SERVICE_NAME = "ConsultarApiLealtadService.conultaApi";
+  /**
+   * consultaApi
+   * Descrpcion: preve los parametros para invocar la consulta al api lealtad
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params: idAcceso(String), token(String), params(Map), log(LogServicio)
+   * returns: String Array
+   **/
+  public String[] consultaApi (String idAcceso, String token, Map<String, Object> params, LogServicio log){
 
-    private static final ApiLealtadDao leal = new ApiLealtadDao();
+    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    /*
+    cosntantes
+     */
+    final int TAMANO_RESPUESTA = 3;
 
-    public String[] consultaApi (String idAcceso, String token, Map<String, Object> params, LogServicio log){
-        log.setBegTimeMethod("ConsultarApiLealtadService.conultaApi", ParametrerConfiguration.SYSTEM_NAME);
+    String[] respuestaApi = new String[TAMANO_RESPUESTA];
 
-        String[] respuestaApi = new String[3];
-
-        try {
-            respuestaApi = leal.getAcumulaciones(idAcceso, token, params, log);
-        }
-        catch (Exception e) {
-
-            Thread.currentThread().interrupt();
-
-            log.exepcion(e, "ERROR al consultar api lealtad");
-
-        }
-        log.setEndTimeMethod("ConsultarApiLealtadService.conultaApi");
-        return respuestaApi;
+    try {
+      /*
+      consulta a api lealtad
+       */
+      respuestaApi = leal.getAcumulaciones(idAcceso, token, params, log);
     }
+    catch (Exception e) {
+      /*
+      elimina el proceso en el hilo
+       */
+      Thread.currentThread().interrupt();
+      log.exepcion(e, "ERROR al consultar api lealtad");
+    }
+    log.setEndTimeMethod(SERVICE_NAME);
+
+    return respuestaApi;
+  }
 
 }
