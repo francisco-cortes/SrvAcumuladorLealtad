@@ -25,8 +25,6 @@ public class ConsultarApiLealtadService {
    * returns: String Array
    **/
   public String[] consultaApi (String idAcceso, String token, Map<String, Object> params, LogServicio log){
-
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     /*
     cosntantes
      */
@@ -47,8 +45,6 @@ public class ConsultarApiLealtadService {
       Thread.currentThread().interrupt();
       log.exepcion(e, "ERROR al consultar api lealtad");
     }
-    log.setEndTimeMethod(SERVICE_NAME);
-
     return respuestaApi;
   }
 

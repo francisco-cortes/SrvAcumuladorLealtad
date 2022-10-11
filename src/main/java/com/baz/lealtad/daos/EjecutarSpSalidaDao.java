@@ -32,7 +32,6 @@ public class EjecutarSpSalidaDao {
    * Autor: Francisco Javier Cortes Torres, Desarrollador
    **/
   public List<CursorSpSalidaModel> ejecutarSpSalida(LogServicio log){
-    log.setBegTimeMethod("EjecutarSpSalidaDao.ejecutarSpSalida", ParametrerConfiguration.SYSTEM_NAME);
     List<CursorSpSalidaModel> listaCursor = new ArrayList<>();
     /*
     Constantes

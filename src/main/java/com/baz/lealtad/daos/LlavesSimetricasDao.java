@@ -36,7 +36,6 @@ public class LlavesSimetricasDao {
   public String[] getLlavesSimetricas(String token, String idAcceso, LogServicio log)
     throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     /*
     inicializacion de conexion
      */
@@ -85,7 +84,6 @@ public class LlavesSimetricasDao {
     desconectar
      */
     connection.disconnect();
-    log.setEndTimeMethod(SERVICE_NAME);
     /*
     retorna accesos simetrica, codigo hash
      */

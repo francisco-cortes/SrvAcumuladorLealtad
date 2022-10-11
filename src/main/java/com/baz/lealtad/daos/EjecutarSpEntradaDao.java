@@ -38,7 +38,6 @@ public class EjecutarSpEntradaDao {
   public String ejecutarSpEntrada(Map<String, Object> parameters, String folioPremia,
                                 String mensaje, String bandera, LogServicio log){
     String resp = "OPERACION EXITOSA";
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     /*
     Constantes para el indice de los objetos del SP
      */

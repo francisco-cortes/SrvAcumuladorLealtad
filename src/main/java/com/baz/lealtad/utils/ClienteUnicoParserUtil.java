@@ -46,7 +46,6 @@ public class ClienteUnicoParserUtil {
    **/
 
   public static String parsear (String idCliente, LogServicio log) {
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     String newIdCliente = "";
     //entrada ideal
     if(IDEAL_CU.matcher(idCliente).matches()){
@@ -79,7 +78,6 @@ public class ClienteUnicoParserUtil {
         //la entrada no puede ser paseada por que no hay concide con ninguna regex
         log.mensaje(SERVICE_NAME,
           "ERROR no se pudo hallar la forma de la entrada ID Cliente");
-        log.setEndTimeMethod(SERVICE_NAME);
         newIdCliente = idCliente;
 
       }

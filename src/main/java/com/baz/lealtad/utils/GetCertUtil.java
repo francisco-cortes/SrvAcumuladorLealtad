@@ -25,7 +25,6 @@ public class GetCertUtil {
    * returns: TrustManagerFactory
    **/
   public TrustManagerFactory getCert (LogServicio log){
-    log.setBegTimeMethod("GetCertUtil.getCert", ParametrerConfiguration.SYSTEM_NAME);
     /*
     inicio de objetos necesarios
      */
@@ -74,13 +73,9 @@ public class GetCertUtil {
 
       }
       catch (Exception e){
-
         log.exepcion(e,"ERROR No se puede cerrar el fileInputStream de cert");
-
       }
-
     }
-    log.setEndTimeMethod("GetCertUtil.getCert");
     return tmf;
 
   }

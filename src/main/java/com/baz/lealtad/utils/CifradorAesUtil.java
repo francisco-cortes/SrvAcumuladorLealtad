@@ -35,7 +35,6 @@ public class CifradorAesUtil {
    * returns: String
    **/
   public String encryptAes(String aesKeyBase64, String hmacKeyBase64, String valorCampo, LogServicio log) {
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
 
     try {
       /*

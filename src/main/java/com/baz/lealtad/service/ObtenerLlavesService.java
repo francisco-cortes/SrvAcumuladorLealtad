@@ -38,8 +38,6 @@ public class ObtenerLlavesService {
    **/
 
   public String[] getLlaves (LogServicio log){
-
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     /*
     cosntantes
      */

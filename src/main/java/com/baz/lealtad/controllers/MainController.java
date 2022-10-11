@@ -75,7 +75,6 @@ public class MainController {
     carga de properties
      */
     configs.loadConfiguration();
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
 
     /*
     Obtiene todas las llaves de api seguridad baz
@@ -183,7 +182,6 @@ public class MainController {
           "No se realiza ninguna Accion");
       System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
     }
-    log.setEndTimeMethod(SERVICE_NAME);
   }
 
   /**

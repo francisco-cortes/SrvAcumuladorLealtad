@@ -46,7 +46,6 @@ public class ApiLealtadDao {
    **/
   public String[] getAcumulaciones(String idAcceso, String token, Map<String, Object> parameters, LogServicio log)
     throws NoSuchAlgorithmException, IOException, KeyManagementException {
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
     /*
     arreglo que aloja la respuesta de acumulaciones
      */
@@ -118,8 +117,8 @@ public class ApiLealtadDao {
       asi como el id cliente en su forma parseada y cifrada
        */
       log.mensaje(SERVICE_NAME, "ERROR: con el idCliente: " + parameters.get("idCliente") +
-        " forma parseada: " + parameters.get("idClienteParseado") + "\n" + errorString +
-        "\n ERROR con La peticion: " + params);
+        " forma parseada: " + parameters.get("idClienteParseado") + errorString +
+        " ERROR con La peticion: " + params);
       /*
       crecion de paramtro de retorno
        */
@@ -162,7 +161,6 @@ public class ApiLealtadDao {
        */
       respuesta[FLAG] = bandera;
     }
-    log.setEndTimeMethod(SERVICE_NAME);
     /*
     retorna arreglo con mensaje, folio y bandera
      */

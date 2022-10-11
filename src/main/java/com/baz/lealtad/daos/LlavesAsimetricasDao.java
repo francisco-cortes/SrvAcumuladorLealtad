@@ -36,7 +36,6 @@ public class LlavesAsimetricasDao {
    **/
   public String[] getLlavesAsimetricas(String token, LogServicio log)
     throws IOException, NoSuchAlgorithmException, KeyManagementException {
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
     /*
     conector https
      */
@@ -84,8 +83,6 @@ public class LlavesAsimetricasDao {
     desconectar
      */
     connection.disconnect();
-
-    log.setEndTimeMethod(SERVICE_NAME);
     /*
     retorna arreglo de string, id acceso, acceso publico, acceso privado
      */

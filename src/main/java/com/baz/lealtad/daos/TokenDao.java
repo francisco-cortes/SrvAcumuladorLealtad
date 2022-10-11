@@ -41,8 +41,6 @@ public class TokenDao {
    **/
   public String getToken(LogServicio log)
     throws IOException, NoSuchAlgorithmException, KeyManagementException {
-
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
     /*
     mapa de strings para parametros de autenticacion tipo json
      */
@@ -133,7 +131,6 @@ public class TokenDao {
      */
     connection.disconnect();
 
-    log.setEndTimeMethod(SERVICE_NAME);
     /*
     retorna token
      */
