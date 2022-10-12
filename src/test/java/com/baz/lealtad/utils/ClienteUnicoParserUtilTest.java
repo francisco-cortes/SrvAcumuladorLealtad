@@ -11,7 +11,9 @@ public class ClienteUnicoParserUtilTest {
   /*
   test name
    */
-  private static final String SERVICE_NAME = "ClienteUnicoParserUtilTEST";
+  private static final String RESPUESTA_LABEL  = " Respuesta: ";
+  private static final String ESPERADO_LABEL = " Esperado : ";
+  private static final String INICIO_MENSAJE_LOG = "Parseo de Id Cliente, Entrada: ";
   private static final ClienteUnicoParserUtil clienteUnicoParserUtil = new ClienteUnicoParserUtil();
   private static final LogServicio log = new LogServicio();
 
@@ -21,7 +23,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -29,8 +31,9 @@ public class ClienteUnicoParserUtilTest {
     final String ESPERADO = "0101-0127-4888-123";
 
     String respuesta = clienteUnicoParserUtil.parsear(IDEAL, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + IDEAL + " Esperado: " + ESPERADO
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG
       + "respuesta: " + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
@@ -40,7 +43,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -48,8 +51,9 @@ public class ClienteUnicoParserUtilTest {
     final String ESPERADO = "159997207";
 
     String respuesta = clienteUnicoParserUtil.parsear(DEX, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + DEX + " Esperado: " + ESPERADO
-      + "respuesta: " + respuesta);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + DEX + ESPERADO_LABEL + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
@@ -59,7 +63,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -67,8 +71,9 @@ public class ClienteUnicoParserUtilTest {
     final String ESPERADO = "0101-2078-8844";
 
     String respuesta = clienteUnicoParserUtil.parsear(CU, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU + " Esperado: " + ESPERADO
-      + "respuesta: " + respuesta);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
@@ -78,7 +83,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -86,8 +91,9 @@ public class ClienteUnicoParserUtilTest {
     final String ESPERADO = "0102-8757-2503-7";
 
     String respuesta = clienteUnicoParserUtil.parsear(CU, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU + " Esperado: " + ESPERADO
-      + "respuesta: " + respuesta);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
@@ -97,7 +103,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -111,12 +117,13 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = ClienteUnicoParserUtil.parsear(CU, log);
     String respuesta2 = ClienteUnicoParserUtil.parsear(CU2, log);
     String respuesta3 = ClienteUnicoParserUtil.parsear(CU3, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU + " Esperado: " + ESPERADO
-      + " respuesta: " + respuesta);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU2 + " Esperado: " + ESPERADO2
-      + " respuesta: " + respuesta2);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU3 + " Esperado: " + ESPERADO3
-      + " respuesta: " + respuesta3);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU2 + ESPERADO_LABEL + ESPERADO2
+      + RESPUESTA_LABEL + respuesta2);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU3 + ESPERADO_LABEL + ESPERADO3
+      + RESPUESTA_LABEL + respuesta3);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO)&& respuesta2.equals(ESPERADO2) && respuesta3.equals(ESPERADO3));
   }
 
@@ -126,7 +133,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     objetos
      */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -134,8 +141,9 @@ public class ClienteUnicoParserUtilTest {
     final String ESPERADO = "cadena";
 
     String respuesta = ClienteUnicoParserUtil.parsear(CU, log);
-    log.mensaje(SERVICE_NAME, "Parseo de Id Cliente, Entrada: " + CU + " Esperado: " + ESPERADO
-      + "respuesta: " + respuesta);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 

@@ -1,0 +1,204 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FabricaDaoUtil</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.baz.lealtad.utils</a>
+</div>
+
+<h1>Coverage Summary for Class: FabricaDaoUtil (com.baz.lealtad.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Block, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FabricaDaoUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    50%
+  </span>
+  <span class="absValue">
+    (2/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    45.5%
+  </span>
+  <span class="absValue">
+    (10/22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.baz.lealtad.utils;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.baz.lealtad.configuration.ParametrerConfiguration;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;import java.sql.Connection;
+<i class="no-highlight">6</i>&nbsp;import java.sql.Statement;
+<i class="no-highlight">7</i>&nbsp;import java.sql.DriverManager;
+<i class="no-highlight">8</i>&nbsp;import java.sql.ResultSet;
+<i class="no-highlight">9</i>&nbsp;import java.sql.SQLException;
+<i class="no-highlight">10</i>&nbsp;/**
+<i class="no-highlight">11</i>&nbsp; * FabricaDaoUtil
+<i class="no-highlight">12</i>&nbsp; * Descrpcion: Construye y cierra conexiones a base de datos
+<i class="no-highlight">13</i>&nbsp; * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">14</i>&nbsp; **/
+<b class="fc"><i class="no-highlight">15</i>&nbsp;public class FabricaDaoUtil {</b>
+<i class="no-highlight">16</i>&nbsp;  /**
+<i class="no-highlight">17</i>&nbsp;   * obtenerConexion
+<i class="no-highlight">18</i>&nbsp;   * Descrpcion: creoa le objeto SQL.Connection
+<i class="no-highlight">19</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">20</i>&nbsp;   * params: paisCero(String)
+<i class="no-highlight">21</i>&nbsp;   * returns: String
+<i class="no-highlight">22</i>&nbsp;   **/
+<i class="no-highlight">23</i>&nbsp;  public Connection obtenerConexion() throws ClassNotFoundException, SQLException {
+<i class="no-highlight">24</i>&nbsp;    /*
+<i class="no-highlight">25</i>&nbsp;    propiedades necesarias
+<i class="no-highlight">26</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">27</i>&nbsp;    System.setProperty(&quot;oracle.jdbc.fanEnabled&quot;,&quot;false&quot;);</b>
+<b class="fc"><i class="no-highlight">28</i>&nbsp;    Class.forName(&quot;oracle.jdbc.OracleDriver&quot;);</b>
+<i class="no-highlight">29</i>&nbsp;    /*
+<i class="no-highlight">30</i>&nbsp;    cadena de coenxion otrogada por servicios de base datos
+<i class="no-highlight">31</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">32</i>&nbsp;    String cadenaConexion = &quot;jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(LOAD_BALANCE=ON) &quot; +</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;      &quot;(ADDRESS=(PROTOCOL=TCP)(HOST=&quot; + ParametrerConfiguration.getOracleDatabaseIp() + &quot;)(PORT=&quot;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;      + ParametrerConfiguration.getOracleDatabasePort() + &quot;))&quot; +</b>
+<b class="fc"><i class="no-highlight">35</i>&nbsp;      &quot;)(CONNECT_DATA=(SERVICE_NAME=&quot; + ParametrerConfiguration.getOracleDatabaseName() +</b>
+<i class="no-highlight">36</i>&nbsp;      &quot;)(SERVER=DEDICATED)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC)(RETIRES=180)(DELAY=5))))&quot;;
+<i class="no-highlight">37</i>&nbsp;    /*
+<i class="no-highlight">38</i>&nbsp;    construlle y retorna el objeto connection a treves del drive manager
+<i class="no-highlight">39</i>&nbsp;     */
+<b class="fc"><i class="no-highlight">40</i>&nbsp;    return DriverManager.getConnection(cadenaConexion,</b>
+<b class="fc"><i class="no-highlight">41</i>&nbsp;      ParametrerConfiguration.getOracleDatabaseU(),</b>
+<b class="fc"><i class="no-highlight">42</i>&nbsp;      ParametrerConfiguration.getOracleDatabaseP());</b>
+<i class="no-highlight">43</i>&nbsp;
+<i class="no-highlight">44</i>&nbsp;  }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;  /**
+<i class="no-highlight">47</i>&nbsp;   * cerrarConexion
+<i class="no-highlight">48</i>&nbsp;   * Descrpcion: Cierra y termina los procesos resultantes de la consulta a base de datos
+<i class="no-highlight">49</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">50</i>&nbsp;   * params: Connection, Statement, ResultSet
+<i class="no-highlight">51</i>&nbsp;   * returns: Void
+<i class="no-highlight">52</i>&nbsp;   **/
+<i class="no-highlight">53</i>&nbsp;  public void cerrarConexion(Connection conexion, Statement declaracionInvocable, ResultSet resultado)
+<i class="no-highlight">54</i>&nbsp;    throws SQLException {
+<i class="no-highlight">55</i>&nbsp;
+<b class="nc"><i class="no-highlight">56</i>&nbsp;    if (!conexion.isClosed()) {</b>
+<b class="nc"><i class="no-highlight">57</i>&nbsp;      conexion.close();</b>
+<i class="no-highlight">58</i>&nbsp;    }
+<i class="no-highlight">59</i>&nbsp;
+<b class="nc"><i class="no-highlight">60</i>&nbsp;    if(!resultado.isClosed()){</b>
+<b class="nc"><i class="no-highlight">61</i>&nbsp;      resultado.close();</b>
+<i class="no-highlight">62</i>&nbsp;    }
+<i class="no-highlight">63</i>&nbsp;
+<b class="nc"><i class="no-highlight">64</i>&nbsp;    if (!declaracionInvocable.isClosed()){</b>
+<b class="nc"><i class="no-highlight">65</i>&nbsp;      declaracionInvocable.close();</b>
+<i class="no-highlight">66</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">67</i>&nbsp;  }</b>
+<i class="no-highlight">68</i>&nbsp;  /**
+<i class="no-highlight">69</i>&nbsp;   * cerrarConexionSinResult
+<i class="no-highlight">70</i>&nbsp;   * Descrpcion: Cierra y termina los procesos resultantes de la consulta a base de datos sin result set ya que hay
+<i class="no-highlight">71</i>&nbsp;   * consulta que no generan y asi se evita un fallo por excepcion
+<i class="no-highlight">72</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">73</i>&nbsp;   * params: Connection, Statement
+<i class="no-highlight">74</i>&nbsp;   * returns: Void
+<i class="no-highlight">75</i>&nbsp;   **/
+<i class="no-highlight">76</i>&nbsp;  public void cerrarConexionSinResult(Connection conexion, Statement declaracionInvocable)
+<i class="no-highlight">77</i>&nbsp;    throws SQLException {
+<i class="no-highlight">78</i>&nbsp;
+<b class="nc"><i class="no-highlight">79</i>&nbsp;    if (!conexion.isClosed()) {</b>
+<b class="nc"><i class="no-highlight">80</i>&nbsp;      conexion.close();</b>
+<i class="no-highlight">81</i>&nbsp;    }
+<i class="no-highlight">82</i>&nbsp;
+<b class="nc"><i class="no-highlight">83</i>&nbsp;    if (!declaracionInvocable.isClosed()){</b>
+<b class="nc"><i class="no-highlight">84</i>&nbsp;      declaracionInvocable.close();</b>
+<i class="no-highlight">85</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">86</i>&nbsp;  }</b>
+<i class="no-highlight">87</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-29 11:42</div>
+</div>
+</body>
+</html>

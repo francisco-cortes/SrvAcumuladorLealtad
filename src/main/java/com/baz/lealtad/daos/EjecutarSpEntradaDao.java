@@ -23,10 +23,6 @@ public class EjecutarSpEntradaDao {
   Crear conexion a base de dato con FabricaDao
    */
   private static final FabricaDaoUtil fabricaDao = new FabricaDaoUtil();
-  /*
-  Constantes
-   */
-  private static final String SERVICE_NAME = "EjecutarSpEntradaDao.ejecutarSpEntrada";
 
   /**
    * Metodo ejecutarSPEntrada
@@ -118,8 +114,8 @@ public class EjecutarSpEntradaDao {
        */
       if(declaracion.getString(RESPUESTA_2) == null ||
         !"OPERACION EXITOSA.".contains(declaracion.getString(RESPUESTA_2)) ) {
-        log.mensaje(SERVICE_NAME,
-          "ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
+        log.mensaje("Ejecurtar sp entrada",
+          " ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
         resp = "OPERRACION FALLIDA";
       }
 

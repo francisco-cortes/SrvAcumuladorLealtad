@@ -1,5 +1,6 @@
 package com.baz.lealtad.logger;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.ThreadContext;
@@ -66,12 +67,8 @@ public class LogServicio {
   public String getServiceFotmat() {
 
     for (BeanLog bl : hs.values()) {
-
-
-      sb.append("{\"servicio\":\"");
-      sb.append(bl.getServicio());
       sb.append("\",\"Sistema\":\"");
-      sb.append(bl.getSistema());
+      sb.append(ParametrerConfiguration.SYSTEM_NAME);
       sb.append("\",\"Tiempo\":");
       sb.append(bl.getTime());
       if (hs.get( (hs.keySet().toArray())[ hs.size()-1 ])== bl) {
@@ -165,23 +162,10 @@ public class LogServicio {
    */
   public void mensaje(String servicio, String msg) {
 
-    for (BeanLog value : hs.values()) {
-      if(!value.isTerminateTime()) {
-        hs.get(value.getServicio()).setTime(System.currentTimeMillis() - hs.get(value.getServicio()).getTime());
-        hs.get(value.getServicio()).setTerminateTime(true);
-      }
-    }
-
-    for (String str : arrExclusions) {
-      msg = msg.replace(str, " T_T");
-    }
-
-    ThreadContext.put(TIEMPO_CON, getTimeTotal(servicio));
-    ThreadContext.put("servicios", getServiceFotmat());
-    LOGGER.info(msg.replace('\n', '_').replace('\r', '_')
+    LOGGER.info(servicio + msg.replace('\n', '_').replace('\r', '_')
       .replace("error", "incidencia")
       .replace("Error", "Incidencia"));
-    ThreadContext.clearAll();
+
   }
 
 }

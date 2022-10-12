@@ -2,7 +2,6 @@ package com.baz.lealtad.service;
 
 import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.configuration.SetterTestParams;
-import com.baz.lealtad.daos.ApiLealtadDao;
 import com.baz.lealtad.daos.TestParamMaker;
 import com.baz.lealtad.logger.LogServicio;
 import org.junit.jupiter.api.DisplayName;
@@ -13,14 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ConsultarApiLealtadServiceTest {
   /*
-  service name
-   */
-  private static final String SERVICE_NAME = "ConsultarApiLealtadServiceTEST";
-  /*
     obejetos test
      */
   private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
-  private static final ApiLealtadDao apiLealtadDao = new ApiLealtadDao();
   private static final LogServicio log = new LogServicio();
   private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
   /*
@@ -35,7 +29,7 @@ public class ConsultarApiLealtadServiceTest {
      */
   private static final int ID_TIPO_CLIENTE = 3;
   private static final int ID_TIPO_DEX = 5;
-  private static final String ID_CLIENTE = "0101-0127-4888-1";
+  private static final String ID_CLIENTE = "0101-0127-4888";
   private static final int IMPORTE = 1802;
   private static final int SUCURSAL = 127;
   private static final int ID_OPERACION = 3;
@@ -53,7 +47,7 @@ public class ConsultarApiLealtadServiceTest {
   public void testApiLeatadService() {
 
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     ConsultarApiLealtadService apiLealtadDao = new ConsultarApiLealtadService();
     String[] llavesAes = obtenerLlaves.getLlaves(log);
     String[] respuesta = new String[RESPUESTA_TAMANO];
@@ -98,12 +92,12 @@ public class ConsultarApiLealtadServiceTest {
     else {
       respBol = false;
     }
-    log.mensaje(SERVICE_NAME, "Mensaje: " + respuesta[MENSAJE] + "Folio: "
-      + respuesta[FOLIO] + "Bandera: " + respuesta[BANDERA]);
-    log.mensaje(SERVICE_NAME, "Mensaje: " + respuestaNegativa[MENSAJE] + "Folio: "
-      + respuestaNegativa[FOLIO] + "Bandera: " + respuestaNegativa[BANDERA]);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, " Mensaje: " + respuesta[MENSAJE] + " Folio: "
+      + respuesta[FOLIO] + " Bandera: " + respuesta[BANDERA]);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, " Mensaje: " + respuestaNegativa[MENSAJE] + " Folio: "
+      + respuestaNegativa[FOLIO] + " Bandera: " + respuestaNegativa[BANDERA]);
 
-    log.setEndTimeMethod(SERVICE_NAME);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
 
     assertEquals(true, respBol);
   }

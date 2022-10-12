@@ -36,8 +36,10 @@ public class MainController {
   /*
   Cosntates
    */
+  private static final String NOMBRE_CLASE = "Main Controller";
   private static final int CLIENTE_DEX = 5;
   private static final int CLIENTE_UNICO = 3;
+  //va a cambiar
   private static final int ID_OPERACION = 3;
   /*
   Constantes para Indices
@@ -65,17 +67,16 @@ public class MainController {
     confing para el path de mmuuser home
      */
     final String MMUSER_HOME = System.getenv("MMUSER_HOME");
-    final String SERVICE_NAME = "MainController.main";
     System.setProperty("MMUSER_HOME", MMUSER_HOME);
     /*
     creacion de log
      */
     LogServicio log = new LogServicio();
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME,ParametrerConfiguration.SYSTEM_NAME);
     /*
     carga de properties
      */
-    configs.loadConfiguration();
-
+    configs.loadConfiguration(log);
     /*
     Obtiene todas las llaves de api seguridad baz
      */
@@ -100,12 +101,13 @@ public class MainController {
         /*
         id tipo cliente a trves de metodo
          */
-        idTipoCliente = idTipoClienteSetter(responseDb.get(i).getFCNEGOCIO(),responseDb.get(i).getFCIDCLIENTE());
+        idTipoCliente = idTipoClienteSetter(responseDb.get(i).getFcNegocio().toLowerCase(),
+          responseDb.get(i).getFcIdCliente());
 
         /*
         parseo de id cliente a la forma xxxx-xxxx-xxxx-xxx, o numerica dependindo de su tipo cliente
          */
-        idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFCIDCLIENTE().trim(), log);
+        idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFcIdCliente().trim(), log);
         /*
         cifrado de datos sencibles id cliente e impiorte
          */
@@ -114,7 +116,7 @@ public class MainController {
         /*
         redondeo de montos, api lealtad no acepta datos fraccionados
          */
-        String importe = cifrarService.cifrar(importeRedondeador(responseDb.get(i).getFNIMPORTE()),
+        String importe = cifrarService.cifrar(importeRedondeador(responseDb.get(i).getFnImporte()),
           llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2], log);
 
         /*
@@ -123,19 +125,19 @@ public class MainController {
 
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("idTipoCliente", idTipoCliente);
-        parameters.put("idCliente", responseDb.get(i).getFCIDCLIENTE().trim());
+        parameters.put("idCliente", responseDb.get(i).getFcIdCliente().trim());
         parameters.put("idClienteCifrado", idCliente);
         parameters.put("idClienteParseado", idClienteParseado);
-        parameters.put("importe", responseDb.get(i).getFNIMPORTE());
+        parameters.put("importe", responseDb.get(i).getFnImporte());
         parameters.put("importeCifrado", importe);
-        parameters.put("sucursal", responseDb.get(i).getFNSUCURSAL());
+        parameters.put("sucursal", responseDb.get(i).getFnSucursal());
         parameters.put("idOperacion", ID_OPERACION);
-        parameters.put("folioTransaccion", responseDb.get(i).getFCFOLIOTRANSACCION());
-        parameters.put("fechaOperacion", responseDb.get(i).getFDFECHAOPERACION());
-        parameters.put("negocio", responseDb.get(i).getFCNEGOCIO());
-        parameters.put("tipoOperacion", responseDb.get(i).getFCTIPOOPERACION());
-        parameters.put("origenTransaccion", responseDb.get(i).getFIORIGENTRANSACCION());
-        parameters.put("paisId", responseDb.get(i).getFIPAISID());
+        parameters.put("folioTransaccion", responseDb.get(i).getFcFolioTransaccion());
+        parameters.put("fechaOperacion", responseDb.get(i).getFdFechaOperacion());
+        parameters.put("negocio", responseDb.get(i).getFcNegocio());
+        parameters.put("tipoOperacion", responseDb.get(i).getFcTipoOperacion());
+        parameters.put("origenTransaccion", responseDb.get(i).getFiOrigenTransaccion());
+        parameters.put("paisId", responseDb.get(i).getFiPaisId());
 
         /*
         llamada al api de lealtad
@@ -154,12 +156,18 @@ public class MainController {
           fallidosLealtad ++;
         }
 
+        if(fallidosLealtad >= ParametrerConfiguration.LIMITE_RESPUESTAS_NEGATIVAS ){
+          log.mensaje(NOMBRE_CLASE,
+            "ERROR: Hubo 100 o mas respuestas negativas se cancela operacion");
+          System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
+        }
+
       }
       /*
       if contador de respuestas negativas del api lealtada
        */
       if (fallidosLealtad > 0){
-        log.mensaje(SERVICE_NAME,
+        log.mensaje(NOMBRE_CLASE,
           "ERROR: Hubo " + fallidosLealtad + " respuestas negativas de API Lealtad");
         /*
         termina la ejecucion con status 2
@@ -177,7 +185,7 @@ public class MainController {
       /*
       termina la ejecucion con estus 1
        */
-      log.mensaje(SERVICE_NAME,
+      log.mensaje(NOMBRE_CLASE,
         "ERROR: Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
           "No se realiza ninguna Accion");
       System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
@@ -193,7 +201,7 @@ public class MainController {
    **/
 
   public static int idTipoClienteSetter(String negocio, String idCliente){
-    if("dex".equalsIgnoreCase(negocio)
+    if(ParametrerConfiguration.DEX.equalsIgnoreCase(negocio)
       && SEVEN_TEN_IS_DEX.matcher(idCliente).matches()){
       return CLIENTE_DEX;
     }
@@ -201,6 +209,14 @@ public class MainController {
       return CLIENTE_UNICO;
     }
   }
+
+  /**
+          * <b>importeRedondeador</b>
+          * @descripcion: Redondea el importe hacia arriba apartir de .6 para procesar en api de lealtad
+          * @autor: Francisco Javier Cortes Torres, Desarrollador
+          * @params: double
+          * @ultimaModificacion: 11/10/22
+        */
 
   public static String importeRedondeador(Double importe){
     int importeRedondeado =  (int) Math.round(importe);

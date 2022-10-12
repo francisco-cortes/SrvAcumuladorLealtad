@@ -13,10 +13,6 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SpEntradaServiceTest {
-  /*
- Constates global
-  */
-  private static final String SERVICE_NAME = "SpEntradaServiceTEST";
   /**
    * testEjecutaSpEntrada
    * Descrpcion: clase test envia datos al segundo sp
@@ -32,7 +28,7 @@ public class SpEntradaServiceTest {
     objetos
      */
     LogServicio log = new LogServicio();
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     SpEntradaService spEntradaService = new SpEntradaService();
     /*
     constantes
@@ -76,6 +72,7 @@ public class SpEntradaServiceTest {
     /*
     Operacion exitosa
      */
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertEquals("OPERACION EXITOSA",
       spEntradaService.guardarBase(parameters,randomFolio,MENSAJE,BANDERA,log));
 

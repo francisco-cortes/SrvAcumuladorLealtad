@@ -1,0 +1,435 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ParametrerConfiguration</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.baz.lealtad.configuration</a>
+</div>
+
+<h1>Coverage Summary for Class: ParametrerConfiguration (com.baz.lealtad.configuration)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ParametrerConfiguration</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    44.8%
+  </span>
+  <span class="absValue">
+    (13/29)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    46.1%
+  </span>
+  <span class="absValue">
+    (35/76)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.baz.lealtad.configuration;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;/**
+<i class="no-highlight">4</i>&nbsp; * ParameterConfiguracion.java
+<i class="no-highlight">5</i>&nbsp; * Descrpcion: Clase  para cargar las configuraciones o propiedades par el funcionamiento del jar
+<i class="no-highlight">6</i>&nbsp; * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">7</i>&nbsp; **/
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.io.FileInputStream;
+<i class="no-highlight">10</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">11</i>&nbsp;import java.util.Properties;
+<i class="no-highlight">12</i>&nbsp;
+<b class="nc"><i class="no-highlight">13</i>&nbsp;public final class ParametrerConfiguration {</b>
+<i class="no-highlight">14</i>&nbsp;
+<i class="no-highlight">15</i>&nbsp;  /*
+<i class="no-highlight">16</i>&nbsp;  Usuario en BD y nombre de aplicativo
+<i class="no-highlight">17</i>&nbsp;   */
+<i class="no-highlight">18</i>&nbsp;  public static final String NOMBRE_JAR = &quot;SrvAcumuladorLealtad&quot;;
+<i class="no-highlight">19</i>&nbsp;  /*
+<i class="no-highlight">20</i>&nbsp;  Separador de archivos = /
+<i class="no-highlight">21</i>&nbsp;   */
+<i class="no-highlight">22</i>&nbsp;  private static final String FILE_SEPARATOR = &quot;file.separator&quot;;
+<i class="no-highlight">23</i>&nbsp;  /*
+<i class="no-highlight">24</i>&nbsp;  Ruta donde se aloja el jar
+<i class="no-highlight">25</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">26</i>&nbsp;  private static final String CONF_FILE_PATH = System.getenv(&quot;MMUSER_HOME&quot;) + System.getProperty(FILE_SEPARATOR)</b>
+<b class="fc"><i class="no-highlight">27</i>&nbsp;    + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + &quot;config&quot; + System.getProperty(FILE_SEPARATOR)</b>
+<i class="no-highlight">28</i>&nbsp;    + &quot;SrvAcumuladorLealtad.properties&quot;;
+<i class="no-highlight">29</i>&nbsp;  /*
+<i class="no-highlight">30</i>&nbsp;  Ruta del certificado para conexion HTTPS a apis internas Baz
+<i class="no-highlight">31</i>&nbsp;  */
+<b class="fc"><i class="no-highlight">32</i>&nbsp;  public static final String CERT_FILE_PATH = System.getenv(&quot;MMUSER_HOME&quot;) + System.getProperty(FILE_SEPARATOR)</b>
+<b class="fc"><i class="no-highlight">33</i>&nbsp;    + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + &quot;certs.cert&quot;;</b>
+<i class="no-highlight">34</i>&nbsp;  /*
+<i class="no-highlight">35</i>&nbsp;  ip para base de datos oracle
+<i class="no-highlight">36</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">37</i>&nbsp;  private static String oracleDatabaseIp = &quot;&quot;;</b>
+<i class="no-highlight">38</i>&nbsp;  /*
+<i class="no-highlight">39</i>&nbsp;  puerto para base de datos oracle
+<i class="no-highlight">40</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">41</i>&nbsp;  private static String oracleDatabasePort = &quot;&quot;;</b>
+<i class="no-highlight">42</i>&nbsp;  /*
+<i class="no-highlight">43</i>&nbsp;  nombre para base de datos oracle
+<i class="no-highlight">44</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">45</i>&nbsp;  private static String oracleDatabaseName = &quot;&quot;;</b>
+<i class="no-highlight">46</i>&nbsp;  /*
+<i class="no-highlight">47</i>&nbsp;  usuario para base de datos oracle
+<i class="no-highlight">48</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">49</i>&nbsp;  private static String oracleDatabaseU = &quot;&quot;;</b>
+<i class="no-highlight">50</i>&nbsp;  /*
+<i class="no-highlight">51</i>&nbsp;  contrase;a para base de datos oracle
+<i class="no-highlight">52</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">53</i>&nbsp;  private static String oracleDatabaseP = &quot;&quot;;</b>
+<i class="no-highlight">54</i>&nbsp;  /*
+<i class="no-highlight">55</i>&nbsp;  procedimiento almacenado
+<i class="no-highlight">56</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">57</i>&nbsp;  private static String oracleDatabaseStoreprocedure = &quot;&quot;;</b>
+<i class="no-highlight">58</i>&nbsp;  /*
+<i class="no-highlight">59</i>&nbsp;  segundo procedimiento almacenado
+<i class="no-highlight">60</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">61</i>&nbsp;  private static String oracleDatabaseInStoreprocedure = &quot;&quot;;</b>
+<i class="no-highlight">62</i>&nbsp;  /*
+<i class="no-highlight">63</i>&nbsp;  UTF 8
+<i class="no-highlight">64</i>&nbsp;   */
+<i class="no-highlight">65</i>&nbsp;  public static final String ENCODING_UTF8 = &quot;UTF-8&quot;;
+<i class="no-highlight">66</i>&nbsp;  /*
+<i class="no-highlight">67</i>&nbsp;  llave AES
+<i class="no-highlight">68</i>&nbsp;   */
+<i class="no-highlight">69</i>&nbsp;  public static final String AES_KEY = &quot;AES&quot;;
+<i class="no-highlight">70</i>&nbsp;  /*
+<i class="no-highlight">71</i>&nbsp;  algoritmo AES
+<i class="no-highlight">72</i>&nbsp;   */
+<i class="no-highlight">73</i>&nbsp;  public static final String ALGORITHM_AES = &quot;AES/CBC/PKCS5Padding&quot;;
+<i class="no-highlight">74</i>&nbsp;  /*
+<i class="no-highlight">75</i>&nbsp;  algoritmo HMAC
+<i class="no-highlight">76</i>&nbsp;   */
+<i class="no-highlight">77</i>&nbsp;  public static final String ALGORITHM_HMAC = &quot;HmacSHA256&quot;;
+<i class="no-highlight">78</i>&nbsp;  /*
+<i class="no-highlight">79</i>&nbsp;  tamano de vector IV
+<i class="no-highlight">80</i>&nbsp;   */
+<i class="no-highlight">81</i>&nbsp;  public static final int IV_SIZE = 16;
+<i class="no-highlight">82</i>&nbsp;
+<i class="no-highlight">83</i>&nbsp;  /*
+<i class="no-highlight">84</i>&nbsp;  Url para obtener el token baz
+<i class="no-highlight">85</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">86</i>&nbsp;  private static String tokenUrl = &quot;&quot;;</b>
+<i class="no-highlight">87</i>&nbsp;  /*
+<i class="no-highlight">88</i>&nbsp;  Usuario Consumer para auth2
+<i class="no-highlight">89</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">90</i>&nbsp;  private static String consumerSecret = &quot;&quot;;</b>
+<i class="no-highlight">91</i>&nbsp;  /*
+<i class="no-highlight">92</i>&nbsp;  contrasena Consumer para auth2
+<i class="no-highlight">93</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">94</i>&nbsp;  private static String consumerKey = &quot;&quot;;</b>
+<i class="no-highlight">95</i>&nbsp;  /*
+<i class="no-highlight">96</i>&nbsp;  url para obtener llaves Asimetricas
+<i class="no-highlight">97</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">98</i>&nbsp;  private static String asimetricasUrl = &quot;&quot;;</b>
+<i class="no-highlight">99</i>&nbsp;  /*
+<i class="no-highlight">100</i>&nbsp;  url para obtener llaves simetricas
+<i class="no-highlight">101</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">102</i>&nbsp;  private static String simetricasUrl = &quot;&quot;;</b>
+<i class="no-highlight">103</i>&nbsp;  /*
+<i class="no-highlight">104</i>&nbsp;  url para obtener acumulaciones lealtad
+<i class="no-highlight">105</i>&nbsp;   */
+<b class="fc"><i class="no-highlight">106</i>&nbsp;  private static String apiAcumulacionesUrl = &quot;&quot;;</b>
+<i class="no-highlight">107</i>&nbsp;
+<i class="no-highlight">108</i>&nbsp;  public static final String RSA_PADDING_SCHEME = &quot;RSA/ECB/PKCS1Padding&quot;;
+<i class="no-highlight">109</i>&nbsp;  /*
+<i class="no-highlight">110</i>&nbsp;  time out para respuestas en milisegundos
+<i class="no-highlight">111</i>&nbsp;   */
+<i class="no-highlight">112</i>&nbsp;  public static final int TIME_OUT_MILLISECONDS = 32000;
+<i class="no-highlight">113</i>&nbsp;  /*
+<i class="no-highlight">114</i>&nbsp;  codigos menores a 299 son repuestas positivas
+<i class="no-highlight">115</i>&nbsp;   */
+<i class="no-highlight">116</i>&nbsp;  public static final int OK_STATUS_CODE_LIMIT = 299;
+<i class="no-highlight">117</i>&nbsp;  /*
+<i class="no-highlight">118</i>&nbsp;  constante para salida sistema no pudo cargar algo
+<i class="no-highlight">119</i>&nbsp;   */
+<i class="no-highlight">120</i>&nbsp;  public static final int CANT_LOAD_SOMETHING = 1;
+<i class="no-highlight">121</i>&nbsp;  /*
+<i class="no-highlight">122</i>&nbsp;  constante para salida de sistema en exepciones
+<i class="no-highlight">123</i>&nbsp;   */
+<i class="no-highlight">124</i>&nbsp;  public static final int ERROR_OR_EXCEPTION = 2;
+<i class="no-highlight">125</i>&nbsp;  /*
+<i class="no-highlight">126</i>&nbsp;  Nombre del sistema para log
+<i class="no-highlight">127</i>&nbsp;   */
+<i class="no-highlight">128</i>&nbsp;  public static final String SYSTEM_NAME = &quot;SrvAcumuladorLealtad&quot;;
+<i class="no-highlight">129</i>&nbsp;
+<i class="no-highlight">130</i>&nbsp;  /**
+<i class="no-highlight">131</i>&nbsp;   * Metodo: loadConfiguration
+<i class="no-highlight">132</i>&nbsp;   * Descrpcion: metodo para obtener propiedades del archivo SrvAcumuladorLealtad.properties
+<i class="no-highlight">133</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">134</i>&nbsp;   **/
+<i class="no-highlight">135</i>&nbsp;
+<i class="no-highlight">136</i>&nbsp;  public static void loadConfiguration(){
+<i class="no-highlight">137</i>&nbsp;
+<i class="no-highlight">138</i>&nbsp;    try {
+<i class="no-highlight">139</i>&nbsp;      /*
+<i class="no-highlight">140</i>&nbsp;      carga de archivo properties con un fileInputStream
+<i class="no-highlight">141</i>&nbsp;      .trim para evitar errores por espacios en propiedades
+<i class="no-highlight">142</i>&nbsp;       */
+<b class="nc"><i class="no-highlight">143</i>&nbsp;      Properties properties = new Properties();</b>
+<b class="nc"><i class="no-highlight">144</i>&nbsp;      properties.load(new FileInputStream(CONF_FILE_PATH));</b>
+<i class="no-highlight">145</i>&nbsp;
+<b class="nc"><i class="no-highlight">146</i>&nbsp;      oracleDatabaseIp = properties.getProperty(&quot;BASEIP&quot;).trim();</b>
+<i class="no-highlight">147</i>&nbsp;
+<b class="nc"><i class="no-highlight">148</i>&nbsp;      oracleDatabasePort = properties.getProperty(&quot;BASEPORT&quot;).trim();</b>
+<i class="no-highlight">149</i>&nbsp;
+<b class="nc"><i class="no-highlight">150</i>&nbsp;      oracleDatabaseName = properties.getProperty(&quot;BASENAME&quot;).trim();</b>
+<i class="no-highlight">151</i>&nbsp;
+<b class="nc"><i class="no-highlight">152</i>&nbsp;      oracleDatabaseU = properties.getProperty(&quot;BASEUSR&quot;).trim();</b>
+<i class="no-highlight">153</i>&nbsp;
+<b class="nc"><i class="no-highlight">154</i>&nbsp;      oracleDatabaseP = properties.getProperty(&quot;BASEPWORD&quot;).trim();</b>
+<i class="no-highlight">155</i>&nbsp;
+<b class="nc"><i class="no-highlight">156</i>&nbsp;      oracleDatabaseStoreprocedure = properties.getProperty(&quot;BASEPROCEDURE&quot;).trim();</b>
+<i class="no-highlight">157</i>&nbsp;
+<b class="nc"><i class="no-highlight">158</i>&nbsp;      oracleDatabaseInStoreprocedure = properties.getProperty(&quot;BASEINPROCEDURE&quot;).trim();</b>
+<i class="no-highlight">159</i>&nbsp;
+<b class="nc"><i class="no-highlight">160</i>&nbsp;      tokenUrl = properties.getProperty(&quot;TOKENURL&quot;).trim();</b>
+<i class="no-highlight">161</i>&nbsp;
+<b class="nc"><i class="no-highlight">162</i>&nbsp;      consumerSecret = properties.getProperty(&quot;CONSUMER&quot;).trim();</b>
+<i class="no-highlight">163</i>&nbsp;
+<b class="nc"><i class="no-highlight">164</i>&nbsp;      consumerKey = properties.getProperty(&quot;CONSUMERKEY&quot;).trim();</b>
+<i class="no-highlight">165</i>&nbsp;
+<b class="nc"><i class="no-highlight">166</i>&nbsp;      asimetricasUrl = properties.getProperty(&quot;ASIMETRICASURL&quot;).trim();</b>
+<i class="no-highlight">167</i>&nbsp;
+<b class="nc"><i class="no-highlight">168</i>&nbsp;      simetricasUrl = properties.getProperty(&quot;SIMETRICASURL&quot;).trim();</b>
+<i class="no-highlight">169</i>&nbsp;
+<b class="nc"><i class="no-highlight">170</i>&nbsp;      apiAcumulacionesUrl = properties.getProperty(&quot;APIACUMULACIONESURL&quot;).trim();</b>
+<i class="no-highlight">171</i>&nbsp;
+<i class="no-highlight">172</i>&nbsp;    }
+<b class="nc"><i class="no-highlight">173</i>&nbsp;    catch (IOException e) {</b>
+<i class="no-highlight">174</i>&nbsp;      /*
+<i class="no-highlight">175</i>&nbsp;      expecion impresa en consola al punto de llamar esta todavia no se llama al loger
+<i class="no-highlight">176</i>&nbsp;       */
+<b class="nc"><i class="no-highlight">177</i>&nbsp;      System.out.println (&quot;Hubo un error al cargar las porpiedades: &quot; + e);</b>
+<b class="nc"><i class="no-highlight">178</i>&nbsp;    }</b>
+<b class="nc"><i class="no-highlight">179</i>&nbsp;  }</b>
+<i class="no-highlight">180</i>&nbsp;
+<i class="no-highlight">181</i>&nbsp;  /**
+<i class="no-highlight">182</i>&nbsp;   * Seccion Getter
+<i class="no-highlight">183</i>&nbsp;   * Descrpcion: metodos get para obtener las variables static
+<i class="no-highlight">184</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">185</i>&nbsp;   **/
+<i class="no-highlight">186</i>&nbsp;  /*
+<i class="no-highlight">187</i>&nbsp;  get depara la ip de base
+<i class="no-highlight">188</i>&nbsp;   */
+<i class="no-highlight">189</i>&nbsp;  public static String getOracleDatabaseIp (){
+<b class="nc"><i class="no-highlight">190</i>&nbsp;    return oracleDatabaseIp;</b>
+<i class="no-highlight">191</i>&nbsp;  }
+<i class="no-highlight">192</i>&nbsp;  /*
+<i class="no-highlight">193</i>&nbsp;  get para el puerto de la base
+<i class="no-highlight">194</i>&nbsp; */
+<i class="no-highlight">195</i>&nbsp;  public static String getOracleDatabasePort () {
+<b class="nc"><i class="no-highlight">196</i>&nbsp;    return oracleDatabasePort;</b>
+<i class="no-highlight">197</i>&nbsp;  }
+<i class="no-highlight">198</i>&nbsp;  /*
+<i class="no-highlight">199</i>&nbsp;  get para la base de datos
+<i class="no-highlight">200</i>&nbsp;   */
+<i class="no-highlight">201</i>&nbsp;  public static String getOracleDatabaseName () {
+<b class="nc"><i class="no-highlight">202</i>&nbsp;    return oracleDatabaseName;</b>
+<i class="no-highlight">203</i>&nbsp;  }
+<i class="no-highlight">204</i>&nbsp;  /*
+<i class="no-highlight">205</i>&nbsp;  get para el usuario de base de datos
+<i class="no-highlight">206</i>&nbsp;   */
+<i class="no-highlight">207</i>&nbsp;  public static String getOracleDatabaseU (){
+<b class="nc"><i class="no-highlight">208</i>&nbsp;    return oracleDatabaseU;</b>
+<i class="no-highlight">209</i>&nbsp;  }
+<i class="no-highlight">210</i>&nbsp;  /*
+<i class="no-highlight">211</i>&nbsp;  get para la contrase;a de base
+<i class="no-highlight">212</i>&nbsp;   */
+<i class="no-highlight">213</i>&nbsp;  public static String getOracleDatabaseP(){
+<b class="nc"><i class="no-highlight">214</i>&nbsp;    return oracleDatabaseP;</b>
+<i class="no-highlight">215</i>&nbsp;  }
+<i class="no-highlight">216</i>&nbsp;  /*
+<i class="no-highlight">217</i>&nbsp;  get primer sp
+<i class="no-highlight">218</i>&nbsp;   */
+<i class="no-highlight">219</i>&nbsp;  public static String getOracleDatabaseStoreprocedure(){
+<b class="nc"><i class="no-highlight">220</i>&nbsp;    return oracleDatabaseStoreprocedure;</b>
+<i class="no-highlight">221</i>&nbsp;  }
+<i class="no-highlight">222</i>&nbsp;  /*
+<i class="no-highlight">223</i>&nbsp;  get segundo sp
+<i class="no-highlight">224</i>&nbsp;   */
+<i class="no-highlight">225</i>&nbsp;  public static String getOracleDatabaseInStoreprocedure(){
+<b class="nc"><i class="no-highlight">226</i>&nbsp;    return oracleDatabaseInStoreprocedure;</b>
+<i class="no-highlight">227</i>&nbsp;  }
+<i class="no-highlight">228</i>&nbsp;  /*
+<i class="no-highlight">229</i>&nbsp;  get para url de TOKEN
+<i class="no-highlight">230</i>&nbsp;   */
+<i class="no-highlight">231</i>&nbsp;  public static String getTokenUrl(){
+<b class="fc"><i class="no-highlight">232</i>&nbsp;    return tokenUrl;</b>
+<i class="no-highlight">233</i>&nbsp;  }
+<i class="no-highlight">234</i>&nbsp;  /*
+<i class="no-highlight">235</i>&nbsp;  get para credenical de api
+<i class="no-highlight">236</i>&nbsp;   */
+<i class="no-highlight">237</i>&nbsp;  public static String getConsumerSecret(){
+<b class="fc"><i class="no-highlight">238</i>&nbsp;    return consumerSecret;</b>
+<i class="no-highlight">239</i>&nbsp;  }
+<i class="no-highlight">240</i>&nbsp;  /*
+<i class="no-highlight">241</i>&nbsp;  gewt para credencial de api
+<i class="no-highlight">242</i>&nbsp;   */
+<i class="no-highlight">243</i>&nbsp;  public static String getConsumerKey(){
+<b class="fc"><i class="no-highlight">244</i>&nbsp;    return consumerKey;</b>
+<i class="no-highlight">245</i>&nbsp;  }
+<i class="no-highlight">246</i>&nbsp;  /*
+<i class="no-highlight">247</i>&nbsp;  get para url de llaves asimetricas
+<i class="no-highlight">248</i>&nbsp;   */
+<i class="no-highlight">249</i>&nbsp;  public static String getAsimetricasUrl(){
+<b class="fc"><i class="no-highlight">250</i>&nbsp;    return asimetricasUrl;</b>
+<i class="no-highlight">251</i>&nbsp;  }
+<i class="no-highlight">252</i>&nbsp;  /*
+<i class="no-highlight">253</i>&nbsp;  getp para url de simetricas
+<i class="no-highlight">254</i>&nbsp;   */
+<i class="no-highlight">255</i>&nbsp;  public static String getSimetricasUrl(){
+<b class="fc"><i class="no-highlight">256</i>&nbsp;    return simetricasUrl;</b>
+<i class="no-highlight">257</i>&nbsp;  }
+<i class="no-highlight">258</i>&nbsp;  /*
+<i class="no-highlight">259</i>&nbsp;  get para url de acumulaciones
+<i class="no-highlight">260</i>&nbsp;   */
+<i class="no-highlight">261</i>&nbsp;  public static String getApiAcumulacionesUrl(){
+<b class="fc"><i class="no-highlight">262</i>&nbsp;    return apiAcumulacionesUrl;</b>
+<i class="no-highlight">263</i>&nbsp;  }
+<i class="no-highlight">264</i>&nbsp;
+<i class="no-highlight">265</i>&nbsp;  /**
+<i class="no-highlight">266</i>&nbsp;   * Fin de seccion Getters
+<i class="no-highlight">267</i>&nbsp;   **/
+<i class="no-highlight">268</i>&nbsp;
+<i class="no-highlight">269</i>&nbsp;  /**
+<i class="no-highlight">270</i>&nbsp;   * Seccion Setter
+<i class="no-highlight">271</i>&nbsp;   * Descrpcion: metodos getter usados por las clases de test
+<i class="no-highlight">272</i>&nbsp;   * Autor: Francisco Javier Cortes Torres, Desarrollador
+<i class="no-highlight">273</i>&nbsp;   **/
+<i class="no-highlight">274</i>&nbsp;  public static void setOracleDatabaseIp (String ip){
+<b class="nc"><i class="no-highlight">275</i>&nbsp;    oracleDatabaseIp = ip;</b>
+<b class="nc"><i class="no-highlight">276</i>&nbsp;  }</b>
+<i class="no-highlight">277</i>&nbsp;
+<i class="no-highlight">278</i>&nbsp;  public static void setOracleDatabasePort (String port) {
+<b class="nc"><i class="no-highlight">279</i>&nbsp;    oracleDatabasePort = port;</b>
+<b class="nc"><i class="no-highlight">280</i>&nbsp;  }</b>
+<i class="no-highlight">281</i>&nbsp;
+<i class="no-highlight">282</i>&nbsp;  public static void setOracleDatabaseName (String name) {
+<b class="nc"><i class="no-highlight">283</i>&nbsp;    oracleDatabaseName = name;</b>
+<b class="nc"><i class="no-highlight">284</i>&nbsp;  }</b>
+<i class="no-highlight">285</i>&nbsp;
+<i class="no-highlight">286</i>&nbsp;  public static void setOracleDatabaseU (String user){
+<b class="nc"><i class="no-highlight">287</i>&nbsp;    oracleDatabaseU = user;</b>
+<b class="nc"><i class="no-highlight">288</i>&nbsp;  }</b>
+<i class="no-highlight">289</i>&nbsp;
+<i class="no-highlight">290</i>&nbsp;  public static void setOracleDatabaseP(String p){
+<b class="nc"><i class="no-highlight">291</i>&nbsp;    oracleDatabaseP = p;</b>
+<b class="nc"><i class="no-highlight">292</i>&nbsp;  }</b>
+<i class="no-highlight">293</i>&nbsp;
+<i class="no-highlight">294</i>&nbsp;  public static void setOracleDatabaseStoreprocedure(String outSp ){
+<b class="nc"><i class="no-highlight">295</i>&nbsp;    oracleDatabaseStoreprocedure = outSp;</b>
+<b class="nc"><i class="no-highlight">296</i>&nbsp;  }</b>
+<i class="no-highlight">297</i>&nbsp;
+<i class="no-highlight">298</i>&nbsp;  public static void setOracleDatabaseInStoreprocedure(String inSp){
+<b class="nc"><i class="no-highlight">299</i>&nbsp;    oracleDatabaseInStoreprocedure = inSp;</b>
+<b class="nc"><i class="no-highlight">300</i>&nbsp;  }</b>
+<i class="no-highlight">301</i>&nbsp;
+<i class="no-highlight">302</i>&nbsp;  public static void setTokenUrl(String tokeUrl){
+<b class="fc"><i class="no-highlight">303</i>&nbsp;    tokenUrl = tokeUrl;</b>
+<b class="fc"><i class="no-highlight">304</i>&nbsp;  }</b>
+<i class="no-highlight">305</i>&nbsp;
+<i class="no-highlight">306</i>&nbsp;  public static void setConsumerSecret(String userConsumer){
+<b class="fc"><i class="no-highlight">307</i>&nbsp;    consumerSecret = userConsumer;</b>
+<b class="fc"><i class="no-highlight">308</i>&nbsp;  }</b>
+<i class="no-highlight">309</i>&nbsp;
+<i class="no-highlight">310</i>&nbsp;  public static void setConsumerKey(String pConsumer){
+<b class="fc"><i class="no-highlight">311</i>&nbsp;    consumerKey = pConsumer;</b>
+<b class="fc"><i class="no-highlight">312</i>&nbsp;  }</b>
+<i class="no-highlight">313</i>&nbsp;
+<i class="no-highlight">314</i>&nbsp;  public static void setAsimetricasUrl(String asimetrica){
+<b class="fc"><i class="no-highlight">315</i>&nbsp;    asimetricasUrl = asimetrica;</b>
+<b class="fc"><i class="no-highlight">316</i>&nbsp;  }</b>
+<i class="no-highlight">317</i>&nbsp;
+<i class="no-highlight">318</i>&nbsp;  public static void setSimetricasUrl(String simetrica){
+<b class="fc"><i class="no-highlight">319</i>&nbsp;    simetricasUrl = simetrica;</b>
+<b class="fc"><i class="no-highlight">320</i>&nbsp;  }</b>
+<i class="no-highlight">321</i>&nbsp;
+<i class="no-highlight">322</i>&nbsp;  public static void setApiAcumulacionesUrl(String piUrl){
+<b class="fc"><i class="no-highlight">323</i>&nbsp;    apiAcumulacionesUrl = piUrl;</b>
+<b class="fc"><i class="no-highlight">324</i>&nbsp;  }</b>
+<i class="no-highlight">325</i>&nbsp;
+<i class="no-highlight">326</i>&nbsp;  /**
+<i class="no-highlight">327</i>&nbsp;   * fin setters
+<i class="no-highlight">328</i>&nbsp;   **/
+<i class="no-highlight">329</i>&nbsp;
+<i class="no-highlight">330</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-09-29 11:42</div>
+</div>
+</body>
+</html>

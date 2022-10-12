@@ -22,10 +22,6 @@ public class LlavesSimetricasDao {
    */
   private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
   private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
-  /*
-  cosntantes globales
-   */
-  private static final String SERVICE_NAME = "LlavesSimetricasDao.getLlavesSimetricas";
   /**
    * Metodo get llavesSimetricas
    * Descrpcion: obtiene las llaves simtricas a travez de fabrica dao util
@@ -65,7 +61,7 @@ public class LlavesSimetricasDao {
       /*
       respuesta negativa al log
        */
-      log.mensaje(SERVICE_NAME,
+      log.mensaje("LlavesSimetricasDao",
         connection.getResponseCode() + "ERROR en Simetricas " + sb);
     }
     else {

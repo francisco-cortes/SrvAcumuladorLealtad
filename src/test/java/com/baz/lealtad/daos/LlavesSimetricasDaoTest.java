@@ -17,10 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Autor: Francisco Javier Cortes Torres, Desarrollador
  **/
 public class LlavesSimetricasDaoTest {
-  /*
-  Constantes globales
-   */
-  private static final String SERVICE_NAME = "LlavesSimetricasDaoTEST";
   /**
    * TEST ApiLealtadDao
    * Descrpcion: Clase para test unitarios del ApiLealtadDaoTest
@@ -39,14 +35,13 @@ public class LlavesSimetricasDaoTest {
     TokenDao tokenDao = new TokenDao();
     LlavesAsimetricasDao llavesAsimetricasDao = new LlavesAsimetricasDao();
     LlavesSimetricasDao llavesSimetricasDao = new LlavesSimetricasDao();
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
     final int ID_ACCESO = 0;
     final int CANTIDAD_LLAVES_SIMETICAS = 2;
     final int ACCESO_SIMETRICO = 0;
-    final int CODIGO_HASH = 1;
 
     String respuesta = "";
     String[] respuesta2;
@@ -70,12 +65,13 @@ public class LlavesSimetricasDaoTest {
     } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
       log.exepcion(e,"Error en Simetricas TEST");
     }
-    String aux = "Llaves Simetricas: ";
+    StringBuilder aux = new StringBuilder("Llaves Simetricas: ");
     for(int i = 0; i < CANTIDAD_LLAVES_SIMETICAS-1; i++){
-      aux = aux + respuesta3[i] + " - ";
+      aux.append(respuesta3[i]).append(" - ");
     }
-    log.mensaje(SERVICE_NAME,aux);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, aux.toString());
     respBol = !respuesta3[ACCESO_SIMETRICO].isEmpty();
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     /*
     acierta si la respuesta de simetricas no esta vacia
      */

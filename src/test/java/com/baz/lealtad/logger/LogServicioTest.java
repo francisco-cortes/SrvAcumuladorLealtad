@@ -34,7 +34,6 @@ public class LogServicioTest {
     inicio de tiempo de ejecucion del metod
      */
     log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
 
     /*
     imprime un mensaje en log

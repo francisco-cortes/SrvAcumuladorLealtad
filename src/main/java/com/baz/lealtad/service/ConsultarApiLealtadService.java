@@ -1,6 +1,5 @@
 package com.baz.lealtad.service;
 
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.daos.ApiLealtadDao;
 import com.baz.lealtad.logger.LogServicio;
 
@@ -16,7 +15,6 @@ public class ConsultarApiLealtadService {
   objetos
    */
   private static final ApiLealtadDao leal = new ApiLealtadDao();
-  private static final String SERVICE_NAME = "ConsultarApiLealtadService.conultaApi";
   /**
    * consultaApi
    * Descrpcion: preve los parametros para invocar la consulta al api lealtad

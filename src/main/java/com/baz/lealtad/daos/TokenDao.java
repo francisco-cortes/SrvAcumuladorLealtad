@@ -29,10 +29,6 @@ public class TokenDao {
    */
   private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
   private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
-  /*
-  Constantes Globales
-   */
-  private static final String SERVICE_NAME = "TokenDao.getToken";
   /**
    * Metodo getToken
    * Descrpcion: meneja la conexion para obtener el token
@@ -113,7 +109,7 @@ public class TokenDao {
      */
     String token = "";
     if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-      log.mensaje(SERVICE_NAME,connection.getResponseCode()
+      log.mensaje("TokenDao",connection.getResponseCode()
         + " ERROR en Token: " + sb);
     }
     else {

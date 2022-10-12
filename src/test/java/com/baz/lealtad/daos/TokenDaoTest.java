@@ -22,7 +22,6 @@ public class TokenDaoTest {
   /*
   constates glabales
    */
-  private static final String SERVICE_NAME = "TokenDaoTEST";
   private static final LogServicio log = new LogServicio();
   private static final TokenDao tokenDao = new TokenDao();
   /**
@@ -42,7 +41,7 @@ public class TokenDaoTest {
     String respuesta = "";
     String respuesta2 = "";
     boolean respBol;
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -52,7 +51,7 @@ public class TokenDaoTest {
        */
       ParametrerConfiguration.setConsumerKey("bhm6EI2aBjFVq3FL");
       respuesta = tokenDao.getToken(log);
-      ParametrerConfiguration.setConsumerKey("bhm6EI2aBjFVq3F8");
+      ParametrerConfiguration.setConsumerKey("bhm6EI2aBjFVq3F");
       respuesta2 = tokenDao.getToken(log);
     }
     catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
@@ -64,8 +63,8 @@ public class TokenDaoTest {
     else{
       respBol = false;
     }
-    log.mensaje(SERVICE_NAME, "Token: " + respuesta);
-    log.setEndTimeMethod(SERVICE_NAME);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "Token: " + respuesta);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respBol);
   }
 

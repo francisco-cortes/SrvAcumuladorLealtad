@@ -78,27 +78,27 @@ public class EjecutarSpSalidaDao {
           //instacia del modelo data class
           CursorSpSalidaModel cursor = new CursorSpSalidaModel();
           // id tipo cliente
-          cursor.setFNIDTIPOCLIENTE(resultSet.getInt("FNIDTIPOCLIENTE"));
+          cursor.setFnIdTipoCliente(resultSet.getInt("FNIDTIPOCLIENTE"));
           // id cliente
-          cursor.setFCIDCLIENTE(resultSet.getString("FCIDCLIENTE"));
+          cursor.setFcIdCliente(resultSet.getString("FCIDCLIENTE"));
           // importe
-          cursor.setFNIMPORTE(resultSet.getDouble("FNIMPORTE"));
+          cursor.setFnImporte(resultSet.getDouble("FNIMPORTE"));
           // succursal
-          cursor.setFNSUCURSAL(resultSet.getInt("FNSUCURSAL"));
+          cursor.setFnSucursal(resultSet.getInt("FNSUCURSAL"));
           // operacion
-          cursor.setFNIDOPERACION(resultSet.getInt("FNIDOPERACION"));
+          cursor.setFnIdOperacion(resultSet.getInt("FNIDOPERACION"));
           // mtcn
-          cursor.setFCFOLIOTRANSACCION(resultSet.getString("FCFOLIOTRANSACCION"));
+          cursor.setFcFolioTransaccion(resultSet.getString("FCFOLIOTRANSACCION"));
           // fecha de operacion
-          cursor.setFDFECHAOPERACION(resultSet.getDate("FDFECHAOPERACION"));
+          cursor.setFdFechaOperacion(resultSet.getDate("FDFECHAOPERACION"));
           // oicogen
-          cursor.setFCNEGOCIO(resultSet.getString("FCNEGOCIO"));
+          cursor.setFcNegocio(resultSet.getString("FCNEGOCIO"));
           // tipo de operacion
-          cursor.setFCTIPOOPERACION(resultSet.getString("FCTIPOOPERACION"));
+          cursor.setFcTipoOperacion(resultSet.getString("FCTIPOOPERACION"));
           // origen
-          cursor.setFIORIGENTRANSACCION(resultSet.getInt("FIORIGENTRANSACCION"));
+          cursor.setFiOrigenTransaccion(resultSet.getInt("FIORIGENTRANSACCION"));
           // pais
-          cursor.setFIPAISID(resultSet.getInt("FIPAISID"));
+          cursor.setFiPaisId(resultSet.getInt("FIPAISID"));
           listaCursor.add(cursor);
         }
 
@@ -108,7 +108,7 @@ public class EjecutarSpSalidaDao {
         /*
         result set vacio
          */
-        log.mensaje("EjecutarSpSalidaDao.ejecutarSpSalida",
+        log.mensaje("EjecutarSpSalidaDao",
           "SPPUNTOSLEALTAD no ejecutado o respuesta nula");
 
       }

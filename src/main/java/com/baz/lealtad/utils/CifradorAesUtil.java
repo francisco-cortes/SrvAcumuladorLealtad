@@ -23,10 +23,6 @@ import java.util.Base64;
  * Autor: Francisco Javier Cortes Torres, Desarrollador
  **/
 public class CifradorAesUtil {
-  /*
-  constantes globales
-   */
-  private static final String SERVICE_NAME = "CifradorAesUtil.encryptAes";
   /**
    * EncryptAes
    * Descrpcion: encripta texto con el metodo AES

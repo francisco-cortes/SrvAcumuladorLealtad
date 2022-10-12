@@ -22,7 +22,6 @@ public class LlavesAsimetricasDaoTest {
   /*
   Constantes globales
    */
-  private static final String SERVICE_NAME = "LlavesAsimetricasDaoTEST";
   private static final int TAMANO_RESPUESTA_ASIMETICAS = 3;
   private static final int ID_ACCESO = 0;
   private static final int ACCESO_PUBLICO = 1;
@@ -44,7 +43,7 @@ public class LlavesAsimetricasDaoTest {
   @Test
   public void testGetAsimetricas() {
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     String respuesta;
     String[] respuesta2 = new String[TAMANO_RESPUESTA_ASIMETICAS];
     boolean respBol;
@@ -57,17 +56,18 @@ public class LlavesAsimetricasDaoTest {
       despues la llaves Asimetricas
        */
       respuesta2 = llavesAsimetricasDao.getLlavesAsimetricas(respuesta,log);
-    } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
+    }
+    catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
       log.exepcion(e, "Error en el TEST de Llaves Asimetricas");
     }
-    log.mensaje(SERVICE_NAME, "Se obtuvo id accesos: " + respuesta2[ID_ACCESO] +
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "Se obtuvo id accesos: " + respuesta2[ID_ACCESO] +
       " Publico: " + respuesta2[ACCESO_PUBLICO] + "Privado: " +
       respuesta2[ACESOS_PRIVADO]);
     /*
     acierta si el id acceso no esta vacio
      */
     respBol = !respuesta2[ID_ACCESO].isEmpty();
-    log.setEndTimeMethod(SERVICE_NAME);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertEquals(true, respBol);
   }
 
@@ -75,7 +75,7 @@ public class LlavesAsimetricasDaoTest {
   @Test
   public void testNoGetAsimetricas() {
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     //respuesta aaa
     String respuesta;
     String[] respuesta2 = new String[TAMANO_RESPUESTA_ASIMETICAS];
@@ -88,16 +88,17 @@ public class LlavesAsimetricasDaoTest {
       despues la llaves Asimetricas
        */
       respuesta2 = llavesAsimetricasDao.getLlavesAsimetricas(respuesta,log);
-    } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
+    }
+    catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
       log.exepcion(e, "Error en el TEST de Llaves Asimetricas");
     }
-    log.mensaje(SERVICE_NAME, "Se obtuvo id accesos: " + respuesta2[ID_ACCESO] +
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "Se obtuvo id accesos: " + respuesta2[ID_ACCESO] +
       " Publico: " + respuesta2[ACCESO_PUBLICO] + "Privado: " +
       respuesta2[ACESOS_PRIVADO]);
     /*
     acierta si el id acceso no esta vacio
      */
-    log.setEndTimeMethod(SERVICE_NAME);
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertNull(respuesta2[ID_ACCESO]);
   }
 

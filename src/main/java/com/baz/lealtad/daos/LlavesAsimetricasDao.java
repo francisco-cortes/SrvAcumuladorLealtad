@@ -22,11 +22,6 @@ public class LlavesAsimetricasDao {
    */
   private static final ConectorHttpsUtil con = new ConectorHttpsUtil();
   private static final HttpsResponseReaderUtil responseReader = new HttpsResponseReaderUtil();
-  /*
-  constantes
-   */
-  private static final String SERVICE_NAME = "LlavesAsimetricasDao.getLlavesAsimetricas";
-
 
   /**
    * Metodos getLllavesAsimetricas
@@ -64,7 +59,7 @@ public class LlavesAsimetricasDao {
     validacion de codigo de respuesta
      */
     if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-      log.mensaje(SERVICE_NAME,
+      log.mensaje("LLavesAsimetricasDao ",
         "ERROR en asimetricas: " + sb);
     }
     else {

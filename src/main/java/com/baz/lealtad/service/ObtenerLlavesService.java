@@ -1,6 +1,5 @@
 package com.baz.lealtad.service;
 
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.daos.LlavesAsimetricasDao;
 import com.baz.lealtad.daos.LlavesSimetricasDao;
 import com.baz.lealtad.daos.TokenDao;
@@ -25,7 +24,6 @@ public class ObtenerLlavesService {
   /*
   constantes globales
    */
-  private static final String SERVICE_NAME = "getLLaves";
   private static final int TAMANO_LLAVERO = 4 ;
   private static final int TAMANO_SIMETRICAS_DE = 2;
 
@@ -83,7 +81,7 @@ public class ObtenerLlavesService {
       }
       catch (Exception e){
         /*
-        error de Simetricas
+        error de ASimetricas
          */
         log.exepcion(e, "ERROR No se pudo obtener Asimetricas");
 

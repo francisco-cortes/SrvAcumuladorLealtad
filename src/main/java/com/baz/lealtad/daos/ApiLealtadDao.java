@@ -31,7 +31,6 @@ public class ApiLealtadDao {
    */
   private static final String OK = "0";
   private static final String BAD = "1";
-  private static final String SERVICE_NAME = "ApiLealtadDao.getAcumulaciones";
   private static final int MENSAJE = 0;
   private static final int FOLIO = 1;
   private static final int FLAG = 2;
@@ -116,9 +115,11 @@ public class ApiLealtadDao {
       se imprime al loger la peticion que fallo
       asi como el id cliente en su forma parseada y cifrada
        */
-      log.mensaje(SERVICE_NAME, "ERROR: con el idCliente: " + parameters.get("idCliente") +
-        " forma parseada: " + parameters.get("idClienteParseado") + errorString +
-        " ERROR con La peticion: " + params);
+      log.mensaje("Respuesta API lealtad ", " ERROR: con el idCliente: " + parameters.get("idCliente") +
+        " Forma parseada para lealtad: " + parameters.get("idClienteParseado") +
+        " monto: " + parameters.get("importe") + " id tipo cliente:"
+        + parameters.get("idTipoCliente") + " Respuesta api: " + errorString );
+
       /*
       crecion de paramtro de retorno
        */

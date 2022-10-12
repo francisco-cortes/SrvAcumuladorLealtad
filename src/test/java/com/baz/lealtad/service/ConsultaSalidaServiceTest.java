@@ -18,10 +18,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * returns:
  **/
 public class ConsultaSalidaServiceTest {
-  /*
-  Constates global
-   */
-  private static final String SERVICE_NAME = "ConsultaSalidaServicesTEST";
 
   /**
    * stup
@@ -36,7 +32,7 @@ public class ConsultaSalidaServiceTest {
     SetterTestParams.setAllRequiredParams();
     final int EMPTY = 0;
     LogServicio log = new LogServicio();
-    log.setBegTimeMethod(SERVICE_NAME,ParametrerConfiguration.SYSTEM_NAME);
+    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     objeto de clase
      */
@@ -45,10 +41,11 @@ public class ConsultaSalidaServiceTest {
     Guarda la respuesta en una lista de la fortma CursorSpSalidaModel
      */
     List<CursorSpSalidaModel> cursorSpSalidaModelList = consultaSalidaService.consulta(log);
-    log.mensaje(SERVICE_NAME, "se obtuvieron " + cursorSpSalidaModelList.size() + " registros del primer sp");
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "se obtuvieron " + cursorSpSalidaModelList.size() + " registros del primer sp");
     /*
     acierta si la el tamano es mayor a 0
      */
+    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(cursorSpSalidaModelList.size()>EMPTY);
   }
 

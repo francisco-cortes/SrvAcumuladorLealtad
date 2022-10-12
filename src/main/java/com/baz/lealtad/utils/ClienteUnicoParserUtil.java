@@ -1,6 +1,5 @@
 package com.baz.lealtad.utils;
 
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.logger.LogServicio;
 
 import java.util.regex.Matcher;
@@ -14,7 +13,7 @@ public class ClienteUnicoParserUtil {
   /*
   Constantes globales
    */
-  private static final String SERVICE_NAME = "ClienteUnicoParserUtil.parsear";
+  private static final String SERVICE_NAME = "ClienteUnicoParserUtil";
   private static final int ZERO = 0;
   private static final int ONE = 1;
   private static final int TWO = 2;
@@ -24,7 +23,6 @@ public class ClienteUnicoParserUtil {
   private static final int NINE = 9;
   private static final int TEN = 10;
   private static final int TWELVE = 12;
-  private static final int TWELVE_PLUS_ONE = 13;
   private static final int SIXTEN = 16;
   private static final int HUNDRED = 100;
   private static final int THOUSAND = 1000;
@@ -33,6 +31,7 @@ public class ClienteUnicoParserUtil {
    */
   private static final Pattern IDEAL_CU = Pattern.compile("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})");
   private static final Pattern SEVEN_MORE_DIGITS_DEX = Pattern.compile("(\\d{7,})");
+  private static final Pattern FALTA_UN_DIGITO = Pattern.compile("(\\d{11})");
   private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
   private static final Pattern SPECIAL_CASE = Pattern.compile("(\\d)-(\\d)-(\\d{4})-(\\d{4,})");
   private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{4,})");
@@ -238,6 +237,12 @@ public class ClienteUnicoParserUtil {
    * returns: String
    **/
   private static String onlyAddDash(String input){
+
+    if(FALTA_UN_DIGITO.matcher(input).matches()){
+      StringBuilder str = new StringBuilder(input);
+      str.insert(9,"0");
+    }
+
     Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);
     Matcher m = p.matcher(input);
     String aux = m.replaceAll("$1" + "-");

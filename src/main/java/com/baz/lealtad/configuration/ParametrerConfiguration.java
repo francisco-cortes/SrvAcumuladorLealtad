@@ -6,6 +6,8 @@ package com.baz.lealtad.configuration;
  * Autor: Francisco Javier Cortes Torres, Desarrollador
  **/
 
+import com.baz.lealtad.logger.LogServicio;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -32,7 +34,10 @@ public final class ParametrerConfiguration {
   public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
     + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
   
+  
   //public static final String CERT_FILE_PATH = "/Users/fcortest/Downloads/certs.cert";
+  
+
   /*
   ip para base de datos oracle
    */
@@ -128,6 +133,22 @@ public final class ParametrerConfiguration {
   Nombre del sistema para log
    */
   public static final String SYSTEM_NAME = "SrvAcumuladorLealtad";
+  /*
+  Nombre del sistema para log en pruebas unitarias
+   */
+  public static final String SYSTEM_NAME_TEST = "SrvAcumuladorLealtadUnitTEST";
+  /*
+  id tipo negocion Dinero Express
+   */
+  public static final String DEX = "dex";
+  /*
+  maximo de respuestas negativas permitodas en una ejecucion
+   */
+  public static final int LIMITE_RESPUESTAS_NEGATIVAS = 100;
+
+  public ParametrerConfiguration(){
+    // Do nothing because of sonar qube need a constructor and but a constructor gives him amsiedad.
+  }
 
   /**
    * Metodo: loadConfiguration
@@ -135,7 +156,7 @@ public final class ParametrerConfiguration {
    * Autor: Francisco Javier Cortes Torres, Desarrollador
    **/
 
-  public static void loadConfiguration(){
+  public static void loadConfiguration(LogServicio log){
 
     try {
       /*
@@ -176,7 +197,7 @@ public final class ParametrerConfiguration {
       /*
       expecion impresa en consola al punto de llamar esta todavia no se llama al loger
        */
-      System.out.println ("Hubo un error al cargar las porpiedades: " + e);
+      log.exepcion(e,"Hubo un error al cargar las porpiedades: " + e.getMessage());
     }
   }
 
