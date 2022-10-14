@@ -28,21 +28,21 @@ public class GetCertUtil {
     /*
     inicio de objetos necesarios
      */
-    FileInputStream fis = null;
+    //FileInputStream fis = null;
     X509Certificate ca;
     KeyStore ks;
     TrustManagerFactory tmf = null;
 
-    try{
+    try(BufferedInputStream bis = new BufferedInputStream(new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH))){
       /*
       obtiene archivo .cert
        */
-      fis = new FileInputStream(ParametrerConfiguration.CERT_FILE_PATH);
+
       /*
       lee el archivo y obtiene instancio de certificado
        */
       ca = (X509Certificate) CertificateFactory.getInstance(
-        "X.509").generateCertificate(new BufferedInputStream(fis));
+        "X.509").generateCertificate(bis);
       /*
       crea un keystore por default
        */
@@ -59,23 +59,8 @@ public class GetCertUtil {
     }
     catch (Exception e){
       log.exepcion(e,"ERROR No se pudo obtener el certificado");
-
     }
-    finally {
 
-      try {
-        /*
-        cierra el fileStreamInput
-         */
-        if (fis != null) {
-          fis.close();
-        }
-
-      }
-      catch (Exception e){
-        log.exepcion(e,"ERROR No se puede cerrar el fileInputStream de cert");
-      }
-    }
     return tmf;
 
   }

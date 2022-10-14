@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TestParamMaker {
-  public static Map parameters(int idTipoCliente, String idCliente, String importe,
+  public static Map<String, Object> parameters(int idTipoCliente, String idCliente, String importe,
                                int sucursal, int idOperacion, String MTCN){
     Map<String, Object> parameters = new HashMap<>();
     parameters.put("idTipoCliente", idTipoCliente);

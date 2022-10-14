@@ -112,45 +112,36 @@ public class LogServicio {
    */
   public void exepcion(Throwable e, String msg) {
 
-    ThreadContext.put(TIEMPO_CON, "0");
-
     StringBuilder error = new StringBuilder();
 
-    try {
-
-      if (e.getStackTrace() != null) {
-        int sizeStk = e.getStackTrace().length;
-        for (int i = 0; i < sizeStk; i++) {
-          if (e.getStackTrace()[i].getClassName().contains("com.baz.lealtad")) {
-            error.append("(");
-            error.append(e.getStackTrace()[i].getClassName());
-            error.append(")");
-            error.append(" METODO -->> ");
-            error.append(e.getStackTrace()[i].getMethodName());
-            error.append(" LINEA -->> ");
-            error.append(e.getStackTrace()[i].getLineNumber());
-            error.append(" EXCEPTION -->> ");
-            error.append(e.toString().replace("\n", " ")
-              .replace("\r", " ")
-              .replace('\"', '\'').trim());
-            error.append(msg == null ? "" : " MENSAJE -->> " + msg.trim());
-            break;
-          }
+    if (e.getStackTrace() != null) {
+      int sizeStk = e.getStackTrace().length;
+      for (int i = 0; i < sizeStk; i++) {
+        if (e.getStackTrace()[i].getClassName().contains("com.baz.lealtad")) {
+          error.append("(");
+          error.append(e.getStackTrace()[i].getClassName());
+          error.append(")");
+          error.append(" METODO -->> ");
+          error.append(e.getStackTrace()[i].getMethodName());
+          error.append(" LINEA -->> ");
+          error.append(e.getStackTrace()[i].getLineNumber());
+          error.append(" EXCEPTION -->> ");
+          error.append(e.toString().replace("\n", " ")
+            .replace("\r", " ")
+            .replace('\"', '\'').trim());
+          error.append(msg == null ? "" : " MENSAJE -->> " + msg.trim());
+          break;
         }
       }
-      else {
-        error.append("Exception: ");
-        error.append(e.toString()
-          .replace('\n', '_')
-          .replace('\r', '_'));
-        error.append(msg == null ? "" : " MENSAJE -->> " + msg.replace('\n', '_')
-          .replace('\r', '_')
-          .replace('\"', '\'').trim());
-      }
-
     }
-    catch (Exception e1) {
-      LOGGER.error(e1);
+    else {
+      error.append("Exception: ");
+      error.append(e.toString()
+        .replace('\n', '_')
+        .replace('\r', '_'));
+      error.append(" MENSAJE -->> " + msg.replace('\n', '_')
+              .replace('\r', '_')
+              .replace('\"', '\'').trim());
     }
     LOGGER.error(error.toString().trim());
   }

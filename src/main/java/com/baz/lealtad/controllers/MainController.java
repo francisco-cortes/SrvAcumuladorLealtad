@@ -156,9 +156,9 @@ public class MainController {
           fallidosLealtad ++;
         }
 
-        if(fallidosLealtad >= ParametrerConfiguration.LIMITE_RESPUESTAS_NEGATIVAS ){
+        if(fallidosLealtad >= ParametrerConfiguration.getContencionLog() ){
           log.mensaje(NOMBRE_CLASE,
-            "ERROR: Hubo 100 o mas respuestas negativas se cancela operacion");
+            "ERROR: Hubo muchas respuestas negativas se cancela operacion");
           System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
         }
 

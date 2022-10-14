@@ -36,7 +36,7 @@ public final class ParametrerConfiguration {
   
   
   //public static final String CERT_FILE_PATH = "/Users/fcortest/Downloads/certs.cert";
-  
+
 
   /*
   ip para base de datos oracle
@@ -66,6 +66,12 @@ public final class ParametrerConfiguration {
   segundo procedimiento almacenado
    */
   private static String oracleDatabaseInStoreprocedure = "";
+  /*
+  stopper de errores jar
+   */
+
+  private static String contencionLog = "100";
+
   /*
   UTF 8
    */
@@ -192,6 +198,8 @@ public final class ParametrerConfiguration {
 
       apiAcumulacionesUrl = properties.getProperty("APIACUMULACIONESURL").trim();
 
+      contencionLog = properties.getProperty("CONTENCION").trim();
+
     }
     catch (IOException e) {
       /*
@@ -283,6 +291,13 @@ public final class ParametrerConfiguration {
    */
   public static String getApiAcumulacionesUrl(){
     return apiAcumulacionesUrl;
+  }
+
+  /*
+  get para la coantidad de contencion para el log
+   */
+  public static int getContencionLog(){
+    return Integer.parseInt(contencionLog);
   }
 
   /**
