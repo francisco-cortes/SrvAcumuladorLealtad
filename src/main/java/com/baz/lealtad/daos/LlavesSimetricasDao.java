@@ -61,7 +61,7 @@ public class LlavesSimetricasDao {
       /*
       respuesta negativa al log
        */
-      log.mensaje("LlavesSimetricasDao",
+      log.mensaje("LlavesSimetricasDao"+ ParametrerConfiguration.VERSION,
         connection.getResponseCode() + "ERROR en Simetricas " + sb);
     }
     else {

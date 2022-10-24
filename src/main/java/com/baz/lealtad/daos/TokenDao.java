@@ -57,7 +57,7 @@ public class TokenDao {
         }
         catch (UnsupportedEncodingException e) {
 
-          log.exepcion(e,"ERROR de Encoder Token");
+          log.exepcion(e,"ERROR de Encoder Token" + ParametrerConfiguration.VERSION);
 
         }
 
@@ -109,7 +109,7 @@ public class TokenDao {
      */
     String token = "";
     if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-      log.mensaje("TokenDao",connection.getResponseCode()
+      log.mensaje("TokenDao" + ParametrerConfiguration.VERSION,connection.getResponseCode()
         + " ERROR en Token: " + sb);
     }
     else {

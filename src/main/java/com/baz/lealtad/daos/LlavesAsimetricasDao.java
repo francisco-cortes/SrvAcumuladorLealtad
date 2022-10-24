@@ -59,8 +59,8 @@ public class LlavesAsimetricasDao {
     validacion de codigo de respuesta
      */
     if (connection.getResponseCode() > ParametrerConfiguration.OK_STATUS_CODE_LIMIT){
-      log.mensaje("LLavesAsimetricasDao ",
-        "ERROR en asimetricas: " + sb);
+      log.mensaje("LLavesAsimetricasDao "+ ParametrerConfiguration.VERSION,
+        "ERROR en asimetricas: " + sb );
     }
     else {
       /*

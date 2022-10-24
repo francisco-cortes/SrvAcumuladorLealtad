@@ -62,6 +62,7 @@ public class MainController {
    * Params: args(String array)
    **/
   public static void main(String[] args){
+    System.out.println("Ejecutando ..." + ParametrerConfiguration.VERSION);
     /*
     confing para el path de mmuuser home
      */
@@ -157,7 +158,7 @@ public class MainController {
 
         if(fallidosLealtad >= ParametrerConfiguration.getContencionLog() ){
           log.mensaje(NOMBRE_CLASE,
-            "ERROR: Hubo muchas respuestas negativas se cancela operacion");
+            "ERROR: Hubo muchas respuestas negativas se cancela operacion " + ParametrerConfiguration.VERSION);
           System.exit(ParametrerConfiguration.ERROR_OR_EXCEPTION);
         }
 
@@ -167,7 +168,8 @@ public class MainController {
        */
       if (fallidosLealtad > 0){
         log.mensaje(NOMBRE_CLASE,
-          "ERROR: Hubo " + fallidosLealtad + " respuestas negativas de API Lealtad");
+          "ERROR: Hubo " + fallidosLealtad + " respuestas negativas de API Lealtad "
+            + ParametrerConfiguration.VERSION);
         /*
         termina la ejecucion con status 2
          */
@@ -186,7 +188,7 @@ public class MainController {
        */
       log.mensaje(NOMBRE_CLASE,
         "ERROR: Respuesta vacia del SP C3MULTIMARCAS.PAPLANLEALTAD01.SPPUNTOSLEALTAD \n"+
-          "No se realiza ninguna Accion");
+          "No se realiza ninguna Accion " + ParametrerConfiguration.VERSION);
       System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
     }
   }

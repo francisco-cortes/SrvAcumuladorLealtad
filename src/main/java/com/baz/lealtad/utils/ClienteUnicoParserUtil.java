@@ -1,5 +1,6 @@
 package com.baz.lealtad.utils;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.logger.LogServicio;
 
 import java.util.regex.Matcher;
@@ -76,7 +77,7 @@ public class ClienteUnicoParserUtil {
       }
       else {
         //la entrada no puede ser paseada por que no hay concide con ninguna regex
-        log.mensaje(SERVICE_NAME,
+        log.mensaje(SERVICE_NAME + ParametrerConfiguration.VERSION,
           "ERROR no se pudo hallar la forma de la entrada ID Cliente");
         newIdCliente = idCliente;
 

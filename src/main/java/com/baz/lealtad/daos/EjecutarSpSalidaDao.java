@@ -109,7 +109,7 @@ public class EjecutarSpSalidaDao {
         result set vacio
          */
         log.mensaje("EjecutarSpSalidaDao",
-          "SPPUNTOSLEALTAD no ejecutado o respuesta nula");
+          "SPPUNTOSLEALTAD no ejecutado o respuesta nula " + ParametrerConfiguration.VERSION);
 
       }
     }
@@ -117,7 +117,7 @@ public class EjecutarSpSalidaDao {
       /*
       Sql exepcion
        */
-      log.exepcion(excepcion, "ERROR en BD");
+      log.exepcion(excepcion, "ERROR en BD " + ParametrerConfiguration.VERSION);
 
     }
     finally {
@@ -132,7 +132,7 @@ public class EjecutarSpSalidaDao {
         /*
         sql exepcion
          */
-        log.exepcion(e,"ERROR al cerrar Conexion SP 1");
+        log.exepcion(e,"ERROR al cerrar Conexion SP 1 " + ParametrerConfiguration.VERSION);
 
       }
 

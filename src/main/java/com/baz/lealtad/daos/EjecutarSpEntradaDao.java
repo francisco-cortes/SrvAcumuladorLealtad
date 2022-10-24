@@ -114,7 +114,7 @@ public class EjecutarSpEntradaDao {
        */
       if(declaracion.getString(RESPUESTA_2) == null ||
         !"OPERACION EXITOSA.".contains(declaracion.getString(RESPUESTA_2)) ) {
-        log.mensaje("Ejecurtar sp entrada",
+        log.mensaje("Ejecurtar sp entrada" + ParametrerConfiguration.VERSION,
           " ERROR SPTRANSPUNTLEAL no ejecutado o respuesta nula");
         resp = "OPERRACION FALLIDA";
       }
@@ -124,7 +124,7 @@ public class EjecutarSpEntradaDao {
       /*
       sql exepcion
        */
-      log.exepcion(e,"Error en conexion a SP2");
+      log.exepcion(e,"Error en conexion a SP2" + ParametrerConfiguration.VERSION);
     }
     finally {
       try {
@@ -139,7 +139,7 @@ public class EjecutarSpEntradaDao {
         fabricaDao.cerrarConexionSinResult(conexion, declaracion);
       }
       catch (SQLException e) {
-        log.exepcion(e,"Error en conexion a SP2");
+        log.exepcion(e,"Error en conexion a SP2 " + ParametrerConfiguration.VERSION);
       }
     }
     return resp;

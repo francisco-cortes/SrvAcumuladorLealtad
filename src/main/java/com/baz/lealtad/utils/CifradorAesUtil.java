@@ -87,7 +87,7 @@ public class CifradorAesUtil {
     catch (InvalidAlgorithmParameterException |
       UnsupportedEncodingException | NoSuchPaddingException | IllegalBlockSizeException |
       NoSuchAlgorithmException | BadPaddingException | InvalidKeyException e) {
-      log.exepcion(e,"ERROR al cifrar en AES");
+      log.exepcion(e,"ERROR al cifrar en AES " + ParametrerConfiguration.VERSION);
     }
 
     return valorCampo;

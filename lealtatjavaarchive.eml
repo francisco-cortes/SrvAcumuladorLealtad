@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component jdk="1.8" jdk_type="JavaSDK">
-	<contentEntry url="file://$MODULE_DIR$"/>
+<component LANGUAGE_LEVEL="JDK_1_8" jdk="1.8" jdk_type="JavaSDK">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<testFolder url="file://$MODULE_DIR$/src/test/java"/>
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+	</contentEntry>
+	<lib name="Maven: org.junit.jupiter:junit-jupiter-engine:5.8.2" scope="TEST"/>
+	<lib name="Maven: org.junit.platform:junit-platform-engine:1.8.2" scope="TEST"/>
 	<levels>
 		<level name="Maven: org.apache.logging.log4j:log4j-api:2.17.2" value="project"/>
 		<level name="Maven: org.apache.logging.log4j:log4j-core:2.17.2" value="project"/>

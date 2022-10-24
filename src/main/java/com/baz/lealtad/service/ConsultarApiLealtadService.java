@@ -1,5 +1,6 @@
 package com.baz.lealtad.service;
 
+import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.daos.ApiLealtadDao;
 import com.baz.lealtad.logger.LogServicio;
 
@@ -41,7 +42,7 @@ public class ConsultarApiLealtadService {
       elimina el proceso en el hilo
        */
       Thread.currentThread().interrupt();
-      log.exepcion(e, "ERROR al consultar api lealtad");
+      log.exepcion(e, "ERROR al consultar api lealtad " + ParametrerConfiguration.VERSION);
     }
     return respuestaApi;
   }

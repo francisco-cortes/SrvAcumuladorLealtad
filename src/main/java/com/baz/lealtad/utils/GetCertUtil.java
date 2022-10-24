@@ -58,7 +58,7 @@ public class GetCertUtil {
 
     }
     catch (Exception e){
-      log.exepcion(e,"ERROR No se pudo obtener el certificado");
+      log.exepcion(e,"ERROR No se pudo obtener el certificado"+ ParametrerConfiguration.VERSION);
     }
 
     return tmf;
