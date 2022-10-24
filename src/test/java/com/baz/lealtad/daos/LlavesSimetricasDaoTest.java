@@ -35,7 +35,6 @@ public class LlavesSimetricasDaoTest {
     TokenDao tokenDao = new TokenDao();
     LlavesAsimetricasDao llavesAsimetricasDao = new LlavesAsimetricasDao();
     LlavesSimetricasDao llavesSimetricasDao = new LlavesSimetricasDao();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -71,7 +70,6 @@ public class LlavesSimetricasDaoTest {
     }
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, aux.toString());
     respBol = !respuesta3[ACCESO_SIMETRICO].isEmpty();
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     /*
     acierta si la respuesta de simetricas no esta vacia
      */

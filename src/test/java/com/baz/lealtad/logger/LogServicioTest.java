@@ -31,29 +31,11 @@ public class LogServicioTest {
     LogServicio log = new LogServicio();
     FabricaDaoUtil fabricaDaoUtil = new FabricaDaoUtil();
     /*
-    inicio de tiempo de ejecucion del metod
-     */
-    log.setBegTimeMethod(SERVICE_NAME, ParametrerConfiguration.SYSTEM_NAME);
-
-    /*
     imprime un mensaje en log
      */
     log.mensaje(SERVICE_NAME,"Prueba de metodos LOGGER baz");
-    /*
-    muestra el formato del service
-     */
-    String serviceFormat = log.getServiceFotmat();
-    /*
-    el tiempo total de ejcucion
-     */
-    String timeTotal = log.getTimeTotal(SERVICE_NAME);
-    /*
-    imprime el tiempo y formato
-     */
-    log.mensaje(SERVICE_NAME, "Formato: " + serviceFormat + "Tiempo del metodo: " + timeTotal);
-    /*
-    esta parte siempre arroja una expecion
-     */
+
+
     try {
       fabricaDaoUtil.cerrarConexionSinResult(null,null);
     } catch (Exception e) {
@@ -70,7 +52,6 @@ public class LogServicioTest {
      */
     File archivoLog = new File("/Users/fcortest/Desktop/SrvAcumuladorLealtad/log/" +
       "logSrvAcumuladorLealtad.log");
-    log.setEndTimeMethod(SERVICE_NAME);
     assertTrue(archivoLog.exists());
   }
 

@@ -43,7 +43,6 @@ public class LlavesAsimetricasDaoTest {
   @Test
   public void testGetAsimetricas() {
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     String respuesta;
     String[] respuesta2 = new String[TAMANO_RESPUESTA_ASIMETICAS];
     boolean respBol;
@@ -67,7 +66,6 @@ public class LlavesAsimetricasDaoTest {
     acierta si el id acceso no esta vacio
      */
     respBol = !respuesta2[ID_ACCESO].isEmpty();
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertEquals(true, respBol);
   }
 
@@ -75,7 +73,6 @@ public class LlavesAsimetricasDaoTest {
   @Test
   public void testNoGetAsimetricas() {
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     //respuesta aaa
     String respuesta;
     String[] respuesta2 = new String[TAMANO_RESPUESTA_ASIMETICAS];
@@ -98,7 +95,6 @@ public class LlavesAsimetricasDaoTest {
     /*
     acierta si el id acceso no esta vacio
      */
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertNull(respuesta2[ID_ACCESO]);
   }
 

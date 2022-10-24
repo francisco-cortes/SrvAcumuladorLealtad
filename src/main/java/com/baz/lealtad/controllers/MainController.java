@@ -27,7 +27,6 @@ public class MainController {
   /*
   Objetos estaticos para clases y metodos
    */
-  private static final ParametrerConfiguration configs = new ParametrerConfiguration();
   private static final ConsultaSalidaService salidaService = new ConsultaSalidaService();
   private static final SpEntradaService spEntrada = new SpEntradaService();
   private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
@@ -58,7 +57,7 @@ public class MainController {
 
   /**
    * Metodo main
-   * Descrpcion: punto inicila para la ejecucion del jar aqui se invoca los services necesarios
+   * Descrpcion: punto inicio para la ejecucion del jar aqui se invoca los services necesarios
    * Autor: Francisco Javier Cortes Torres, Desarrollador
    * Params: args(String array)
    **/
@@ -72,11 +71,11 @@ public class MainController {
     creacion de log
      */
     LogServicio log = new LogServicio();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME,ParametrerConfiguration.SYSTEM_NAME);
+
     /*
     carga de properties
      */
-    configs.loadConfiguration(log);
+    ParametrerConfiguration.loadConfigs();
     /*
     Obtiene todas las llaves de api seguridad baz
      */

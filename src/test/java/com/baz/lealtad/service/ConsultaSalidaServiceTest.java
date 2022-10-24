@@ -32,7 +32,6 @@ public class ConsultaSalidaServiceTest {
     SetterTestParams.setAllRequiredParams();
     final int EMPTY = 0;
     LogServicio log = new LogServicio();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     objeto de clase
      */
@@ -45,7 +44,6 @@ public class ConsultaSalidaServiceTest {
     /*
     acierta si la el tamano es mayor a 0
      */
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(cursorSpSalidaModelList.size()>EMPTY);
   }
 

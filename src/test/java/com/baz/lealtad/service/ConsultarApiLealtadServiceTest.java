@@ -45,9 +45,7 @@ public class ConsultarApiLealtadServiceTest {
   @DisplayName("Prueba unitaria para api de lealtad Service")
   @Test
   public void testApiLeatadService() {
-
     SetterTestParams.setAllRequiredParams();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     ConsultarApiLealtadService apiLealtadDao = new ConsultarApiLealtadService();
     String[] llavesAes = obtenerLlaves.getLlaves(log);
     String[] respuesta = new String[RESPUESTA_TAMANO];
@@ -97,7 +95,6 @@ public class ConsultarApiLealtadServiceTest {
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, " Mensaje: " + respuestaNegativa[MENSAJE] + " Folio: "
       + respuestaNegativa[FOLIO] + " Bandera: " + respuestaNegativa[BANDERA]);
 
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
 
     assertEquals(true, respBol);
   }

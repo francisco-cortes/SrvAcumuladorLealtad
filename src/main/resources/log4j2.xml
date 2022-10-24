@@ -3,10 +3,9 @@
     <Properties>
 
         <Property name="logpath">/home/mmuser/multimarcas/jars/SrvAcumuladorLealtad/log/</Property>
-        <!--
-        <Property name="logpath">/Users/fcortest/Desktop/SrvAcumuladorLealtad/log</Property>
-        -->
+
         <Property name="filename">logSrvAcumuladorLealtad.log</Property>
+
     </Properties>
 
     <Appenders>
@@ -18,7 +17,7 @@
             </PatternLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true" />
-                <SizeBasedTriggeringPolicy size="500MB" />
+                <SizeBasedTriggeringPolicy size="200MB" />
             </Policies>
             <DefaultRolloverStrategy max="5" />
         </RollingFile>

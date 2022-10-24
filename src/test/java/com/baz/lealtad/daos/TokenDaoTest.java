@@ -41,7 +41,6 @@ public class TokenDaoTest {
     String respuesta = "";
     String respuesta2 = "";
     boolean respBol;
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -64,7 +63,6 @@ public class TokenDaoTest {
       respBol = false;
     }
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "Token: " + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respBol);
   }
 

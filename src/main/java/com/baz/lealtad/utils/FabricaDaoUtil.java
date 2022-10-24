@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * Descrpcion: Construye y cierra conexiones a base de datos
  * Autor: Francisco Javier Cortes Torres, Desarrollador
  **/
-public class FabricaDaoUtil {
+public class   FabricaDaoUtil {
   /**
    * obtenerConexion
    * Descrpcion: creoa le objeto SQL.Connection
@@ -35,12 +35,11 @@ public class FabricaDaoUtil {
       ")(CONNECT_DATA=(SERVICE_NAME=" + ParametrerConfiguration.getOracleDatabaseName() +
       ")(SERVER=DEDICATED)(FAILOVER_MODE=(TYPE=SELECT)(METHOD=BASIC)(RETIRES=180)(DELAY=5))))";
     /*
-    construlle y retorna el objeto connection a treves del drive manager
+    construye y retorna el objeto connection a treves del drive manager
      */
     return DriverManager.getConnection(cadenaConexion,
       ParametrerConfiguration.getOracleDatabaseU(),
       ParametrerConfiguration.getOracleDatabaseP());
-
   }
 
   /**

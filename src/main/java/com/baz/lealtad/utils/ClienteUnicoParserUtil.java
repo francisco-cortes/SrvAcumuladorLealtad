@@ -23,6 +23,7 @@ public class ClienteUnicoParserUtil {
   private static final int NINE = 9;
   private static final int TEN = 10;
   private static final int TWELVE = 12;
+  private static final int FOURTEN = 14;
   private static final int SIXTEN = 16;
   private static final int HUNDRED = 100;
   private static final int THOUSAND = 1000;
@@ -156,28 +157,30 @@ public class ClienteUnicoParserUtil {
    * returns: String
    **/
   private static String specialCaseSucc(String sucursalTwo){
+    String succ = "";
     /*
     concatena 3 ceros si es menor a 10
      */
     int sucursal = Integer.parseInt(sucursalTwo);
     if (sucursal < TEN){
-      return  "0" + "0" + "0" + sucursalTwo + "-";
+      succ = "0" + "0" + "0" + sucursalTwo + "-";
     }
     /*
     concatena 2 ceros si es meno a 100
      */
     else if (sucursal < HUNDRED){
-      return  "0" + "0" + sucursalTwo + "-";
+      succ = "0" + "0" + sucursalTwo + "-";
     }
     /*
     concatena un 0 si es menor a 1000
      */
     else if (sucursal < THOUSAND){
-      return  "0" + sucursalTwo + "-";
+      succ = "0" + sucursalTwo + "-";
     }
     else {
-      return sucursalTwo + "-";
+      succ = sucursalTwo + "-";
     }
+    return succ;
   }
 
   /**
@@ -217,7 +220,7 @@ public class ClienteUnicoParserUtil {
       StringBuilder str = new StringBuilder(lastThree);
       str.insert(FOUR,"-");
       str.insert(NINE,"-");
-      str.insert(14,"-");
+      str.insert(FOURTEN,"-");
       aux = str.toString();
     }
     /*
@@ -240,7 +243,7 @@ public class ClienteUnicoParserUtil {
 
     if(FALTA_UN_DIGITO.matcher(input).matches()){
       StringBuilder str = new StringBuilder(input);
-      str.insert(9,"0");
+      str.insert(NINE,"0");
     }
 
     Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);

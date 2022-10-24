@@ -5,15 +5,15 @@ public class SetterTestParams {
     /*
     Ip base oracle desarrollo
      */
-    ParametrerConfiguration.setOracleDatabaseIp("10.81.11.77");
+    ParametrerConfiguration.setOracleDatabaseIp("10.97.167.38");
     /*
     port base oracle desarrollo
      */
-    ParametrerConfiguration.setOracleDatabasePort("1521");
+    ParametrerConfiguration.setOracleDatabasePort("1522");
     /*
     nombre base oracle desarrollo
      */
-    ParametrerConfiguration.setOracleDatabaseName("SFBDDEV");
+    ParametrerConfiguration.setOracleDatabaseName("orcl");
     /*
     usuario oracle desarrollo
      */

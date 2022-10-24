@@ -28,7 +28,6 @@ public class SpEntradaServiceTest {
     objetos
      */
     LogServicio log = new LogServicio();
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST,ParametrerConfiguration.SYSTEM_NAME);
     SpEntradaService spEntradaService = new SpEntradaService();
     /*
     constantes
@@ -72,7 +71,6 @@ public class SpEntradaServiceTest {
     /*
     Operacion exitosa
      */
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertEquals("OPERACION EXITOSA",
       spEntradaService.guardarBase(parameters,randomFolio,MENSAJE,BANDERA,log));
 

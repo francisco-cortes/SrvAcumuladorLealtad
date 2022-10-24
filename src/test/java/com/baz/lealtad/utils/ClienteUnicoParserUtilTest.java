@@ -21,10 +21,6 @@ public class ClienteUnicoParserUtilTest {
   @Test
   public void testClienteUnicoIdeal(){
     /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
-    /*
     constantes
      */
     final String IDEAL = "0101-0127-4888-123";
@@ -33,17 +29,12 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = clienteUnicoParserUtil.parsear(IDEAL, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG
       + "respuesta: " + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
   @DisplayName("Prueba unitaria cliente unico conforma dex numerica de 7 a 10 digitos")
   @Test
   public void testClienteDexNumerico(){
-    /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -53,17 +44,12 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = clienteUnicoParserUtil.parsear(DEX, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + DEX + ESPERADO_LABEL + ESPERADO
       + RESPUESTA_LABEL + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
   @DisplayName("Prueba unitaria cliente unico con forma numerica de mas de 10 digitos")
   @Test
   public void testClienteNumerico(){
-    /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -73,17 +59,12 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = clienteUnicoParserUtil.parsear(CU, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
       + RESPUESTA_LABEL + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
   @DisplayName("Prueba unitaria cliente unico con forma x-x-xxxx-xxxxxx")
   @Test
   public void testClienteEspecial(){
-    /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -93,17 +74,12 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = clienteUnicoParserUtil.parsear(CU, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
       + RESPUESTA_LABEL + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 
   @DisplayName("Prueba unitaria cliente unico con forma x-x-xx-xxxxxx")
   @Test
   public void testClienteEspecialDos(){
-    /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -123,17 +99,12 @@ public class ClienteUnicoParserUtilTest {
       + RESPUESTA_LABEL + respuesta2);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU3 + ESPERADO_LABEL + ESPERADO3
       + RESPUESTA_LABEL + respuesta3);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO)&& respuesta2.equals(ESPERADO2) && respuesta3.equals(ESPERADO3));
   }
 
   @DisplayName("Prueba unitaria cliente unico con forma x-x-xx-xxxxxx")
   @Test
   public void testClienteInvalido(){
-    /*
-    objetos
-     */
-    log.setBegTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST, ParametrerConfiguration.SYSTEM_NAME);
     /*
     constantes
      */
@@ -143,7 +114,6 @@ public class ClienteUnicoParserUtilTest {
     String respuesta = ClienteUnicoParserUtil.parsear(CU, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
       + RESPUESTA_LABEL + respuesta);
-    log.setEndTimeMethod(ParametrerConfiguration.SYSTEM_NAME_TEST);
     assertTrue(respuesta.equals(ESPERADO));
   }
 

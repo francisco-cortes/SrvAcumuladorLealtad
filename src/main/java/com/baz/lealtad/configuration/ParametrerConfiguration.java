@@ -23,20 +23,22 @@ public final class ParametrerConfiguration {
    */
   private static final String FILE_SEPARATOR = "file.separator";
   /*
+  Nombre de ambiente
+   */
+  public static final String MMUSER_HOME = "MMUSER_HOME";
+
+  /*
   Ruta donde se aloja el jar
    */
-  private static final String CONF_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
+  private static final String CONF_FILE_PATH = System.getenv(MMUSER_HOME) + System.getProperty(FILE_SEPARATOR)
     + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "config" + System.getProperty(FILE_SEPARATOR)
     + "SrvAcumuladorLealtad.properties";
+
   /*
-  Ruta del certificado para conexion HTTPS a apis internas Baz
-  */
+    Ruta del certificado para conexion HTTPS a apis internas Baz
+    */
   public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
     + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
-  
-  
-  //public static final String CERT_FILE_PATH = "/Users/fcortest/Downloads/certs.cert";
-
 
   /*
   ip para base de datos oracle
@@ -69,9 +71,7 @@ public final class ParametrerConfiguration {
   /*
   stopper de errores jar
    */
-
   private static String contencionLog = "100";
-
   /*
   UTF 8
    */
@@ -136,10 +136,6 @@ public final class ParametrerConfiguration {
    */
   public static final int ERROR_OR_EXCEPTION = 2;
   /*
-  Nombre del sistema para log
-   */
-  public static final String SYSTEM_NAME = "SrvAcumuladorLealtad";
-  /*
   Nombre del sistema para log en pruebas unitarias
    */
   public static final String SYSTEM_NAME_TEST = "SrvAcumuladorLealtadUnitTEST";
@@ -147,23 +143,13 @@ public final class ParametrerConfiguration {
   id tipo negocion Dinero Express
    */
   public static final String DEX = "dex";
-  /*
-  maximo de respuestas negativas permitodas en una ejecucion
-   */
-  public static final int LIMITE_RESPUESTAS_NEGATIVAS = 100;
 
-  public ParametrerConfiguration(){
-    // Do nothing because of sonar qube need a constructor and but a constructor gives him amsiedad.
+  private ParametrerConfiguration(){
+    //Empty constructor because sonnarqube is retard
   }
 
-  /**
-   * Metodo: loadConfiguration
-   * Descrpcion: metodo para obtener propiedades del archivo SrvAcumuladorLealtad.properties
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
-   **/
-
-  public static void loadConfiguration(LogServicio log){
-
+  public static Boolean loadConfigs(){
+    LogServicio log = new LogServicio();
     try {
       /*
       carga de archivo properties con un fileInputStream
@@ -206,8 +192,16 @@ public final class ParametrerConfiguration {
       expecion impresa en consola al punto de llamar esta todavia no se llama al loger
        */
       log.exepcion(e,"Hubo un error al cargar las porpiedades: " + e.getMessage());
+      return false;
     }
+    return true;
   }
+
+  /**
+   * Metodo: loadConfiguration
+   * Descrpcion: metodo para obtener propiedades del archivo SrvAcumuladorLealtad.properties
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   **/
 
   /**
    * Seccion Getter
@@ -215,7 +209,7 @@ public final class ParametrerConfiguration {
    * Autor: Francisco Javier Cortes Torres, Desarrollador
    **/
   /*
-  get depara la ip de base
+  get para la ip de base
    */
   public static String getOracleDatabaseIp (){
     return oracleDatabaseIp;
