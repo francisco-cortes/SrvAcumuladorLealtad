@@ -6,141 +6,197 @@ public class CursorSpSalidaModel {
   /*
   id tipo cliente
    */
-  private int FN_ID_TIPO_CLIENTE;
+  private int fnIdTipoCliente;
   /*
   id cliente
    */
-  private String FC_ID_CLIENTE;
+  private String fcIdCliente;
   /*
   importe
    */
-  private Double FN_IMPORTE;
+  private Double fnImporte;
   /*
   sucursal
    */
-  private int FN_SUCURSAL;
+  private int fnSucursal;
   /*
   id operacion
    */
-  private int FN_ID_OPERACION;
+  private int fnIdOperacion;
   /*
   folio transaccion
    */
-  private String FC_FOLIO_TRANSACCION;
+  private String fcFolioTransaccion;
   /*
   fecha operacion
    */
-  private Date FD_FECHA_OPERACION;
+  private Date fdFechaOperacion;
   /*
   negocio
    */
-  private String FC_NEGOCIO;
+  private String fcNegocio;
   /*
   tipo de operacion
    */
-  private String FC_TIPO_OPERACION;
+  private String fcTipoOperacion;
   /*
   origen transaccion
    */
-  private int FI_ORIGEN_TRANSACCION;
+  private int fiOrigenTransaccion;
   /*
   id pais
    */
-  private int FI_PAIS_ID;
+  private int fiPaisId;
 
   /*
-  gettter
+  obtiene el id tipo cliente
    */
   public int getFnIdTipoCliente(){
-    return this.FN_ID_TIPO_CLIENTE;
+    return this.fnIdTipoCliente;
   }
-
+  /*
+  obtiene el id cliente
+   */
   public String getFcIdCliente(){
-    return this.FC_ID_CLIENTE;
+    return this.fcIdCliente;
   }
-
+  /*
+  obtiene el importe
+   */
   public Double getFnImporte(){
-    return this.FN_IMPORTE;
+    return this.fnImporte;
   }
-
+  /*
+  obtiene la surcursal
+   */
   public int getFnSucursal(){
-    return this.FN_SUCURSAL;
+    return this.fnSucursal;
   }
-
+  /*
+  obtiene el id
+   */
   public int getFnIdOperacion(){
-    return this.FN_ID_OPERACION;
+    return this.fnIdOperacion;
   }
 
+  /*
+  obtiene el folio tencsaccion mtcn
+   */
   public String getFcFolioTransaccion(){
-    return this.FC_FOLIO_TRANSACCION;
+    return this.fcFolioTransaccion;
   }
 
+  /*
+  fecha de operacion
+   */
   public Date getFdFechaOperacion(){
-    return (Date) this.FD_FECHA_OPERACION.clone();
+    return (Date) this.fdFechaOperacion.clone();
   }
 
+  /*
+  obtiene el negocio
+   */
   public String getFcNegocio(){
-    return this.FC_NEGOCIO;
+    return this.fcNegocio;
   }
 
+  /*
+  obtiene el tipo de operacion
+   */
   public String getFcTipoOperacion(){
-    return this.FC_TIPO_OPERACION;
+    return this.fcTipoOperacion;
   }
 
+  /*
+  obtiene el origine de transaccio remesa
+   */
   public int getFiOrigenTransaccion(){
-    return this.FI_ORIGEN_TRANSACCION;
+    return this.fiOrigenTransaccion;
   }
 
+  /*
+  obtiene el id del pasi 01 + mex
+   */
   public int getFiPaisId(){
-    return this.FI_PAIS_ID;
+    return this.fiPaisId;
   }
 
   /*
   setters
    */
 
+  /*
+  estable el valor de id tipo cliente
+   */
   public void setFnIdTipoCliente(int idTipoCliente){
-    this.FN_ID_TIPO_CLIENTE = idTipoCliente;
+    this.fnIdTipoCliente = idTipoCliente;
   }
 
+  /*
+  establece el valor de id cliente
+   */
   public void setFcIdCliente(String idCliente){
-    this.FC_ID_CLIENTE = idCliente;
+    this.fcIdCliente = idCliente;
   }
 
+  /*
+  establece el valor del importe
+   */
   public void setFnImporte(Double importe){
-    this.FN_IMPORTE = importe;
+    this.fnImporte = importe;
   }
 
+  /*
+  establece el valor de la sucursal 2314 ventanilla
+   */
   public void setFnSucursal(int sucursal){
-    this.FN_SUCURSAL = sucursal;
+    this.fnSucursal = sucursal;
   }
 
+  /*
+  estyablece el id operacion
+   */
   public void setFnIdOperacion(int idOperacion){
-    this.FN_ID_OPERACION = idOperacion;
+    this.fnIdOperacion = idOperacion;
   }
 
+  /*
+  establece la varible folio transacciion
+   */
   public void setFcFolioTransaccion(String folioTransaccion){
-    this.FC_FOLIO_TRANSACCION = folioTransaccion;
+    this.fcFolioTransaccion = folioTransaccion;
   }
 
+  /*
+  establese la fecha operacion muy imortante java.sql
+   */
   public void setFdFechaOperacion(Date fechaOperacion){
-    this.FD_FECHA_OPERACION = (Date) fechaOperacion.clone();
+    this.fdFechaOperacion = (Date) fechaOperacion.clone();
   }
-
+  /*
+  esablece el negocio
+   */
   public void setFcNegocio(String negocio){
-    this.FC_NEGOCIO = negocio;
+    this.fcNegocio = negocio;
   }
-
+  /*
+  establece el tipo de operacion
+   */
   public void setFcTipoOperacion(String tipoOperacion){
-    this.FC_TIPO_OPERACION = tipoOperacion;
+    this.fcTipoOperacion = tipoOperacion;
   }
-
+  /*
+  establece el origen de la transaccuib
+   */
   public void setFiOrigenTransaccion(int origenTransaccion){
-    this.FI_ORIGEN_TRANSACCION = origenTransaccion;
+    this.fiOrigenTransaccion = origenTransaccion;
   }
 
+  /*
+  establece el valor de pais
+   */
   public void setFiPaisId(int paisId){
-    this.FI_PAIS_ID = paisId;
+    this.fiPaisId = paisId;
   }
 
 }

@@ -191,7 +191,7 @@ public final class ParametrerConfiguration {
       contencionLog = properties.getProperty("CONTENCION").trim();
 
     }
-    catch (IOException e) {
+    catch (IOException | NullPointerException e) {
       /*
       expecion impresa en consola al punto de llamar esta todavia no se llama al loger
        */

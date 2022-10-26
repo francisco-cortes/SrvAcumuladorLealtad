@@ -62,17 +62,16 @@ public class MainController {
    * Params: args(String array)
    **/
   public static void main(String[] args){
-    System.out.println("Ejecutando ..." + ParametrerConfiguration.VERSION);
+    /*
+    creacion de log
+     */
+    LogServicio log = new LogServicio();
+    log.mensaje ("main", "Inicia ejecucion SrvAcumuladorLealtad 1" + ParametrerConfiguration.VERSION);
     /*
     confing para el path de mmuuser home
      */
     final String MMUSER_HOME = System.getenv("MMUSER_HOME");
     System.setProperty("MMUSER_HOME", MMUSER_HOME);
-    /*
-    creacion de log
-     */
-    LogServicio log = new LogServicio();
-
     /*
     carga de properties
      */
