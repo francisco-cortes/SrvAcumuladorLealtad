@@ -21,7 +21,7 @@ public final class ParametrerConfiguration {
   /*
   Version Actual
    */
-  public static final String VERSION = "1.0.0";
+  public static final String VERSION = "1.1.0";
   /*
   Separador de archivos = /
    */
@@ -41,7 +41,7 @@ public final class ParametrerConfiguration {
   /*
     Ruta del certificado para conexion HTTPS a apis internas Baz
     */
-  public static final String CERT_FILE_PATH = System.getenv("MMUSER_HOME") + System.getProperty(FILE_SEPARATOR)
+  public static final String CERT_FILE_PATH = System.getenv(MMUSER_HOME) + System.getProperty(FILE_SEPARATOR)
     + NOMBRE_JAR + System.getProperty(FILE_SEPARATOR) + "certs.cert";
 
   /*
@@ -191,7 +191,7 @@ public final class ParametrerConfiguration {
       contencionLog = properties.getProperty("CONTENCION").trim();
 
     }
-    catch (IOException | NullPointerException e) {
+    catch (IOException e) {
       /*
       expecion impresa en consola al punto de llamar esta todavia no se llama al loger
        */

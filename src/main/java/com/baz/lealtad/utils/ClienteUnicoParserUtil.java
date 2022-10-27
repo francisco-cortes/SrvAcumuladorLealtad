@@ -23,6 +23,7 @@ public class ClienteUnicoParserUtil {
   private static final int EIGHT = 8;
   private static final int NINE = 9;
   private static final int TEN = 10;
+  private static final int ELEVEN = 11;
   private static final int TWELVE = 12;
   private static final int FOURTEN = 14;
   private static final int SIXTEN = 16;
@@ -33,7 +34,6 @@ public class ClienteUnicoParserUtil {
    */
   private static final Pattern IDEAL_CU = Pattern.compile("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})");
   private static final Pattern SEVEN_MORE_DIGITS_DEX = Pattern.compile("(\\d{7,})");
-  private static final Pattern FALTA_UN_DIGITO = Pattern.compile("(\\d{11})");
   private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
   private static final Pattern SPECIAL_CASE = Pattern.compile("(\\d)-(\\d)-(\\d{4})-(\\d{4,})");
   private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{4,})");
@@ -248,7 +248,7 @@ public class ClienteUnicoParserUtil {
     existen caso en el que falta 1 numero para acompletar los 3 cuartetos
     con esta validacion se trata de acompletar agregando un 0 en la 9 posicion
      */
-    if(input.length() == 11){
+    if(input.length() == ELEVEN){
       StringBuilder str = new StringBuilder(input);
       str.insert(EIGHT,"0");
       onlyDigits = str.toString();
