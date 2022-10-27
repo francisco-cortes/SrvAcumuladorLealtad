@@ -115,7 +115,7 @@ public class ApiLealtadDao {
       se imprime al loger la peticion que fallo
       asi como el id cliente en su forma parseada y cifrada
        */
-      log.mensaje("Respuesta API lealtad + ParametrerConfiguration.VERSION ",
+      log.mensaje("Respuesta API lealtad" + ParametrerConfiguration.VERSION,
         " ERROR: con el idCliente: " + parameters.get("idCliente") +
         " Forma parseada para lealtad: " + parameters.get("idClienteParseado") +
         " monto: " + parameters.get("importe") + " id tipo cliente:"

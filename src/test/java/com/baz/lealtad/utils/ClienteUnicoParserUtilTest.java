@@ -47,7 +47,7 @@ public class ClienteUnicoParserUtilTest {
     assertTrue(respuesta.equals(ESPERADO));
   }
 
-  @DisplayName("Prueba unitaria cliente unico con forma numerica de mas de 10 digitos")
+  @DisplayName("Prueba unitaria cliente unico con forma numerica de 12 digitos")
   @Test
   public void testClienteNumerico(){
     /*
@@ -113,6 +113,39 @@ public class ClienteUnicoParserUtilTest {
 
     String respuesta = ClienteUnicoParserUtil.parsear(CU, log);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    assertTrue(respuesta.equals(ESPERADO));
+  }
+
+  @DisplayName("Prueba unitaria cliente unico con forma numerica de 11 digitos")
+  @Test
+  public void testClienteNumericoOnceDigitos(){
+    /*
+    constantes
+     */
+    final String CU = "01279953205";
+    final String ESPERADO = "0127-9953-0205";
+
+    String respuesta = clienteUnicoParserUtil.parsear(CU, log);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
+      + RESPUESTA_LABEL + respuesta);
+    assertTrue(respuesta.equals(ESPERADO));
+  }
+
+  @DisplayName("Prueba unitaria cliente unico con forma numerica de mas de 12 digitos")
+  @Test
+  public void testClienteNumericoDoceMas(){
+    /*
+    constantes
+     */
+    final String CU = "0101207888445726";
+    final String ESPERADO = "0101-2078-8844-5726";
+
+    /*
+    el numero maximo de caracteres para clienteUnicoParcer es de 16 caracteres
+     */
+    String respuesta = clienteUnicoParserUtil.parsear(CU, log);
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
       + RESPUESTA_LABEL + respuesta);
     assertTrue(respuesta.equals(ESPERADO));
   }

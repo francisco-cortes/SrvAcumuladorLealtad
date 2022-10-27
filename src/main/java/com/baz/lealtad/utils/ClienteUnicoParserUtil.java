@@ -60,7 +60,7 @@ public class ClienteUnicoParserUtil {
           newIdCliente = idCliente;
         }
         else {
-          // si son mas de 1 0solo se anade guines
+          // si son mas de 10 solo se añade guiones
           newIdCliente = onlyAddDash(idCliente);
         }
 
@@ -242,13 +242,20 @@ public class ClienteUnicoParserUtil {
    **/
   private static String onlyAddDash(String input){
 
-    if(FALTA_UN_DIGITO.matcher(input).matches()){
+    String onlyDigits = input;
+    /*
+    Al llegar a este metodo se considera un id cliente CU porque se tiene que formar 3 cuartetos separados con guion
+    existen caso en el que falta 1 numero para acompletar los 3 cuartetos
+    con esta validacion se trata de acompletar agregando un 0 en la 9 posicion
+     */
+    if(input.length() == 11){
       StringBuilder str = new StringBuilder(input);
-      str.insert(NINE,"0");
+      str.insert(EIGHT,"0");
+      onlyDigits = str.toString();
     }
 
     Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);
-    Matcher m = p.matcher(input);
+    Matcher m = p.matcher(onlyDigits);
     String aux = m.replaceAll("$1" + "-");
     int newLenght = aux.length();
     String[] checker = aux.split("");
