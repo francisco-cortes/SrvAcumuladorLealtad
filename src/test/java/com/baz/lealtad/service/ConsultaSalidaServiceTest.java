@@ -40,7 +40,8 @@ public class ConsultaSalidaServiceTest {
     Guarda la respuesta en una lista de la fortma CursorSpSalidaModel
      */
     List<CursorSpSalidaModel> cursorSpSalidaModelList = consultaSalidaService.consulta(log);
-    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "se obtuvieron " + cursorSpSalidaModelList.size() + " registros del primer sp");
+    log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, "se obtuvieron " +
+      cursorSpSalidaModelList.size() + " registros del primer sp");
     /*
     acierta si la el tamano es mayor a 0
      */

@@ -53,6 +53,8 @@ public class MainController {
   /*
   Constantes para regex
    */
+  private static final int ID_CLIENTE = 0;
+  private static final int ID_TIPO_CLIENTE = 1;
   private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
 
   /**
@@ -88,29 +90,23 @@ public class MainController {
 
     //---------------------------
     /*
-    No se realiza ningina accion si el payload respose DB llega vacio
+    No se realiza ningina accion si el payload response DB llega vacio
      */
     if (responseDb.size() > 0) {
 
       int fallidosLealtad = 0;
-      int idTipoCliente;
-      String idClienteParseado;
+      String[] cliente = new String[2];
 
       for(int i = 0; i < responseDb.size(); i ++){
         /*
-        id tipo cliente a trves de metodo
-         */
-        idTipoCliente = idTipoClienteSetter(responseDb.get(i).getFcNegocio().toLowerCase(),
-          responseDb.get(i).getFcIdCliente());
-
-        /*
         parseo de id cliente a la forma xxxx-xxxx-xxxx-xxx, o numerica dependindo de su tipo cliente
          */
-        idClienteParseado = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFcIdCliente().trim(), log);
+        cliente = ClienteUnicoParserUtil.parsear(responseDb.get(i).getFcIdCliente().trim(), log,
+          responseDb.get(i).getFcNegocio().toLowerCase());
         /*
         cifrado de datos sencibles id cliente e impiorte
          */
-        String idCliente = cifrarService.cifrar(idClienteParseado,
+        String idCliente = cifrarService.cifrar(cliente[ID_CLIENTE],
           llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2], log);
         /*
         redondeo de montos, api lealtad no acepta datos fraccionados
@@ -123,10 +119,10 @@ public class MainController {
          */
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("idTipoCliente", idTipoCliente);
+        parameters.put("idTipoCliente", Integer.parseInt(cliente[ID_TIPO_CLIENTE]));
         parameters.put("idCliente", responseDb.get(i).getFcIdCliente().trim());
         parameters.put("idClienteCifrado", idCliente);
-        parameters.put("idClienteParseado", idClienteParseado);
+        parameters.put("idClienteParseado", cliente[ID_CLIENTE]);
         parameters.put("importe", responseDb.get(i).getFnImporte());
         parameters.put("importeCifrado", importe);
         parameters.put("sucursal", responseDb.get(i).getFnSucursal());
@@ -191,37 +187,15 @@ public class MainController {
       System.exit(ParametrerConfiguration.CANT_LOAD_SOMETHING);
     }
   }
-
   /**
-   * Metodo idTipoClienteSetter
-   * Descrpcion: identifica el valor del Id Tipo cliente (3 o 5 ) dependiendo de los parametros negocio e idCliente
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
-   * params: negocio(String), IdCliente(String)
-   * returns: int
-   **/
-
-  public static int idTipoClienteSetter(String negocio, String idCliente){
-    if(ParametrerConfiguration.DEX.equalsIgnoreCase(negocio)
-      && SEVEN_TEN_IS_DEX.matcher(idCliente).matches()){
-      return CLIENTE_DEX;
-    }
-    else{
-      return CLIENTE_UNICO;
-    }
-  }
-
-  /**
-          * <b>importeRedondeador</b>
-          * @descripcion: Redondea el importe hacia arriba apartir de .6 para procesar en api de lealtad
-          * @autor: Francisco Javier Cortes Torres, Desarrollador
-          * @params: double
-          * @ultimaModificacion: 11/10/22
-        */
-
+   * <b>importeRedondeador</b>
+   * @descripcion: Redondea el importe hacia arriba apartir de .6 para procesar en api de lealtad
+   * @autor: Francisco Javier Cortes Torres, Desarrollador
+   * @params: double
+   * @ultimaModificacion: 11/10/22
+   */
   public static String importeRedondeador(Double importe){
     int importeRedondeado =  (int) Math.round(importe);
     return String.valueOf(importeRedondeado);
   }
-
-
 }

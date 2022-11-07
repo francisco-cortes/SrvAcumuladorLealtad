@@ -34,10 +34,7 @@ public class ClienteUnicoParserUtil {
    */
   private static final Pattern IDEAL_CU = Pattern.compile("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})");
   private static final Pattern SEVEN_MORE_DIGITS_DEX = Pattern.compile("(\\d{7,})");
-  private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
-  private static final Pattern SPECIAL_CASE = Pattern.compile("(\\d)-(\\d)-(\\d{4})-(\\d{4,})");
-  private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{4,})");
-
+  private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{3,})");
   /**
    * parserar
    * Descrpcion: Metodo principal valida la entrada con las regex definidas para identificar su tipo
@@ -46,44 +43,35 @@ public class ClienteUnicoParserUtil {
    * returns: String
    **/
 
-  public static String parsear (String idCliente, LogServicio log) {
-    String newIdCliente = "";
-    //entrada ideal
-    if(IDEAL_CU.matcher(idCliente).matches()){
-      newIdCliente = idCliente;
+  public static String[] parsear (String idCliente, LogServicio log, String negocio) {
+    String[] respuesta = new String[TWO];
+    String nuevoIdCliente = "";
+    String idTipoCliente = "";
+    if(ParametrerConfiguration.DEX.equalsIgnoreCase(negocio)){
+      nuevoIdCliente = removeDash(idCliente);
+      idTipoCliente = "5";
     }
     else{
-      // solo digitos mayor a 7 digitos
-      if(SEVEN_MORE_DIGITS_DEX.matcher(idCliente).matches()){
-        // digitos de 7 a 10
-        if(SEVEN_TEN_IS_DEX.matcher(idCliente).matches()){
-          newIdCliente = idCliente;
-        }
-        else {
-          // si son mas de 10 solo se añade guiones
-          newIdCliente = onlyAddDash(idCliente);
-        }
-
+      idTipoCliente = "3";
+      if(IDEAL_CU.matcher(idCliente).matches()){
+        nuevoIdCliente = idCliente;
       }
-      // caso especial x-x-xxxx-xxxxxx
-      else if (SPECIAL_CASE.matcher(idCliente).matches()){
-
-        newIdCliente = specialCase(idCliente);
-
+      else if(SEVEN_MORE_DIGITS_DEX.matcher(idCliente).matches()){
+        nuevoIdCliente = onlyAddDash(idCliente);
       }
-      // caosi espeical x-x-x-xxxx-xxxxx
       else if (IDEAL_SPECIAL_CASE.matcher(idCliente).matches()){
-        newIdCliente = specialCase(idCliente);
+        nuevoIdCliente = specialCase(idCliente);
       }
       else {
-        //la entrada no puede ser paseada por que no hay concide con ninguna regex
+        //la entrada no puede ser paseada porque no hay coincide con ninguna regex
         log.mensaje(SERVICE_NAME + ParametrerConfiguration.VERSION,
           "ERROR no se pudo hallar la forma de la entrada ID Cliente");
-        newIdCliente = idCliente;
-
+        nuevoIdCliente = idCliente;
       }
     }
-    return newIdCliente;
+    respuesta[ZERO] = nuevoIdCliente;
+    respuesta[ONE] = idTipoCliente;
+    return respuesta;
   }
 
   /**
@@ -93,7 +81,6 @@ public class ClienteUnicoParserUtil {
    **/
 
   private static String specialCase(String input){
-
     StringBuilder auxBuild = new StringBuilder();
 
     String[] separado = input.split("-");
@@ -105,14 +92,17 @@ public class ClienteUnicoParserUtil {
     auxBuild.append(specialCaseSucc(separado[TWO]));
     // folio
     auxBuild.append(specialCaseLast(separado[THREE]));
+    int len = auxBuild.length() - 1;
     // construye la cadena
+    if ("-".equals(auxBuild.substring(len))){
+      auxBuild.deleteCharAt(len);
+    }
     return auxBuild.toString();
-
   }
 
   /**
    * specialCasepais
-   * Descrpcion: valida el valor pais y retorna valores concatenados
+   * Descrpcion: válida el valor pais y retorna valores concatenados
    * Autor: Francisco Javier Cortes Torres, Desarrollador
    * params: paisCero(String)
    * returns: String
@@ -197,6 +187,12 @@ public class ClienteUnicoParserUtil {
      */
     int lastLenght = lastThree.length();
     String aux = "";
+
+    if(lastLenght == THREE){
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(ZERO,"0");
+      lastThree = str.toString();
+    }
     /*
     si el tamano es meno o igual a 8 inserta un guion
      */
@@ -267,6 +263,15 @@ public class ClienteUnicoParserUtil {
       auxBuild.append(checker[i]);
     }
     return auxBuild.toString();
+  }
+
+  private static String removeDash(String idCliente){
+    if (idCliente.contains("-")){
+      return idCliente.replace("-","");
+    }
+    else {
+      return idCliente;
+    }
   }
 
 }

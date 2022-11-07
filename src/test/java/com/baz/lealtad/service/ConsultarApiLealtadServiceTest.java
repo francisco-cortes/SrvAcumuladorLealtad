@@ -9,24 +9,29 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/**
+ * <b>ConsultarApiLealtadServiceTest</b>
+ * @descripcion: breve descripción del contenido
+ * @autor: Francisco Javier Cortes Torres, Desarrollador
+ * @ultimaModificacion: 31/10/22
+ */
 public class ConsultarApiLealtadServiceTest {
   /*
-    obejetos test
-     */
+  obejetos test
+  */
   private static final CifrarDesifrarAesService cifrarService = new CifrarDesifrarAesService();
   private static final LogServicio log = new LogServicio();
   private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
   /*
-    Constantes para  getLlaves
-     */
+  Constantes para  getLlaves
+  */
   private static final int TOKEN = 0;
   private static final int IDACCESO = 1;
   private static final int SIMETRICA_1 = 2;
   private static final int SIMETRICA_2 = 3;
   /*
-    Constantes para la creacion del JSON
-     */
+  Constantes para la creacion del JSON
+  */
   private static final int ID_TIPO_CLIENTE = 3;
   private static final int ID_TIPO_DEX = 5;
   private static final String ID_CLIENTE = "0101-0127-4888";
@@ -41,11 +46,23 @@ public class ConsultarApiLealtadServiceTest {
   private static final int FOLIO = 1;
   private static final int BANDERA = 2;
   private static final int RESPUESTA_TAMANO = 3;
-
+  /**
+   * <b>testApiLeatadService</b>
+   * @descripcion: Realiza un test sobre el consumo del api de lealtad
+   * @autor: Francisco Javier Cortes Torres, Desarrollador
+   * @param:
+   * @ultimaModificacion: 31/10/22
+   */
   @DisplayName("Prueba unitaria para api de lealtad Service")
   @Test
   public void testApiLeatadService() {
+    /*
+    simula la obtencion de datos del properties
+     */
     SetterTestParams.setAllRequiredParams();
+    /*
+    llama al dao de las llaves
+     */
     ConsultarApiLealtadService apiLealtadDao = new ConsultarApiLealtadService();
     String[] llavesAes = obtenerLlaves.getLlaves(log);
     String[] respuesta = new String[RESPUESTA_TAMANO];
