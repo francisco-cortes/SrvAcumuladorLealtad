@@ -93,11 +93,11 @@ public class ClienteUnicoParserUtilTest {
     /*
     constantes
      */
-    final String CU = "010120788844";
+    final String CU = "01012078484";
     /*
     valor esperado de respuesta
      */
-    final String ESPERADO = "0101-2078-8844";
+    final String ESPERADO = "0101-2078-0484";
 
     String[] respuesta = clienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO

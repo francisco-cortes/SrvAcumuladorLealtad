@@ -238,16 +238,32 @@ public class ClienteUnicoParserUtil {
    **/
   private static String onlyAddDash(String input){
 
-    String onlyDigits = input;
+    String onlyDigits;
     /*
     Al llegar a este metodo se considera un id cliente CU porque se tiene que formar 3 cuartetos separados con guion
     existen caso en el que falta 1 numero para acompletar los 3 cuartetos
     con esta validacion se trata de acompletar agregando un 0 en la 9 posicion
      */
-    if(input.length() == ELEVEN){
+    if(input.length() == NINE){
+      StringBuilder str = new StringBuilder(input);
+      str.insert(EIGHT,"0");
+      str.insert(NINE,"0");
+      str.insert(TEN,"0");
+      onlyDigits = str.toString();
+    }
+    else if(input.length() == TEN){
+      StringBuilder str = new StringBuilder(input);
+      str.insert(EIGHT,"0");
+      str.insert(NINE,"0");
+      onlyDigits = str.toString();
+    }
+    else if(input.length() == ELEVEN){
       StringBuilder str = new StringBuilder(input);
       str.insert(EIGHT,"0");
       onlyDigits = str.toString();
+    }
+    else {
+      onlyDigits = input;
     }
 
     Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);
