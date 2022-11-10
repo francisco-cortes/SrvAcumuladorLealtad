@@ -132,6 +132,7 @@ public class ClienteUnicoParserUtilTest {
     /*
     acierta si son iguales
      */
+    System.out.println(respuesta[ID_CLIENTE] + " = " + ESPERADO);
     assertEquals(respuesta[ID_CLIENTE],ESPERADO);
   }
 
