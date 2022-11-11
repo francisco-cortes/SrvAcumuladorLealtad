@@ -61,7 +61,8 @@ public class LlavesSimetricasDaoTest {
       depus llaves simetricas
        */
       respuesta3 = llavesSimetricasDao.getLlavesSimetricas(respuesta,respuesta2[ID_ACCESO],log);
-    } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
+    }
+    catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
       log.exepcion(e,"Error en Simetricas TEST");
     }
     StringBuilder aux = new StringBuilder("Llaves Simetricas: ");

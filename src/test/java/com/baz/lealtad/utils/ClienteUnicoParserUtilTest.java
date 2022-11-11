@@ -23,7 +23,6 @@ public class ClienteUnicoParserUtilTest {
   private static final String DEX = "DEX";
   private static final String MM = "MM";
   private static int ID_CLIENTE = 0;
-  private static final ClienteUnicoParserUtil clienteUnicoParserUtil = new ClienteUnicoParserUtil();
   private static final LogServicio log = new LogServicio();
 
   /**
@@ -45,7 +44,7 @@ public class ClienteUnicoParserUtilTest {
      */
     final String ESPERADO = "0101-0127-4888-123";
 
-    String[] respuesta = clienteUnicoParserUtil.parsear(IDEAL, log, MM);
+    String[] respuesta = ClienteUnicoParserUtil.parsear(IDEAL, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG
       + "respuesta: " + respuesta[ID_CLIENTE]);
     /*
@@ -72,7 +71,7 @@ public class ClienteUnicoParserUtilTest {
      */
     final String ESPERADO = "159997207";
 
-  String[] respuesta = clienteUnicoParserUtil.parsear(DEXNUM, log, DEX);
+  String[] respuesta = ClienteUnicoParserUtil.parsear(DEXNUM, log, DEX);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + DEX + ESPERADO_LABEL + ESPERADO
       + RESPUESTA_LABEL + respuesta[ID_CLIENTE]);
     /*
@@ -99,7 +98,7 @@ public class ClienteUnicoParserUtilTest {
      */
     final String ESPERADO = "0101-2078-0484";
 
-    String[] respuesta = clienteUnicoParserUtil.parsear(CU, log, MM);
+    String[] respuesta = ClienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
       + RESPUESTA_LABEL + respuesta[ID_CLIENTE]);
     /*
@@ -126,7 +125,7 @@ public class ClienteUnicoParserUtilTest {
      */
     final String ESPERADO = "0109-2669-0185";
 
-    String[] respuesta = clienteUnicoParserUtil.parsear(CU, log, MM);
+    String[] respuesta = ClienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
       + RESPUESTA_LABEL + respuesta[ID_CLIENTE]);
     /*
@@ -209,7 +208,7 @@ public class ClienteUnicoParserUtilTest {
     final String CU = "01279953205";
     final String ESPERADO = "0127-9953-0205";
 
-    String[] respuesta = clienteUnicoParserUtil.parsear(CU, log, MM);
+    String[] respuesta = ClienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU
       + RESPUESTA_LABEL + respuesta[ID_CLIENTE]);
     assertEquals(respuesta[ID_CLIENTE],ESPERADO);
@@ -234,13 +233,13 @@ public class ClienteUnicoParserUtilTest {
     /*
     el numero maximo de caracteres para clienteUnicoParcer es de 16 caracteres
      */
-    String[] respuesta = clienteUnicoParserUtil.parsear(CU, log, MM);
+    String[] respuesta = ClienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO + ESPERADO
       + RESPUESTA_LABEL + respuesta[ID_CLIENTE]);
     /*
     acierta si son iguales
      */
-    assertEquals(respuesta[ID_CLIENTE],ESPERADO);;
+    assertEquals(respuesta[ID_CLIENTE],ESPERADO);
   }
 
 }

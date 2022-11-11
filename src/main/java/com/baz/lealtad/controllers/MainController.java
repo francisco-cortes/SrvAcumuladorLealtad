@@ -20,7 +20,6 @@ import com.baz.lealtad.utils.ClienteUnicoParserUtil;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 public class MainController {
 
@@ -36,8 +35,6 @@ public class MainController {
   Cosntates
    */
   private static final String NOMBRE_CLASE = "Main Controller";
-  private static final int CLIENTE_DEX = 5;
-  private static final int CLIENTE_UNICO = 3;
   //va a cambiar
   private static final int ID_OPERACION = 3;
   /*
@@ -55,8 +52,6 @@ public class MainController {
    */
   private static final int ID_CLIENTE = 0;
   private static final int ID_TIPO_CLIENTE = 1;
-  private static final Pattern SEVEN_TEN_IS_DEX = Pattern.compile("(\\d{7,10})");
-
   /**
    * Metodo main
    * Descrpcion: punto inicio para la ejecucion del jar aqui se invoca los services necesarios
@@ -95,7 +90,7 @@ public class MainController {
     if (responseDb.size() > 0) {
 
       int fallidosLealtad = 0;
-      String[] cliente = new String[2];
+      String[] cliente;
 
       for(int i = 0; i < responseDb.size(); i ++){
         /*

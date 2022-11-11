@@ -28,7 +28,6 @@ public class GetCertUtil {
     /*
     inicio de objetos necesarios
      */
-    //FileInputStream fis = null;
     X509Certificate ca;
     KeyStore ks;
     TrustManagerFactory tmf = null;

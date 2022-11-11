@@ -1,6 +1,5 @@
 package com.baz.lealtad.logger;
 
-import com.baz.lealtad.configuration.ParametrerConfiguration;
 import com.baz.lealtad.utils.FabricaDaoUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -38,7 +37,8 @@ public class LogServicioTest {
 
     try {
       fabricaDaoUtil.cerrarConexionSinResult(null,null);
-    } catch (Exception e) {
+    }
+    catch (Exception e) {
       /*
       manejo de exepcion con logger
        */

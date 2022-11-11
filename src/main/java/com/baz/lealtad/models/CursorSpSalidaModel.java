@@ -48,6 +48,10 @@ public class CursorSpSalidaModel {
    */
   private int fiPaisId;
 
+  public CursorSpSalidaModel(){
+    // No se requiere constructor, gracias sonar
+  }
+
   /*
   obtiene el id tipo cliente
    */

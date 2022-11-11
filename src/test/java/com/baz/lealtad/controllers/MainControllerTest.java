@@ -14,10 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * returns:
  **/
 public class MainControllerTest {
+  private static final int ARGS = 3;
   @DisplayName("Prueba")
   @Test
   public void mainTest(){
-    String[] args = new String[3];
+    String[] args = new String[ARGS];
     SetterTestParams.setAllRequiredParams();
     MainController.main(args);
   }

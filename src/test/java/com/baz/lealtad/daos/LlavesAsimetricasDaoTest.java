@@ -23,8 +23,17 @@ public class LlavesAsimetricasDaoTest {
   Constantes globales
    */
   private static final int TAMANO_RESPUESTA_ASIMETICAS = 3;
+  /*
+  posicion del ID acceso en el arreglo
+   */
   private static final int ID_ACCESO = 0;
+  /*
+  posicion del acceso public en el arreglo
+   */
   private static final int ACCESO_PUBLICO = 1;
+  /*
+  posicion del acceso privado en el arreglo
+   */
   private static final int ACESOS_PRIVADO = 2;
   /*
     objetos
@@ -68,7 +77,13 @@ public class LlavesAsimetricasDaoTest {
     respBol = !respuesta2[ID_ACCESO].isEmpty();
     assertEquals(true, respBol);
   }
-
+  /**
+   * TESTnoGetAsimetricas
+   * Descrpcion: obtiene una excepcion en las llaves asimetricas api seguridad
+   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * params:
+   * returns:
+   **/
   @DisplayName("Prueba unitaria para No obtener Llaves asimetricas del api de seguridad")
   @Test
   public void testNoGetAsimetricas() {

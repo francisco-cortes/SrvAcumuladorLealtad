@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
  * Descrpcion: Clase cambiar el formato de ID Cliente y poder ser procesado por la api lealtad
  * Autor: Francisco Javier Cortes Torres, Desarrollador
  **/
-public class ClienteUnicoParserUtil {
+public final class ClienteUnicoParserUtil {
   /*
-  Constantes globales
+  Constantes globales ñeras
    */
   private static final String SERVICE_NAME = "ClienteUnicoParserUtil";
   private static final int ZERO = 0;
@@ -32,13 +32,30 @@ public class ClienteUnicoParserUtil {
   /*
   Regex
    */
+  /*
+  regex para formato xxxx-xxxx-xxxx-xxx
+   */
   private static final Pattern IDEAL_CU = Pattern.compile("((\\d{4})-(\\d{4})-(\\d{4}))-(\\d{1,4})");
+  /*
+  regex para formato numerico , usalmente son DEX
+   */
   private static final Pattern SEVEN_MORE_DIGITS_DEX = Pattern.compile("(\\d{7,})");
-  private static final Pattern IDEAL_SPECIAL_CASE = Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{3,})");
+  /*
+  otro formato de id cliente unico x-x-xxx-xxx
+   */
+  private static final Pattern IDEAL_SPECIAL_CASE =
+    Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{3,})");
+
+  private static final Pattern NADA = Pattern.compile("");
+
+  private ClienteUnicoParserUtil(){
+    // Segun las clases utilidad llevan un constructor privado
+  }
+
   /**
-   * parserar
-   * Descrpcion: Metodo principal valida la entrada con las regex definidas para identificar su tipo
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * parsear
+   * Description: Metodo principal valida la entrada con las regex definidas para identificar su tipo
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: idcliente(String), log(LogServicio)
    * returns: String
    **/
@@ -48,10 +65,20 @@ public class ClienteUnicoParserUtil {
     String nuevoIdCliente = "";
     String idTipoCliente = "";
     if(ParametrerConfiguration.DEX.equalsIgnoreCase(negocio)){
+      /*
+      si el negocio es DEX se envia un id cliente numerico sin guiones, el id tipo cliente es 5
+       */
       nuevoIdCliente = removeDash(idCliente);
       idTipoCliente = "5";
     }
     else{
+      /*
+      Si el negocio es mm el id tipo cliente es 3 y se parsea,
+      hay formas _ diferentes y todas deben de cumplir xxxx-xxxx-xxxx
+      - numerico: desde 7 digitos
+      - especial: x-x-xxx-xxx, x-x-xxxx-xxx, x-x-xxxx-xxxx, x-x-xxxx-xxxxxx, xx-x-xxxx-xxx, x-xx-xxxx-xxxxx
+      trate que se cumplieran todas pero puede llegar a aparecer mas.
+       */
       idTipoCliente = "3";
       if(IDEAL_CU.matcher(idCliente).matches()){
         nuevoIdCliente = idCliente;
@@ -76,8 +103,8 @@ public class ClienteUnicoParserUtil {
 
   /**
    * specialCase
-   * Descrpcion: elimina en guion separnadolo y reconstrullendo la cadena
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Description: elimina en guion separándolo y reconstruyendo la cadena
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    **/
 
   private static String specialCase(String input){
@@ -101,9 +128,9 @@ public class ClienteUnicoParserUtil {
   }
 
   /**
-   * specialCasepais
-   * Descrpcion: válida el valor pais y retorna valores concatenados
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * specialCasePais
+   * Description: válida el valor pais y retorna valores concatenados
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: paisCero(String)
    * returns: String
    **/
@@ -122,8 +149,8 @@ public class ClienteUnicoParserUtil {
 
   /**
    * specialCaseCanal
-   * Descrpcion: valida el valor canal y retorna valores concatenados
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Description: valida el valor canal y retorna valores concatenados
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: canalOne(String)
    * returns: String
    **/
@@ -142,8 +169,8 @@ public class ClienteUnicoParserUtil {
 
   /**
    * specialCaseSucc
-   * Descrpcion: valida el valor succursal y retorna valores concatenados
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Description: valida el valor sucursal y retorna valores concatenados
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: sucursalTwo(String)
    * returns: String
    **/
@@ -176,14 +203,14 @@ public class ClienteUnicoParserUtil {
 
   /**
    * specialCaseLast
-   * Descrpcion: valida el valor de la ultima parte de la cadena y retorna valores concatenados
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Description: válida el valor de la última parte de la cadena y retorna valores concatenados
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: paisCero(String)
    * returns: String
    **/
   private static String specialCaseLast(String lastThree){
     /*
-    obtiene el tamano de la uultima parte del arrgglo
+    obtiene el tamaño de la última parte del arreglo
      */
     int lastLenght = lastThree.length();
     String aux = "";
@@ -231,8 +258,8 @@ public class ClienteUnicoParserUtil {
 
   /**
    * onlyAddDash
-   * Descrpcion: Si el tamano de la cadena es mayor a 10 solo agrega un guion cada 4 caracteres de la cadena original
-   * Autor: Francisco Javier Cortes Torres, Desarrollador
+   * Description: Si el tamano de la cadena es mayor a 10 solo agrega un guion cada 4 caracteres de la cadena original
+   * Author: Francisco Javier Cortes Torres, Desarrollador
    * params: paisCero(String)
    * returns: String
    **/
@@ -265,12 +292,12 @@ public class ClienteUnicoParserUtil {
     else {
       onlyDigits = input;
     }
-
+    //finolis
     Pattern p = Pattern.compile("(.{" + FOUR + "})", Pattern.DOTALL);
     Matcher m = p.matcher(onlyDigits);
     String aux = m.replaceAll("$1" + "-");
     int newLenght = aux.length();
-    String[] checker = aux.split("");
+    String[] checker = aux.split(String.valueOf(NADA));
     if (checker[checker.length - ONE].contains("-")) {
       newLenght = newLenght - ONE;
     }
@@ -280,7 +307,13 @@ public class ClienteUnicoParserUtil {
     }
     return auxBuild.toString();
   }
-
+  /**
+   * removeDash
+   * Description: Quita los guiones que puedan existir en un id cliente DEX, Creo
+   * Author: Francisco Javier Cortes Torres, Desarrollador
+   * params: paisCero(String)
+   * returns: String
+   **/
   private static String removeDash(String idCliente){
     if (idCliente.contains("-")){
       return idCliente.replace("-","");

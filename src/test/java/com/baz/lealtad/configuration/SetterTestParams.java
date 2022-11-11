@@ -1,6 +1,10 @@
 package com.baz.lealtad.configuration;
 
-public class SetterTestParams {
+public final class SetterTestParams {
+
+  private SetterTestParams(){
+    //Constructor privado XD
+  }
   public static void setAllRequiredParams(){
     /*
     Ip base oracle desarrollo
