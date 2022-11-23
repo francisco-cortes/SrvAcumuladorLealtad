@@ -22,7 +22,7 @@ public class ClienteUnicoParserUtilTest {
   private static final String INICIO_MENSAJE_LOG = "Parseo de Id Cliente, Entrada: ";
   private static final String DEX = "DEX";
   private static final String MM = "MM";
-  private static int ID_CLIENTE = 0;
+  private static int ID_CLIENTE;
   private static final LogServicio log = new LogServicio();
 
   /**
@@ -119,11 +119,11 @@ public class ClienteUnicoParserUtilTest {
     /*
     constantes
      */
-    final String CU = "1-9-2669-185";
+    final String CU = "1-9-2669-5";
     /*
     Valor esperado de respuesta
      */
-    final String ESPERADO = "0109-2669-0185";
+    final String ESPERADO = "0109-2669-0005";
 
     String[] respuesta = ClienteUnicoParserUtil.parsear(CU, log, MM);
     log.mensaje(ParametrerConfiguration.SYSTEM_NAME_TEST, INICIO_MENSAJE_LOG + CU + ESPERADO_LABEL + ESPERADO
@@ -131,7 +131,6 @@ public class ClienteUnicoParserUtilTest {
     /*
     acierta si son iguales
      */
-    System.out.println(respuesta[ID_CLIENTE] + " = " + ESPERADO);
     assertEquals(respuesta[ID_CLIENTE],ESPERADO);
   }
 

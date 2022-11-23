@@ -11,10 +11,8 @@ public class CifrarDesifrarAesServiceTest {
   private static final LogServicio log = new LogServicio();
   private static final ObtenerLlavesService obtenerLlaves  = new ObtenerLlavesService();
   /*
-    Constantes para  getLlaves
-     */
-  private static final int TOKEN = 0;
-  private static final int IDACCESO = 1;
+  Constantes para  getLlaves
+  */
   private static final int SIMETRICA_1 = 2;
   private static final int SIMETRICA_2 = 3;
   /**
@@ -26,13 +24,18 @@ public class CifrarDesifrarAesServiceTest {
   @DisplayName("cifrar aes datos")
   @Test
   public void testObtenerConexion(){
+    /*
+    set de parametros
+     */
     SetterTestParams.setAllRequiredParams();
+    /*
+    obtiene llaves
+     */
     String[] llavesAes = obtenerLlaves.getLlaves(log);
     /*
     cifrado del id cliente como lo requiere la api
-     */
-    String idCliente = cifrarService.cifrar("100",
+    */
+    cifrarService.cifrar("100",
       llavesAes[SIMETRICA_1], llavesAes[SIMETRICA_2], log);
-    System.out.println(idCliente);
   }
 }

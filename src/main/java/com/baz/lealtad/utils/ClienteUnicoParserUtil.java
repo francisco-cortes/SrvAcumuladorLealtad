@@ -44,7 +44,7 @@ public final class ClienteUnicoParserUtil {
   otro formato de id cliente unico x-x-xxx-xxx
    */
   private static final Pattern IDEAL_SPECIAL_CASE =
-    Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d{3,})");
+    Pattern.compile("(\\d{1,2})-(\\d{1,2})-(\\d{1,4})-(\\d+)");
 
   private static final Pattern NADA = Pattern.compile("");
 
@@ -218,6 +218,23 @@ public final class ClienteUnicoParserUtil {
     if(lastLenght == THREE){
       StringBuilder str = new StringBuilder(lastThree);
       str.insert(ZERO,"0");
+      lastThree = str.toString();
+    }
+    else if (lastLenght == TWO){
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(ZERO,"0");
+      str.insert(ONE,"0");
+      lastThree = str.toString();
+    }
+    else if (lastLenght == ONE) {
+      StringBuilder str = new StringBuilder(lastThree);
+      str.insert(ZERO,"0");
+      str.insert(ONE,"0");
+      str.insert(ONE,"0");
+      lastThree = str.toString();
+    }
+    else{
+      StringBuilder str = new StringBuilder(lastThree);
       lastThree = str.toString();
     }
     /*

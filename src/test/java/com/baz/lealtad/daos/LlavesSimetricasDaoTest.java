@@ -41,7 +41,9 @@ public class LlavesSimetricasDaoTest {
     final int ID_ACCESO = 0;
     final int CANTIDAD_LLAVES_SIMETICAS = 2;
     final int ACCESO_SIMETRICO = 0;
-
+    /*
+    respuesta
+     */
     String respuesta = "";
     String[] respuesta2;
     String[] respuesta3 = new String[CANTIDAD_LLAVES_SIMETICAS];
